@@ -177,7 +177,8 @@ return [
         InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Yajra\DataTables\HtmlServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class
+        Yajra\DataTables\ButtonsServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 
