@@ -1,3 +1,5 @@
 <div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
+    @component('components.tabler.header', ['title'=> 'Dashboard', 'subtitle'=> 'Subtitle'])
+
+    @endcomponent
 </div>
