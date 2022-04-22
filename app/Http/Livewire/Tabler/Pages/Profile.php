@@ -10,6 +10,6 @@ class Profile extends Component
     {
         return view('livewire.tabler.pages.profile',[
 
-        ])->extends('app.layout')->section('content');
+        ])->extends('app.layout-h')->section('content');
     }
 }
