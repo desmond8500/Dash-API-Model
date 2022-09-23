@@ -3,6 +3,7 @@
 use App\Http\Livewire\Material\Index as MaterialIndex;
 use App\Http\Livewire\Tabler\Index;
 use App\Http\Livewire\Tabler\Pages\Profile;
+use App\Http\Livewire\Tabler\Pages\Reglages;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ Route::get('mat', MaterialIndex::class)->name('material.index');
 // Configurations
 Route::name('tabler.')->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/reglages', Reglages::class)->name('reglages');
 });
 
 Auth::routes();
