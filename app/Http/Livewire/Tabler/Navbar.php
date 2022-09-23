@@ -16,6 +16,7 @@ class Navbar extends Component
             'index' => (object) array('name' => 'Dash API', 'route' => 'index'),
         ]);
     }
+
     public function menu()
     {
         return MenuController::menus();

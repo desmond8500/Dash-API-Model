@@ -58,9 +58,10 @@
                                         </a>
                                         <div class="dropdown-menu">
                                             @foreach ($menu->submenu as $submenu)
-                                            <a class="dropdown-item" href="{{ route($submenu->route) }}">
-                                                {{ $submenu->name }}
-                                            </a>
+                                                <a class="dropdown-item" href="{{ route($submenu->route) }}" target="{{ $submenu->target }}">
+                                                    <span class="text-muted mx-1">{!! $submenu->icon !!}</span>
+                                                    {{ $submenu->name }}
+                                                </a>
                                             @endforeach
                                         </div>
                                     </li>

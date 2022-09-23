@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Pages;
 
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Profile extends Component
@@ -12,4 +13,6 @@ class Profile extends Component
 
         ])->extends('app.layout-h')->section('content');
     }
+
+
 }

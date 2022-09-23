@@ -10,6 +10,6 @@ class Reglages extends Component
     {
         return view('livewire.tabler.pages.reglages',[
 
-        ])->extends('app.layout-h')->section('content');
+        ])->extends('app.layout')->section('content');
     }
 }
