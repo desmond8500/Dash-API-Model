@@ -7,28 +7,18 @@ use Illuminate\Support\Facades\Schema;
 class CreateProvidersTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('logo');
-            $table->string('adress');
-            $table->string('website');
+            $table->string('logo')->nullable();
+            $table->string('adress')->nullable();
+            $table->string('website')->nullable();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('providers');

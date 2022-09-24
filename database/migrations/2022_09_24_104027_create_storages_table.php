@@ -7,26 +7,16 @@ use Illuminate\Support\Facades\Schema;
 class CreateStoragesTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('storages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('area');
+            $table->string('area')->nullable();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('storages');

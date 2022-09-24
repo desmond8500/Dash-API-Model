@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateManualsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('manuals', function (Blueprint $table) {
@@ -23,11 +18,6 @@ class CreateManualsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('manuals');

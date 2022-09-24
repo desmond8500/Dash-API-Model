@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreatePrioritiesTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('priorities', function (Blueprint $table) {
@@ -22,11 +17,6 @@ class CreatePrioritiesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('priorities');
