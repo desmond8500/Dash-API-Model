@@ -21,6 +21,10 @@ Route::name('tabler.')->group(function () {
     Route::get('/profile',              Profile::class)->name('profile');
     Route::get('/reglages',             Reglages::class)->name('reglages');
     Route::get('/manuals/{fichier?}',   Docs::class)->name('manuals');
+    // Route::get('/api/docs', function () {
+    //     return redirect("");
+    // })->name('docs');
+
     // Auth
     Route::get('/connexion',    Login::class)->name('login');
     Route::get('/inscription',  Register::class)->name('register');
