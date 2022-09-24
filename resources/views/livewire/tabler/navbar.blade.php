@@ -31,7 +31,7 @@
                         </div> --}}
                         <a class="btn btn-light" wire:click='logout'>Déconnexion</a>
                     @else
-                        <a class="btn btn-primary" href="{{  route('login') }}">Connexion</a>
+                        <a class="btn btn-primary" href="{{  route('tabler.login') }}">Connexion</a>
                     @endauth
                 </div>
             </div>
