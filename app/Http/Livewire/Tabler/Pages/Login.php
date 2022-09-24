@@ -26,13 +26,15 @@ class Login extends Component
             'active' => 1
         ]);
 
-        $this->auth = $auth;
+        $auth = Auth::attempt(['email' => $this->email, 'password' => $this->password]);
 
         if ($auth) {
             return redirect()->route('index');
         } else {
-
+            session()->flash('message', 'Les identifiants saisis sont incorrectes');
+            $this->alert = 'Les identifiants saisis sont incorrectes';
         }
+        $this->alert = $auth;
     }
 
     public function togglePassword()

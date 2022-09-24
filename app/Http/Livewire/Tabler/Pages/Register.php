@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler\Pages;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Register extends Component
@@ -22,8 +23,11 @@ class Register extends Component
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => $this->password,
+            'password' => Hash::make($this->password),
         ]);
+        if ($user) {
+           return redirect()->route('tabler.login');
+        }
     }
 
     public function togglePassword()

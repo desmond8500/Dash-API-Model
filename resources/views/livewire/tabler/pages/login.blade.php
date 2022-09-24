@@ -9,6 +9,15 @@
                 </div>
                 <div class="card card-md">
                     <div class="card-body">
+                        @if (session()->has('message'))
+
+                        <div class="alert alert-danger">
+
+                            {{ session('message') }}
+
+                        </div>
+
+                        @endif
                         <h2 class="h2 text-center mb-4">Connexion {{ $auth }}</h2>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>

@@ -1,7 +1,8 @@
 <div class="container container-tight py-4">
     <div class="text-center mb-4">
-        <a href="{{ route('index') }}" class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36"
-                alt=""></a>
+        <a href="{{ route('index') }}" class="navbar-brand navbar-brand-autodark">
+            <img src="{{ asset(env('APP_LOGO')) }}" height="36" alt="">
+            </a>
     </div>
     <div class="card-body">
         <h2 class="card-title text-center mb-4">Créer un compte</h2>
