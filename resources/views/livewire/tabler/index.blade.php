@@ -1,7 +1,13 @@
 @component('components.tabler.header', ['title'=> 'Dashboard', 'subtitle'=> 'Subtitle'])
 
 @endcomponent
-
+<div>
+    @auth
+        Connecté
+        @else
+        Non connecté
+    @endauth
+</div>
 <div>
     {{ $users->count() }}
 </div>

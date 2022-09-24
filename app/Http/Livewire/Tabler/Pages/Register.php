@@ -8,6 +8,7 @@ use Livewire\Component;
 class Register extends Component
 {
     public $name, $email, $password;
+    public $toggle = "password";
 
     public function render()
     {
@@ -23,13 +24,14 @@ class Register extends Component
             'email' => $this->email,
             'password' => $this->password,
         ]);
+    }
 
-        var_dump($user);
-
-        // if ($user) {
-        //     return redirect()->route('index');
-        // } else {
-        // }
-
+    public function togglePassword()
+    {
+        if ($this->toggle == "password") {
+            $this->toggle = "text";
+        } else {
+            $this->toggle = "password";
+        }
     }
 }
