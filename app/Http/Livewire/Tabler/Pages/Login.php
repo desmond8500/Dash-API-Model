@@ -20,15 +20,19 @@ class Login extends Component
 
     public function login()
     {
-        $auth = Auth::attempt(['email' => $this->email, 'password' => $this->password, 'active' => 1]);
+        $auth = Auth::attempt([
+            'email' => $this->email,
+            'password' => $this->password,
+            'active' => 1
+        ]);
+
         $this->auth = $auth;
 
         if ($auth) {
             return redirect()->route('index');
         } else {
+
         }
-
-
     }
 
     public function togglePassword()

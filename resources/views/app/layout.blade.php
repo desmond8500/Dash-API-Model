@@ -28,6 +28,7 @@
     <script>
         mermaid.initialize({startOnLoad:true});
     </script>
+    <script src="{{ asset("lib/fslightbox.js") }}"></script>
 
     @stack('scripts')
 </body>
