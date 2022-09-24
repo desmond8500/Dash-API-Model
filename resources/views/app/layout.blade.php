@@ -31,9 +31,9 @@
     </script>
     <script src="{{ asset("lib/fslightbox.js") }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
+    <script> hljs.highlightAll(); </script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script> mermaid.initialize({startOnLoad:true}); </script>
 
     @stack('scripts')
 </body>
