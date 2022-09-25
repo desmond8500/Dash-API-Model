@@ -19,7 +19,8 @@ class ProviderResource extends JsonResource
             'name' => $this->name,
             'logo' => $this->logo,
             'adress' => $this->adress,
-            'website' => $this->website
+            'website' => $this->website,
+            'description' => $this->description,
         ];
     }
 }

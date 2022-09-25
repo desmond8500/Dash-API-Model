@@ -21,7 +21,8 @@ class StockController extends Controller
         "Cable 2"       => 8,
         "Accessoire 1"  => 9,
         "Accessoire 2"  => 10,
-        "Forfait"       => 11,
+        "Forfait 1"     => 11,
+        "Forfait 2"     => 12,
         );
     }
 }

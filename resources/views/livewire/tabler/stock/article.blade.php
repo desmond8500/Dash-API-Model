@@ -5,17 +5,4 @@
             Article
         </button>
     @endcomponent
-
-    <div class="row">
-        @forelse ($articles as $article)
-            <div class="col-md-4">
-                @include('_tabler.card.article_card')
-            </div>
-        @empty
-            Pas d'articles
-        @endforelse
-    </div>
-
-    @include('_tabler.form.add_article')
-
 </div>

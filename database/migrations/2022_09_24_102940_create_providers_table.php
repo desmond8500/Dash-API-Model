@@ -15,6 +15,7 @@ class CreateProvidersTable extends Migration
             $table->string('logo')->nullable();
             $table->string('adress')->nullable();
             $table->string('website')->nullable();
+            $table->text('description')->nullable();
             $table->softDeletes();
         });
     }

@@ -8,7 +8,10 @@ use App\Http\Livewire\Tabler\Pages\Login;
 use App\Http\Livewire\Tabler\Pages\Profile;
 use App\Http\Livewire\Tabler\Pages\Register;
 use App\Http\Livewire\Tabler\Pages\Reglages;
+use App\Http\Livewire\Tabler\Stock\Article;
 use App\Http\Livewire\Tabler\Stock\Articles;
+use App\Http\Livewire\Tabler\Stock\Brands;
+use App\Http\Livewire\Tabler\Stock\Providers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +34,9 @@ Route::name('tabler.')->group(function () {
     Route::get('/forgotten',    Forgotten::class)->name('forgotten');
     // Stock
     Route::get('/articles',    Articles::class)->name('articles');
+    Route::get('/article',    Article::class)->name('article');
+    Route::get('/providers',    Providers::class)->name('providers');
+    Route::get('/brands',    Brands::class)->name('brands');
 
 });
 

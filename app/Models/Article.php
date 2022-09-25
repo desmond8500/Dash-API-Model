@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @SWG\Definition(
@@ -76,7 +78,7 @@ class Article extends Model
     use HasFactory;
 
     public $table = 'articles';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -118,8 +120,26 @@ class Article extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function brand(): HasOne
+    {
+        return $this->hasOne(Brand::class,);
+    }
+    public function provider(): HasOne
+    {
+        return $this->hasOne(Provider::class,);
+    }
+    public function storage(): HasOne
+    {
+        return $this->hasOne(Storage::class,);
+    }
+
+    public function manuals(): HasMany
+    {
+        return $this->hasMany(Manual::class);
+    }
+
+
 }

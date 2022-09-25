@@ -35,6 +35,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *          property="website",
  *          description="website",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="description",
+ *          description="description",
+ *          type="string"
  *      )
  * )
  */
@@ -45,7 +50,7 @@ class Provider extends Model
     use HasFactory;
 
     public $table = 'providers';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -55,7 +60,8 @@ class Provider extends Model
         'name',
         'logo',
         'adress',
-        'website'
+        'website',
+        'description',
     ];
 
     /**
@@ -68,7 +74,8 @@ class Provider extends Model
         'name' => 'string',
         'logo' => 'string',
         'adress' => 'string',
-        'website' => 'string'
+        'website' => 'string',
+        'description' => 'string',
     ];
 
     /**
@@ -77,8 +84,8 @@ class Provider extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Tabler\Stock;
 
 use App\Http\Controllers\StockController;
 use App\Models\Article;
+use App\Models\Brand;
+use App\Models\Provider;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -23,12 +25,18 @@ class Articles extends Component
     {
         return view('livewire.tabler.stock.articles', [
             "articles" => Article::paginate(12),
+            "brands" => Brand::paginate(12),
+            "providers" => Provider::paginate(12),
             "stock" => new StockController(),
         ])->extends('app.layout')->section('content');
     }
 
-    public function add()
+    public function store_article()
     {
-        $this->count++;
+        $article = Article::create([
+            "name" => $this->name,
+            "reference" => $this->reference,
+            "priority" => $this->priority,
+        ]);
     }
 }
