@@ -7,6 +7,11 @@ use Goutte\Client;
 
 class ScrapperController extends Controller
 {
+    public function scrapper($link)
+    {
+        # code...
+    }
+
     public static function orbita(string $url)
     {
         $client = new Client();
