@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Tabler;
+namespace App\Http\Livewire\Tabler\Stock;
 
 use App\Http\Controllers\ScrapperController;
-use App\Models\User;
+use App\Models\Article;
 use Livewire\Component;
-use Goutte\Client;
 
-class Index extends Component
+class Import extends Component
 {
     public $lien;
+    public $fre;
+    protected $article;
 
     public function render()
     {
-        return view('livewire.tabler.index',[
-            'users' => User::all(),
-            'test' => $this->scrapper(),
+        return view('livewire.tabler.stock.import',[
+            'test' => $this->scrapper()
         ])->extends('app.layout')->section('content');
     }
 
@@ -25,9 +25,18 @@ class Index extends Component
 
         if ($this->lien) {
             $data = ScrapperController::orbita($this->lien);
+            $this->article = $data;
         }
 
         if ($data) {
+
+            Article::create([
+                'name' => $data->title ,
+                'reference' => $data->reference ,
+                'description' => $data->description ,
+                'price' => $data->price
+            ]);
+
             return (object) [
                 'url'           => $data->url,
                 'title'         => $data->title,
@@ -42,17 +51,18 @@ class Index extends Component
             ];
         } else {
             return (object) [
-                'url'           => 0,
-                'title'         => "ret",
-                'site_name'     => "ret",
-                'description'   => "ret",
-                'image'         => "ret",
-                'price'         => "ret",
-                'devise'        => "ret",
-                'marque'        => "ret",
-                'reference'     => "ret",
-                'prix'          => "ret",
+                'url'           => "url",
+                'title'         => "title",
+                'site_name'     => "site_name",
+                'description'   => "description",
+                'image'         => "image",
+                'price'         => "price",
+                'devise'        => "devise",
+                'marque'        => "marque",
+                'reference'     => "reference",
+                'prix'          => "prix",
             ];
         }
     }
+
 }

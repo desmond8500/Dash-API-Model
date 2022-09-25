@@ -1545,6 +1545,10 @@
                 "website": {
                     "description": "website",
                     "type": "string"
+                },
+                "description": {
+                    "description": "description",
+                    "type": "string"
                 }
             }
         },

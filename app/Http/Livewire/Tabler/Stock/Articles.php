@@ -39,4 +39,5 @@ class Articles extends Component
             "priority" => $this->priority,
         ]);
     }
+
 }
