@@ -180,6 +180,7 @@ return [
         Yajra\DataTables\ButtonsServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
 
     ],
 
@@ -237,6 +238,7 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
 
     ],
 
