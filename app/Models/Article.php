@@ -93,7 +93,8 @@ class Article extends Model
         'provider_id',
         'storage_id',
         'priority',
-        'price'
+        'price',
+        'photo',
     ];
 
     /**
@@ -111,7 +112,8 @@ class Article extends Model
         'provider_id' => 'integer',
         'storage_id' => 'integer',
         'priority' => 'integer',
-        'price' => 'decimal:2'
+        'price' => 'decimal:2',
+        'photo' => 'string',
     ];
 
     /**

@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->integer('brand_id')->nullable();
             $table->integer('provider_id')->nullable();
             $table->integer('storage_id')->nullable();
+            $table->integer('photo')->nullable();
             $table->integer('priority')->default(1);
             $table->decimal('price')->default(0);
             $table->softDeletes();
