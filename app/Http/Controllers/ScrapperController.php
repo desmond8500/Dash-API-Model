@@ -7,7 +7,7 @@ use Goutte\Client;
 
 class ScrapperController extends Controller
 {
-    public function scrapper($link)
+    public function scrapper()
     {
         # code...
     }
