@@ -7,9 +7,51 @@ use Goutte\Client;
 
 class ScrapperController extends Controller
 {
-    public function scrapper()
+    public function scrapper(Request $request)
     {
-        # code...
+        /**
+         * @param CreateArticleAPIRequest $request
+         * @return Response
+         *
+         * @SWG\Post(
+         *      path="/scrapper",
+         *      summary="Récupérer le contenu d'une page",
+         *      tags={"Scrapper"},
+         *      description="Récupérer le contenu d'une page",
+         *      produces={"application/json"},
+         *
+         *      @SWG\Parameter(
+         *          name="lien",
+         *          in="formData",
+         *          description="Lien du site",
+         *          required=true,
+         *          type="string"
+         *      ),
+         *      @SWG\Response(
+         *          response=200,
+         *          description="successful operation",
+         *          @SWG\Schema(
+         *              type="object",
+         *              @SWG\Property(
+         *                  property="success",
+         *                  type="boolean"
+         *              ),
+         *              @SWG\Property(
+         *                  property="data",
+         *                  ref="#/definitions/Article"
+         *              ),
+         *              @SWG\Property(
+         *                  property="message",
+         *                  type="string"
+         *              )
+         *          )
+         *      )
+         * )
+         */
+
+        $data = $this->orbita($request->lien);
+
+        return ResponseController::response(true, "hello", $data);
     }
 
     public static function orbita(string $url)

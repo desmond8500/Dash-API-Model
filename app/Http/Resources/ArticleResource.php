@@ -24,7 +24,8 @@ class ArticleResource extends JsonResource
             'provider_id' => $this->provider_id,
             'storage_id' => $this->storage_id,
             'priority' => $this->priority,
-            'price' => $this->price
+            'price' => $this->price,
+            'photo' => asset("storage/$this->photo"),
         ];
     }
 }

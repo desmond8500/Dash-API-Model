@@ -4,7 +4,7 @@
         "title": "Laravel Generator APIs",
         "version": "1.0.0"
     },
-    "basePath": "/api/v1",
+    "basePath": "/api",
     "paths": {
         "/articles": {
             "get": {
@@ -1388,6 +1388,86 @@
                                 },
                                 "data": {
                                     "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/scrapper": {
+            "post": {
+                "tags": [
+                    "Scrapper"
+                ],
+                "summary": "R\u00e9cup\u00e9rer le contenu d'une page",
+                "description": "R\u00e9cup\u00e9rer le contenu d'une page",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lien",
+                        "in": "formData",
+                        "description": "Lien du site",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Article"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/article_url": {
+            "post": {
+                "tags": [
+                    "Article"
+                ],
+                "summary": "Ajouter un article \u00e0 partir d'un site",
+                "description": "Ajouter un article \u00e0 partir d'un site",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "lien",
+                        "in": "formData",
+                        "description": "Lien du site",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Article"
                                 },
                                 "message": {
                                     "type": "string"

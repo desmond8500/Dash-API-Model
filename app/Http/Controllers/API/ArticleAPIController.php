@@ -9,6 +9,7 @@ use App\Repositories\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Resources\ArticleResource;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 /**
@@ -112,6 +113,14 @@ class ArticleAPIController extends AppBaseController
         $input = $request->all();
 
         $article = $this->articleRepository->create($input);
+
+        if($request->photo){
+            $image = "stock/articles/$article->id/" . basename($request->photo);
+            Storage::disk('public')->put($image, file_get_contents($request->photo));
+
+            $article->photo = $image;
+            $article->save();
+        }
 
         return $this->sendResponse(new ArticleResource($article), 'Article saved successfully');
     }

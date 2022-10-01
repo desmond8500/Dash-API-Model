@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StockController extends Controller
 {
@@ -24,5 +26,75 @@ class StockController extends Controller
         "Forfait 1"     => 11,
         "Forfait 2"     => 12,
         );
+    }
+
+    public function article_url(Request $request)
+    {
+        /**
+         * @param CreateArticleAPIRequest $request
+         * @return Response
+         *
+         * @SWG\Post(
+         *      path="/article_url",
+         *      summary="Ajouter un article à partir d'un site",
+         *      tags={"Article"},
+         *      description="Ajouter un article à partir d'un site",
+         *      produces={"application/json"},
+         *
+         *      @SWG\Parameter(
+         *          name="lien",
+         *          in="formData",
+         *          description="Lien du site",
+         *          required=true,
+         *          type="string"
+         *      ),
+         *      @SWG\Response(
+         *          response=200,
+         *          description="successful operation",
+         *          @SWG\Schema(
+         *              type="object",
+         *              @SWG\Property(
+         *                  property="success",
+         *                  type="boolean"
+         *              ),
+         *              @SWG\Property(
+         *                  property="data",
+         *                  ref="#/definitions/Article"
+         *              ),
+         *              @SWG\Property(
+         *                  property="message",
+         *                  type="string"
+         *              )
+         *          )
+         *      )
+         * )
+         */
+
+        $data = ScrapperController::orbita($request->lien);
+
+
+        return ResponseController::response(true, "hello", $data);
+    }
+
+    public function addArticle($data)
+    {
+        $article = Article::firstOrCreate([
+            'name' => $data->title,
+            'reference' => $data->reference,
+            'description' => $data->description,
+            // 'quantity' => 'integer',
+            // 'brand_id' => 'integer',
+            // 'provider_id' => 'integer',
+            // 'storage_id' => 'integer',
+            'priority' => 1,
+            'price' => $data->prix,
+            // 'photo' => 'string',
+        ]);
+
+        $image = "stock/articles/$article->id/" . basename($data->image);
+        Storage::disk('public')->put($image, file_get_contents($data->image));
+
+        $article->photo = $image;
+        $article->save();
     }
 }
