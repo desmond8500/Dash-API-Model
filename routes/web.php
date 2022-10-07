@@ -37,3 +37,42 @@ Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\Gene
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate');
 Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback');
 Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
+
+
+Route::resource('clients', App\Http\Controllers\ClientController::class);
+
+
+Route::resource('projets', App\Http\Controllers\ProjetController::class);
+
+
+Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+
+
+Route::resource('invoiceRows', App\Http\Controllers\InvoiceRowController::class);
+
+
+Route::resource('invoiceSections', App\Http\Controllers\InvoiceSectionController::class);
+
+
+Route::resource('contacts', App\Http\Controllers\ContactController::class);
+
+
+Route::resource('contactTels', App\Http\Controllers\ContactTelController::class);
+
+
+Route::resource('contactMails', App\Http\Controllers\ContactMailController::class);
+
+
+Route::resource('buildings', App\Http\Controllers\BuildingController::class);
+
+
+Route::resource('stages', App\Http\Controllers\StageController::class);
+
+
+Route::resource('rooms', App\Http\Controllers\RoomController::class);
+
+
+Route::resource('roomArticles', App\Http\Controllers\RoomArticleController::class);
+
+
+Route::resource('roomArticleDetails', App\Http\Controllers\RoomArticleDetailController::class);
