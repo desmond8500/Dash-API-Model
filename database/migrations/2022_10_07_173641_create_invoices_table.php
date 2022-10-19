@@ -7,27 +7,22 @@ use Illuminate\Support\Facades\Schema;
 class CreateInvoicesTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('projet_id');
+            $table->integer('projet_id')->constrained();
             $table->string('reference');
-            $table->string('status');
-            $table->text('description');
-            $table->string('client_name');
-            $table->string('client_tel');
-            $table->string('client_address');
-            $table->decimal('discount');
-            $table->decimal('tva');
-            $table->decimal('brs');
-            $table->text('modalite');
-            $table->text('note');
+            $table->string('status')->default(1);
+            $table->text('description')->nullable();
+            $table->string('client_name')->nullable();
+            $table->string('client_tel')->nullable();
+            $table->string('client_address')->nullable();
+            $table->decimal('discount',8,2)->default(0);
+            $table->decimal('tva',8,2)->default(0);
+            $table->decimal('brs',8,2)->default(0);
+            $table->text('modalite')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

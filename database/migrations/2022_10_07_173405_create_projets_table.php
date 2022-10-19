@@ -7,30 +7,20 @@ use Illuminate\Support\Facades\Schema;
 class CreateProjetsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('projets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('client_id');
+            $table->integer('client_id')->constrained();
             $table->string('name');
-            $table->string('logo');
-            $table->text('description');
-            $table->string('status');
+            $table->string('logo')->nullable();
+            $table->text('description')->nullable();
+            $table->string('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('projets');

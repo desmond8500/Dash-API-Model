@@ -110,6 +110,8 @@ class ClientAPIController extends AppBaseController
     public function store(CreateClientAPIRequest $request)
     {
         $input = $request->all();
+        $input['name'] = ucfirst($input['name']);
+        $input['description'] = ucfirst($input['description']);
 
         $client = $this->clientRepository->create($input);
 

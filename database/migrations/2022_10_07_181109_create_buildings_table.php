@@ -7,28 +7,18 @@ use Illuminate\Support\Facades\Schema;
 class CreateBuildingsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('projet_id');
+            $table->integer('projet_id')->contrained();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('buildings');

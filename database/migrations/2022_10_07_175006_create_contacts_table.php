@@ -7,29 +7,19 @@ use Illuminate\Support\Facades\Schema;
 class CreateContactsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->text('description');
-            $table->string('avatar');
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->text('description')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('contacts');

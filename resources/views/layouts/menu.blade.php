@@ -76,3 +76,33 @@
         <span>Room Article Details</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('reports*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reports.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Reports</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('reportSections*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reportSections.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Report Sections</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('reportPeoples*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reportPeoples.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Report Peoples</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('reportDevis*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reportDevis.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Report Devis</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('reportModalites*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reportModalites.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Report Modalites</span>
+    </a>
+</li>

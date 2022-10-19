@@ -30,7 +30,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
 Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template');
 Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template');
@@ -39,40 +38,21 @@ Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\
 Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
 
 
-Route::resource('clients', App\Http\Controllers\ClientController::class);
-
-
-Route::resource('projets', App\Http\Controllers\ProjetController::class);
-
-
-Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
-
-
-Route::resource('invoiceRows', App\Http\Controllers\InvoiceRowController::class);
-
-
-Route::resource('invoiceSections', App\Http\Controllers\InvoiceSectionController::class);
-
-
-Route::resource('contacts', App\Http\Controllers\ContactController::class);
-
-
-Route::resource('contactTels', App\Http\Controllers\ContactTelController::class);
-
-
-Route::resource('contactMails', App\Http\Controllers\ContactMailController::class);
-
-
-Route::resource('buildings', App\Http\Controllers\BuildingController::class);
-
-
-Route::resource('stages', App\Http\Controllers\StageController::class);
-
-
-Route::resource('rooms', App\Http\Controllers\RoomController::class);
-
-
-Route::resource('roomArticles', App\Http\Controllers\RoomArticleController::class);
-
-
-Route::resource('roomArticleDetails', App\Http\Controllers\RoomArticleDetailController::class);
+Route::resource('clients', ClientController::class);
+Route::resource('projets', ProjetController::class);
+Route::resource('invoices', InvoiceController::class);
+Route::resource('invoiceRows', InvoiceRowController::class);
+Route::resource('invoiceSections', InvoiceSectionController::class);
+Route::resource('contacts', ContactController::class);
+Route::resource('contactTels', ContactTelController::class);
+Route::resource('contactMails', ContactMailController::class);
+Route::resource('buildings', BuildingController::class);
+Route::resource('stages', StageController::class);
+Route::resource('rooms', RoomController::class);
+Route::resource('roomArticles', RoomArticleController::class);
+Route::resource('roomArticleDetails', RoomArticleDetailController::class);
+Route::resource('reports', ReportController::class);
+Route::resource('reportSections', ReportSectionController::class);
+Route::resource('reportPeoples', ReportPeopleController::class);
+Route::resource('reportDevis', ReportDevisController::class);
+Route::resource('reportModalites', ReportModaliteController::class);

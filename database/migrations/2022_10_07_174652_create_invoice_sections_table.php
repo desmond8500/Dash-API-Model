@@ -7,27 +7,17 @@ use Illuminate\Support\Facades\Schema;
 class CreateInvoiceSectionsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('invoice_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invoice_id');
+            $table->integer('invoice_id')->constrained();
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('invoice_sections');
