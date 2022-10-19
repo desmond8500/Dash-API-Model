@@ -9,10 +9,16 @@ use App\Http\Livewire\Tabler\Pages\Profile;
 use App\Http\Livewire\Tabler\Pages\Register;
 use App\Http\Livewire\Tabler\Pages\Reglages;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/',     Index::class)->name('index');
 Route::get('mat',   MaterialIndex::class)->name('material.index');
+
+Route::get('/swagger', function () {
+    return Redirect::to(asset('/api/docs'));
+})->name('swagger');
+
 
 // Tabler
 Route::name('tabler.')->group(function () {
