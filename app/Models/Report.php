@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -63,7 +64,7 @@ class Report extends Model
 
 
     public $table = 'reports';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -97,8 +98,27 @@ class Report extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get all of the section for the Report
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function section(): HasMany
+    {
+        return $this->hasMany(ReportSection::class);
+    }
+    /**
+     * Get all of the attenders for the Report
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function attenders(): HasMany
+    {
+        return $this->hasMany(ReportPeople::class);
+    }
+
+
 }

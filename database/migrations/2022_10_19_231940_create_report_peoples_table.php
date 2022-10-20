@@ -6,31 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateReportPeoplesTable extends Migration
 {
-
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('report_peoples', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('report_id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('company');
-            $table->string('job');
+            $table->integer('report_id')->constrained();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('company')->nullable();
+            $table->string('job')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('report_peoples');

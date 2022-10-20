@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateReportDevisTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('report_devis', function (Blueprint $table) {
@@ -23,11 +18,6 @@ class CreateReportDevisTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('report_devis');

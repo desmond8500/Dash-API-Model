@@ -7,16 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateReportSectionsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('report_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('report_id');
+            $table->integer('report_id')->contrained();
             $table->string('title');
             $table->text('description');
             $table->integer('order');
@@ -25,11 +20,6 @@ class CreateReportSectionsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('report_sections');

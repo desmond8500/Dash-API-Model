@@ -58,7 +58,7 @@ class ReportSection extends Model
 
 
     public $table = 'report_sections';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -90,8 +90,16 @@ class ReportSection extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get all of the reportModalite for the ReportSection
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function modalite(): HasMany
+    {
+        return $this->hasMany(ReportModalite::class, 'id', 'section_id');
+    }
 }
