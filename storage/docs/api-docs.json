@@ -4355,6 +4355,10 @@
                     "description": "name",
                     "type": "string"
                 },
+                "order": {
+                    "description": "order",
+                    "type": "string"
+                },
                 "description": {
                     "description": "description",
                     "type": "string"

@@ -18,6 +18,7 @@ class StageResource extends JsonResource
             'id' => $this->id,
             'building_id' => $this->building_id,
             'name' => $this->name,
+            'order' => $this->order,
             'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

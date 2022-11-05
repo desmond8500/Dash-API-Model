@@ -13,6 +13,7 @@ class CreateStagesTable extends Migration
             $table->increments('id');
             $table->integer('building_id')->contrained();
             $table->string('name');
+            $table->integer('order')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();

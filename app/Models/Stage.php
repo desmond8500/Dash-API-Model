@@ -28,6 +28,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="order",
+ *          description="order",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="description",
  *          description="description",
  *          type="string"
@@ -52,7 +57,7 @@ class Stage extends Model
 
 
     public $table = 'stages';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -61,7 +66,8 @@ class Stage extends Model
     public $fillable = [
         'building_id',
         'name',
-        'description'
+        'order',
+        'description',
     ];
 
     /**
@@ -73,6 +79,7 @@ class Stage extends Model
         'id' => 'integer',
         'building_id' => 'integer',
         'name' => 'string',
+        'order' => 'string',
         'description' => 'string'
     ];
 
@@ -82,8 +89,8 @@ class Stage extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }
