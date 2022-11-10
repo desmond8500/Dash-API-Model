@@ -6,12 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateArticlesTable extends Migration
 {
-
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
@@ -20,21 +14,16 @@ class CreateArticlesTable extends Migration
             $table->integer('provider_id');
             $table->string('designation');
             $table->string('reference');
-            $table->text('description');
-            $table->integer('quantity');
+            $table->text('description')->nullable();
+            $table->integer('quantity')->default(0);
             $table->integer('priority');
-            $table->decimal('price');
-            $table->string('image');
+            $table->decimal('price')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('articles');

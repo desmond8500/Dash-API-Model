@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateProviderTelsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('provider_tels', function (Blueprint $table) {
@@ -23,11 +18,6 @@ class CreateProviderTelsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('provider_tels');

@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateAchatArticlesTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('achat_articles', function (Blueprint $table) {
@@ -19,17 +14,12 @@ class CreateAchatArticlesTable extends Migration
             $table->integer('achat_id');
             $table->integer('article_id');
             $table->integer('quantity');
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('achat_articles');

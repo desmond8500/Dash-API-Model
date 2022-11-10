@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateArticleDocsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('article_docs', function (Blueprint $table) {
@@ -25,11 +20,6 @@ class CreateArticleDocsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('article_docs');

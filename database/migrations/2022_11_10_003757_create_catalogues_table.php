@@ -7,29 +7,19 @@ use Illuminate\Support\Facades\Schema;
 class CreateCataloguesTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('catalogues', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('brand_id');
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('folder');
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('catalogues');
