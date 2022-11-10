@@ -3616,6 +3616,93 @@
                     }
                 }
             }
+        },
+        "/projet_buildings": {
+            "post": {
+                "tags": [
+                    "Projet"
+                ],
+                "summary": "Get projects by client_id",
+                "description": "Get projects by client_id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "projet_id",
+                        "in": "formData",
+                        "description": "Identifiant du ptojet",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Projet non trouv\u00e9"
+                    },
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    }
+                }
+            }
+        },
+        "/building_stages": {
+            "post": {
+                "tags": [
+                    "Building"
+                ],
+                "summary": "Get projects by client_id",
+                "description": "Get projects by client_id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "building_id",
+                        "in": "formData",
+                        "description": "Identifiant du ptojet",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Projet non trouv\u00e9"
+                    },
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    }
+                }
+            }
+        },
+        "/stage_rooms": {
+            "post": {
+                "tags": [
+                    "Stage"
+                ],
+                "summary": "Get projects by client_id",
+                "description": "Get projects by client_id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "stage_id",
+                        "in": "formData",
+                        "description": "Identifiant du ptojet",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Projet non trouv\u00e9"
+                    },
+                    "200": {
+                        "description": "Op\u00e9ration r\u00e9ussie"
+                    }
+                }
+            }
         }
     },
     "definitions": {

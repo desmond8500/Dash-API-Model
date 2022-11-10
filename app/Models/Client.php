@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -61,7 +62,7 @@ class Client extends Model
 
 
     public $table = 'clients';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -95,8 +96,18 @@ class Client extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get all of the projets for the Client
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projets(): HasMany
+    {
+        return $this->hasMany(Projet::class);
+    }
+
+
 }

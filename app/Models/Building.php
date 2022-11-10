@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -52,7 +53,7 @@ class Building extends Model
 
 
     public $table = 'buildings';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -82,8 +83,18 @@ class Building extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get the projet that owns the Building
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function projet(): BelongsTo
+    {
+        return $this->belongsTo(Projet::class);
+    }
+
+
 }

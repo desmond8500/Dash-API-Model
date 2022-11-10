@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -62,7 +64,7 @@ class Projet extends Model
 
 
     public $table = 'projets';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -96,8 +98,46 @@ class Projet extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get the client that owns the Projet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    /**
+     * Get all of the buildings for the Projet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function buildings(): HasMany
+    {
+        return $this->hasMany(Building::class);
+    }
+    /**
+     * Get all of the invoices for the Projet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Building::class);
+    }
+    /**
+     * Get all of the reports for the Projet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reports(): HasMany
+    {
+        return $this->hasMany(Building::class);
+    }
+
+
 }

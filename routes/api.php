@@ -19,7 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('client_projects', [ErpController::class, 'client_projects'])->name('client_projects');
+Route::post('client_projects',  [ErpController::class, 'client_projects'])->name('client_projects');
+Route::post('projet_buildings', [ErpController::class, 'projet_buildings'])->name('projet_buildings');
+Route::post('building_stages',  [ErpController::class, 'building_stages'])->name('building_stages');
+Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('stage_rooms');
 
 Route::resource('clients', ClientAPIController::class);
 Route::resource('projets', ProjetAPIController::class);
