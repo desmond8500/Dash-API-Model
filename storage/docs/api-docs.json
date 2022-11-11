@@ -5494,6 +5494,40 @@
                     }
                 }
             }
+        },
+        "/priorities": {
+            "get": {
+                "tags": [
+                    "Listes"
+                ],
+                "summary": "R\u00e9cup\u00e9rer la liste des priorit\u00e9s",
+                "description": "R\u00e9cup\u00e9rer la liste des priorit\u00e9s",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Client"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

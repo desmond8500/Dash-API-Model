@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ErpController;
+use App\Http\Controllers\ListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::post('client_projects',  [ErpController::class, 'client_projects'])->name
 Route::post('projet_buildings', [ErpController::class, 'projet_buildings'])->name('projet_buildings');
 Route::post('building_stages',  [ErpController::class, 'building_stages'])->name('building_stages');
 Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('stage_rooms');
+Route::get('priorities',      [ListController::class, 'priorities'])->name('priorities');
 
 Route::resource('clients',          ClientAPIController::class);
 Route::resource('projets',          ProjetAPIController::class);
