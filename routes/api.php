@@ -24,6 +24,8 @@ Route::post('client_projects',  [ErpController::class, 'client_projects'])->name
 Route::post('projet_buildings', [ErpController::class, 'projet_buildings'])->name('projet_buildings');
 Route::post('building_stages',  [ErpController::class, 'building_stages'])->name('building_stages');
 Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('stage_rooms');
+Route::post('projet_invoices',      [ErpController::class, 'projet_invoices'])->name('projet_invoices');
+Route::post('room_invoices',      [ErpController::class, 'room_invoices'])->name('room_invoices');
 Route::get('priorities',      [ListController::class, 'priorities'])->name('priorities');
 
 Route::resource('clients',          ClientAPIController::class);

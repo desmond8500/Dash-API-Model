@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BuildingResource;
+use App\Http\Resources\InvoiceResource;
 use App\Http\Resources\ProjetResource;
 use App\Http\Resources\RoomResource;
 use App\Http\Resources\StageResource;
 use App\Models\Building;
+use App\Models\Invoice;
 use App\Models\Projet;
 use App\Models\Room;
 use App\Models\Stage;
@@ -154,5 +156,79 @@ class ErpController extends Controller
         $rooms = RoomResource::collection($rooms);
 
         return ResponseController::response(true, 'Les niveaux ont été recupérés avec succès', $rooms);
+    }
+
+    /**
+     * @SWG\Post(
+     *      path="/projet_invoices",
+     *      summary="Get invoices by project_id",
+     *      tags={"Invoice"},
+     *      description="Get invoices by project_id",
+     *      produces={"application/json"},
+     *
+     *      @SWG\Parameter(
+     *          name="projet_id",
+     *          description="Identifiant du projet",
+     *          type="string",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Projet non trouvé",
+     *      ),
+     *
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Opération réussie",
+     *      ),
+     * )
+     */
+
+    public function projet_invoices(Request $request)
+    {
+        $invoices = Invoice::where('projet_id', $request->projet_id)->get();
+        $invoices = InvoiceResource::collection($invoices);
+
+        return ResponseController::response(true, 'Les niveaux ont été recupérés avec succès', $invoices);
+    }
+    /**
+     * @SWG\Post(
+     *      path="/room_invoices",
+     *      summary="Get invoices by room_id",
+     *      tags={"Invoice"},
+     *      description="Get invoices by room_id",
+     *      produces={"application/json"},
+     *
+     *      @SWG\Parameter(
+     *          name="room_id",
+     *          description="Identifiant du projet",
+     *          type="string",
+     *          required=true,
+     *          in="formData"
+     *      ),
+     *
+     *      @SWG\Response(
+     *          response=404,
+     *          description="Projet non trouvé",
+     *      ),
+     *
+     *      @SWG\Response(
+     *          response=200,
+     *          description="Opération réussie",
+     *      ),
+     * )
+     */
+
+    public function room_invoices(Request $request)
+    {
+        $room = Room::find($request->room_id);
+        $projet = $room->stage->building->projet;
+
+        $invoices = Invoice::where('projet_id', $projet->id)->get();
+        $invoices = InvoiceResource::collection($invoices);
+
+        return ResponseController::response(true, 'Les niveaux ont été recupérés avec succès', $invoices);
     }
 }
