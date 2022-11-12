@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -56,7 +57,7 @@ class Contact extends Model
 
 
     public $table = 'contacts';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -88,8 +89,25 @@ class Contact extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    /**
+     * Get all of the tels for the Contact
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tels(): HasMany
+    {
+        return $this->hasMany(ContactTel::class);
+    }
+    /**
+     * Get all of the emails for the Contact
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function emails(): HasMany
+    {
+        return $this->hasMany(ContactMail::class);
+    }
 }
