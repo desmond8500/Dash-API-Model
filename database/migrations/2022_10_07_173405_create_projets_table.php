@@ -19,6 +19,7 @@ class CreateProjetsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+
     }
 
     public function down()

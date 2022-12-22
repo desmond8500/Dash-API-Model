@@ -10,7 +10,7 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->restrictOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
