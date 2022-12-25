@@ -5,7 +5,7 @@
 Les rapprots sont liés à des projets.  
 Ils peuvent être de différents types.  
 
-## DIagrame de classe
+## Diagrame de classe
 
 ```mermaid
 classDiagram

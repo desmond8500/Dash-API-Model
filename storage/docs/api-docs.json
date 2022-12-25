@@ -3787,6 +3787,46 @@
                 }
             }
         },
+        "/get_report_section": {
+            "post": {
+                "tags": [
+                    "ReportSection"
+                ],
+                "summary": "R\u00e9cup\u00e9rer la liste de sections d'un rapport",
+                "description": "R\u00e9cup\u00e9rer la liste de sections d'un rapport",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "report_id",
+                        "in": "formData",
+                        "description": "Identifiant du rapport",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ReportSection"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/reportDevis": {
             "get": {
                 "tags": [

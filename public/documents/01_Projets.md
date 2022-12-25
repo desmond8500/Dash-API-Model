@@ -9,13 +9,19 @@ Client <-- Projet
 Client <-- ClientContact
 
 Projet <-- Invoice
+Projet <-- Etude
 Projet <-- ProjetNote
 Projet <-- Building
 Projet <-- ProjetContact
+Projet <-- Report
+Projet <-- Task
 
 Invoice <-- InvoiceSection
 Invoice <-- InvoiceRow
 Invoice <-- BuildingInvoice
+
+Etude <-- Plans
+Etude <-- CDC
 
 Building <-- Stage
 Stage <-- Room
@@ -126,8 +132,6 @@ class ProjetNote{
 
 
 ```
-
-
 
 ## Gestion de stock
 

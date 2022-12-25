@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ReportController;
 use App\Http\Controllers\ErpController;
 use App\Http\Controllers\ListController;
 use Illuminate\Http\Request;
@@ -24,9 +25,12 @@ Route::post('client_projects',  [ErpController::class, 'client_projects'])->name
 Route::post('projet_buildings', [ErpController::class, 'projet_buildings'])->name('projet_buildings');
 Route::post('building_stages',  [ErpController::class, 'building_stages'])->name('building_stages');
 Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('stage_rooms');
-Route::post('projet_invoices',      [ErpController::class, 'projet_invoices'])->name('projet_invoices');
-Route::post('room_invoices',      [ErpController::class, 'room_invoices'])->name('room_invoices');
-Route::get('priorities',      [ListController::class, 'priorities'])->name('priorities');
+Route::post('projet_invoices',  [ErpController::class, 'projet_invoices'])->name('projet_invoices');
+Route::post('room_invoices',    [ErpController::class, 'room_invoices'])->name('room_invoices');
+Route::get('priorities',        [ListController::class, 'priorities'])->name('priorities');
+
+// Report
+Route::post('get_report_section',  [ReportController::class, 'getSection'])->name('getSection');
 
 Route::resource('clients',          ClientAPIController::class);
 Route::resource('projets',          ProjetAPIController::class);
