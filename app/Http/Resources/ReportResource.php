@@ -17,6 +17,9 @@ class ReportResource extends JsonResource
         return [
             'id' => $this->id,
             'projet_id' => $this->projet_id,
+            'projet_name' => $this->projet->name,
+            'client_id' => $this->projet->client->id,
+            'client_name' => $this->projet->client->name,
             'objet' => $this->objet,
             'description' => $this->description,
             'date' => $this->date,

@@ -6,17 +6,6 @@ use App\Http\Controllers\ListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -30,6 +19,7 @@ Route::post('room_invoices',    [ErpController::class, 'room_invoices'])->name('
 Route::get('priorities',        [ListController::class, 'priorities'])->name('priorities');
 
 // Report
+Route::post('get_projet_report',  [ReportController::class, 'getReports'])->name('getReports');
 Route::post('get_report_section',  [ReportController::class, 'getSection'])->name('getSection');
 
 Route::resource('clients',          ClientAPIController::class);

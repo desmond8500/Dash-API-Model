@@ -120,6 +120,7 @@ class Projet extends Model
     {
         return $this->hasMany(Building::class);
     }
+
     /**
      * Get all of the invoices for the Projet
      *

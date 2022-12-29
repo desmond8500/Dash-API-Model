@@ -90,9 +90,9 @@ class ErpController extends Controller
     /**
      * @SWG\Post(
      *      path="/building_stages",
-     *      summary="Get projects by client_id",
+     *      summary="Récupérer les niveaux d'un batiment en fonction de l'identifiant",
      *      tags={"Building"},
-     *      description="Get projects by client_id",
+     *      description="Récupérer les niveaux d'un batiment en fonction de l'identifiant",
      *      produces={"application/json"},
      *
      *      @SWG\Parameter(

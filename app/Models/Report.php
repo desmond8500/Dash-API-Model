@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -100,6 +101,16 @@ class Report extends Model
     public static $rules = [
 
     ];
+
+    /**
+     * Get the projet that owns the Report
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function projet(): BelongsTo
+    {
+        return $this->belongsTo(Projet::class);
+    }
 
     /**
      * Get all of the section for the Report
