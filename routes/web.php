@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Livewire\Material\Index as MaterialIndex;
+use App\Http\Livewire\Tabler\Erp\Client;
+use App\Http\Livewire\Tabler\Erp\Clients;
+use App\Http\Livewire\Tabler\Erp\Devis;
 use App\Http\Livewire\Tabler\Index;
 use App\Http\Livewire\Tabler\Pages\Docs;
 use App\Http\Livewire\Tabler\Pages\Forgotten;
@@ -30,7 +33,13 @@ Route::name('tabler.')->group(function () {
     Route::get('/connexion',    Login::class)->name('login');
     Route::get('/inscription',  Register::class)->name('register');
     Route::get('/forgotten',    Forgotten::class)->name('forgotten');
+    // ERP
+    Route::get('/clients', Clients::class)->name('clients');
+    Route::get('/client', Client::class)->name('client');
+    Route::get('/projet', Projet::class)->name('projet');
+    Route::get('/devis', Devis::class)->name('devis');
 });
+
 
 Auth::routes();
 

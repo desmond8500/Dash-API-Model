@@ -14,6 +14,7 @@ class Navbar extends Component
             'user' => Auth::user() ?? null,
             'menus' => MenuController::menus(),
             'index' => (object) array('name' => 'Dash API', 'route' => 'index'),
+            // 'index' => (object) array('name' => 'Dash API', 'route' => 'index'),
         ]);
     }
 
