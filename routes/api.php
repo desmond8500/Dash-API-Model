@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\API\ReportController;
 use App\Http\Controllers\ErpController;
 use App\Http\Controllers\ListController;
@@ -17,6 +18,11 @@ Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('st
 Route::post('projet_invoices',  [ErpController::class, 'projet_invoices'])->name('projet_invoices');
 Route::post('room_invoices',    [ErpController::class, 'room_invoices'])->name('room_invoices');
 Route::get('priorities',        [ListController::class, 'priorities'])->name('priorities');
+
+// Invoice
+Route::post('get_invoice_rows',  [InvoiceController::class, 'getInvoiceRows'])->name('getInvoiceRows');
+Route::post('get_invoice_sections',  [InvoiceController::class, 'getInvoiceSection'])->name('getInvoiceSection');
+Route::post('get_section_rows',  [InvoiceController::class, 'getSectionRows'])->name('getSectionRows');
 
 // Report
 Route::post('get_projet_report',  [ReportController::class, 'getReports'])->name('getReports');

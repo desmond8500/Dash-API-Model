@@ -4,6 +4,7 @@ use App\Http\Livewire\Material\Index as MaterialIndex;
 use App\Http\Livewire\Tabler\Erp\Client;
 use App\Http\Livewire\Tabler\Erp\Clients;
 use App\Http\Livewire\Tabler\Erp\Devis;
+use App\Http\Livewire\Tabler\Erp\Projet;
 use App\Http\Livewire\Tabler\Index;
 use App\Http\Livewire\Tabler\Pages\Docs;
 use App\Http\Livewire\Tabler\Pages\Forgotten;
@@ -35,9 +36,9 @@ Route::name('tabler.')->group(function () {
     Route::get('/forgotten',    Forgotten::class)->name('forgotten');
     // ERP
     Route::get('/clients', Clients::class)->name('clients');
-    Route::get('/client', Client::class)->name('client');
-    Route::get('/projet', Projet::class)->name('projet');
-    Route::get('/devis', Devis::class)->name('devis');
+    Route::get('/client/{client_id}', Client::class)->name('client');
+    Route::get('/projet/{projet_id}', Projet::class)->name('projet');
+    Route::get('/devis/{devis_id}', Devis::class)->name('devis');
 });
 
 

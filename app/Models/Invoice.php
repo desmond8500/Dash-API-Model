@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -88,13 +90,9 @@ class Invoice extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'invoices';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'projet_id',
@@ -109,11 +107,6 @@ class Invoice extends Model
         'brs'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
@@ -128,14 +121,19 @@ class Invoice extends Model
         'brs' => 'decimal:2'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
+
     public static $rules = [
-        
+
     ];
 
-    
+    public function projet(): BelongsTo
+    {
+        return $this->belongsTo(Projet::class);
+    }
+
+    public function champs(): HasMany
+    {
+        return $this->hasMany(InvoiceRow::class);
+    }
+
 }

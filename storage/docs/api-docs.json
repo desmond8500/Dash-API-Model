@@ -2394,6 +2394,86 @@
                 }
             }
         },
+        "/get_invoice_rows": {
+            "post": {
+                "tags": [
+                    "InvoiceRow"
+                ],
+                "summary": "R\u00e9cup\u00e9rer la liste des champs d'un devis",
+                "description": "R\u00e9cup\u00e9rer la liste des champs d'un devis",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "formData",
+                        "description": "Identifiant du devis",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/InvoiceRow"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/get_section_rows": {
+            "post": {
+                "tags": [
+                    "InvoiceRow"
+                ],
+                "summary": "R\u00e9cup\u00e9rer la liste des champs d'une section",
+                "description": "R\u00e9cup\u00e9rer la liste des champs d'une section",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "formData",
+                        "description": "Identifiant du devis",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/InvoiceRow"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/invoiceRows": {
             "get": {
                 "tags": [

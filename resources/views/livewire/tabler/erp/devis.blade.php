@@ -1,3 +1,9 @@
 <div>
-    {{-- In work, do what you enjoy. --}}
+    <div>
+        @component('components.tabler.header', ['title'=>'Devis', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
+
+        @endcomponent
+    </div>
+
+    @dump($devis->projet->client->name)
 </div>
