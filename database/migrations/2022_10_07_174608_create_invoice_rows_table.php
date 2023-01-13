@@ -13,12 +13,12 @@ class CreateInvoiceRowsTable extends Migration
             $table->increments('id');
             $table->integer('invoice_id')->constrained();
             $table->integer('article_id')->nullable();
+            $table->text('name');
             $table->text('reference');
             $table->integer('quantity')->default();
             $table->decimal('coef',8,2)->default(1);
             $table->integer('priority')->default(1);
             $table->integer('section_id')->contrained('invoice_sections');
-            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });

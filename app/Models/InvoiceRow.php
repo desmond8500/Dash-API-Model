@@ -29,6 +29,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="reference",
  *          description="reference",
  *          type="string"
@@ -68,11 +73,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="updated_at",
  *          type="string",
  *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="name",
- *          description="name",
- *          type="string"
  *      )
  * )
  */
@@ -82,7 +82,7 @@ class InvoiceRow extends Model
 
 
     public $table = 'invoice_rows';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -91,12 +91,12 @@ class InvoiceRow extends Model
     public $fillable = [
         'invoice_id',
         'article_id',
+        'name',
         'reference',
         'quantity',
         'coef',
         'priority',
         'section_id',
-        'name'
     ];
 
     /**
@@ -108,12 +108,12 @@ class InvoiceRow extends Model
         'id' => 'integer',
         'invoice_id' => 'integer',
         'article_id' => 'integer',
+        'name' => 'string',
         'reference' => 'string',
         'quantity' => 'decimal:2',
         'coef' => 'decimal:2',
         'priority' => 'integer',
         'section_id' => 'integer',
-        'name' => 'string'
     ];
 
     /**
@@ -122,8 +122,8 @@ class InvoiceRow extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

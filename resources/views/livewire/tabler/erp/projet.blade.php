@@ -17,16 +17,19 @@
                 <div>Devis</div> <div></div>
             </div>
             <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(2)">
-                <div>Contact</div> <div></div>
+                <div>Rapports</div> <div></div>
             </div>
             <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(3)">
-                <div>Rapport</div> <div></div>
+                <div>Taches</div> <div></div>
             </div>
             <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(4)">
-                <div>Finances</div> <div></div>
+                <div>Contacts</div> <div></div>
             </div>
             <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(5)">
-                <div>Batiments</div> <div></div>
+                <div>Finances</div> <div></div>
+            </div>
+            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(6)">
+                <div>Dossier Technique</div> <div></div>
             </div>
         </div>
         <div class="col-md-9">
@@ -36,10 +39,13 @@
                         @livewire('tabler.erp.devis-list-card', ['devis' => $devis])
                         @break
                     @case(2)
-                        Contacts
+                        @livewire('tabler.erp.reports', ['projet_id'=> $projet->id])
                         @break
                     @case(3)
-                        Rapports
+                        Taches
+                        @break
+                    @case(3)
+                        Contacts
                         @break
                     @case(4)
                         Finances

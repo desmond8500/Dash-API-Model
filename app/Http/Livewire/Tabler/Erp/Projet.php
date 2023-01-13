@@ -22,7 +22,7 @@ class Projet extends Component
         $this->breadcrumbs = array(
             array('name' => 'Clients', 'route' => route('tabler.clients')),
             array('name' => $this->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->projet->client->id])),
-            array('name' => $this->projet->name, 'route' => route('tabler.client', ['client_id' => $this->projet->client->id])),
+            array('name' => $this->projet->name, 'route' => route('tabler.projet', ['client_id' => $this->projet->id])),
         );
     }
 
