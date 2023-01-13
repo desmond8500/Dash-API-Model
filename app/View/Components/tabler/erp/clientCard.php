@@ -65,6 +65,6 @@ class clientCard extends Component
     public function render()
     {
         $client = $this->client;
-        return view('components.tabler.erp.client-card',['client'=>]);
+        return view('components.tabler.erp.client-card',['client'=>$client]);
     }
 }
