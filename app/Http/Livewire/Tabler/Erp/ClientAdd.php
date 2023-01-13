@@ -28,9 +28,6 @@ class ClientAdd extends Component
     }
 
     public function store_client(){
-        // $validatedData = $this->validate();
-
-        // Client::create($validatedData);
 
         Client::create([
             'name' => $this->name,
@@ -39,7 +36,7 @@ class ClientAdd extends Component
             'address' => $this->address,
             // 'status' => $this->status,
         ]);
-        $this->dispatchBrowserEvent('close-modal');
+        $this->emit('clientReload');
 
     }
 }

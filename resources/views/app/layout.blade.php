@@ -29,14 +29,11 @@
     @livewireScripts
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({startOnLoad:true});
-    </script>
+    <script> mermaid.initialize({startOnLoad:true}); </script>
     <script src="{{ asset("lib/fslightbox.js") }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
+    <script> hljs.highlightAll(); </script>
+    {{-- <script> window.addEventListener('closeModal', event => { $("#modal").modal('hide'); }) </script> --}}
 
     @stack('scripts')
 </body>
