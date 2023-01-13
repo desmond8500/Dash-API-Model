@@ -9,6 +9,22 @@ class clientCard extends Component
     public $client;
     public $name, $description, $logo, $address, $status;
 
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
+
+    public function render()
+    {
+        $client = $this->client;
+        return view('components.tabler.erp.clientCard', ['client' => $client]);
+    }
+
+    function gotoProjets(int $client_id)
+    {
+        return redirect()->route('tabler.client', ['client_id' => $client_id]);
+    }
+
     // protected $rules = [
     //     'name' => 'required',
     //     'description' => 'string',
@@ -35,10 +51,7 @@ class clientCard extends Component
     //     return view('livewire.tabler.erp.client-card');
     // }
 
-    function gotoProjets(int $client_id)
-    {
-        return redirect()->route('tabler.client', ['client_id' => $client_id]);
-    }
+
 
     // public function update_client()
     // {
@@ -52,19 +65,5 @@ class clientCard extends Component
     //     $client->save();
     //     $this->emit('clientReload');
     // }
-    public function __construct($client)
-    {
-        $this->client = $client;
-    }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
-     */
-    public function render()
-    {
-        $client = $this->client;
-        return view('components.tabler.erp.client-card',['client'=>$client]);
-    }
 }
