@@ -2,7 +2,7 @@
     <div class="card p-2">
         <div class="row">
             <div class="col-auto" wire:click="gotoProjets('{{ $client->id }}')" type='button'>
-                <img src="" alt="A" class="avatar">
+                <img src="" alt="{{ $client->projets->count() }}" class="avatar">
             </div>
             <div class="col" wire:click="gotoProjets('{{ $client->id }}')" type='button'>
                 <div class="fw-bold">{{ $client->name }}</div>
@@ -38,14 +38,21 @@
                         @error('description') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 d-flex justify-content-between">
+
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Supprimer</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Modifier</button>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="text-danger">{{ $message }}</div>
                     </div>
 
                 </div>
             </form>
+            <div class="mt-2">
+                <button class="btn btn-danger" wire:click="delete_Client('{{ $client->id }}')" data-bs-dismiss="modal">Supprimer</button>
+            </div>
           </div>
         </div>
       </div>

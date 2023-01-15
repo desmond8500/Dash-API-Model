@@ -14,6 +14,15 @@ class clientCard extends Component
         $this->client = $client;
     }
 
+    public function mount($client)
+    {
+        $this->client = $client;
+        $this->name = $client->name;
+        $this->description = $client->description;
+        $this->logo = $client->logo;
+        $this->address = $client->address;
+    }
+
     public function render()
     {
         $client = $this->client;
@@ -25,45 +34,17 @@ class clientCard extends Component
         return redirect()->route('tabler.client', ['client_id' => $client_id]);
     }
 
-    // protected $rules = [
-    //     'name' => 'required',
-    //     'description' => 'string',
-    //     'logo' => 'string',
-    //     'address' => 'string',
-    //     'status' => 'string',
-    // ];
+    public function update_client()
+    {
+        $client = Client::find($this->client->id);
 
-    // public function updated($propertyName)
-    // {
-    //     $this->validateOnly($propertyName);
-    // }
+        $client->name = $this->name;
+        $client->description = $this->description;
+        $client->logo = $this->logo;
+        $client->address = $this->address;
 
-    // public function mount($client)
-    // {
-    //     $this->client = $client;
-    //     $this->name = $client->name;
-    //     $this->description = $client->description;
-    //     $this->logo = $client->logo;
-    //     $this->address = $client->address;
-    // }
-    // public function render()
-    // {
-    //     return view('livewire.tabler.erp.client-card');
-    // }
-
-
-
-    // public function update_client()
-    // {
-    //     $client = Client::find($this->client->id);
-
-    //     $client->name = $this->name;
-    //     $client->description = $this->description;
-    //     $client->logo = $this->logo;
-    //     $client->address = $this->address;
-
-    //     $client->save();
-    //     $this->emit('clientReload');
-    // }
+        $client->save();
+        $this->emit('clientReload');
+    }
 
 }

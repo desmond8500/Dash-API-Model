@@ -6265,6 +6265,10 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
                 "reference": {
                     "description": "reference",
                     "type": "string"
@@ -6298,10 +6302,6 @@
                     "description": "updated_at",
                     "type": "string",
                     "format": "date-time"
-                },
-                "name": {
-                    "description": "name",
-                    "type": "string"
                 }
             }
         },

@@ -15,7 +15,7 @@ class Clients extends Component
     public function mount()
     {
         $this->breadcrumbs = array(
-            array('name' => 'Clients', 'route' => route('tabler.clients'),),
+            array('name' => 'Clients', 'route' => route('tabler.clients')),
         );
     }
 

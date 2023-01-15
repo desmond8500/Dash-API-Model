@@ -35,10 +35,10 @@ Route::name('tabler.')->group(function () {
     Route::get('/inscription',  Register::class)->name('register');
     Route::get('/forgotten',    Forgotten::class)->name('forgotten');
     // ERP
-    Route::get('/clients', Clients::class)->name('clients');
-    Route::get('/client/{client_id}', Client::class)->name('client');
-    Route::get('/projet/{projet_id}', Projet::class)->name('projet');
-    Route::get('/devis/{devis_id}', Devis::class)->name('devis');
+    Route::get('/clients',              Clients::class)->name('clients');
+    Route::get('/client/{client_id}',   Client::class)->name('client');
+    Route::get('/projet/{projet_id}',   Projet::class)->name('projet');
+    Route::get('/devis/{devis_id}',     Devis::class)->name('devis');
 });
 
 

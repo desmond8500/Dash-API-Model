@@ -9,6 +9,7 @@ use Livewire\Component;
 class ClientCard extends Component
 {
     public $client;
+    public $message;
     public $name, $description, $logo, $address, $status;
 
     protected $rules = [
@@ -52,6 +53,16 @@ class ClientCard extends Component
         $client->address = $this->address;
 
         $client->save();
+        sleep(5);
+        $this->emit('clientReload');
+    }
+
+    public function delete_Client(int $client_id)
+    {
+        $client = Client::find($client_id);
+        if(!$client->projets->count()){
+            $client->delete();
+        }
         $this->emit('clientReload');
     }
 }

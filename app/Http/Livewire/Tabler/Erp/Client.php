@@ -13,6 +13,8 @@ class Client extends Component
 
     public $breadcrumbs;
 
+    protected $listeners = ['projetReload' => 'getProjets'];
+
     public function mount($client_id)
     {
         $this->client_id = $client_id;
@@ -29,8 +31,13 @@ class Client extends Component
         return view('livewire.tabler.erp.client',[
             'breadcrumbs' => $this->breadcrumbs,
             'client' => $this->client,
-            'projets' => Projet::where('client_id',$this->client_id)->get(),
+            'projets' => $this->getProjets(),
         ])->extends('app.layout')->section('content');
+    }
+
+    public function getProjets()
+    {
+        return Projet::where('client_id', $this->client_id)->get();
     }
 
     public function gotoProjet(int $projet_id)
