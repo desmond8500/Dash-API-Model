@@ -14,3 +14,4 @@ Modèle de base pour un serveur Web
 * [Infyom](https://infyom.com/)
 * [Laravel domPDF](https://github.com/barryvdh/laravel-dompdf)
 * [Laravel Goutte](https://github.com/dweidner/laravel-goutte)
+* [Laravel to UML](https://github.com/andyabih/laravel-to-uml)
