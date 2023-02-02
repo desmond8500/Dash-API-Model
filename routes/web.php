@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Material\Index as MaterialIndex;
 use App\Http\Livewire\Tabler\Index;
+use App\Http\Livewire\Tabler\Modele;
 use App\Http\Livewire\Tabler\Pages\Docs;
 use App\Http\Livewire\Tabler\Pages\Forgotten;
 use App\Http\Livewire\Tabler\Pages\Login;
@@ -20,6 +21,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/profile',              Profile::class)->name('profile');
     Route::get('/reglages',             Reglages::class)->name('reglages');
     Route::get('/manuals/{fichier?}',   Docs::class)->name('manuals');
+    Route::get('/modele',               Modele::class)->name('modele');
     // Auth
     Route::get('/connexion',    Login::class)->name('login');
     Route::get('/inscription',  Register::class)->name('register');
