@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class Projet extends Component
 {
-    public $projet_id;
     public $projet;
     public $tab = 1;
 
@@ -16,7 +15,6 @@ class Projet extends Component
 
     public function mount($projet_id)
     {
-        $this->projet_id = $projet_id;
         $this->projet = ModelsProjet::find($projet_id);
 
         $this->breadcrumbs = array(
@@ -30,7 +28,7 @@ class Projet extends Component
     {
         return view('livewire.tabler.erp.projet',[
             'projet' => $this->projet,
-            'client' => $this->projet->client->name,
+            // 'client' => $this->projet->client->name,
             'devis' => Invoice::where('projet_id', $this->projet->id)->get(),
         ])->extends('app.layout')->section('content');
     }

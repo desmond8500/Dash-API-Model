@@ -42,6 +42,6 @@ class Client extends Component
 
     public function gotoProjet(int $projet_id)
     {
-        return redirect()->route('tabler.projet', ['projet_id' => $projet_id]);
+        return redirect()->route('tabler.projet', ["projet_id" => $projet_id]);
     }
 }

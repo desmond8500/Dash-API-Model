@@ -1,6 +1,6 @@
 <div>
     <div>
-        @component('components.tabler.header', ['title'=>'Projets', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
+        @component('components.tabler.header', ['title'=>'Projet', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
 
         @endcomponent
     </div>

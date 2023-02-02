@@ -20,7 +20,7 @@
     <div class="modal fade" id="exampleModal{{ $client->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">Editer un client</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -28,12 +28,12 @@
             <form wire:submit.prevent="update_client">
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label class="form-label required">Nom du client</label>
+                        <label class="form-label required fw-bold">Nom du client</label>
                         <input type="text" wire:model.defer="name" class="form-control">
                         @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label class="form-label required">Description du client</label>
+                        <label class="form-label required fw-bold">Description du client</label>
                         <textarea class="form-control" wire:model.defer="description" cols="30" rows="3"></textarea>
                         @error('description') <span class="error">{{ $message }}</span> @enderror
                     </div>
