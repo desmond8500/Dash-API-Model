@@ -13,11 +13,7 @@ class Modele extends Component
         'name' => 'required|min:6',
     ];
 
-    public function updated($propertyName)
 
-    {
-        $this->validateOnly($propertyName);
-    }
 
     public function render()
     {
@@ -26,10 +22,6 @@ class Modele extends Component
         ])->extends('app.layout')->section('content');
     }
 
-    public function add_modele()
-    {
-        $validatedData = $this->validate();
-        $this->test++;
-    }
+
 
 }

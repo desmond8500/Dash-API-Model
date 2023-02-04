@@ -6,9 +6,7 @@
         </button>
     @endcomponent
 
-    <div>
-        {{ $test }}sdfsd
-    </div>
+
 
 
     <div class="modal modal-blur fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -45,7 +43,7 @@
 
                         <div class="col-md-12">
                             <label class="form-label">Description</label>
-                            <textarea class="form-control"wire:model.defer></textarea>
+                            <textarea class="form-control"wire:model.defer="description"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -56,4 +54,7 @@
             </div>
         </div>
     </div>
+    <script>
+        console.log('hello');
+    </script>
 </div>
