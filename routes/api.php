@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Api\InvoiceController;
 use App\Http\Controllers\API\ReportController;
+use App\Http\Controllers\api\TacheController;
+use App\Http\Controllers\API\TaskAPIController;
+use App\Http\Controllers\API\TaskDocumentAPIController;
+use App\Http\Controllers\API\TaskPhotoAPIController;
 use App\Http\Controllers\ErpController;
 use App\Http\Controllers\ListController;
 use Illuminate\Http\Request;
@@ -28,6 +32,9 @@ Route::post('get_section_rows',  [InvoiceController::class, 'getSectionRows'])->
 Route::post('get_projet_report',  [ReportController::class, 'getReports'])->name('getReports');
 Route::post('get_report_section',  [ReportController::class, 'getSection'])->name('getSection');
 
+// Tasks
+Route::post('get_tasks',  [TacheController::class, 'get_tasks'])->name('get_tasks');
+
 Route::resource('clients',          ClientAPIController::class);
 Route::resource('projets',          ProjetAPIController::class);
 Route::resource('invoices',         InvoiceAPIController::class);
@@ -41,6 +48,7 @@ Route::resource('stages',           StageAPIController::class);
 Route::resource('rooms',            RoomAPIController::class);
 Route::resource('room_articles',    RoomArticleAPIController::class);
 Route::resource('room_article_details', RoomArticleDetailAPIController::class);
+
 Route::resource('reports',          ReportAPIController::class);
 Route::resource('report_sections',  ReportSectionAPIController::class);
 Route::resource('report_peoples',   ReportPeopleAPIController::class);
@@ -54,6 +62,11 @@ Route::resource('provider_tels',    ProviderTelAPIController::class);
 Route::resource('provider_mails',   ProviderMailAPIController::class);
 Route::resource('brands',           BrandAPIController::class);
 Route::resource('catalogues',       CatalogueAPIController::class);
+
 Route::resource('achats',           AchatAPIController::class);
 Route::resource('achat_articles',   AchatArticleAPIController::class);
 Route::resource('article_docs',     ArticleDocAPIController::class);
+
+Route::resource('tasks',            TaskAPIController::class);
+Route::resource('task_photos',      TaskPhotoAPIController::class);
+Route::resource('task_documents',   TaskDocumentAPIController::class);

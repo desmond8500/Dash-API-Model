@@ -72,3 +72,6 @@ Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\C
 // Route::resource('reportPeoples', ReportPeopleController::class);
 // Route::resource('reportDevis', ReportDevisController::class);
 // Route::resource('reportModalites', ReportModaliteController::class);
+// Route::resource('tasks', App\Http\Controllers\TaskController::class);
+// Route::resource('taskPhotos', App\Http\Controllers\TaskPhotoController::class);
+// Route::resource('taskDocuments', App\Http\Controllers\TaskDocumentController::class);

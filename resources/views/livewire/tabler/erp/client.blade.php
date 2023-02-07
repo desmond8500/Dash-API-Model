@@ -20,9 +20,9 @@
                     <div class="col-md-6 mb-2">
                         <div class="card p-2">
                             <div class="row">
-                                <div class="col-auto" type="button" wire:click="gotoProjet('{{ $projet->id }}')" >
+                                <a class="col-auto" href="{{ route('tabler.projet', ['projet_id' => $projet->id]) }}" >
                                     <img src="" alt="A" class="avatar">
-                                </div>
+                                </a>
                                 <a class="col" type="button" wire:click="gotoProjet('{{ $projet->id }}')" >
                                     <div class="fw-bold">{{ $projet->name }}</div>
                                     <div class="text-muted">{!! nl2br($projet->description) !!} </div>

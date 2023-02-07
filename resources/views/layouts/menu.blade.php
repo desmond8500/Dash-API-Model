@@ -106,3 +106,21 @@
         <span>Report Modalites</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('tasks*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('tasks.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Tasks</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('taskPhotos*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('taskPhotos.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Task Photos</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('taskDocuments*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('taskDocuments.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Task Documents</span>
+    </a>
+</li>

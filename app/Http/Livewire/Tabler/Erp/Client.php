@@ -40,7 +40,7 @@ class Client extends Component
         return Projet::where('client_id', $this->client_id)->get();
     }
 
-    public function gotoProjet(int $projet_id)
+    public function gotoProjet($projet_id)
     {
         return redirect()->route('tabler.projet', ["projet_id" => $projet_id]);
     }
