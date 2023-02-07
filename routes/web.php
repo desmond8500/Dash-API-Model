@@ -31,9 +31,9 @@ Route::name('tabler.')->group(function () {
     Route::get('/reglages',             Reglages::class)->name('reglages');
     Route::get('/manuals/{fichier?}',   Docs::class)->name('manuals');
     // Auth
-    Route::get('/connexion',    Login::class)->name('login');
-    Route::get('/inscription',  Register::class)->name('register');
-    Route::get('/forgotten',    Forgotten::class)->name('forgotten');
+    Route::get('/connexion',            Login::class)->name('login');
+    Route::get('/inscription',          Register::class)->name('register');
+    Route::get('/forgotten',            Forgotten::class)->name('forgotten');
     // ERP
     Route::get('/clients',              Clients::class)->name('clients');
     Route::get('/client/{client_id}',   Client::class)->name('client');
