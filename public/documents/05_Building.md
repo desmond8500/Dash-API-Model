@@ -20,3 +20,14 @@ Cette structure permettra de faire le suivi des travaux.
 | Connexion | 000% | |
 | Test | 000% | |
 | Mise en service | 000% | |
+
+
+```mermaid
+classDiagram
+
+class Building {
+    int projet_id
+    string name
+    text description
+}
+```

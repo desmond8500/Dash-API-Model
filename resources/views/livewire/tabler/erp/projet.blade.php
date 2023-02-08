@@ -54,7 +54,7 @@
                         Dossier Technique
                         @break
                     @case(7)
-                        Batiments
+                        @livewire('tabler.erp.batiment-list-card',['projet_id'=> $projet->id])
                         @break
 
                     @default

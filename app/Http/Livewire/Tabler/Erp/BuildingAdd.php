@@ -6,11 +6,12 @@ use App\Models\Building;
 use App\Models\Projet;
 use Livewire\Component;
 
-class BatimentListCard extends Component
+class BuildingAdd extends Component
 {
-    public $projet, $projet_id;
+    public $projet;
+    public $projet_id, $name, $description;
 
-    // protected $listeners = ['reload' => 'devis'];
+    protected $listeners = ['reload' => 'devis'];
 
     public function mount($projet_id)
     {
@@ -20,9 +21,7 @@ class BatimentListCard extends Component
 
     public function render()
     {
-        return view('livewire.tabler.erp.batiment-list-card',[
-            'buildings' => $this->projet->buildings,
-        ]);
+        return view('livewire.tabler.erp.building-add');
     }
 
     public function buildingAdd()

@@ -51,13 +51,9 @@ class Building extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'buildings';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'projet_id',
@@ -65,11 +61,6 @@ class Building extends Model
         'description'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
@@ -77,20 +68,11 @@ class Building extends Model
         'description' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get the projet that owns the Building
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+
     public function projet(): BelongsTo
     {
         return $this->belongsTo(Projet::class);
