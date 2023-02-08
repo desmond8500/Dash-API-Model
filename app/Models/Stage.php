@@ -56,13 +56,9 @@ class Stage extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'stages';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'building_id',
