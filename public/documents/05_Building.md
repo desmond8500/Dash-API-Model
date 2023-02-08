@@ -30,4 +30,22 @@ class Building {
     string name
     text description
 }
+
+class Stage {
+    int building_id
+    string name
+    string order
+    text description
+}
+
+class Stage {
+    int building_id
+    string name
+    string order
+    text description
+}
+
+
+
+
 ```
