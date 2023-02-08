@@ -4,10 +4,12 @@
             {{-- <div class="page-pretitle"> {{ $subtitle ?? '' }} </div> --}}
             <div class="mb-1">
                 <ol class="breadcrumb" aria-label="breadcrumbs">
-                    <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                    <li class="breadcrumb-item"><a href="/" class="text-dark">Accueil</a></li>
                     @isset ($breadcrumbs)
                         @foreach ($breadcrumbs as $key => $breadcrumb)
-                            <li class="breadcrumb-item"><a href="{{ $breadcrumb['route'] }}">{{ $breadcrumb['name'] }}</a></li>
+                            <li class="breadcrumb-item @if ($loop->last) active @endif">
+                                <a href="{{ $breadcrumb['route'] }}" class="text-dark">{{ $breadcrumb['name'] }}</a>
+                            </li>
                         @endforeach
                     @endisset
                 </ol>

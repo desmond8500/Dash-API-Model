@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -72,10 +73,14 @@ class Building extends Model
 
     ];
 
-
     public function projet(): BelongsTo
     {
         return $this->belongsTo(Projet::class);
+    }
+
+    public function stages(): HasMany
+    {
+        return $this->hasMany(Stage::class);
     }
 
 

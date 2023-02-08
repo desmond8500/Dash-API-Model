@@ -6,6 +6,7 @@ use App\Http\Livewire\Tabler\Erp\Client;
 use App\Http\Livewire\Tabler\Erp\Clients;
 use App\Http\Livewire\Tabler\Erp\Devis;
 use App\Http\Livewire\Tabler\Erp\Projet;
+use App\Http\Livewire\Tabler\Erp\Room;
 use App\Http\Livewire\Tabler\Index;
 use App\Http\Livewire\Tabler\Pages\Docs;
 use App\Http\Livewire\Tabler\Pages\Forgotten;
@@ -41,6 +42,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/projet/{projet_id}',       Projet::class)->name('projet');
     Route::get('/devis/{devis_id}',         Devis::class)->name('devis');
     Route::get('/building/{building_id}',   Building::class)->name('building');
+    Route::get('/room/{room_id}',           Room::class)->name('room');
     // Route::get('/building/{building_id}',   Building::class)->name('building');
 });
 

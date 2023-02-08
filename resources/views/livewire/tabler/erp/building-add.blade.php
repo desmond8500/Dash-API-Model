@@ -30,7 +30,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="buildingAdd()">Ajouter</button>
                         </div>
                     </form>

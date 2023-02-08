@@ -38,10 +38,9 @@ class Stage {
     text description
 }
 
-class Stage {
-    int building_id
+class Room {
+    int stage_id
     string name
-    string order
     text description
 }
 

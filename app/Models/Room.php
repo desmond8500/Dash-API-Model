@@ -51,13 +51,9 @@ class Room extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'rooms';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'stage_id',
@@ -65,11 +61,6 @@ class Room extends Model
         'description'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'stage_id' => 'integer',
@@ -77,20 +68,10 @@ class Room extends Model
         'description' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get the stage that owns the Room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function stage(): BelongsTo
     {
         return $this->belongsTo(Stage::class);

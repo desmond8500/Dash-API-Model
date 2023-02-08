@@ -2,20 +2,20 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
-use App\Models\Building as ModelsBuilding;
+use App\Models\Room as ModelsRoom;
 use Livewire\Component;
 
-class Building extends Component
+class Room extends Component
 {
-    public $building;
-    public $building_id, $name, $description, $breadcrumbs;
+    public $room, $breadcrumbs;
+    public $room_id, $name, $order, $description;
 
     protected $listeners = ['reload' => 'render'];
 
-    public function mount($building_id)
+    public function mount($room_id)
     {
-        $this->building_id = $building_id;
-        $this->building = ModelsBuilding::find($building_id);
+        $this->room_id = $room_id;
+        $this->room = ModelsRoom::find($room_id);
 
         $this->breadcrumbs = array(
             array('name' => 'Clients', 'route' => route('tabler.clients')),
@@ -23,11 +23,10 @@ class Building extends Component
             array('name' => $this->building->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->building->projet->id])),
         );
     }
-
     public function render()
     {
-        return view('livewire.tabler.erp.building',[
-            'building' => $this->building,
-        ])->extends('app.layout')->section('content');
+        return view('livewire.tabler.erp.room',[
+            'room' => $this->room,
+        ]);
     }
 }
