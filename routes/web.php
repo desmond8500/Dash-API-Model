@@ -41,6 +41,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/projet/{projet_id}',       Projet::class)->name('projet');
     Route::get('/devis/{devis_id}',         Devis::class)->name('devis');
     Route::get('/building/{building_id}',   Building::class)->name('building');
+    // Route::get('/building/{building_id}',   Building::class)->name('building');
 });
 
 

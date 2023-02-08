@@ -16,6 +16,7 @@ class BatimentListCard extends Component
     {
         $this->projet_id = $projet_id;
         $this->projet = Projet::find($projet_id);
+
     }
 
     public function render()
@@ -35,6 +36,6 @@ class BatimentListCard extends Component
     }
     public function gotoBuilding($building_id)
     {
-        return redirect()->route('tabler.building',['building'=>$building_id]);
+        return redirect()->route('tabler.building',['building_id'=>$building_id]);
     }
 }
