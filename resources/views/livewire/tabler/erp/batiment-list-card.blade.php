@@ -4,13 +4,13 @@
     </div>
 
     @foreach ($buildings as $building)
-        <div class="col-md-6">
+        <div class="col-md-6" >
             <div class="card p-2 mb-1">
                 <div class="row">
-                    <div class="col-auto">
+                    <div class="col-auto" type="button" wire:click="gotoBuilding('{{ $building->id }}')">
                         <img src="" class="avatar avatar-md" alt="A">
                     </div>
-                    <div class="col">
+                    <div class="col"  wire:click="gotoBuilding('{{ $building->id }}')">
                         {{ $building->name }}
                     </div>
                     <div class="col-auto">

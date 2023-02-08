@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Material\Index as MaterialIndex;
+use App\Http\Livewire\Tabler\Erp\Building;
 use App\Http\Livewire\Tabler\Erp\Client;
 use App\Http\Livewire\Tabler\Erp\Clients;
 use App\Http\Livewire\Tabler\Erp\Devis;
@@ -27,18 +28,19 @@ Route::get('/swagger', function () {
 // Tabler
 Route::name('tabler.')->group(function () {
     // Réglages
-    Route::get('/profile',              Profile::class)->name('profile');
-    Route::get('/reglages',             Reglages::class)->name('reglages');
-    Route::get('/manuals/{fichier?}',   Docs::class)->name('manuals');
+    Route::get('/profile',                  Profile::class)->name('profile');
+    Route::get('/reglages',                 Reglages::class)->name('reglages');
+    Route::get('/manuals/{fichier?}',       Docs::class)->name('manuals');
     // Auth
-    Route::get('/connexion',            Login::class)->name('login');
-    Route::get('/inscription',          Register::class)->name('register');
-    Route::get('/forgotten',            Forgotten::class)->name('forgotten');
+    Route::get('/connexion',                Login::class)->name('login');
+    Route::get('/inscription',              Register::class)->name('register');
+    Route::get('/forgotten',                Forgotten::class)->name('forgotten');
     // ERP
-    Route::get('/clients',              Clients::class)->name('clients');
-    Route::get('/client/{client_id}',   Client::class)->name('client');
-    Route::get('/projet/{projet_id}',   Projet::class)->name('projet');
-    Route::get('/devis/{devis_id}',     Devis::class)->name('devis');
+    Route::get('/clients',                  Clients::class)->name('clients');
+    Route::get('/client/{client_id}',       Client::class)->name('client');
+    Route::get('/projet/{projet_id}',       Projet::class)->name('projet');
+    Route::get('/devis/{devis_id}',         Devis::class)->name('devis');
+    Route::get('/building/{building_id}',   Building::class)->name('building');
 });
 
 

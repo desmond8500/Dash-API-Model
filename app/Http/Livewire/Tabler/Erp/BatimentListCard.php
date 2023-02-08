@@ -33,4 +33,8 @@ class BatimentListCard extends Component
             'description' => $this->description,
         ]);
     }
+    public function gotoBuilding($building_id)
+    {
+        return redirect()->route('tabler.building',['building'=>$building_id]);
+    }
 }
