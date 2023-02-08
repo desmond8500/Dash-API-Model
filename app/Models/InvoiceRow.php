@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -80,13 +81,9 @@ class InvoiceRow extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'invoice_rows';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'invoice_id',
@@ -124,6 +121,11 @@ class InvoiceRow extends Model
     public static $rules = [
 
     ];
+
+    public function rows(): HasMany
+    {
+        return $this->hasMany(InvoiceRow::class);
+    }
 
 
 }
