@@ -4,7 +4,7 @@
             <a class="col-auto" href="{{ route('tabler.projet', ['projet_id' => $projet->id]) }}" >
                 <img src="" alt="A" class="avatar">
             </a>
-            <a class="col" type="button" wire:click="gotoProjet('{{ $projet->id }}')" >
+            <a class="col" type="button" href="{{ route('tabler.projet', ['projet_id' => $projet->id]) }}" >
                 <div class="fw-bold">{{ $projet->name }}</div>
                 <div class="text-muted">{!! nl2br($projet->description) !!} </div>
             </a>

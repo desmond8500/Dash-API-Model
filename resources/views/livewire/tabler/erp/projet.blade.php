@@ -51,7 +51,7 @@
                         Finances
                         @break
                     @case(6)
-                        Dossier Technique
+                        @livewire('tabler.erp.dossier-technique',['projet_id'=> $projet->id])
                         @break
                     @case(7)
                         @livewire('tabler.erp.batiment-list-card',['projet_id'=> $projet->id])

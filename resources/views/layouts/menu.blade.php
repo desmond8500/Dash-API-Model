@@ -124,3 +124,9 @@
         <span>Task Documents</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('systems*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('systems.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Systems</span>
+    </a>
+</li>

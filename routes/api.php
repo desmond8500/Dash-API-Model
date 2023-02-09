@@ -70,3 +70,6 @@ Route::resource('article_docs',     ArticleDocAPIController::class);
 Route::resource('tasks',            TaskAPIController::class);
 Route::resource('task_photos',      TaskPhotoAPIController::class);
 Route::resource('task_documents',   TaskDocumentAPIController::class);
+
+
+Route::resource('systems', App\Http\Controllers\API\SystemAPIController::class);
