@@ -19,14 +19,16 @@ class Room extends Component
 
         $this->breadcrumbs = array(
             array('name' => 'Clients', 'route' => route('tabler.clients')),
-            array('name' => $this->building->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->building->projet->client->id])),
-            array('name' => $this->building->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->building->projet->id])),
+            array('name' => $this->room->stage->building->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->room->stage->building->projet->client->id])),
+            array('name' => $this->room->stage->building->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->room->stage->building->projet->id])),
+            array('name' => $this->room->stage->building->name, 'route' => route('tabler.building', ['building_id' => $this->room->stage->building->id])),
+            array('name' => $this->room->name, 'route' => route('tabler.room', ['room_id' => $this->room->id])),
         );
     }
     public function render()
     {
         return view('livewire.tabler.erp.room',[
             'room' => $this->room,
-        ]);
+        ])->extends('app.layout')->section('content');
     }
 }

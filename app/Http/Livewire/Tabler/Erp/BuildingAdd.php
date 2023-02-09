@@ -11,8 +11,6 @@ class BuildingAdd extends Component
     public $projet;
     public $projet_id, $name, $description;
 
-    protected $listeners = ['reload' => 'devis'];
-
     public function mount($projet_id)
     {
         $this->projet_id = $projet_id;
@@ -31,5 +29,6 @@ class BuildingAdd extends Component
             'name' => $this->name,
             'description' => $this->description,
         ]);
+        $this->emit('reload');
     }
 }

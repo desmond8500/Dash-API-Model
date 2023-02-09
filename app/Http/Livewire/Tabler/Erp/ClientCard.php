@@ -53,8 +53,7 @@ class ClientCard extends Component
         $client->address = $this->address;
 
         $client->save();
-        sleep(5);
-        $this->emit('clientReload');
+        $this->emit('reload');
     }
 
     public function delete_Client(int $client_id)
@@ -63,6 +62,6 @@ class ClientCard extends Component
         if(!$client->projets->count()){
             $client->delete();
         }
-        $this->emit('clientReload');
+        $this->emit('reload');
     }
 }

@@ -27,8 +27,8 @@
                         @error('description') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <div class="modal-footer p-0">
+                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
                     </div>
 

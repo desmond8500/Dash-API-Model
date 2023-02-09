@@ -21,7 +21,6 @@ Cette structure permettra de faire le suivi des travaux.
 | Test | 000% | |
 | Mise en service | 000% | |
 
-
 ```mermaid
 classDiagram
 

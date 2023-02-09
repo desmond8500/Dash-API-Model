@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -80,22 +81,17 @@ class Stage extends Model
         'description' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get the building that owns the Stage
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function building(): BelongsTo
     {
         return $this->belongsTo(Building::class);
+    }
+
+    public function rooms(): HasMany
+    {
+        return $this->hasMany(Room::class);
     }
 }

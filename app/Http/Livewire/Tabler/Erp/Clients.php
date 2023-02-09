@@ -10,7 +10,7 @@ class Clients extends Component
     public $breadcrumbs;
     public $clients;
 
-    protected $listeners = ['clientReload' => 'getClients'];
+    protected $listeners = ['reload' => 'render'];
 
     public function mount()
     {

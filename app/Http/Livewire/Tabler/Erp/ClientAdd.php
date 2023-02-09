@@ -36,7 +36,7 @@ class ClientAdd extends Component
             'address' => $this->address,
             // 'status' => $this->status,
         ]);
-        $this->emit('clientReload');
+        $this->emit('reload');
 
     }
 }
