@@ -10,7 +10,7 @@ class BatimentListCard extends Component
 {
     public $projet, $projet_id;
 
-    // protected $listeners = ['reload' => 'devis'];
+    protected $listeners = ['reload' => 'render'];
 
     public function mount($projet_id)
     {

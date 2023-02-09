@@ -20,16 +20,36 @@ class BuildingCard extends Component
     public function render()
     {
         return view('livewire.tabler.erp.building-card',[
-            'stage' => $this->stage
+            'stage' => $this->getStages()
         ]);
+    }
+
+    public function getStages()
+    {
+        return Stage::find($this->stage_id);
     }
 
     public function roomAdd()
     {
         Room::create([
             'stage_id' => $this->stage_id,
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => ucfirst($this->name),
+            'description' => ucfirst($this->description),
         ]);
+        $this->getStages();
+    }
+
+    public function roomUp($room_id)
+    {
+        $room1 = Room::find($room_id);
+        $room1->order++;
+        $room1->save();
+    }
+
+    public function roomDown($room_id)
+    {
+        $room1 = Room::find($room_id);
+        $room1->order--;
+        $room1->save();
     }
 }

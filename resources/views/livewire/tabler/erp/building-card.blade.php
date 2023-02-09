@@ -6,7 +6,7 @@
                 <img src="" alt="A" class="avatar avatar-md">
             </div>
             <div class="col">
-                <div class="card-title">{{ $stage->name }}</div>
+                <div class="card-title fw-bold">{{ $stage->name }}</div>
                 <div class="text-muted text-truncate">{{ nl2br($stage->description) }}</div>
             </div>
             <div class="col-auto">
@@ -19,16 +19,21 @@
             </div>
         </div>
 
-        <div>
+        <div class="p-2">
             @foreach ($stage->rooms as $room)
-                <a class="d-flex justify-content-between bg-secondary rounded text-light p-1 my-1" type="button" href="{{ route('tabler.room',['room_id'=>$room->id]) }}">
-                    <div>
+                <div class="row bg-secondary rounded text-light p-1 my-1" type="button" >
+                    <a class="col-md text-white" href="{{ route('tabler.room',['room_id'=>$room->id]) }}">
                         {{ $room->name }}
+                    </a>
+                    <div class="col-md-auto">
+                        <button class="btn btn-dark btn-icon btn-sm rounded" wire:click="roomUp('{{ $room->id }}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-up-line-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 12h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v6h-6v-6z" fill="currentColor"></path> <path d="M9 21h6"></path> </svg>
+                        </button>
+                        <button class="btn btn-dark btn-icon btn-sm rounded" wire:click="roomDown('{{ $room->id }}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-down-line-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M15 12h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1 -1.414 0l-6.586 -6.586a1 1 0 0 1 .707 -1.707h3.586v-6h6v6z" fill="currentColor"></path> <path d="M15 3h-6"></path> </svg>
+                        </button>
                     </div>
-                    <div>
-
-                    </div>
-                </a>
+                </div>
             @endforeach
         </div>
     </div>
