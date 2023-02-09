@@ -13,7 +13,7 @@ class Client extends Component
 
     public $breadcrumbs;
 
-    protected $listeners = ['projetReload' => 'getProjets'];
+    protected $listeners = ['reload' => 'render'];
 
     public function mount($client_id)
     {

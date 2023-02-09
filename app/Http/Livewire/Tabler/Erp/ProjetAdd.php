@@ -30,6 +30,6 @@ class ProjetAdd extends Component
             'logo' => $this->logo,
             // 'status' => $this->status,
         ]);
-        $this->emit('projetReload');
+        $this->emit('reload');
     }
 }
