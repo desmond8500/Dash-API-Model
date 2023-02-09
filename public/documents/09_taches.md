@@ -16,6 +16,9 @@ Task <-- TaskDocument
 
 class Task{
     int devis_id
+    int level_id
+    int stage_id
+    int room_id
     string objet
     text description
     int status_id

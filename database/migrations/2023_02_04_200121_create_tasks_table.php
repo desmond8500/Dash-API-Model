@@ -7,16 +7,14 @@ use Illuminate\Support\Facades\Schema;
 class CreateTasksTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('devis_id');
+            $table->integer('level_id')->nullable();
+            $table->integer('stage_id')->nullable();
+            $table->integer('room_id')->nullable();
             $table->string('objet');
             $table->text('description');
             $table->integer('status_id');
@@ -26,11 +24,6 @@ class CreateTasksTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('tasks');

@@ -64,41 +64,33 @@ class Task extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'tasks';
-
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'devis_id',
+        'level_id',
+        'stage_id',
+        'room_id',
         'objet',
         'description',
         'status_id',
         'priority_id'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'devis_id' => 'integer',
+        'level_id' => 'integer',
+        'stage_id' => 'integer',
+        'room_id' => 'integer',
         'objet' => 'string',
         'description' => 'string',
         'status_id' => 'integer',
         'priority_id' => 'integer'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
