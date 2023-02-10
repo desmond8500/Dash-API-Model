@@ -7740,8 +7740,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "devis_id": {
-                    "description": "devis_id",
+                "projet_id": {
+                    "description": "projet_id",
                     "type": "integer",
                     "format": "int32"
                 },

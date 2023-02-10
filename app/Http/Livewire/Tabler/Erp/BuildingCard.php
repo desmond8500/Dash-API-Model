@@ -64,6 +64,10 @@ class BuildingCard extends Component
             ]);
 
         }
+    }
 
+    public function setRoomName()
+    {
+        $this->name = '102-1';
     }
 }
