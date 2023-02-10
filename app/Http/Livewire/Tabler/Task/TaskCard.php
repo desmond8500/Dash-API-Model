@@ -47,4 +47,9 @@ class TaskCard extends Component
     {
         $this->emitUp('getTask', $this->tache->id);
     }
+
+    public function gotoTask($task_id)
+    {
+        return redirect()->route('tabler.task',['task_id'=>$task_id]);
+    }
 }

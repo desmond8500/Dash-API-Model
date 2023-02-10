@@ -6,8 +6,8 @@
             </div>
             <div class="card-body">
                 @foreach ($taches as $tache)
+                    <div wire:click="getTask('{{ $tache->id }}')" class="text-end" type="button">Consulter</div>
                     @livewire('tabler.task.task-card', ['tache' => $tache], key($tache->id))
-                    <div wire:click="getTask('{{ $tache->id }}')" class="text-end" type>Consulter</div>
                 @endforeach
             </div>
         </div>

@@ -25,6 +25,10 @@ class TaskProjetList extends Component
 
     public function getTask($task_id)
     {
-        $this->task = Task::find($task_id);
+        // $this->task = Task::find($task_id);
+        // $this->render();
+        $this->task = 1;
     }
+
+
 }

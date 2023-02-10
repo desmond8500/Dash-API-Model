@@ -20,6 +20,7 @@ use App\Http\Livewire\Tabler\Stock\Articles;
 use App\Http\Livewire\Tabler\Stock\Brands;
 use App\Http\Livewire\Tabler\Stock\Providers;
 use App\Http\Livewire\Tabler\Stock\Stock;
+use App\Http\Livewire\Tabler\Task\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,9 @@ Route::name('tabler.')->group(function () {
     Route::get('/article/{article_id}',     Article::class)->name('article');
     Route::get('/providers',                Providers::class)->name('providers');
     Route::get('/brands',                   Brands::class)->name('brands');
+    //Taches
+    Route::get('/task/{task_id}',           Task::class)->name('task');
+
 });
 
 
