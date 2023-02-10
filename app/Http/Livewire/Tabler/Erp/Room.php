@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Room as ModelsRoom;
+use App\Models\Task;
 use Livewire\Component;
 
 class Room extends Component
@@ -29,6 +30,7 @@ class Room extends Component
     {
         return view('livewire.tabler.erp.room',[
             'room' => $this->room,
+            'taches' => Task::where('room_id', $this->room_id)->get(),
         ])->extends('app.layout')->section('content');
     }
 }
