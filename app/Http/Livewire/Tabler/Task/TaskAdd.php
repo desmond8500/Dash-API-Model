@@ -33,6 +33,9 @@ class TaskAdd extends Component
             'status_id' => $this->status_id,
             'priority_id' => $this->priority_id,
             'room_id' => $this->room_id,
+            'stage_id' => $this->room->stage->id,
+            'building_id' => $this->room->stage->building->id,
+            'projet_id' => $this->room->stage->building->projet->id,
         ]);
         $this->emit('reload');
     }

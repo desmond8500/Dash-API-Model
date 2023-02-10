@@ -9,7 +9,7 @@
             <div class="modal-content">
                 <form>
                     <div class="modal-header">
-                        <h5 class="modal-title">Ajouter une tache</h5>
+                        <h5 class="modal-title">Ajouter une tache </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -43,8 +43,6 @@
                                 <textarea class="form-control" wire:model.defer="description"></textarea>
                             </div>
                         </div>
-
-
 
                     </div>
                     <div class="modal-footer">
