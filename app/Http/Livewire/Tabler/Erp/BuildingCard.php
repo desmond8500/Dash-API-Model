@@ -52,4 +52,18 @@ class BuildingCard extends Component
         $room1->order--;
         $room1->save();
     }
+
+    public $debut, $fin;
+    public function generateRooms()
+    {
+        for ($i= $this->debut; $i <= $this->fin; $i++) {
+            Room::create([
+                'stage_id' => $this->stage_id,
+                'name' => ucfirst($this->name).$i,
+                'description' => ucfirst($this->description),
+            ]);
+
+        }
+
+    }
 }

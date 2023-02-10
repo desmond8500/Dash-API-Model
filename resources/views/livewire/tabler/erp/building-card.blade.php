@@ -10,8 +10,11 @@
                 <div class="text-muted text-truncate">{{ nl2br($stage->description) }}</div>
             </div>
             <div class="col-auto">
-                <a class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#addRoom{{ $stage->id }}">
+                <a class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#generateRooms{{ $stage->id }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                </a>
+                <a class="btn btn-primary btn-icon" data-bs-toggle="modal" data-bs-target="#addRoom{{ $stage->id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-new-section" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 12l6 0"></path> <path d="M12 9l0 6"></path> <path d="M4 6v-1a1 1 0 0 1 1 -1h1m5 0h2m5 0h1a1 1 0 0 1 1 1v1m0 5v2m0 5v1a1 1 0 0 1 -1 1h-1m-5 0h-2m-5 0h-1a1 1 0 0 1 -1 -1v-1m0 -5v-2m0 -5"></path> </svg>
                 </a>
                 <button class="btn btn-outline-primary btn-icon" >
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path> <path d="M13.5 6.5l4 4"></path> </svg>
@@ -39,6 +42,43 @@
     </div>
 
     <div class="modal modal-blur fade" id="addRoom{{ $stage->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Générer des locaux </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" wire:model.defer="name"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Debut</label>
+                                <input type="number" class="form-control" wire:model.defer="debut"/>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Fin</label>
+                                <input type="texnumbert" class="form-control" wire:model.defer="fin"/>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" wire:model.defer="description"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="generateRooms()">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-blur fade" id="generateRooms{{ $stage->id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form>
