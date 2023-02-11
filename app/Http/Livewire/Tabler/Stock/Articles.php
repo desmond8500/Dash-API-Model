@@ -36,7 +36,7 @@ class Articles extends Component
     public function render()
     {
         return view('livewire.tabler.stock.articles',[
-            'articles' => Article::all(),
+            'articles' => Article::paginate(10),
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all()
         ])->extends('app.layout')->section('content');

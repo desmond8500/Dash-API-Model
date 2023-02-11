@@ -20,7 +20,7 @@
                                     <img src="{{ $article->image }}" alt="A" class="avatar avatar-md">
                                 </div>
                                 <div class="col" type='button' wire:click="gotoArticle('{{ $article->id }}')">
-                                    <div class="card-title">{{ $article->designation }}</div>
+                                    <div class="card-title">{{ $article->designation }} </div>
                                     <div class="text-muted">{!! $article->description !!}</div>
                                 </div>
                                 <div class="col-auto">
@@ -32,8 +32,7 @@
                         </div>
                     </div>
                 @endforeach
-
-
+                <div class="mt-2">{{ $articles->links() }}</div>
             </div>
         </div>
         <div class="col-md-4">
