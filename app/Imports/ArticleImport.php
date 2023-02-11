@@ -17,9 +17,10 @@ class ArticleImport implements ToModel
         return new Article([
             'designation' => $row[0],
             'reference' => $row[1],
-            'priorite' => $row[3],
+            'priority' => $row[3],
             'marque' => $row[4],
-            'designation' => $row[5],
+            'brand_id' => $row[5],
+            'quantity' => $row[5],
         ]);
     }
 }
