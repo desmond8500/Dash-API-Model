@@ -1,4 +1,4 @@
 <div>
-    @component('components.tabler.header', ['title'=>'Building', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
+    @component('components.tabler.header', ['title'=>'Achats', 'subtitle'=>'Stock', 'breadcrumbs'=>$breadcrumbs])
     @endcomponent
 </div>

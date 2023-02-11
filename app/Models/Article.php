@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -86,7 +87,7 @@ class Article extends Model
 
 
     public $table = 'articles';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -128,8 +129,11 @@ class Article extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+    public function docs(): HasMany
+    {
+        return $this->hasMany(ArticleDoc::class);
+    }
 }
