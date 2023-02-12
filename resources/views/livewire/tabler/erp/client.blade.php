@@ -6,7 +6,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 g-2">
             <div class="card p-2">
                 <h3 class="fw-bold">{{ $client->name }}</h3>
                 <div class="text-muted">

@@ -10,25 +10,25 @@
                     {!! nl2br($projet->description) !!}
                 </div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(1)">
+            <div class="btn mt-1 @if($tab==1) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(1)">
                 <div>Devis</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(2)">
+            <div class="btn mt-1 @if($tab==2) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(2)">
                 <div>Rapports</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(3)">
+            <div class="btn mt-1 @if($tab==3) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(3)">
                 <div>Taches</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(4)">
+            <div class="btn mt-1 @if($tab==4) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(4)">
                 <div>Contacts</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(5)">
+            <div class="btn mt-1 @if($tab==5) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(5)">
                 <div>Finances</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(6)">
+            <div class="btn mt-1 @if($tab==6) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(6)">
                 <div>Dossier Technique</div> <div></div>
             </div>
-            <div class="btn btn-dark mt-1  d-flex justify-content-between" wire:click="selectTab(7)">
+            <div class="btn mt-1 @if($tab==7) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(7)">
                 <div>Batiments</div> <div></div>
             </div>
         </div>
