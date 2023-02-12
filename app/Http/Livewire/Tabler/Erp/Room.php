@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Room extends Component
 {
-    public $room, $breadcrumbs;
+    public $room, $breadcrumbs, $projet_id;
     public $room_id, $name, $order, $description;
 
     protected $listeners = ['reload' => 'render'];
@@ -17,6 +17,7 @@ class Room extends Component
     {
         $this->room_id = $room_id;
         $this->room = ModelsRoom::find($room_id);
+        $this->projet_id = $this->room->stage->building->projet->id;
 
         $this->breadcrumbs = array(
             array('name' => 'Clients', 'route' => route('tabler.clients')),
@@ -30,7 +31,7 @@ class Room extends Component
     {
         return view('livewire.tabler.erp.room',[
             'room' => $this->room,
-            'taches' => Task::where('room_id', $this->room_id)->get(),
+            'taches' => Task::where('room_id', $this->room_id)->paginate(7),
         ])->extends('app.layout')->section('content');
     }
 }

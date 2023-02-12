@@ -16,6 +16,9 @@
                 @foreach ($taches as $tache)
                     @livewire('tabler.task.task-card', ['tache' => $tache], key($tache->id))
                 @endforeach
+                <div class="mt-2">
+                    {{ $taches->links() }}
+                </div>
             </div>
         </div>
     </div>

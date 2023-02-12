@@ -2,23 +2,33 @@
 
 namespace App\Http\Livewire\Tabler\Task;
 
+use App\Models\Task;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TaskProjetList extends Component
 {
-    public $taches, $task, $projet_id;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch() {
+        $this->resetPage();
+    }
+
+    public $search ='';
+
+    public $task, $projet_id;
     protected $listeners = ['reload'=>'render'];
 
-    public function mount($taches, $projet_id=0)
+    public function mount( $projet_id=0)
     {
-        $this->taches = $taches;
         $this->projet_id = $projet_id;
     }
 
     public function render()
     {
         return view('livewire.tabler.task.task-projet-list',[
-            'taches' => $this->taches,
+            'taches' => Task::where('projet_id', $this->projet_id)->paginate(7),
             'task' => $this->task,
         ]);
     }

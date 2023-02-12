@@ -10,10 +10,10 @@
             <div class="text-muted">{!! nl2br($tache->description) !!}</div>
         </a>
         <div class="col-auto">
-            <button class="btn btn-outline-primary btn-icon" data-bs-toggle="modal" data-bs-target="#showTask{{ $tache->id }}">
+            <button class="btn btn-outline-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#showTask{{ $tache->id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path> <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path> </svg>
             </button>
-            <button class="btn btn-outline-primary btn-icon" data-bs-toggle="modal" data-bs-target="#editTask{{ $tache->id }}">
+            <button class="btn btn-outline-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#editTask{{ $tache->id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
             </button>
             <div class="col-md-12">

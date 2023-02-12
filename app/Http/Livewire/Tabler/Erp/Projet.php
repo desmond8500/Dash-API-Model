@@ -27,7 +27,6 @@ class Projet extends Component
     {
         return view('livewire.tabler.erp.projet',[
             'projet' => $this->projet,
-            'taches' => Task::where('projet_id', $this->projet_id)->get()
         ])->extends('app.layout')->section('content');
     }
 
