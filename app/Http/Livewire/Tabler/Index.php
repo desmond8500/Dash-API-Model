@@ -24,7 +24,7 @@ class Index extends Component
         return view('livewire.tabler.index',[
             'users' => User::all(),
             'test' => $this->scrapper(),
-            'taches' => Task::paginate(10)
+            'taches' => Task::orderBy('priority_id','DESC')->paginate(10)
         ])->extends('app.layout')->section('content');
     }
 
