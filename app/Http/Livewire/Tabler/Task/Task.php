@@ -84,5 +84,6 @@ class Task extends Component
             }
         }
         $this->form_photo = 0;
+        $this->render();
     }
 }

@@ -11,6 +11,12 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public function updatingSearch() {
+        $this->resetPage();
+    }
+
+    public $search ='';
     public $lien;
 
     public function render()
