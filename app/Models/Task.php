@@ -122,5 +122,13 @@ class Task extends Model
     {
         return $this->belongsTo(Projet::class);
     }
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
 
 }

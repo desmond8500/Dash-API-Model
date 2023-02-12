@@ -40,9 +40,13 @@ class Task extends Component
             array('name' => 'Clients', 'route' => route('tabler.clients')),
         );
 
-        array_push( $this->breadcrumbs, array('name' => $this->task->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->task->projet->client->id])), );
-        array_push( $this->breadcrumbs, array('name' => $this->task->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->task->projet_id])), );
-        array_push( $this->breadcrumbs, array('name' => 'Tache', 'route' => route('tabler.task', ['task_id' => $this->task->id])), );
+        array_push( $this->breadcrumbs, array('name' => $this->task->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->task->projet->client->id])));
+        array_push( $this->breadcrumbs, array('name' => $this->task->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->task->projet_id])));
+        if ($this->task->room_id) {
+            array_push( $this->breadcrumbs, array('name' => $this->task->building->name, 'route' => route('tabler.building', ['building_id' => $this->task->building_id])));
+            array_push( $this->breadcrumbs, array('name' => $this->task->room->name, 'route' => route('tabler.room', ['room_id' => $this->task->room_id])));
+        }
+        array_push( $this->breadcrumbs, array('name' => 'Tache', 'route' => route('tabler.task', ['task_id' => $this->task->id])) );
 
     }
     public function render()
