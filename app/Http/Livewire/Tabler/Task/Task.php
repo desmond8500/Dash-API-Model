@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Tabler\Task;
 
 use App\Http\Controllers\MainController;
 use App\Models\Task as ModelsTask;
+use App\Models\TaskPhoto;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -18,6 +20,8 @@ class Task extends Component
     public $task_id, $task, $breadcrumbs;
     public $objet, $description, $status_id = 1, $priority_id = 1;
     public $statut = [], $priorite = [];
+
+    public $form_photo = 0, $photos;
 
     public function mount($task_id)
     {
@@ -57,5 +61,24 @@ class Task extends Component
         $this->task->status_id = $this->status_id;
         $this->task->priority_id = $this->priority_id;
         $this->task->save();
+    }
+
+    public function add_photos()
+    {
+        $dir = "task/$this->task_id";
+
+        if ($this->photos) {
+            foreach ($this->photos as $key => $photo) {
+                $name = $photo->getClientOriginalName();
+                $photo->storeAS("public/$dir", $name);
+
+                TaskPhoto::firstOrCreate([
+                    'task_id' => $this->task->id,
+                    'name' => $name,
+                    'folder' => "storage/$dir/$name",
+                ]);
+            }
+        }
+        $this->form_photo = 0;
     }
 }

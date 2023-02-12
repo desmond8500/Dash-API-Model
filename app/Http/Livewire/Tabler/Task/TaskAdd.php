@@ -28,8 +28,8 @@ class TaskAdd extends Component
     public function taskAdd()
     {
         Task::firstOrCreate([
-            'objet' => $this->objet,
-            'description' => $this->description,
+            'objet' => ucfirst($this->objet),
+            'description' => ucfirst($this->description),
             'status_id' => $this->status_id,
             'priority_id' => $this->priority_id,
             'room_id' => $this->room_id,

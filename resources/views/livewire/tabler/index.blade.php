@@ -1,9 +1,30 @@
-<div>
+<div class="row">
     @component('components.tabler.header', ['title'=> 'Dashboard', 'subtitle'=> 'Subtitle'])
 
     @endcomponent
 
-    <div class="card mb-2">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Liste des taches en cours</div>
+                <div class="card-actions">
+
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach ($taches as $tache)
+                    @livewire('tabler.task.task-card', ['tache' => $tache], key($tache->id))
+                @endforeach
+            </div>
+        </div>
+
+    </div>
+
+
+    {{-- <div class="card mb-2">
         <div class="card-header">
             <div class="card-title fw-bold">Utilisateurs</div>
             <div class="card-actions">
@@ -59,10 +80,7 @@
             <input type="text" class="form-control" wire:model="lien">
             <button class="btn" wire:click="scrapper()">Lien</button>
         </div>
-        {{-- <div>
-            {{ $lien }}
-            @dump($test)
-        </div> --}}
+
         @if ($test->url)
         <div class="card">
             <div class="card-header">
@@ -85,5 +103,5 @@
             </div>
         </div>
         @endif
-    </div>
+    </div> --}}
 </div>

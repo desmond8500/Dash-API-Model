@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Tabler;
 
 use App\Http\Controllers\ScrapperController;
+use App\Models\Task;
 use App\Models\User;
 use Livewire\Component;
-use Goutte\Client;
 
 class Index extends Component
 {
@@ -16,6 +16,7 @@ class Index extends Component
         return view('livewire.tabler.index',[
             'users' => User::all(),
             'test' => $this->scrapper(),
+            'taches' => Task::all()
         ])->extends('app.layout')->section('content');
     }
 

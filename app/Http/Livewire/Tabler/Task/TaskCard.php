@@ -8,6 +8,7 @@ use Livewire\Component;
 class TaskCard extends Component
 {
     public $tache;
+
     public $objet, $description, $status_id = 1, $priority_id = 1;
     public $statut = [], $priorite = [];
 
