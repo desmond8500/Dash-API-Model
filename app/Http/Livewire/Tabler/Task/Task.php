@@ -38,11 +38,11 @@ class Task extends Component
 
         $this->breadcrumbs = array(
             array('name' => 'Clients', 'route' => route('tabler.clients')),
-            // array('name' => $this->room->stage->building->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->room->stage->building->projet->client->id])),
-            // array('name' => $this->room->stage->building->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->room->stage->building->projet->id])),
-            // array('name' => $this->room->stage->building->name, 'route' => route('tabler.building', ['building_id' => $this->room->stage->building->id])),
-            // array('name' => $this->room->name, 'route' => route('tabler.room', ['room_id' => $this->room->id])),
         );
+
+        array_push( $this->breadcrumbs, array('name' => $this->task->projet->client->name, 'route' => route('tabler.client', ['client_id' => $this->task->projet->client->id])), );
+        array_push( $this->breadcrumbs, array('name' => $this->task->projet->name, 'route' => route('tabler.projet', ['projet_id' => $this->task->projet_id])), );
+        array_push( $this->breadcrumbs, array('name' => 'Tache', 'route' => route('tabler.task', ['task_id' => $this->task->id])), );
 
     }
     public function render()

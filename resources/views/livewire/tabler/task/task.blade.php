@@ -9,6 +9,9 @@
         @endif
     @endcomponent
 
+    @dump($task->projet_id)
+    @dump($task->building_id)
+
 
     <div class="row">
         <div class="col-md-4">
@@ -25,6 +28,11 @@
         </div>
 
         <div class="col-md-8">
+            <div wire:loading wire:target="add_photos">
+                <div class="d-flex justify-content-between">
+                    <div>Chargement <span class="animated-dots"></div>
+                </div>
+            </div>
 
             @foreach ($task->photos as $photo)
                 <a data-fslightbox href="{{ asset($photo->folder) }}">

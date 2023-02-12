@@ -56,5 +56,6 @@ class TaskAdd extends Component
             'projet_id' => $projet_id,
         ]);
         $this->emit('reload');
+        $this->emitTo('tabler.erp.task-projet-list', 'reload');
     }
 }

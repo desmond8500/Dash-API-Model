@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -114,6 +115,12 @@ class Task extends Model
     public function documents(): HasMany
     {
         return $this->hasMany(TaskDocument::class);
+    }
+
+
+    public function projet(): BelongsTo
+    {
+        return $this->belongsTo(Projet::class);
     }
 
 }

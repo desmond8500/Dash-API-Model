@@ -2,13 +2,12 @@
 
 namespace App\Http\Livewire\Tabler\Task;
 
-use App\Models\Task;
 use Livewire\Component;
 
 class TaskProjetList extends Component
 {
     public $taches, $task, $projet_id;
-    protected $listeners = ['reload'=>'render','getTask'];
+    protected $listeners = ['reload'=>'render'];
 
     public function mount($taches, $projet_id=0)
     {
