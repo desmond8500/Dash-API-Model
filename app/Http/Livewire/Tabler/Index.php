@@ -6,9 +6,11 @@ use App\Http\Controllers\ScrapperController;
 use App\Models\Task;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
     public $lien;
 
     public function render()
@@ -16,7 +18,7 @@ class Index extends Component
         return view('livewire.tabler.index',[
             'users' => User::all(),
             'test' => $this->scrapper(),
-            'taches' => Task::all()
+            'taches' => Task::paginate(10)
         ])->extends('app.layout')->section('content');
     }
 
