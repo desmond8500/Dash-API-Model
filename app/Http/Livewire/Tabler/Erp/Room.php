@@ -31,7 +31,8 @@ class Room extends Component
     {
         return view('livewire.tabler.erp.room',[
             'room' => $this->room,
-            'taches' => Task::where('room_id', $this->room_id)->paginate(7),
+            'taches' => Task::where('room_id', $this->room_id)->where('status_id', [1, 2, 3])->orderBy('priority_id','DESC')->paginate(7),
+            'termines' => Task::where('room_id', $this->room_id)->where('status_id', [4,5])->orderBy('priority_id','DESC')->paginate(7),
         ])->extends('app.layout')->section('content');
     }
 }

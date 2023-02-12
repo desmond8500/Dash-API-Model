@@ -18,6 +18,8 @@ class TaskProjetList extends Component
     public $search ='';
 
     public $task, $projet_id;
+    public $task_toggle = 1;
+
     protected $listeners = ['reload'=>'render'];
 
     public function mount( $projet_id=0)
@@ -28,16 +30,18 @@ class TaskProjetList extends Component
     public function render()
     {
         return view('livewire.tabler.task.task-projet-list',[
-            'taches' => Task::where('projet_id', $this->projet_id)->paginate(7),
+            'taches' => $this->getTasks(),
             'task' => $this->task,
         ]);
     }
 
-    public function getTask($task_id)
+    public function getTasks()
     {
-        // $this->task = Task::find($task_id);
-        // $this->render();
-        $this->task = 1;
+        if ($this->task_toggle) {
+            return Task::orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3])->paginate(7);
+        } else {
+            return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
+        }
     }
 
 

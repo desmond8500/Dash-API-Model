@@ -18,15 +18,27 @@ class Index extends Component
 
     public $search ='';
     public $lien;
+    public $task_toggle=1;
 
     public function render()
     {
         return view('livewire.tabler.index',[
             'users' => User::all(),
             'test' => $this->scrapper(),
-            'taches' => Task::orderBy('priority_id','DESC')->paginate(10)
+            'taches' => $this->getTasks()
         ])->extends('app.layout')->section('content');
     }
+
+    public function getTasks()
+    {
+        if ($this->task_toggle) {
+            return Task::orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3])->paginate(7);
+        } else {
+            return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
+        }
+
+    }
+
 
     public function scrapper()
     {

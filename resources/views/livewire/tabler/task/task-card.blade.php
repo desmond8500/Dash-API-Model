@@ -3,9 +3,20 @@
         <div class="col-md-12 mb-2">
             <div class="d-flex justify-content-between">
                 <div class="fw-bold">
-                    {{ $tache->projet->name }}
+                    <a href="{{ route('tabler.projet',['projet_id'=>$tache->projet->id]) }}" class="text-dark">
+                        {{ $tache->projet->name }}
+                    </a>
                     @if ($tache->room_id)
-                        / {{ $tache->building->name }}  / {{ $tache->stage->name }}  / {{ $tache->room->name }}
+                        / <a href="{{ route('tabler.building',['building_id'=>$tache->building->id]) }}" class="text-dark">
+                            {{ $tache->building->name }}
+                        </a>
+                        / {{ $tache->stage->name }}
+                        / <a href="{{ route('tabler.room',['room_id'=>$tache->room->id]) }}" class="text-dark">
+                            {{ $tache->room->name }}
+                        </a>
+
+
+                        {{-- / {{ $tache->building->name }}  / {{ $tache->stage->name }}  / {{ $tache->room->name }} --}}
                     @endif
                 </div>
                 <div class="text-end">
