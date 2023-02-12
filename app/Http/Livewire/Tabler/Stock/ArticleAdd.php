@@ -25,7 +25,7 @@ class ArticleAdd extends Component
         Article::firstOrCreate([
             'designation' => $this->designation,
             'description' => $this->description,
-            'priority_id' => $this->priority_id,
+            'priority' => $this->priority_id,
             'reference' => $this->reference,
             'quantity' => $this->quantity,
             'price' => $this->price,

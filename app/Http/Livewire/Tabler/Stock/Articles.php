@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler\Stock;
 
 use App\Http\Controllers\MainController;
+use App\Imports\ArticleImport;
 use App\Models\Article;
 use App\Models\ArticleDoc;
 use App\Models\Brand;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Articles extends Component
 {
@@ -22,7 +24,7 @@ class Articles extends Component
         $this->resetPage();
     }
 
-    public $article_id, $photos;
+    public $article_id, $photos, $file, $article_list;
     public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
     public $search ='', $breadcrumbs;
     public $form = false, $editForm=false;
@@ -38,7 +40,8 @@ class Articles extends Component
         return view('livewire.tabler.stock.articles',[
             'articles' => Article::paginate(10),
             'priorite' => MainController::getArticlePriotity(),
-            'marques' => Brand::all()
+            'marques' => Brand::all(),
+            'list' => $this->getFileList(),
         ])->extends('app.layout')->section('content');
     }
 
@@ -127,5 +130,38 @@ class Articles extends Component
     public function gotoArticle($article_id)
     {
         return redirect()->route('tabler.article',[$article_id]);
+    }
+
+    public function import()
+    {
+        if ($this->file) {
+            $dir = "stock/imports";
+            $name = $this->file->getClientOriginalName();
+            $this->file->storeAS("public/$dir", $name);
+            $this->form = 0;
+        }
+    }
+
+    public function deleteArticle()
+    {
+        $article = Article::find($this->article_id);
+        $article->delete();
+        $this->form = 0;
+    }
+
+    public function getFileList()
+    {
+        return Storage::disk('public')->files('stock/imports');
+    }
+
+    public function use($item)
+    {
+        $this->article_list = Excel::import(new ArticleImport, $item);
+
+    }
+    public function delete($item)
+    {
+        return Storage::disk('public')->delete($item);
+
     }
 }

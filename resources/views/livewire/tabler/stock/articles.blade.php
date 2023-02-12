@@ -2,9 +2,13 @@
     @component('components.tabler.header', ['title'=>'Articles', 'subtitle'=>'Stock', 'breadcrumbs'=>$breadcrumbs])
         {{-- @livewire('tabler.stock.article-add') --}}
         @if (!$form)
-            <button class="btn btn-primary" wire:click="$toggle('form', 1)">
+            <button class="btn btn-primary" wire:click="$set('form', 1)" title="Ajouter un article">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                 Article
+            </button>
+            <button class="btn btn-primary" title="Importer des articles" wire:click="$set('form', 3)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"></path> <path d="M9 15l3 -3l3 3"></path> <path d="M12 12l0 9"></path> </svg>
+                Articles
             </button>
         @endif
     @endcomponent
@@ -51,10 +55,36 @@
 
                     <div class="modal-footer mt-2">
                         <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="updateArticle()">Modifier</button>
+                        <div class="btn-list">
+                            <button type="button" class="btn btn-danger"  wire:click="deleteArticle()">Supprimer</button>
+                            <button type="button" class="btn btn-primary"  wire:click="updateArticle()">Modifier</button>
+                        </div>
                     </div>
                 </div>
+            @elseif ($form==3)
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Fichier</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" wire:model.defer="file">
+                        <button class="btn btn-primary" wire:click="import">Importer</button>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
+
             @endif
+
+           <div>
+            @foreach ($list as $item)
+                <div class="btn-group ">
+                    <div class="btn " wire:click="use('storage/{{ $item }}')">
+                        {{ basename(asset($item)) }}
+                    </div>
+                    <button class="btn btn-primary btn-icon" wire:click="delete('{{ $item }}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
+                    </button>
+                </div>
+            @endforeach
+           </div>
 
         </div>
     </div>

@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\Article;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ArticleImport implements ToModel
+class ArticleImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,12 +16,17 @@ class ArticleImport implements ToModel
     public function model(array $row)
     {
         return new Article([
-            'designation' => $row[0],
-            'reference' => $row[1],
-            'priority' => $row[3],
-            'marque' => $row[4],
-            'brand_id' => $row[5],
-            'quantity' => $row[5],
+
+            'designation' => $row['designation'],
+            'description' => $row['description'],
+            'reference' => $row['reference'],
+            'priority' => $row['priority'],
+            'quantity' => $row['quantity'],
+            'price' => $row['price'],
+            'image' => $row['image'],
+            'brand_id' => $row['brand_id'],
+            'provider_id' => $row['provider_id'],
+
         ]);
     }
 }
