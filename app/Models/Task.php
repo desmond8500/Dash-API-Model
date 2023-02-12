@@ -130,5 +130,9 @@ class Task extends Model
     {
         return $this->belongsTo(Room::class);
     }
+    public function stage(): BelongsTo
+    {
+        return $this->belongsTo(Stage::class);
+    }
 
 }

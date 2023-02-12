@@ -10,9 +10,6 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Liste des taches en cours</div>
-                <div class="card-actions">
-                    {{-- @livewire('tabler.task.task-add', ['user' => $user], key($user->id)) --}}
-                </div>
             </div>
             <div class="card-body">
                 @foreach ($taches as $tache)
