@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-md-8">
-            <div wire:loading wire:target="add_photos">
+            <div wire:loading>
                 <div class="d-flex justify-content-between">
                     <div>Chargement <span class="animated-dots"></div>
                 </div>
