@@ -7,12 +7,13 @@ use Livewire\Component;
 
 class TaskProjetList extends Component
 {
-    public $taches, $task;
+    public $taches, $task, $projet_id;
     protected $listeners = ['reload'=>'render','getTask'];
 
-    public function mount($taches)
+    public function mount($taches, $projet_id=0)
     {
         $this->taches = $taches;
+        $this->projet_id = $projet_id;
     }
 
     public function render()
