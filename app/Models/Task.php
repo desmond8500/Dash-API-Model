@@ -25,6 +25,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="building_id",
+ *          description="building_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="objet",
  *          description="objet",
  *          type="string"
@@ -70,7 +76,7 @@ class Task extends Model
 
     public $fillable = [
         'projet_id',
-        'level_id',
+        'building_id',
         'stage_id',
         'room_id',
         'objet',
@@ -82,7 +88,7 @@ class Task extends Model
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
-        'level_id' => 'integer',
+        'building_id' => 'integer',
         'stage_id' => 'integer',
         'room_id' => 'integer',
         'objet' => 'string',

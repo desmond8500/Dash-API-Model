@@ -13,6 +13,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->foreignId('devis_id')->nullable();
             $table->foreignId('projet_id')->nullable();
+            $table->foreignId('building_id')->nullable();
             $table->foreignId('stage_id')->nullable();
             $table->foreignId('room_id')->nullable();
             $table->string('objet');
