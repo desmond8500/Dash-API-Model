@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\MainController;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -86,13 +87,9 @@ class Article extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'articles';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'brand_id',
@@ -106,11 +103,6 @@ class Article extends Model
         'image'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'brand_id' => 'integer',
@@ -124,11 +116,6 @@ class Article extends Model
         'image' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
@@ -138,5 +125,8 @@ class Article extends Model
         return $this->hasMany(ArticleDoc::class);
     }
 
+    public function get_type($id){
+        return MainController::getType($id);
+    }
 
 }

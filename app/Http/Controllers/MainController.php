@@ -42,4 +42,31 @@ class MainController extends Controller
             ['id'=> 13, 'name'=> 'Main d\'oeuvre'],
         ];
     }
+
+    public static function getDocType(){
+        return [
+            [ 'id' => 0, "name" => "Image"],
+            [ 'id' => 1, "name" => "Fiche Technique"],
+            [ 'id' => 2, "name" => "Manuel d'installation"],
+            [ 'id' => 3, "name" => "Manuel de programmation"],
+            [ 'id' => 4, "name" => "Manuel d'utilisation"],
+            [ 'id' => 5, "name" => "Autre"],
+        ];
+    }
+    public static function getType($id){
+        $doc = [
+            [ 'id' => 0, "name" => "Image"],
+            [ 'id' => 1, "name" => "Fiche Technique"],
+            [ 'id' => 2, "name" => "Manuel d'installation"],
+            [ 'id' => 3, "name" => "Manuel de programmation"],
+            [ 'id' => 4, "name" => "Manuel d'utilisation"],
+            [ 'id' => 5, "name" => "Autre"],
+        ];
+        if ($id) {
+            return $doc[$id]['name'];
+        } else {
+            return 'Autre';
+        }
+
+    }
 }

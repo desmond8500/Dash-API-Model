@@ -22,10 +22,10 @@ class Article extends Component
     }
 
     public $search ='';
-    public $article, $breadcrumbs, $form=0, $docform=false;
+    public $article, $breadcrumbs, $form=0, $docform=false, $files;
     public $article_id, $photos;
     public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
-    public $name, $folder, $doc_type;
+    public $name, $folder, $doc_type=1;
 
     public function mount($article_id)
     {
@@ -41,7 +41,8 @@ class Article extends Component
             'article' => $this->article,
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all(),
-            'docs' => ModelsArticle::where('article_id', $this->article_id),
+            'fichiers' => ArticleDoc::where('article_id', $this->article_id)->where('doc_type','!=',0)->get() ,
+            'doctype' => MainController::getDocType(),
         ])->extends('app.layout')->section('content');
     }
 
@@ -84,45 +85,49 @@ class Article extends Component
                     'article_id' => $article->id,
                     'name' => $name,
                     'folder' => "storage/$dir/$name",
-                    'doc_type' => 'image'
+                    'doc_type' => 0
                 ]);
             }
         }
     }
 
-    // public function Ajouter()
-    // {
-    //     if ($this->files) {
-    //         $id = Fichier::count();
-    //         $dir = "files/";
-    //         foreach ($this->files as $key => $file) {
-    //             $id++;
-    //             $name = $file->getClientOriginalName();
-    //             $file->storeAS("public/$dir/$id", $name);
+    public function Ajouter()
+    {
+        $dir = "stock/articles";
+        if ($this->files) {
+            foreach ($this->files as $key => $file) {
+                $name = $file->getClientOriginalName();
+                $file->storeAS("public/$dir/$this->article_id/docs", $name);
 
-    //             $fichier = Fichier::firstOrCreate([
-    //                 'name' => $name,
-    //                 'folder' => "storage/$dir/$id/$name",
-    //                 'type' => 'image'
-    //             ]);
-    //             ProjetFile::firstOrCreate([
-    //                 'projet_id' => $this->projet_id,
-    //                 'fichier_id' => $fichier->id,
-    //             ]);
+                $fichier = ArticleDoc::firstOrCreate([
+                    'article_id' => $this->article_id,
+                    'name' => $this->name ?? $name,
+                    'folder' => "storage/$dir/$this->article_id/docs/$name",
+                    'doc_type' => $this->doc_type
+                ]);
 
-    //             $path = pathinfo($fichier->folder);
-    //             if ($path['extension'] == 'pdf') {
-    //                 $fichier->type = 'pdf';
-    //             } elseif ($path['extension'] == 'png' || $path['extension'] == 'jpg' || $path['extension'] == 'jepg' || $path['extension'] == 'webm') {
-    //                 $fichier->type = 'image';
-    //             } elseif ($path['extension'] == 'xls' || $path['extension'] == 'xlsx' || $path['extension'] == 'csv') {
-    //                 $fichier->type = 'excel';
-    //             } elseif ($path['extension'] == 'doc' || $path['extension'] == 'docx') {
-    //                 $fichier->type = 'word';
-    //             }
-    //             $fichier->save();
-    //         }
-    //     }
-    //     $this->form = false;
-    // }
+
+                // $path = pathinfo($fichier->folder);
+                // if ($path['extension'] == 'pdf') {
+                //     $fichier->type = 'pdf';
+                // } elseif ($path['extension'] == 'png' || $path['extension'] == 'jpg' || $path['extension'] == 'jepg' || $path['extension'] == 'webm') {
+                //     $fichier->type = 'image';
+                // } elseif ($path['extension'] == 'xls' || $path['extension'] == 'xlsx' || $path['extension'] == 'csv') {
+                //     $fichier->type = 'excel';
+                // } elseif ($path['extension'] == 'doc' || $path['extension'] == 'docx') {
+                //     $fichier->type = 'word';
+                // }
+                // $fichier->save();
+            }
+        }
+        $this->docform = false;
+    }
+
+    public function setImage($image){
+        // $this->article->
+    }
+
+    public function deleteImage($image){
+
+    }
 }
