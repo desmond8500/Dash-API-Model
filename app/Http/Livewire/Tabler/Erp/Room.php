@@ -74,7 +74,7 @@ class Room extends Component
                 if ($path['extension']=='pdf') {
                     $fichier->type = 'pdf';
                 }
-                elseif($path['extension'] == 'png' || $path['extension' == 'jpg'] || $path['extension'] == 'jepg' || $path['extension'] == 'webm' ) {
+                elseif($path['extension'] == 'png' || $path['extension'] == 'jpg' || $path['extension'] == 'jepg' || $path['extension'] == 'webm' ) {
                     $fichier->type = 'image';
                 }
                 elseif($path['extension'] == 'xls' || $path['extension'] == 'xlsx' || $path['extension'] == 'csv') {
@@ -86,7 +86,7 @@ class Room extends Component
                 $fichier->save();
 
             }
-            }
+        }
         $this->form = false;
     }
 }

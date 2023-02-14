@@ -2,11 +2,21 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Fichier;
+use App\Models\Projet;
+use App\Models\ProjetFile;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class DossierTechnique extends Component
 {
-    public $projet_id;
+    use WithPagination;
+    use WithFileUploads;
+
+    protected $paginationTheme = 'bootstrap';
+    public $projet_id, $form=false;
+    public $search = '', $breadcrumbs, $files;
 
     public function mount($projet_id)
     {
@@ -14,6 +24,44 @@ class DossierTechnique extends Component
     }
     public function render()
     {
-        return view('livewire.tabler.erp.dossier-technique');
+        return view('livewire.tabler.erp.dossier-technique',[
+            'projet' => Projet::find($this->projet_id),
+        ]);
+    }
+
+    public function Ajouter()
+    {
+        if ($this->files) {
+            $id = Fichier::count();
+            $dir = "files/";
+            foreach ($this->files as $key => $file) {
+                $id++;
+                $name = $file->getClientOriginalName();
+                $file->storeAS("public/$dir/$id", $name);
+
+                $fichier = Fichier::firstOrCreate([
+                    'name' => $name,
+                    'folder' => "storage/$dir/$id/$name",
+                    'type' => 'image'
+                ]);
+                ProjetFile::firstOrCreate([
+                    'projet_id' => $this->projet_id,
+                    'fichier_id' => $fichier->id,
+                ]);
+
+                $path = pathinfo($fichier->folder);
+                if ($path['extension'] == 'pdf') {
+                    $fichier->type = 'pdf';
+                } elseif ($path['extension'] == 'png' || $path['extension'] == 'jpg' || $path['extension'] == 'jepg' || $path['extension'] == 'webm') {
+                    $fichier->type = 'image';
+                } elseif ($path['extension'] == 'xls' || $path['extension'] == 'xlsx' || $path['extension'] == 'csv') {
+                    $fichier->type = 'excel';
+                } elseif ($path['extension'] == 'doc' || $path['extension'] == 'docx') {
+                    $fichier->type = 'word';
+                }
+                $fichier->save();
+            }
+        }
+        $this->form = false;
     }
 }
