@@ -53,6 +53,14 @@ class MainController extends Controller
             [ 'id' => 5, "name" => "Autre"],
         ];
     }
+    public static function reportType(){
+        return [
+            [ 'id' => 1, "name" => "Rapport de visite"],
+            [ 'id' => 0, "name" => "Rapport d'intervention"],
+            [ 'id' => 0, "name" => "Image"],
+            [ 'id' => 0, "name" => "Image"],
+        ];
+    }
     public static function getType($id){
         $doc = [
             [ 'id' => 0, "name" => "Image"],

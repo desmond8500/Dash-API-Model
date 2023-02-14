@@ -39,7 +39,8 @@
                         @livewire('tabler.erp.devis-list-card', ['projet_id' => $projet->id])
                         @break
                     @case(2)
-                        @livewire('tabler.erp.reports', ['projet_id'=> $projet->id])
+                        @livewire('tabler.erp.rapport-list-card', ['projet_id'=> $projet->id])
+                        {{-- @livewire('tabler.erp.reports', ['projet_id'=> $projet->id]) --}}
                         @break
                     @case(3)
                         @livewire('tabler.task.task-projet-list', ['projet_id'=> $projet->id])
