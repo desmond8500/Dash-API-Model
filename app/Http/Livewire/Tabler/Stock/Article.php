@@ -22,9 +22,11 @@ class Article extends Component
     }
 
     public $search ='';
-    public $article, $breadcrumbs, $form=0;
+    public $article, $breadcrumbs, $form=0, $docform=false;
     public $article_id, $photos;
     public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
+    public $name, $folder, $doc_type;
+
     public function mount($article_id)
     {
         $this->article = ModelsArticle::find($article_id);
@@ -38,7 +40,8 @@ class Article extends Component
         return view('livewire.tabler.stock.article',[
             'article' => $this->article,
             'priorite' => MainController::getArticlePriotity(),
-            'marques' => Brand::all()
+            'marques' => Brand::all(),
+            'docs' => ModelsArticle::where('article_id', $this->article_id),
         ])->extends('app.layout')->section('content');
     }
 
@@ -86,4 +89,40 @@ class Article extends Component
             }
         }
     }
+
+    // public function Ajouter()
+    // {
+    //     if ($this->files) {
+    //         $id = Fichier::count();
+    //         $dir = "files/";
+    //         foreach ($this->files as $key => $file) {
+    //             $id++;
+    //             $name = $file->getClientOriginalName();
+    //             $file->storeAS("public/$dir/$id", $name);
+
+    //             $fichier = Fichier::firstOrCreate([
+    //                 'name' => $name,
+    //                 'folder' => "storage/$dir/$id/$name",
+    //                 'type' => 'image'
+    //             ]);
+    //             ProjetFile::firstOrCreate([
+    //                 'projet_id' => $this->projet_id,
+    //                 'fichier_id' => $fichier->id,
+    //             ]);
+
+    //             $path = pathinfo($fichier->folder);
+    //             if ($path['extension'] == 'pdf') {
+    //                 $fichier->type = 'pdf';
+    //             } elseif ($path['extension'] == 'png' || $path['extension'] == 'jpg' || $path['extension'] == 'jepg' || $path['extension'] == 'webm') {
+    //                 $fichier->type = 'image';
+    //             } elseif ($path['extension'] == 'xls' || $path['extension'] == 'xlsx' || $path['extension'] == 'csv') {
+    //                 $fichier->type = 'excel';
+    //             } elseif ($path['extension'] == 'doc' || $path['extension'] == 'docx') {
+    //                 $fichier->type = 'word';
+    //             }
+    //             $fichier->save();
+    //         }
+    //     }
+    //     $this->form = false;
+    // }
 }
