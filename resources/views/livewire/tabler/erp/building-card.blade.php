@@ -88,8 +88,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <label class="form-label">Name</label>
+                            <div class="col-md-12">
+                                <label class="form-label">Nom du local</label>
                                 <input type="text" class="form-control" wire:model.defer="name"/>
                             </div>
                             <div class="col-md-12">
@@ -97,12 +97,6 @@
                                 <textarea class="form-control" wire:model.defer="description"></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="btn-list">
-                                <button class="btn btn-primary" >Button</button>
-                            </div>
-                        </div>
-
 
                     </div>
                     <div class="modal-footer">
