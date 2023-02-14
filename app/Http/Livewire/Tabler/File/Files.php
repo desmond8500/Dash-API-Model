@@ -28,12 +28,17 @@ class Files extends Component
     public function render()
     {
         return view('livewire.tabler.file.files',[
-            'files' => Fichier::all()
+            'fichiers' => $this->searchFile(),
         ])->extends('app.layout')->section('content');
     }
 
-    public function Ajouter()
+    public function searchFile()
     {
-        # code...
+        if ($this->search) {
+            return Fichier::where('name', 'LIKE', "%{$this->search}%")->get();
+        } else {
+            return Fichier::all();
+        }
+
     }
 }

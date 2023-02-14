@@ -50,13 +50,9 @@ class Fichier extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'fichiers';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -64,11 +60,7 @@ class Fichier extends Model
         'type'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
+
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
@@ -76,20 +68,9 @@ class Fichier extends Model
         'type' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
+
     public static $rules = [
 
     ];
-
-
-    // public function room(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(Room::class);
-    // }
-
 
 }
