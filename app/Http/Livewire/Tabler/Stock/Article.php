@@ -124,7 +124,8 @@ class Article extends Component
     }
 
     public function setImage($image){
-        // $this->article->
+        $this->article->image = $image;
+        $this->article->save();
     }
 
     public function deleteImage($image){
