@@ -130,3 +130,9 @@
         <span>Systems</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('fichiers*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('fichiers.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Fichiers</span>
+    </a>
+</li>

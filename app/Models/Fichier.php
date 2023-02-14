@@ -3,25 +3,17 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * @SWG\Definition(
- *      definition="Room",
+ *      definition="Fichier",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="stage_id",
- *          description="stage_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -31,8 +23,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="description",
- *          description="description",
+ *          property="folder",
+ *          description="folder",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="type",
+ *          description="type",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -49,39 +46,50 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Room extends Model
+class Fichier extends Model
 {
     use SoftDeletes;
 
-    public $table = 'rooms';
+
+    public $table = 'fichiers';
+
 
     protected $dates = ['deleted_at'];
 
+
+
     public $fillable = [
-        'stage_id',
         'name',
-        'description'
+        'folder',
+        'type'
     ];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'id' => 'integer',
-        'stage_id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'folder' => 'string',
+        'type' => 'string'
     ];
 
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
     public static $rules = [
 
     ];
 
-    public function stage(): BelongsTo
-    {
-        return $this->belongsTo(Stage::class);
-    }
 
-    public function fichiers(): BelongsToMany
-    {
-        return $this->belongsToMany(Fichier::class, 'room_files');
-    }
+    // public function room(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Room::class);
+    // }
+
 
 }

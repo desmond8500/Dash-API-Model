@@ -7,6 +7,7 @@ use App\Http\Livewire\Tabler\Erp\Clients;
 use App\Http\Livewire\Tabler\Erp\Devis;
 use App\Http\Livewire\Tabler\Erp\Projet;
 use App\Http\Livewire\Tabler\Erp\Room;
+use App\Http\Livewire\Tabler\File\Files;
 use App\Http\Livewire\Tabler\Index;
 use App\Http\Livewire\Tabler\Pages\Docs;
 use App\Http\Livewire\Tabler\Pages\Forgotten;
@@ -59,6 +60,8 @@ Route::name('tabler.')->group(function () {
     Route::get('/brands',                   Brands::class)->name('brands');
     //Taches
     Route::get('/task/{task_id}',           Task::class)->name('task');
+    //Taches
+    Route::get('/files',                    Files::class)->name('files');
 
 });
 
@@ -99,3 +102,6 @@ Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\C
 
 
 Route::resource('systems', App\Http\Controllers\SystemController::class);
+
+
+Route::resource('fichiers', App\Http\Controllers\FichierController::class);

@@ -73,3 +73,6 @@ Route::resource('task_documents',   TaskDocumentAPIController::class);
 
 
 Route::resource('systems', App\Http\Controllers\API\SystemAPIController::class);
+
+
+Route::resource('fichiers', App\Http\Controllers\API\FichierAPIController::class);

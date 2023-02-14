@@ -12,12 +12,15 @@ class Index extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+    protected $listeners = ['getTask' => 'show'];
+
     public function updatingSearch() {
         $this->resetPage();
     }
 
+
     public $search ='';
-    public $lien;
+    public $lien, $task;
     public $task_toggle=1;
 
     public function render()
@@ -37,6 +40,11 @@ class Index extends Component
             return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
         }
 
+    }
+
+    public function show($task)
+    {
+        $this->task = $task;
     }
 
 
