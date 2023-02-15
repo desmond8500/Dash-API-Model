@@ -14,6 +14,7 @@ class MainController extends Controller
             ['id'=> 3, 'name'=> 'En Pause'],
             ['id'=> 4, 'name'=> 'Terminé'],
             ['id'=> 5, 'name'=> 'Annulé'],
+            ['id'=> 6, 'name'=> 'Prioriser'],
         ];
     }
     public static function getPriotity()
