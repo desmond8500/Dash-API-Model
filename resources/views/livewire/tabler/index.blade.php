@@ -5,6 +5,25 @@
 
     <div class="col-md-7 mb-3">
 
+         <div class="card">
+            <div class="card-header">
+                <div class="card-title">Taches proritaires</div>
+                <div class="card-actions">
+                    <div class="badge badge-pill bg-blue">{{ $tachesPrioritaires->count() }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach ($tachesPrioritaires as $tache)
+                    @livewire('tabler.task.task-card', ['tache' => $tache], key($tache->id))
+                @endforeach
+                <div class="mt-3 d-flex justify-content-between">
+                    <div>
+                        {{ $tachesPrioritaires->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="col-md-5 mb-3">
         <div class="card">

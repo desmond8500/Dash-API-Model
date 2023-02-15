@@ -28,14 +28,15 @@ class Index extends Component
         return view('livewire.tabler.index',[
             'users' => User::all(),
             'test' => $this->scrapper(),
-            'taches' => $this->getTasks()
+            'taches' => $this->getTasks(),
+            'tachesPrioritaires' => Task::orderBy('priority_id', 'DESC')->where('status_id', 6)->paginate(7),
         ])->extends('app.layout')->section('content');
     }
 
     public function getTasks()
     {
         if ($this->task_toggle) {
-            return Task::orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3])->paginate(7);
+            return Task::orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3, 6])->paginate(7);
         } else {
             return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
         }
