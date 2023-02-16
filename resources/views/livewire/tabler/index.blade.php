@@ -3,16 +3,27 @@
 
     @endcomponent
 
-    {{-- <div class="col-md-7 mb-3">
-        <div id="lightgallery">
-        <a href="https://avatarfiles.alphacoders.com/844/thumb-84463.jpg" data-lg-size="1600-2400">
-            <img alt="img1" src="https://avatarfiles.alphacoders.com/844/thumb-84463.jpg" />
-        </a>
-        <a href="https://avatarfiles.alphacoders.com/110/thumb-110201.png" data-lg-size="1024-800">
-            <img alt="img2" src="https://avatarfiles.alphacoders.com/110/thumb-110201.png" />
-        </a>
-        ...
-    </div> --}}
+    <div class="col-md-7 mb-3">
+
+         <div class="card">
+            <div class="card-header">
+                <div class="card-title">Taches proritaires</div>
+                <div class="card-actions">
+                    <div class="badge badge-pill bg-blue">{{ $tachesPrioritaires->count() }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @foreach ($tachesPrioritaires as $tache)
+                    @livewire('tabler.task.task-card', ['tache' => $tache], key($tache->id))
+                @endforeach
+                <div class="mt-3 d-flex justify-content-between">
+                    <div>
+                        {{ $tachesPrioritaires->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="col-md-5 mb-3">
         <div class="card">

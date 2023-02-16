@@ -14,6 +14,7 @@ class MainController extends Controller
             ['id'=> 3, 'name'=> 'En Pause'],
             ['id'=> 4, 'name'=> 'Terminé'],
             ['id'=> 5, 'name'=> 'Annulé'],
+            ['id'=> 6, 'name'=> 'Prioriser'],
         ];
     }
     public static function getPriotity()
@@ -51,6 +52,14 @@ class MainController extends Controller
             [ 'id' => 3, "name" => "Manuel de programmation"],
             [ 'id' => 4, "name" => "Manuel d'utilisation"],
             [ 'id' => 5, "name" => "Autre"],
+        ];
+    }
+    public static function reportType(){
+        return [
+            [ 'id' => 1, "name" => "Rapport de visite"],
+            [ 'id' => 0, "name" => "Rapport d'intervention"],
+            [ 'id' => 0, "name" => "Image"],
+            [ 'id' => 0, "name" => "Image"],
         ];
     }
     public static function getType($id){
