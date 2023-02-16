@@ -62,6 +62,13 @@
                             <img src="{{ asset($photo->folder) }}" alt="A" class="avatar avatar-xl">
                         </a>
                     @endforeach
+                    {{-- <div id="lightgallery">
+                        @foreach ($tache->photos as $photo)
+                            <a href="{{ asset($photo->folder) }}">
+                                <img src="{{ asset($photo->folder) }}" alt="A" class="avatar avatar-xl">
+                            </a>
+                        @endforeach
+                    </div> --}}
                 </div>
 
                 <div class="modal-footer">

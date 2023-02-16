@@ -3,8 +3,16 @@
 
     @endcomponent
 
-    <div class="col-md-7 mb-3">
-
+    {{-- <div class="col-md-7 mb-3">
+        <div id="lightgallery">
+        <a href="https://avatarfiles.alphacoders.com/844/thumb-84463.jpg" data-lg-size="1600-2400">
+            <img alt="img1" src="https://avatarfiles.alphacoders.com/844/thumb-84463.jpg" />
+        </a>
+        <a href="https://avatarfiles.alphacoders.com/110/thumb-110201.png" data-lg-size="1024-800">
+            <img alt="img2" src="https://avatarfiles.alphacoders.com/110/thumb-110201.png" />
+        </a>
+        ...
+    </div> --}}
     </div>
     <div class="col-md-5 mb-3">
         <div class="card">
