@@ -64,11 +64,13 @@
             @elseif ($form==3)
                 <div class="col-md-12 mb-3">
                     <label class="form-label">Fichier</label>
-                    <div class="input-group">
+                    {{-- <div class="input-group">
                         <input type="file" class="form-control" wire:model.defer="file">
-                        <button class="btn btn-primary" wire:click="import">Importer</button>
-                    </div>
+                    </div> --}}
+                    <textarea cols="30" rows="3" class="form-control" wire:model.defer='json' placeholder="Veuillez insérer un contenu en json"></textarea>
+
                 </div>
+                <button class="btn btn-primary" wire:click="import">Importer</button>
                 <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
 
             @endif
@@ -88,5 +90,6 @@
 
         </div>
     </div>
+    @dump($file)
 </div>
 

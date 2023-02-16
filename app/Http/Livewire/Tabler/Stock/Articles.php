@@ -28,6 +28,7 @@ class Articles extends Component
     public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
     public $search ='', $breadcrumbs;
     public $form = false, $editForm=false;
+    public $json;
 
     public function mount()
     {
@@ -134,11 +135,18 @@ class Articles extends Component
 
     public function import()
     {
-        if ($this->file) {
-            $dir = "stock/imports";
-            $name = $this->file->getClientOriginalName();
-            $this->file->storeAS("public/$dir", $name);
-            $this->form = 0;
+        $this->file = json_decode($this->json);
+
+        foreach ($this->file as $key => $article) {
+            Article::firstOrCreate([
+                'designation' => $article["designation"],
+                'description' => $article["description"] ?? '',
+                'priority' => $article["priority"],
+                'reference' => $article["reference"],
+                'quantity' => $article["quantity"],
+                'price' => $article["price"]?? '',
+                'brand_id' => $article["brand_id"] ?? 0,
+            ]);
         }
     }
 
