@@ -36,8 +36,11 @@
                                     <img src="{{ $article->image }}" alt="A" class="avatar avatar-md">
                                 </div>
                                 <div class="col" type='button' wire:click="gotoArticle('{{ $article->id }}')">
-                                    <div class="card-title">{{ $article->designation }} </div>
-                                    <div class="text-muted">{!! $article->description !!}</div>
+                                    <div class="fw-bold" style="font-size: 15px; height: 40px">{{ $article->designation }} </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="text-muted">{{ $article->reference }}</div>
+                                        <div class="fw-bold">{{ $article->quantity }}</div>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                 <button class="btn btn-outline-primary btn-icon" wire:click="editArticle('{{ $article->id }}')">
