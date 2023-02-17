@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class MainController extends Controller
 {
-    public static function getStatus()
+    public static function getStatus($id=null)
     {
-        return [
+        $enum =  [
             ['id'=> 1, 'name'=> 'Nouveau'],
             ['id'=> 2, 'name'=> 'En Cours'],
             ['id'=> 3, 'name'=> 'En Pause'],
@@ -16,18 +14,32 @@ class MainController extends Controller
             ['id'=> 5, 'name'=> 'Annulé'],
             ['id'=> 6, 'name'=> 'Prioriser'],
         ];
+
+        if ($id) {
+            return $enum[$id]['name'];
+        } else {
+            return $enum;
+        }
     }
-    public static function getPriotity()
+
+    public static function getPriotity($id=null)
     {
-        return [
-            ['id'=> 1, 'name'=> 'Basse'],
-            ['id'=> 2, 'name'=> 'Moyenne'],
-            ['id'=> 3, 'name'=> 'Haute'],
+        $enum =[
+            ['id' => 1, 'name' => 'Basse'],
+            ['id' => 2, 'name' => 'Moyenne'],
+            ['id' => 3, 'name' => 'Haute'],
         ];
+
+        if ($id) {
+            return $enum[$id]['name'];
+        } else {
+            return $enum;
+        }
     }
-    public static function getArticlePriotity()
+
+    public static function getArticlePriotity($id = null)
     {
-        return [
+        $enum = [
             ['id'=> 1,  'name'=> 'Centrale 1'],
             ['id'=> 2,  'name'=> 'Centrale 2'],
             ['id'=> 3,  'name'=> 'Centrale 3'],
@@ -42,10 +54,16 @@ class MainController extends Controller
             ['id'=> 12, 'name'=> 'Forfait'],
             ['id'=> 13, 'name'=> 'Main d\'oeuvre'],
         ];
+
+        if ($id) {
+            return $enum[$id]['name'];
+        } else {
+            return $enum;
+        }
     }
 
-    public static function getDocType(){
-        return [
+    public static function getDocType($id = null){
+        $enum = [
             [ 'id' => 0, "name" => "Image"],
             [ 'id' => 1, "name" => "Fiche Technique"],
             [ 'id' => 2, "name" => "Manuel d'installation"],
@@ -53,17 +71,29 @@ class MainController extends Controller
             [ 'id' => 4, "name" => "Manuel d'utilisation"],
             [ 'id' => 5, "name" => "Autre"],
         ];
+
+        if ($id) {
+            return $enum[$id]['name'];
+        } else {
+            return $enum;
+        }
     }
-    public static function reportType(){
-        return [
+    public static function reportType($id = null){
+        $enum = [
             [ 'id' => 1, "name" => "Rapport de visite"],
             [ 'id' => 0, "name" => "Rapport d'intervention"],
             [ 'id' => 0, "name" => "Image"],
             [ 'id' => 0, "name" => "Image"],
         ];
+
+        if ($id) {
+            return $enum[$id]['name'];
+        } else {
+            return $enum;
+        }
     }
-    public static function getType($id){
-        $doc = [
+    public static function getType($id=null){
+        $enum = [
             [ 'id' => 0, "name" => "Image"],
             [ 'id' => 1, "name" => "Fiche Technique"],
             [ 'id' => 2, "name" => "Manuel d'installation"],
@@ -71,8 +101,9 @@ class MainController extends Controller
             [ 'id' => 4, "name" => "Manuel d'utilisation"],
             [ 'id' => 5, "name" => "Autre"],
         ];
+
         if ($id) {
-            return $doc[$id]['name'];
+            return $enum[$id]['name'];
         } else {
             return 'Autre';
         }

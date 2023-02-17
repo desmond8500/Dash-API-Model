@@ -99,9 +99,5 @@ Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\C
 // Route::resource('tasks', App\Http\Controllers\TaskController::class);
 // Route::resource('taskPhotos', App\Http\Controllers\TaskPhotoController::class);
 // Route::resource('taskDocuments', App\Http\Controllers\TaskDocumentController::class);
-
-
-Route::resource('systems', App\Http\Controllers\SystemController::class);
-
-
-Route::resource('fichiers', App\Http\Controllers\FichierController::class);
+// Route::resource('systems', App\Http\Controllers\SystemController::class);
+// Route::resource('fichiers', App\Http\Controllers\FichierController::class);

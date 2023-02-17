@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Stock;
 
+use App\Exports\ArticlesExport;
 use App\Http\Controllers\MainController;
 use App\Imports\ArticleImport;
 use App\Models\Article;
@@ -148,6 +149,11 @@ class Articles extends Component
                 'brand_id' => $article["brand_id"] ?? 0,
             ]);
         }
+    }
+
+    public function exportArticles()
+    {
+        return Excel::download(new ArticlesExport, 'Articles.xlsx');
     }
 
     public function deleteArticle()

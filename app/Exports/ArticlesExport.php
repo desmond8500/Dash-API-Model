@@ -3,15 +3,15 @@
 namespace App\Exports;
 
 use App\Models\Article;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class ArticlesExport implements FromCollection
+class ArticlesExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return Article::all();
+        return view('_tabler.export.articles', [
+            'articles' => Article::all(),
+        ]);
     }
 }

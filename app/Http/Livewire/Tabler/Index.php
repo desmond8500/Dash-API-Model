@@ -18,7 +18,6 @@ class Index extends Component
         $this->resetPage();
     }
 
-
     public $search ='';
     public $lien, $task;
     public $task_toggle=1;
@@ -40,14 +39,12 @@ class Index extends Component
         } else {
             return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
         }
-
     }
 
     public function show($task)
     {
         $this->task = $task;
     }
-
 
     public function scrapper()
     {

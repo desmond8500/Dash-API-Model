@@ -129,4 +129,9 @@ class Article extends Model
         return MainController::getType($id);
     }
 
+    public function getPriority($id)
+    {
+        return MainController::getPriotity($id);
+    }
+
 }
