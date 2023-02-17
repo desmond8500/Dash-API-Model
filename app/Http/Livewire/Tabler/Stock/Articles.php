@@ -40,11 +40,23 @@ class Articles extends Component
     public function render()
     {
         return view('livewire.tabler.stock.articles',[
-            'articles' => Article::paginate(10),
+            'articles' => $this->getArticles(),
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all(),
             'list' => $this->getFileList(),
         ])->extends('app.layout')->section('content');
+    }
+
+    public function getArticles()
+    {
+        if ($this->search) {
+            return Article::where('designation', 'LIKE', "%{$this->search}%")
+                ->orWhere('reference', 'LIKE', "%{$this->search}%")
+                ->paginate(10);
+        } else {
+            return Article::paginate(10);
+        }
+
     }
 
     public function articleAdd()
