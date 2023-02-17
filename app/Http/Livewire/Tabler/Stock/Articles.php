@@ -136,19 +136,12 @@ class Articles extends Component
 
     public function import()
     {
-        $this->file = json_decode($this->json);
+        $dir = "stock/imports/";
+        $name = $this->file->getClientOriginalName();
+        $this->file->storeAS("public/$dir", $name);
 
-        foreach ($this->file as $key => $article) {
-            Article::firstOrCreate([
-                'designation' => $article["designation"],
-                'description' => $article["description"] ?? '',
-                'priority' => $article["priority"],
-                'reference' => $article["reference"],
-                'quantity' => $article["quantity"],
-                'price' => $article["price"]?? '',
-                'brand_id' => $article["brand_id"] ?? 0,
-            ]);
-        }
+        $this->reset('form');
+
     }
 
     public function exportArticles()
@@ -170,7 +163,7 @@ class Articles extends Component
 
     public function use($item)
     {
-        $this->article_list = Excel::import(new ArticleImport, $item);
+        Excel::import(new ArticleImport, $item);
 
     }
     public function delete($item)

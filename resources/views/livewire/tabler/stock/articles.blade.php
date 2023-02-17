@@ -1,6 +1,11 @@
 <div>
     @component('components.tabler.header', ['title'=>'Articles', 'subtitle'=>'Stock', 'breadcrumbs'=>$breadcrumbs])
         {{-- @livewire('tabler.stock.article-add') --}}
+        <div wire:loading>
+            <div class="d-flex justify-content-between">
+                <div><b>Chargement</b> <span class="animated-dots"></div>
+            </div>
+        </div>
         @if (!$form)
             <div class="btn-list">
                 <button class="btn btn-primary" wire:click="$set('form', 1)" title="Ajouter un article">
@@ -69,34 +74,39 @@
                     </div>
                 </div>
             @elseif ($form==3)
-                <div class="col-md-12 mb-3">
-                    <label class="form-label">Fichier</label>
-                    {{-- <div class="input-group">
-                        <input type="file" class="form-control" wire:model.defer="file">
-                    </div> --}}
-                    <textarea cols="30" rows="3" class="form-control" wire:model.defer='json' placeholder="Veuillez insérer un contenu en json"></textarea>
-
-                </div>
-                <button class="btn btn-primary" wire:click="import">Importer</button>
-                <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
-
-            @endif
-
-           <div>
-            @foreach ($list as $item)
-                <div class="btn-group ">
-                    <div class="btn " wire:click="use('storage/{{ $item }}')">
-                        {{ basename(asset($item)) }}
+                <div class="card card-body mb-3">
+                    <div wire:loading>
+                        <div class="d-flex justify-content-between">
+                            <div><b>Chargement</b> <span class="animated-dots"></div>
+                        </div>
                     </div>
-                    <button class="btn btn-primary btn-icon" wire:click="delete('{{ $item }}')">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
-                    </button>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Fichier</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" wire:model.defer="file">
+                            <button class="btn btn-primary" wire:click="import">Importer</button>
+                        </div>
+                        {{-- <textarea cols="30" rows="3" class="form-control" wire:model.defer='json' placeholder="Veuillez insérer un contenu en json"></textarea> --}}
+                    </div>
+                    <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
                 </div>
-            @endforeach
-           </div>
 
+            @else
+
+                <div>
+                @foreach ($list as $item)
+                    <div class="btn-group mb-1">
+                        <div class="btn " wire:click="use('storage/{{ $item }}')">
+                            {{ basename(asset($item)) }}
+                        </div>
+                        <button class="btn btn-primary btn-icon" wire:click="delete('{{ $item }}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
+                        </button>
+                    </div>
+                @endforeach
+                </div>
+            @endif
         </div>
     </div>
-    @dump($file)
 </div>
 
