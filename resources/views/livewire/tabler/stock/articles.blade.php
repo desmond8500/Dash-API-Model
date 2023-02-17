@@ -47,7 +47,7 @@
                         <div class="card p-2">
                             <div class="row">
                                 <div class="col-auto" type='button' wire:click="gotoArticle('{{ $article->id }}')">
-                                    <img src="{{ $article->image }}" alt="A" class="avatar avatar-md">
+                                    <img src="{{ asset($article->image) ?? asset($img) }}" alt="A" class="avatar avatar-md">
                                 </div>
                                 <div class="col" type='button' wire:click="gotoArticle('{{ $article->id }}')">
                                     <div class="fw-bold" style="font-size: 15px; height: 40px">{{ $article->designation }} </div>

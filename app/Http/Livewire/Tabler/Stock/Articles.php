@@ -20,6 +20,7 @@ class Articles extends Component
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['reload'=> 'render'];
+    public $img = 'img/no-pictures.png';
 
     public function updatingSearch() {
         $this->resetPage();
@@ -44,6 +45,7 @@ class Articles extends Component
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all(),
             'list' => $this->getFileList(),
+            'img' => $this->img,
         ])->extends('app.layout')->section('content');
     }
 
