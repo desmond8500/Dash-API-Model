@@ -47,17 +47,22 @@ class Articles extends Component
         ])->extends('app.layout')->section('content');
     }
 
-    public function getArticles()
-    {
-        if ($this->search) {
-            return Article::where('designation', 'LIKE', "%{$this->search}%")
-                ->orWhere('reference', 'LIKE', "%{$this->search}%")
-                ->paginate(10);
-        } else {
-            return Article::paginate(10);
-        }
-
+public function getArticles()
+{
+    if ($this->search) {
+        return Article::where('designation', 'LIKE', "%{$this->search}%")
+            ->orWhere('reference', 'LIKE', "%{$this->search}%")
+            ->paginate(10);
+    } else {
+        return Article::paginate(10);
     }
+}
+
+public function resetSearch()
+{
+    $this->reset('search') ;
+    $this->getArticles();
+}
 
     public function articleAdd()
     {
