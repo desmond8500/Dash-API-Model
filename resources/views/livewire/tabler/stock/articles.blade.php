@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12 g-2">
                     <div class="input-group">
-                        <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher" wire:keydown.enter='getArticles'>
+                        <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher un article" wire:keydown.enter='getArticles'>
                         <button class="btn btn-primary btn-icon" wire:click="getArticles">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path> <path d="M21 21l-6 -6"></path> </svg>
                         </button>
