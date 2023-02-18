@@ -52,13 +52,9 @@ class Achat extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'achats';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -66,11 +62,6 @@ class Achat extends Model
         'description'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
@@ -78,32 +69,13 @@ class Achat extends Model
         'description' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get all of the articles for the Achat
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function articles(): HasMany
     {
         return $this->hasMany(AchatArticle::class);
     }
 
-    /**
-     * Get the brand associated with the Achat
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function brand(): HasOne
-    {
-        return $this->hasOne(Brand::class);
-    }
 }
