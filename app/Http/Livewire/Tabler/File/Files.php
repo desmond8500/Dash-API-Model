@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler\File;
 
 use App\Models\Fichier;
+use FontLib\Table\Type\name;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -12,13 +13,13 @@ class Files extends Component
     use WithPagination;
     use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
-    // protected $listeners = ['reload'=> 'render'];
 
     public function updatingSearch() {
         $this->resetPage();
     }
 
-    public $search ='', $breadcrumbs, $form=false;
+    public $search ='', $breadcrumbs, $form=false, $file;
+    public $name;
     public function mount()
     {
         $this->breadcrumbs = array(
@@ -39,6 +40,27 @@ class Files extends Component
         } else {
             return Fichier::all();
         }
+    }
 
+    public function resetSearch()
+    {
+        $this->reset('search') ;
+        $this->searchFile();
+    }
+
+    public function editFile($file_id)
+    {
+        $this->file = Fichier::find($file_id);
+        $this->name = $this->file->name;
+    }
+    public function updateFile()
+    {
+        $this->file->name = $this->name;
+        $this->file->save();
+
+    }
+    public function deleteFile()
+    {
+        $this->file->delete();
     }
 }
