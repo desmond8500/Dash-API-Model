@@ -11,7 +11,7 @@ class CreateProviderTelsTable extends Migration
     {
         Schema::create('provider_tels', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('provider_id');
+            $table->foreignId('provider_id');
             $table->string('tel');
             $table->timestamps();
             $table->softDeletes();

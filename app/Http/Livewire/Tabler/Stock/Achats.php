@@ -34,22 +34,58 @@ class Achats extends Component
         ])->extends('app.layout')->section('content');
     }
 
-    public $achat, $achat_id, $name, $date, $description;
+    public $achat, $achat_id, $name, $date, $description, $tva=0;
 
     public function addAchat()
     {
+        $tva=0;
+
+        if ($this->tva) {
+            $tva = 0.18;
+        }
+
         Achat::create([
             'name' => $this->name,
             'date' => $this->date,
+            'date' => $tva,
             'description' => $this->description,
         ]);
     }
-    public function edit($achat_id)
+    public function editAchat($achat_id)
     {
         $achat = Achat::find($achat_id);
+        $this->achat_id = $achat_id;
 
         $this->name = $achat->name;
         $this->date = $achat->date;
+        $this->tva = $achat->tva;
         $this->description = $achat->description;
+    }
+    public function updateAchat()
+    {
+        $tva = 0;
+        $achat = Achat::find($this->achat_id);
+
+        if ($this->tva) {
+            $tva = 0.18;
+        }
+
+        $achat->name = $this->name;
+        $achat->date = $this->date;
+        $achat->tva = $tva;
+        $achat->description = $this->description;
+        $achat->save();
+        $this->reset('achat_id');
+    }
+    public function deleteAchat()
+    {
+        $achat = Achat::find($this->achat_id);
+
+        if ($achat->articles->count()) {
+            # code...
+        }else{
+            $achat->delete();
+            $this->reset('achat_id');
+        }
     }
 }

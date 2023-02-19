@@ -10,8 +10,8 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('brand_id')->nullable();
-            $table->integer('provider_id')->nullable();
+            $table->foreignId('brand_id')->nullable();
+            $table->foreignId('provider_id')->nullable();
             $table->string('designation');
             $table->string('reference');
             $table->text('description')->nullable();

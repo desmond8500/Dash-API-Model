@@ -11,7 +11,7 @@ class CreateReportSectionsTable extends Migration
     {
         Schema::create('report_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('report_id')->contrained();
+            $table->foreignId('report_id')->contrained();
             $table->string('title');
             $table->text('description');
             $table->integer('order');

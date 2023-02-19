@@ -18,8 +18,8 @@ class CreateTasksTable extends Migration
             $table->foreignId('room_id')->nullable();
             $table->string('objet');
             $table->text('description');
-            $table->integer('status_id');
-            $table->integer('priority_id');
+            $table->foreignId('status_id');
+            $table->foreignId('priority_id');
             $table->timestamps();
             $table->softDeletes();
         });

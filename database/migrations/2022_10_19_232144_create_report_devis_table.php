@@ -11,8 +11,8 @@ class CreateReportDevisTable extends Migration
     {
         Schema::create('report_devis', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('section_id');
-            $table->integer('devis_id');
+            $table->foreignId('section_id');
+            $table->foreignId('devis_id');
             $table->timestamps();
             $table->softDeletes();
         });

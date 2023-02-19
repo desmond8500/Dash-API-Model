@@ -11,7 +11,7 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('stage_id')->contrained();
+            $table->foreignId('stage_id')->contrained();
             $table->text('name');
             $table->string('description')->nullable();
             $table->timestamps();

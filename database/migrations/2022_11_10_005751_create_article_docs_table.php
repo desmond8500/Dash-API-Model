@@ -11,7 +11,7 @@ class CreateArticleDocsTable extends Migration
     {
         Schema::create('article_docs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('article_id');
+            $table->foreignId('article_id');
             $table->string('name');
             $table->string('folder');
             $table->integer('doc_type');

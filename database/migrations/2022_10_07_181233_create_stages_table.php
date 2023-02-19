@@ -11,7 +11,7 @@ class CreateStagesTable extends Migration
     {
         Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('building_id')->contrained();
+            $table->foreignId('building_id')->contrained();
             $table->string('name');
             $table->integer('order')->default(0);
             $table->text('description')->nullable();

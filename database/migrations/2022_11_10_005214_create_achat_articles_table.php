@@ -11,8 +11,8 @@ class CreateAchatArticlesTable extends Migration
     {
         Schema::create('achat_articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('achat_id');
-            $table->integer('article_id');
+            $table->foreignId('achat_id');
+            $table->foreignId('article_id');
             $table->integer('quantity');
             $table->date('date')->nullable();
             $table->timestamps();

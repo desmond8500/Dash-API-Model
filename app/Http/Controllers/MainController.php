@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achat;
+
 class MainController extends Controller
 {
     public static function getStatus($id=null)
@@ -107,6 +109,15 @@ class MainController extends Controller
         } else {
             return 'Autre';
         }
+    }
 
+    public static function total_Achat($id){
+        $achat = Achat::find($id);
+        $total = 0;
+        foreach ($achat->articles as $key => $article_row) {
+            $total += $article_row->quantity * $article_row->price;
+        }
+
+        return $total;
     }
 }

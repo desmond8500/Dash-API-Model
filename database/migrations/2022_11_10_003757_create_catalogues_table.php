@@ -11,7 +11,7 @@ class CreateCataloguesTable extends Migration
     {
         Schema::create('catalogues', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('brand_id');
+            $table->foreignId('brand_id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('folder');

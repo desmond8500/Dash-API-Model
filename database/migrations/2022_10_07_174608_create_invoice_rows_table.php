@@ -11,8 +11,8 @@ class CreateInvoiceRowsTable extends Migration
     {
         Schema::create('invoice_rows', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invoice_id')->constrained();
-            $table->integer('article_id')->nullable();
+            $table->foreignId('invoice_id')->constrained();
+            $table->foreignId('article_id')->nullable();
             $table->text('name');
             $table->text('reference');
             $table->integer('quantity')->default();

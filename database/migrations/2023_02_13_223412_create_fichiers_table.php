@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateFichiersTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('fichiers', function (Blueprint $table) {
@@ -24,11 +19,6 @@ class CreateFichiersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('fichiers');

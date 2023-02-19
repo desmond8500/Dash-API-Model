@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\MainController;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -59,14 +60,16 @@ class Achat extends Model
     public $fillable = [
         'name',
         'date',
-        'description'
+        'description',
+        'tva',
     ];
 
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
         'date' => 'date',
-        'description' => 'string'
+        'description' => 'string',
+        'tva' => 'string',
     ];
 
     public static $rules = [
@@ -76,6 +79,11 @@ class Achat extends Model
     public function articles(): HasMany
     {
         return $this->hasMany(AchatArticle::class);
+    }
+
+    public function total($id)
+    {
+        return MainController::total_Achat($id);
     }
 
 }

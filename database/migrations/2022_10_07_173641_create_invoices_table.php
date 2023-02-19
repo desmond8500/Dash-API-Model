@@ -11,7 +11,7 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('projet_id')->constrained();
+            $table->foreignId('projet_id')->constrained();
             $table->string('reference');
             $table->string('status')->default(1);
             $table->text('description')->nullable();

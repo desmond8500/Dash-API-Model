@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -58,42 +59,44 @@ class AchatArticle extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'achat_articles';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'achat_id',
         'article_id',
         'quantity',
-        'date'
+        'date',
+        'provider_id',
+        'designation',
+        'reference',
+        'facture',
+        'price',
+        'description',
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'achat_id' => 'integer',
         'article_id' => 'integer',
         'quantity' => 'integer',
-        'date' => 'date'
+        'date' => 'date',
+        'provider_id' => 'integer',
+        'designation' => 'string',
+        'reference' => 'string',
+        'facture' => 'string',
+        'price' => 'string',
+        'description' => 'string',
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
-    
+    public function article(): HasOne
+    {
+        return $this->hasOne(Article::class, 'id','article_id');
+    }
+
 }

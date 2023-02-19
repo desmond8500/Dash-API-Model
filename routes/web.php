@@ -15,6 +15,7 @@ use App\Http\Livewire\Tabler\Pages\Login;
 use App\Http\Livewire\Tabler\Pages\Profile;
 use App\Http\Livewire\Tabler\Pages\Register;
 use App\Http\Livewire\Tabler\Pages\Reglages;
+use App\Http\Livewire\Tabler\Stock\Achat;
 use App\Http\Livewire\Tabler\Stock\Achats;
 use App\Http\Livewire\Tabler\Stock\Article;
 use App\Http\Livewire\Tabler\Stock\Articles;
@@ -54,6 +55,7 @@ Route::name('tabler.')->group(function () {
     // Stock
     Route::get('/stock',                    Stock::class)->name('stock');
     Route::get('/achats',                   Achats::class)->name('achats');
+    Route::get('/achat/{achat_id}',                    Achat::class)->name('achat');
     Route::get('/articles',                 Articles::class)->name('articles');
     Route::get('/article/{article_id}',     Article::class)->name('article');
     Route::get('/providers',                Providers::class)->name('providers');

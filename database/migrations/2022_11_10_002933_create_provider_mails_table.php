@@ -11,7 +11,7 @@ class CreateProviderMailsTable extends Migration
     {
         Schema::create('provider_mails', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('provider_id');
+            $table->foreignId('provider_id');
             $table->string('email');
             $table->timestamps();
             $table->softDeletes();

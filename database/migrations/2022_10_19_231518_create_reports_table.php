@@ -11,7 +11,7 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('projet_id')->constrained();
+            $table->foreignId('projet_id')->constrained();
             $table->string('objet');
             $table->text('description');
             $table->date('date');
