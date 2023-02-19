@@ -128,7 +128,12 @@ class Article extends Component
         $this->article->save();
     }
 
-    public function deleteImage($image){
+    public function deleteImage($id){
+        $fichier = ArticleDoc::find($id);
+
+        unlink($fichier->folder);
+        $fichier->delete();
+        $this->render();
 
     }
 
