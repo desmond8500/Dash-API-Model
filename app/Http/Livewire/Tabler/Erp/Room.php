@@ -40,11 +40,26 @@ class Room extends Component
     }
     public function render()
     {
+        $images = [];
+        $fichiers = [];
+
+        foreach ($this->room->fichiers as $key => $fichier) {
+            $path = pathinfo($fichier->folder);
+
+            if ($path['extension']=="jpg" || $path['extension']=="jpeg" || $path['extension']=="png" || $path['extension']=="webm") {
+                array_push($images, $fichier);
+            } else {
+                array_push($fichiers, $fichier);
+            }
+        }
+
+
         return view('livewire.tabler.erp.room',[
             'room' => $this->room,
             'taches' => Task::where('room_id', $this->room_id)->where('status_id', [1, 2, 3])->orderBy('priority_id','DESC')->paginate(7),
             'termines' => Task::where('room_id', $this->room_id)->where('status_id', [4,5])->orderBy('priority_id','DESC')->paginate(7),
-            'fichiers' => Fichier::all(),
+            'fichiers' => $fichiers,
+            'images' => $images,
             ])->extends('app.layout')->section('content');
     }
 
