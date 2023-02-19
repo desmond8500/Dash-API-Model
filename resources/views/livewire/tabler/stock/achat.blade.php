@@ -56,8 +56,8 @@
                         <tfoot style="font-size: 17px">
                             <tr class="table-warning">
                                 <td></td>
-                                <td class="fw-bold" colspan="3">TOTAL</td>
-                                <td class="text-center fw-bold">{{ $total }} F</td>
+                                <td class="fw-bold" colspan="2">TOTAL</td>
+                                <td class="text-center fw-bold" colspan="2">{{ number_format($total, 0, ',', ' ' ) }} F</td>
                                 <td></td>
                             </tr>
                         </tfoot>
