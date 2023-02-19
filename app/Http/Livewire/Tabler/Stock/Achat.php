@@ -83,8 +83,6 @@ class Achat extends Component
         } else {
             # code...
         }
-
-
     }
     public $achat_row_id=0;
     public function editAchatRow($achat_row_id)

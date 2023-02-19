@@ -94,6 +94,7 @@ class InvoiceRow extends Model
         'coef',
         'priority',
         'section_id',
+        'price',
     ];
 
     /**
@@ -107,8 +108,9 @@ class InvoiceRow extends Model
         'article_id' => 'integer',
         'name' => 'string',
         'reference' => 'string',
-        'quantity' => 'decimal:2',
+        'quantity' => 'integer',
         'coef' => 'decimal:2',
+        'price' => 'decimal:2',
         'priority' => 'integer',
         'section_id' => 'integer',
     ];

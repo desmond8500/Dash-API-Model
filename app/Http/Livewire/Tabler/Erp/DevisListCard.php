@@ -9,9 +9,12 @@ use Livewire\Component;
 class DevisListCard extends Component
 {
     public $projet;
-    public $projet_id;
+    public $projet_id, $devis_id, $devis;
+    public $reference, $description, $status = 1;
+    public $client_name, $client_tel, $client_address;
+    public $discount, $tva, $brs;
 
-    protected $listeners = ['reload' => 'devis'];
+    protected $listeners = ['reload' => 'render'];
 
     public function mount($projet_id)
     {
@@ -26,6 +29,13 @@ class DevisListCard extends Component
             'projet' => $this->projet,
             'devisList' => $this->projet->invoices,
         ]);
+    }
+
+
+
+    public function gotoDevis($devis_id)
+    {
+        return redirect()->route('tabler.devis',['devis_id'=>$devis_id]);
     }
 
     public function getProjets()

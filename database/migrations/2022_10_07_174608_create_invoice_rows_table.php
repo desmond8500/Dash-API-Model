@@ -15,7 +15,7 @@ class CreateInvoiceRowsTable extends Migration
             $table->foreignId('article_id')->nullable();
             $table->text('name');
             $table->text('reference');
-            $table->integer('quantity')->default();
+            $table->integer('quantity')->default(0);
             $table->decimal('coef',8,2)->default(1);
             $table->integer('priority')->default(1);
             $table->integer('section_id')->contrained('invoice_sections');
