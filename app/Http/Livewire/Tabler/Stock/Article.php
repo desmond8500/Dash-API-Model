@@ -131,4 +131,22 @@ class Article extends Component
     public function deleteImage($image){
 
     }
+
+    // public $first = ModelsArticle::first();
+
+
+    public function next(){
+        $article = null;
+        do {
+           $article = ModelsArticle::find($this->article_id+1);
+        } while (!$article);
+        return redirect()->route('tabler.article',['article_id'=>$article->id]);
+    }
+    public function previous(){
+        $article = null;
+        do {
+            $article = ModelsArticle::find($this->article_id - 1);
+        } while (!$article);
+        return redirect()->route('tabler.article',['article_id'=>$this->article_id-1]);
+    }
 }
