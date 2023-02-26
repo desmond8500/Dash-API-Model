@@ -60,13 +60,9 @@ class Client extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'clients';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'name',
@@ -96,7 +92,7 @@ class Client extends Model
      * @var array
      */
     public static $rules = [
-
+        'name' => 'required',
     ];
 
     /**
