@@ -27,13 +27,22 @@ class ClientAdd extends Component
 
     public function store_client(){
         $this->validate($this->rules);
-        Client::create([
-            'name' => $this->name,
-            'description' => $this->description,
-            'logo' => $this->logo,
-            'address' => $this->address,
+        $client = Client::create([
+            'name' => ucfirst($this->name),
+            'description' => ucfirst($this->description),
+            'address' => ucfirst($this->address),
             // 'status' => $this->status,
         ]);
+
+        if ($this->logo) {
+            $dir = "erp/client/$client->id";
+            $name = $this->logo->getClientOriginalName();
+            $this->logo->storeAS("public/$dir", $name);
+
+            $client->logo = "storage/$dir/$name";
+            $client->save();
+        }
+
         $this->emit('reload');
         session()->flash('message', 'Le client a été créé avec succès');
         $this->dispatchBrowserEvent('close-modal');

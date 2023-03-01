@@ -12,5 +12,8 @@
         </div>
         @endforeach
     </div>
+    <div class="mt-3">
+        {{ $clients->links() }}
+    </div>
 
 </div>

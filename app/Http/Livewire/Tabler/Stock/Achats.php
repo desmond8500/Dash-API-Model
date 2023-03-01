@@ -44,12 +44,16 @@ class Achats extends Component
             $tva = 0.18;
         }
 
-        Achat::create([
+        $achat = Achat::create([
             'name' => $this->name,
             'date' => $this->date,
             'date' => $tva,
             'description' => $this->description,
         ]);
+
+        achatd
+
+
     }
     public function editAchat($achat_id)
     {

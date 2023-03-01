@@ -28,10 +28,10 @@ class ClientCard extends Component
     public function mount($client)
     {
         $this->client = $client;
-        $this->name = $client->name;
-        $this->description = $client->description;
-        $this->logo = $client->logo;
-        $this->address = $client->address;
+        // $this->name = $client->name;
+        // $this->description = $client->description;
+        // $this->logo = $client->logo;
+        // $this->address = $client->address;
     }
     public function render()
     {
@@ -43,17 +43,30 @@ class ClientCard extends Component
         return redirect()->route('tabler.client', ['client_id' => $client_id]);
     }
 
+    public function editClient($client_id)
+    {
+        $client = Client::find($client_id);
+
+        $this->name = $client->name;
+        $this->description = $client->description;
+        $this->logo = $client->logo;
+        $this->address = $client->address;
+
+        $this->dispatchBrowserEvent('open-modal');
+    }
+
     public function update_client()
     {
         $client = Client::find($this->client->id);
 
-        $client->name = $this->name;
-        $client->description = $this->description;
-        $client->logo = $this->logo;
-        $client->address = $this->address;
+        $client->name = ucfirst($this->name);
+        $client->description = ucfirst($this->description);
+        // $client->logo = $this->logo;
+        $client->address = ucfirst($this->address);
 
         $client->save();
         $this->emit('reload');
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function delete_Client(int $client_id)

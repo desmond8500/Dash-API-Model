@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Client;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Clients extends Component
 {
+    use WithPagination;
     public $breadcrumbs;
-    public $clients;
 
     protected $listeners = ['reload' => 'render'];
 
@@ -29,11 +30,6 @@ class Clients extends Component
 
     public function getClients()
     {
-        $this->clients = Client::all();
-    }
-
-    public function add_client2()
-    {
-        # code...
+        return Client::paginate(20);
     }
 }
