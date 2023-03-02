@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <table class="table table-responsive bg-white">
+            <table class="table table-responsive bg-white table-vcenter">
                 <thead>
                     <tr>
                         <th class="text-nowrap">Désignation</th>
