@@ -3,7 +3,7 @@
     @endcomponent
 
     @foreach ($cards as $card)
-        <div class="col-md-3">
+        <div class="col-md-3 mb-1">
             @include('_tabler._cards.card1', ['card'=>$card])
         </div>
     @endforeach

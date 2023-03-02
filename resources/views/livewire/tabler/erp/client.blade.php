@@ -10,7 +10,7 @@
             <div class="card p-2">
                 <div class="row">
                     <div class="col-auto">
-                        <img src="{{ asset($client->logo) }}" alt="" class="avatar avatar-md">
+                        <img src="{{ asset($client->logo) }}" alt="A" class="avatar avatar-md">
                     </div>
                     <div class="col">
                         <h3 class="fw-bold">{{ $client->name }}</h3>
