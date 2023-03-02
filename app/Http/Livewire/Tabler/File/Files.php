@@ -18,7 +18,7 @@ class Files extends Component
         $this->resetPage();
     }
 
-    public $search ='', $breadcrumbs, $form=false, $file;
+    public $search ='', $breadcrumbs, $form=false, $file, $file_id;
     public $name;
     public function mount()
     {
@@ -50,15 +50,18 @@ class Files extends Component
 
     public function editFile($file_id)
     {
+        $this->file_id = $file_id;
         $this->file = Fichier::find($file_id);
         $this->name = $this->file->name;
     }
+
     public function updateFile()
     {
         $this->file->name = $this->name;
         $this->file->save();
 
     }
+
     public function deleteFile()
     {
         $this->file->delete();

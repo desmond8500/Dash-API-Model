@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class CreateTaskDocumentsTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('task_documents', function (Blueprint $table) {
@@ -24,11 +19,6 @@ class CreateTaskDocumentsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('task_documents');

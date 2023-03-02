@@ -3,7 +3,7 @@
     @endcomponent
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <div class="card p-2">
                 <h3 class="fw-bold">{{ $projet->name }}</h3>
                 <div class="text-muted">
@@ -32,7 +32,7 @@
                 <div>Batiments</div> <div></div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 mb-3">
             <div class="row">
                 @switch($tab)
                     @case(1)
