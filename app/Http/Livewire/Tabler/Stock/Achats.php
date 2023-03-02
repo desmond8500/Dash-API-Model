@@ -51,9 +51,6 @@ class Achats extends Component
             'description' => $this->description,
         ]);
 
-        achatd
-
-
     }
     public function editAchat($achat_id)
     {
