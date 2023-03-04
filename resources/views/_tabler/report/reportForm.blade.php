@@ -9,7 +9,8 @@
 <div class="col-md-5 mb-3">
     <label class="form-label">Type</label>
     <select wire:model.defer="type" class="form-select">
-        <option value="1">sdfsd</option>
+        <option value="1">Visite</option>
+        <option value="2">Intervention</option>
     </select>
 </div>
 <div class="col-md-12 mb-3">
