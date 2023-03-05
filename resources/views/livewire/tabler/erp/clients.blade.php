@@ -1,7 +1,7 @@
 <div>
     <div>
         @component('components.tabler.header', ['title'=>'Clients', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
-        @livewire('tabler.erp.client-add')
+            @livewire('tabler.erp.client-add')
         @endcomponent
     </div>
 
