@@ -40,3 +40,9 @@
         <span>Interets</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('taches*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('taches.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Taches</span>
+    </a>
+</li>

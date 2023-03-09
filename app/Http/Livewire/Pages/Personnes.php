@@ -18,4 +18,21 @@ class Personnes extends Component
     {
         return Personne::all();
     }
+
+    public $prenom, $nom, $fonction, $email, $adresse, $tel, $profile;
+
+    public function store_person()
+    {
+        Personne::create([
+            'prenom' => $this->prenom,
+            'nom' => $this->nom,
+            'fonction' => $this->fonction,
+            'email' => $this->email,
+            'adresse' => $this->adresse,
+            'tel' => $this->tel,
+            'profile' => $this->profile,
+        ]);
+
+        $this->get_people();
+    }
 }

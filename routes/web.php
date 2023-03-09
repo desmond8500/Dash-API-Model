@@ -61,3 +61,6 @@ Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\C
 // Route::resource('competences', App\Http\Controllers\CompetenceController::class);
 // Route::resource('langues', App\Http\Controllers\LangueController::class);
 // Route::resource('interets', App\Http\Controllers\InteretController::class);
+
+
+Route::resource('taches', App\Http\Controllers\TacheController::class);

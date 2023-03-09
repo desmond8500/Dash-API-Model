@@ -69,13 +69,9 @@ class Personne extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'personnes';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'prenom',
@@ -87,11 +83,6 @@ class Personne extends Model
         'profile'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'prenom' => 'string',
@@ -103,13 +94,8 @@ class Personne extends Model
         'profile' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
     /**

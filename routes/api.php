@@ -38,3 +38,6 @@ Route::resource('langues', App\Http\Controllers\API\LangueAPIController::class);
 
 
 Route::resource('interets', App\Http\Controllers\API\InteretAPIController::class);
+
+
+Route::resource('taches', App\Http\Controllers\API\TacheAPIController::class);
