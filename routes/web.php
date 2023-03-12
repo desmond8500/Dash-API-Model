@@ -79,38 +79,4 @@ Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuil
 Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@relationFieldTemplate')->name('io_relation_field_template');
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate');
 Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback');
-Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
-
-
-// Route::resource('clients', ClientController::class);
-// Route::resource('projets', ProjetController::class);
-// Route::resource('invoices', InvoiceController::class);
-// Route::resource('invoiceRows', InvoiceRowController::class);
-// Route::resource('invoiceSections', InvoiceSectionController::class);
-// Route::resource('contacts', ContactController::class);
-// Route::resource('contactTels', ContactTelController::class);
-// Route::resource('contactMails', ContactMailController::class);
-// Route::resource('buildings', BuildingController::class);
-// Route::resource('stages', StageController::class);
-// Route::resource('rooms', RoomController::class);
-// Route::resource('roomArticles', RoomArticleController::class);
-// Route::resource('roomArticleDetails', RoomArticleDetailController::class);
-// Route::resource('reports', ReportController::class);
-// Route::resource('reportSections', ReportSectionController::class);
-// Route::resource('reportPeoples', ReportPeopleController::class);
-// Route::resource('reportDevis', ReportDevisController::class);
-// Route::resource('reportModalites', ReportModaliteController::class);
-// Route::resource('tasks', App\Http\Controllers\TaskController::class);
-// Route::resource('taskPhotos', App\Http\Controllers\TaskPhotoController::class);
-// Route::resource('taskDocuments', App\Http\Controllers\TaskDocumentController::class);
-// Route::resource('systems', App\Http\Controllers\SystemController::class);
-// Route::resource('fichiers', App\Http\Controllers\FichierController::class);
-
-
-Route::resource('reportFiles', App\Http\Controllers\ReportFilesController::class);
-
-
-Route::resource('personnels', App\Http\Controllers\PersonnelController::class);
-
-
-Route::resource('comptes', App\Http\Controllers\CompteController::class);
+Route::post('generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
