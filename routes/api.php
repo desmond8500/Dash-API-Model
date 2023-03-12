@@ -76,3 +76,12 @@ Route::resource('systems', App\Http\Controllers\API\SystemAPIController::class);
 
 
 Route::resource('fichiers', App\Http\Controllers\API\FichierAPIController::class);
+
+
+Route::resource('report_files', App\Http\Controllers\API\ReportFilesAPIController::class);
+
+
+Route::resource('personnels', App\Http\Controllers\API\PersonnelAPIController::class);
+
+
+Route::resource('comptes', App\Http\Controllers\API\CompteAPIController::class);

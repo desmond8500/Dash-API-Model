@@ -105,3 +105,12 @@ Route::post( 'generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\C
 // Route::resource('taskDocuments', App\Http\Controllers\TaskDocumentController::class);
 // Route::resource('systems', App\Http\Controllers\SystemController::class);
 // Route::resource('fichiers', App\Http\Controllers\FichierController::class);
+
+
+Route::resource('reportFiles', App\Http\Controllers\ReportFilesController::class);
+
+
+Route::resource('personnels', App\Http\Controllers\PersonnelController::class);
+
+
+Route::resource('comptes', App\Http\Controllers\CompteController::class);

@@ -136,3 +136,21 @@
         <span>Fichiers</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('reportFiles*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('reportFiles.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Report Files</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('personnels*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('personnels.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Personnels</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('comptes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('comptes.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Comptes</span>
+    </a>
+</li>

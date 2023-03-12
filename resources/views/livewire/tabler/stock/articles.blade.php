@@ -1,13 +1,13 @@
 <div>
     @component('components.tabler.header', ['title'=>'Articles', 'subtitle'=>'Stock', 'breadcrumbs'=>$breadcrumbs])
-        {{-- @livewire('tabler.stock.article-add') --}}
-        <div wire:loading>
-            <div class="d-flex justify-content-between">
-                <div><b>Chargement</b> <span class="animated-dots"></div>
+    <div wire:loading>
+        <div class="d-flex justify-content-between">
+            <div><b>Chargement</b> <span class="animated-dots"></div>
             </div>
         </div>
         @if (!$form)
-            <div class="btn-list text-end">
+        <div class="btn-list">
+            @livewire('tabler.stock.article-add')
                 <button class="btn btn-primary" wire:click="$set('form', 1)" title="Ajouter un article">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                     Article
@@ -26,7 +26,7 @@
     @endcomponent
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="row">
                 <div class="col-md-12 g-2">
                     <div class="input-group">
@@ -52,7 +52,7 @@
                 {{-- @endif --}}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             @if ($form==1)
                 <div class="card p-2" >
                     @include('_tabler.stock.articleform')
@@ -67,9 +67,13 @@
                     @include('_tabler.stock.articleform')
 
                     <div class="modal-footer mt-2">
-                        <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
                         <div class="btn-list">
-                            <button type="button" class="btn btn-danger"  wire:click="deleteArticle()">Supprimer</button>
+                            <button type="button" class="btn btn-icon btn-secondary me-auto" wire:click="$toggle('form', 0)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-icon"  wire:click="deleteArticle()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
+                            </button>
                             <button type="button" class="btn btn-primary"  wire:click="updateArticle()">Modifier</button>
                         </div>
                     </div>

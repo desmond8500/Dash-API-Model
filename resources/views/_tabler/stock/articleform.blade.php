@@ -20,11 +20,13 @@
     <div class="col-md">
         <label class="form-label required">Désignation</label>
         <input type="text" class="form-control" wire:model.defer="designation"/>
+        @error('designation') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
     <div class="col-md-12 mb-3">
         <label class="form-label required">Réference</label>
         <input type="text" class="form-control" wire:model.defer="reference"/>
+        @error('reference') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
     <div class="col-md-3 mb-3">

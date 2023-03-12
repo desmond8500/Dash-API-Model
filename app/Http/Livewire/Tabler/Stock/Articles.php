@@ -38,6 +38,9 @@ class Articles extends Component
             array('name' => 'Articles', 'route' => route('tabler.articles')),
         );
     }
+
+
+
     public function render()
     {
         return view('livewire.tabler.stock.articles',[
@@ -56,7 +59,7 @@ class Articles extends Component
                 ->orWhere('reference', 'LIKE', "%{$this->search}%")
                 ->paginate(10);
         } else {
-            return Article::paginate(10);
+            return Article::orderBy('id', 'DESC')-> paginate(10);
         }
     }
 

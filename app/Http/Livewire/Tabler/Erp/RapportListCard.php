@@ -73,5 +73,12 @@ class RapportListCard extends Component
         $this->render();
     }
 
+    public $files;
+
+    public function addFile()
+    {
+        # code...
+    }
+
 
 }
