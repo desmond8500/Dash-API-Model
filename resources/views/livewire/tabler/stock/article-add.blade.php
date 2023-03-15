@@ -17,10 +17,16 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary" articleAdd>Ajouter</button>
+                        <button type="submit" class="btn btn-primary" >Ajouter</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('close-modal', event => {
+        $("#addArticle").modal('hide');
+        })
+    </script>
 </div>

@@ -17,7 +17,7 @@
                 <div class="font-weight-medium">
                     {{ $card['title'] ?? 'Title'}}
                 </div>
-                <div class="text-muted">
+                <div class="text-muted text-truncate">
                     {{ $card['details'] ?? '' }}
                 </div>
             </div>

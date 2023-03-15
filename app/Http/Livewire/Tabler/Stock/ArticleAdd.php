@@ -28,6 +28,7 @@ class ArticleAdd extends Component
     protected $rules = [
         'designation' => 'required',
         'reference' => 'required',
+        'price'=> 'numeric'
     ];
 
     public function updated($propertyName)
@@ -41,8 +42,8 @@ class ArticleAdd extends Component
         $this->validate($this->rules);
 
         $article = Article::firstOrCreate([
-            'designation' => $this->designation,
-            'description' => $this->description,
+            'designation' => ucfirst($this->designation),
+            'description' => ucfirst($this->description),
             'priority' => $this->priority_id,
             'reference' => $this->reference,
             'quantity' => $this->quantity,
@@ -71,5 +72,20 @@ class ArticleAdd extends Component
             }
         }
         $this->emit('reload');
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function uppercase_reference()
+    {
+        $this->reference = strtoupper($this->reference);
+    }
+
+    public function convert($currency)
+    {
+        if ($currency == 'euro') {
+            $this->price = $this->price*655;
+        } elseif($currency=='dollar') {
+            $this->price = $this->price*613;
+        }
     }
 }

@@ -39,7 +39,7 @@
                     </div>
                     <div class="w-100"></div>
                     <div class="col-md-12 mb-3">
-                        <label class="form-label required">Description du client</label>
+                        <label class="form-label">Description du client</label>
                         <textarea class="form-control" wire:model="description"  cols="30" rows="3"></textarea>
                         @error('description') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>

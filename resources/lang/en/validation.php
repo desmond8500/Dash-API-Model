@@ -93,7 +93,7 @@ return [
     'multiple_of' => 'Le champ :attribute must be a multiple of :value',
     'not_in' => 'The selected :attribute est invalide.',
     'not_regex' => 'Le champ :attribute format est invalide.',
-    'numeric' => 'Le champ :attribute must be a number.',
+    'numeric' => 'Le champ :attribute doit être un nombre.',
     'password' => 'The password is incorrect.',
     'present' => 'Le champ :attribute field must be present.',
     'regex' => 'Le champ :attribute format est invalide.',

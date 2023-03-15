@@ -39,8 +39,6 @@ class Articles extends Component
         );
     }
 
-
-
     public function render()
     {
         return view('livewire.tabler.stock.articles',[
@@ -193,4 +191,6 @@ class Articles extends Component
         return Storage::disk('public')->delete($item);
 
     }
+
+
 }
