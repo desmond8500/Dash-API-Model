@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class DevisListCard extends Component
 {
-    public $projet;
+    public $projet, $search;
     public $projet_id, $devis_id, $devis;
     public $reference, $description, $status = 1;
     public $client_name, $client_tel, $client_address;
@@ -27,11 +27,24 @@ class DevisListCard extends Component
         return view('livewire.tabler.erp.devis-list-card',[
             'projet_id' => $this->projet_id,
             'projet' => $this->projet,
-            'devisList' => $this->projet->invoices,
+            'devisList' => $this->getDevis(),
         ]);
     }
 
+    public function getDevis()
+    {
+        if ($this->search) {
+            return Invoice::where('description', 'LIKE', "%{$this->search}%") ->paginate(10);
+        } else {
+            return Invoice::where('projet_id', $this->projet_id)->paginate(10);
+        }
+    }
 
+    public function resetSearch()
+    {
+        $this->reset('search') ;
+        $this->getDevis();
+    }
 
     public function gotoDevis($devis_id)
     {

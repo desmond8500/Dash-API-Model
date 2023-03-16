@@ -1,11 +1,8 @@
 <div class="row ">
-    {{-- <div class="col-md mb-3">
-        <input type="search" wire:model.defer="search" class="form-control" value="Chercher">
-    </div>
-    <div class="col-auto mb-3">
+    <div class="col">
         <div class="input-group">
-            <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher" wire:keydown.enter='getArticles'>
-            <button class="btn btn-primary btn-icon" wire:click="getArticles">
+            <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher" wire:keydown.enter='getDevis'>
+            <button class="btn btn-primary btn-icon" wire:click="getDevis">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path> <path d="M21 21l-6 -6"></path> </svg>
             </button>
             @if ($search)
@@ -14,8 +11,8 @@
                 </button>
             @endif
         </div>
-    </div> --}}
-    <div class="col-12">
+    </div>
+    <div class="col-auto">
         @livewire('tabler.erp.devis-add', ["projet_id"=>$projet_id])
     </div>
     <div class="col-md-12">
@@ -32,7 +29,7 @@
                         <div class="p-2">
                             <div class="d-flex justify-content-between" wire:click="gotoDevis('{{ $devis->id }}')" type="button">
                                 <div class="card-title">{{ $devis->reference }}</div>
-                                @livewire('tabler.status', ['status_id' => $devis->status ])
+                                @livewire('tabler.status', ['status_id' => $devis->status ], key($devis->id))
                             </div>
                             <div class="row">
                                 <div class="col" wire:click="gotoDevis('{{ $devis->id }}')" type="button">
