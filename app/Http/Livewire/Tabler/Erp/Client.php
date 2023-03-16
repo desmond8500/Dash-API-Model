@@ -9,6 +9,7 @@ use Livewire\Component;
 class Client extends Component
 {
     public $client_id, $client;
+    public $name, $description, $logo, $address, $status;
     public $edit=false;
 
     public $breadcrumbs;
@@ -47,12 +48,19 @@ class Client extends Component
         return redirect()->route('tabler.projet', ["projet_id" => $projet_id]);
     }
 
+    public function editClient()
+    {
+        $this->edit = true;
+        $this->name = $this->client->name;
+        $this->description = $this->client->description;
+    }
+
     public function update()
     {
         $this->validate($this->rules);
 
         $this->client->name = $this->name;
-        $this->client->decription = $this->decription;
+        $this->client->description = $this->description;
         $this->client->save();
         $this->reset('edit');
     }
