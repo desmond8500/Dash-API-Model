@@ -15,6 +15,10 @@ class ProjetAdd extends Component
         $this->client_id = $client_id;
     }
 
+    protected $rules = [
+        'name' => 'required'
+    ];
+
     public function render()
     {
         return view('livewire.tabler.erp.projet-add');
@@ -22,14 +26,16 @@ class ProjetAdd extends Component
 
     public function store_client()
     {
+        $this->validate($this->rules);
 
         Projet::create([
             'client_id' => $this->client_id,
             'name' => $this->name,
             'description' => $this->description,
             'logo' => $this->logo,
-            // 'status' => $this->status,
         ]);
+        $this->reset('name', 'description');
         $this->emit('reload');
+        $this->dispatchBrowserEvent('close-modal');
     }
 }

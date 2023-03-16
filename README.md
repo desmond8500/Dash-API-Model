@@ -15,3 +15,4 @@ Modèle de base pour un serveur Web
 * [Laravel domPDF](https://github.com/barryvdh/laravel-dompdf)
 * [Laravel Goutte](https://github.com/dweidner/laravel-goutte)
 * [Laravel Excel](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
+* [Wire element Modal](https://github.com/wire-elements/modal)

@@ -8,8 +8,8 @@ use Livewire\Component;
 
 class Client extends Component
 {
-    public $client_id;
-    public $client;
+    public $client_id, $client;
+    public $edit=false;
 
     public $breadcrumbs;
 
@@ -25,6 +25,8 @@ class Client extends Component
             array('name' => $this->client->name, 'route' => route('tabler.client',['client_id' => $client_id])),
         );
     }
+
+    protected $rules = ['name'=>'required'];
 
     public function render()
     {
@@ -43,5 +45,15 @@ class Client extends Component
     public function gotoProjet($projet_id)
     {
         return redirect()->route('tabler.projet', ["projet_id" => $projet_id]);
+    }
+
+    public function update()
+    {
+        $this->validate($this->rules);
+
+        $this->client->name = $this->name;
+        $this->client->decription = $this->decription;
+        $this->client->save();
+        $this->reset('edit');
     }
 }

@@ -34,7 +34,7 @@ class clientCard extends Component
         return redirect()->route('tabler.client', ['client_id' => $client_id]);
     }
 
-    public function update_client()
+    public function update()
     {
         $client = Client::find($this->client->id);
 

@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class ProjetCard extends Component
 {
-    public $projet;
+    public $projet, $edit=false;
     public $name, $description;
 
     public function mount($projet)
@@ -15,6 +15,10 @@ class ProjetCard extends Component
         $this->name = $projet->name;
         $this->description = $projet->description;
     }
+
+    protected $rules = [
+        'name' => 'required'
+    ];
 
     public function render()
     {
@@ -25,9 +29,12 @@ class ProjetCard extends Component
 
     public function updateProjet()
     {
+        $this->validate($this->rules);
+
         $this->projet->name = $this->name;
         $this->projet->description = $this->description;
         $this->projet->save();
-        $this->emitUp('reload');
+
+        $this->reset('edit');
     }
 }

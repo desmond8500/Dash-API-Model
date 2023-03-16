@@ -11,6 +11,14 @@ class Clients extends Component
     use WithPagination;
     public $breadcrumbs;
 
+    protected $paginationTheme = 'bootstrap';
+
+    public function updatingSearch() {
+        $this->resetPage();
+    }
+
+    public $search ='';
+
     protected $listeners = ['reload' => 'render'];
 
     public function mount()
@@ -30,6 +38,16 @@ class Clients extends Component
 
     public function getClients()
     {
-        return Client::paginate(20);
+        if ($this->search) {
+            return Client::where('name', 'LIKE', "%{$this->search}%")->paginate(20);
+        } else {
+            return Client::paginate(20);
+        }
+    }
+
+    public function resetSearch()
+    {
+        $this->reset('search');
+        $this->getClients();
     }
 }
