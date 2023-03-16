@@ -16,9 +16,7 @@
         </div>
     </div> --}}
     <div class="col-12">
-        <div class="text-end">
-            @livewire('tabler.erp.devis-add', ["projet_id"=>$projet_id])
-        </div>
+        @livewire('tabler.erp.devis-add', ["projet_id"=>$projet_id])
     </div>
     <div class="col-md-12">
         @if (session()->has('message'))

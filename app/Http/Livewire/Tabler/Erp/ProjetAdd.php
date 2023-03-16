@@ -19,6 +19,10 @@ class ProjetAdd extends Component
         'name' => 'required'
     ];
 
+    protected $validationAttributes = [
+        'name' => 'nom'
+    ];
+
     public function render()
     {
         return view('livewire.tabler.erp.projet-add');

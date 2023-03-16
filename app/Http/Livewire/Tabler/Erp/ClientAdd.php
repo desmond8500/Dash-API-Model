@@ -15,6 +15,10 @@ class ClientAdd extends Component
         'name' => 'required',
     ];
 
+    protected $validationAttributes = [
+        'name' => 'nom'
+    ];
+
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName, $this->rules);
