@@ -12,7 +12,7 @@ class Client extends Component
     public $name, $description, $logo, $address, $status;
     public $edit=false;
 
-    public $breadcrumbs;
+    public $breadcrumbs, $search;
 
     protected $listeners = ['reload' => 'render'];
 
@@ -40,7 +40,17 @@ class Client extends Component
 
     public function getProjets()
     {
-        return Projet::where('client_id', $this->client_id)->get();
+        if ($this->search) {
+            return Projet::where('name', 'LIKE', "%{$this->search}%")->paginate(20);
+        } else {
+            return Projet::where('client_id', $this->client_id)->paginate(20);
+        }
+    }
+
+    public function resetSearch()
+    {
+        $this->reset('search');
+        $this->getProjets();
     }
 
     public function gotoProjet($projet_id)
