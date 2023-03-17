@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProjetFilesTable extends Migration
 {
-
     public function up()
     {
         Schema::create('projet_files', function (Blueprint $table) {
