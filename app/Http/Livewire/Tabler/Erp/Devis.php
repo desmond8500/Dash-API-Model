@@ -16,9 +16,22 @@ class Devis extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['reload'=> 'render'];
 
-
-    public $devis;
+    public $devis, $edit;
     public $breadcrumbs, $search = '', $article_id = 0, $article_form = 0;
+
+    protected $rules = [
+        'name' => 'required',
+        'reference' => 'required',
+        'price' => 'numeric',
+        'quantity' => 'integer',
+    ];
+
+    protected $validationAttributes = [
+        'name' => 'required',
+        'reference' => 'required',
+        'price' => 'numeric',
+        'quantity' => 'integer',
+    ];
 
     public function mount($devis_id)
     {
@@ -32,6 +45,10 @@ class Devis extends Component
         );
     }
 
+    public function updatingSearch() {
+        $this->resetPage();
+    }
+
     public function render()
     {
         $total =0;
@@ -41,7 +58,7 @@ class Devis extends Component
 
         return view('livewire.tabler.erp.devis',[
             'devislist' => $this->devis,
-            'champs' => $this->devis->champs,
+            'champs' => InvoiceRow::where('invoice_id', $this->devis->id)->get(),
             'articles' => $this->getArticles(),
             'total' => $total,
         ])->extends('app.layout')->section('content');;
@@ -78,11 +95,24 @@ class Devis extends Component
             ]);
             $this->render();
         } else {
-            # code...
+            $this->validate($this->rules);
+
+            InvoiceRow::create([
+                'invoice_id' => $this->devis->id,
+                'article_id' => 0,
+                'name' => $this->name,
+                'reference' => $this->reference,
+                'price' => $this->price,
+                'quantity' => $this->quantity,
+                'section_id' => 0,
+            ]);
+            $this->render();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->render();
         }
     }
 
-    public $row_id, $name, $reference, $price, $description, $quantity, $coef;
+    public $row_id, $name, $reference, $price=0, $description, $quantity=0, $coef=1;
 
     public function editRow($row_id)
     {
@@ -96,6 +126,8 @@ class Devis extends Component
         $this->quantity = $row->quantity;
         $this->coef = $row->coef;
         // $this->description = $row->description;
+
+        $this->edit = $row_id;
     }
     public function updateRow()
     {
@@ -116,5 +148,6 @@ class Devis extends Component
     {
         $row = InvoiceRow::find($this->row_id);
         $row->delete();
+        $this->render();
     }
 }
