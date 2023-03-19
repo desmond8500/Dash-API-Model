@@ -7,16 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateTaskPhotosTable extends Migration
 {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('task_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_id');
+            $table->foreignId('task_id')->constrained();
             $table->string('name');
             $table->string('folder');
             $table->timestamps();
@@ -24,11 +19,6 @@ class CreateTaskPhotosTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('task_photos');

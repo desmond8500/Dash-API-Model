@@ -114,27 +114,23 @@
 
     <div class="modal fade" id="addPlanningTask" tabindex="-1" aria-labelledby="addPlanningTaskLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog">
-        <form class="modal-content" wire:submit.prevent="add_task">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ajouter une tache</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <div class="row">
-                @include('_tabler.erp.planning_form')
-            </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            <button type="submit" class="btn btn-primary">Ajouter</button>
-            </div>
-        </form>
+            <form class="modal-content" wire:submit.prevent="add_task">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une tache</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @include('_tabler.erp.planning_form')
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script>
-        window.addEventListener('close-modal', event => {
-        $("#addPlanningTask").modal('hide');
-        })
-    </script>
+    <script> window.addEventListener('close-modal', event => { $("#addPlanningTask").modal('hide'); }) </script>
 
 </div>

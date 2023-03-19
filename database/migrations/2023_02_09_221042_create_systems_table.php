@@ -11,8 +11,8 @@ class CreateSystemsTable extends Migration
     {
         Schema::create('systems', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id');
-            $table->foreignId('invoice_id');
+            $table->foreignId('projet_id')->constrained();
+            $table->foreignId('invoice_id')->constrained();
             $table->string('name');
             $table->mediumText('description');
             $table->timestamps();

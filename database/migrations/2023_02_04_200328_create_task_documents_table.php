@@ -11,7 +11,7 @@ class CreateTaskDocumentsTable extends Migration
     {
         Schema::create('task_documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_id');
+            $table->foreignId('task_id')->constrained();
             $table->string('name');
             $table->string('folder');
             $table->timestamps();

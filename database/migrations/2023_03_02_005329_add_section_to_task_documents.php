@@ -6,14 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class AddSectionToTaskDocuments extends Migration
 {
-
     public function up()
     {
         Schema::table('task_documents', function (Blueprint $table) {
             $table->string('section_id')->nullable();
         });
     }
-
 
     public function down()
     {

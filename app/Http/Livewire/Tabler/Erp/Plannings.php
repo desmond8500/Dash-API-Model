@@ -41,7 +41,7 @@ class Plannings extends Component
         $this->validate($this->rules);
 
         Planning::create([
-            'prrojet_id' => $this->prrojet_id,
+            'projet_id' => $this->projet_id,
             'batiment_id' => $this->batiment_id,
             'stage_id' => $this->stage_id,
             'tache' => $this->tache,
