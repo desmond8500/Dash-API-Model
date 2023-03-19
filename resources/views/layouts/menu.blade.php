@@ -154,3 +154,9 @@
         <span>Comptes</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('plannings*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('plannings.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Plannings</span>
+    </a>
+</li>

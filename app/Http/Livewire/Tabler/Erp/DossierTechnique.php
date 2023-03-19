@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Tabler\Erp;
 use App\Models\Fichier;
 use App\Models\Projet;
 use App\Models\ProjetFile;
+use App\Models\System;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -15,8 +16,14 @@ class DossierTechnique extends Component
     use WithFileUploads;
 
     protected $paginationTheme = 'bootstrap';
-    public $projet_id, $form=false;
+    public $projet_id, $form=false, $system_id;
     public $search = '', $breadcrumbs, $files;
+    public $name, $description;
+
+    protected $system_rules = [
+        'name' => 'required',
+    'description' => 'required',
+    ];
 
     public function mount($projet_id)
     {
@@ -26,6 +33,7 @@ class DossierTechnique extends Component
     {
         return view('livewire.tabler.erp.dossier-technique',[
             'projet' => Projet::find($this->projet_id),
+            'systems' => System::where('projet_id', $this->projet_id)->get()
         ]);
     }
 
@@ -64,4 +72,28 @@ class DossierTechnique extends Component
         }
         $this->form = false;
     }
+
+    public function edit_system($system_id)
+    {
+        $this->system_id = $system_id;
+        $system = System::find($system_id);
+
+        $this->name = $system->name;
+        $this->description = $system->description;
+    }
+
+    public function update_system()
+    {
+        $this->validate($this->system_rules);
+
+        $system = System::find($this->system_id);
+
+        $system->name = $this->name;
+        $system->description = $this->description;
+        $system->save();
+        $this->reset('system_id');
+
+    }
+
+
 }

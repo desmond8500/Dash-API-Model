@@ -85,3 +85,6 @@ Route::resource('personnels', App\Http\Controllers\API\PersonnelAPIController::c
 
 
 Route::resource('comptes', App\Http\Controllers\API\CompteAPIController::class);
+
+
+Route::resource('plannings', App\Http\Controllers\API\PlanningAPIController::class);

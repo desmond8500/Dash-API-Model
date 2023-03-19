@@ -15,10 +15,7 @@ class Planning extends Component
         $this->date = Carbon::now()->settings([
             'locale' => 'fr_FR',
             'timezone' => 'Africa/Dakar',
-            // 'startOfWeek' => 'Monday'
         ]);
-        // $start = $this->date->startOfWeek(Carbon::MONDAY);
-        // $end = $this->date->endOfWeek(Carbon::SUNDAY);
 
         $this->semaine =  array(
             'debut'=> $this->date->startOfWeek()->dayName.' '. $this->date->startOfWeek()->day.' '. $this->date->startOfWeek()->monthName.' '. $this->date->startOfWeek()->year,

@@ -31,6 +31,9 @@
             <div class="btn mt-1 @if($tab==7) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(7)">
                 <div>Batiments</div> <div></div>
             </div>
+            <div class="btn mt-1 @if($tab==8) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(8)">
+                <div>Planning</div> <div></div>
+            </div>
         </div>
         <div class="col-md-9 mb-3">
             <div class="row">
@@ -56,6 +59,9 @@
                         @break
                     @case(7)
                         @livewire('tabler.erp.batiment-list-card',['projet_id'=> $projet->id])
+                        @break
+                    @case(8)
+                        @livewire('tabler.erp.plannings',['projet_id'=> $projet->id])
                         @break
 
                     @default
