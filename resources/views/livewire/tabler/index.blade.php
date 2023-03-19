@@ -8,7 +8,10 @@
         </div>
     @endforeach
 
-    <div class="w-100"></div>
+    <div class="col-md-12">
+        @livewire('tabler.func.planning')
+    </div>
+
 
 
     </div>

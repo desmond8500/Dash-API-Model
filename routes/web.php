@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PDFController;
 use App\Http\Livewire\Material\Index as MaterialIndex;
 use App\Http\Livewire\Tabler\Erp\Building;
 use App\Http\Livewire\Tabler\Erp\Client;
@@ -66,6 +67,8 @@ Route::name('tabler.')->group(function () {
     Route::get('/task/{task_id}',           Task::class)->name('task');
     //Fichiers
     Route::get('/files',                    Files::class)->name('files');
+    // PDF
+    Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
 
 });
 

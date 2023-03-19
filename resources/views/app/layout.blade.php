@@ -7,14 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ env('APP_NAME') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta16/dist/css/tabler.min.css">
-    {{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark.min.css"> --}}
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta16/dist/css/tabler-vendors.min.css">
-
     <script src=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js "></script>
     <link href=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css " rel="stylesheet">
-
-    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
     @livewireStyles
 </head>
 
@@ -35,8 +31,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script> mermaid.initialize({startOnLoad:true}); </script>
     <script src="{{ asset("lib/fslightbox.js") }}"></script>
-    {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script> hljs.highlightAll(); </script> --}}
 
     <script type="text/javascript">
         lightGallery(document.getElementById('lightgallery'), {
