@@ -8,99 +8,104 @@
     <link rel="stylesheet" href="css/pdf.css">
 </head>
 <body style="font-family: sans-serif; font-size:12px">
+
     <div class="table-responsive">
         <table class="table table-primary">
             <tbody>
                 <tr class="">
-                    <td>Name</td>
-                    <td>
-                        <div>Planning Hebdomadaire</div>
-                        <div>Date</div>
+                    <td style="font-size:18px">{{ $company }}</td>
+                    <td style="padding-top:5px; padding-bottom:5px;">
+                        <div style="font-size:15px;"> {{ $projet }} - Planning Hebdomadaire</div>
+                        <div>Du {{ $semaine['debut'] }} au {{ $semaine['fin'] }}</div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-
-
-
     <div class="table-responsive">
         <table class="table">
             <thead class="thead">
                 <tr>
-                    <th style="width: 20px; text-align: center">#</th>
-                    <th >Batiment</th>
-                    <th >Détails</th>
-                    <th colspan="7">Semaine 1</th>
-                    <th colspan="7">Semaine 2</th>
+                    <td class="semaine" >Batiment</td>
+                    <td class="semaine" >Détails</td>
+                    <td class="semaine text-center" colspan="7">Semaine 1</td>
+                    <td class="semaine text-center" colspan="7">Semaine 2</td>
                 </tr>
             </thead>
             <tr>
-                <th colspan="3" rowspan="2">Semaine du projet</th>
+                <th colspan="2" rowspan="2">
+                    {{-- Semaine du projet --}}
+                </th>
 
-                <th style="width: 20px; text-align: center">L</th>
-                <th style="width: 20px; text-align: center">M</th>
-                <th style="width: 20px; text-align: center">M</th>
-                <th style="width: 20px; text-align: center">J</th>
-                <th style="width: 20px; text-align: center">V</th>
-                <th style="width: 20px; text-align: center">S</th>
-                <th style="width: 20px; text-align: center">D</th>
+                <th class="jour">L</th>
+                <th class="jour">M</th>
+                <th class="jour">M</th>
+                <th class="jour">J</th>
+                <th class="jour">V</th>
+                <th class="jour">S</th>
+                <th class="jour">D</th>
 
-                <th style="width: 20px; text-align: center">L</th>
-                <th style="width: 20px; text-align: center">M</th>
-                <th style="width: 20px; text-align: center">M</th>
-                <th style="width: 20px; text-align: center">J</th>
-                <th style="width: 20px; text-align: center">V</th>
-                <th style="width: 20px; text-align: center">S</th>
-                <th style="width: 20px; text-align: center">D</th>
-            </tr>
-            <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-                <th>11</th>
-                <th>12</th>
-                <th>13</th>
-                <th>14</th>
+                <th class="jour">L</th>
+                <th class="jour">M</th>
+                <th class="jour">M</th>
+                <th class="jour">J</th>
+                <th class="jour">V</th>
+                <th class="jour">S</th>
+                <th class="jour">D</th>
             </tr>
 
             <tr>
-                <td style="width: 20px; text-align: center">1</td>
-                <td>Hotel</td>
-                <td>
-                    <b>GRMS</b>
-                    <div>Travaux</div>
-                </td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 7 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 6 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 5 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 4 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 3 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 2 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day - 1 }}</td>
 
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-
-                <td>8</td>
-                <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 0 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 1 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 2 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 3 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 4 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 5 }}</td>
+                <td class="jour2">{{ $carbon->startOfWeek()->day + 6 }}</td>
             </tr>
+
+            @json($buildings)
+
+            @foreach ($buildings as $key => $building)
+                @foreach ($building->plannings as $planning)
+                    <tr>
+                        @if ($loop->first)
+                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:14px">{{ $building->name }}</td>
+                        @endif
+                        <td>
+                            <b>{{ $planning->system->name }}</b>
+                            <div>{{ $planning->tache }}</div>
+                        </td>
+                        {{-- {{ $planning->debut }} {{ $planning->fin }} --}}
+                        <td @class(['bg-blue border' => $planning->validate(-7) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-6) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-5) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-4) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-3) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-2) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(-1) ])>  </td>
+
+                        <td @class(['bg-blue border' => $planning->validate(0) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(1) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(2) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(3) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(4) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(5) ])>  </td>
+                        <td @class(['bg-blue border' => $planning->validate(6) ])>  </td>
+                    </tr>
+                @endforeach
+            @endforeach
 
         </table>
     </div>
-
-
 </body>
 </html>

@@ -11,10 +11,11 @@ class CreatePlanningsTable extends Migration
         Schema::create('plannings', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('projet_id')->constrained();
-            $table->foreignId('batiment_id')->constrained();
+            $table->foreignId('batiment_id')->constrained('buildings', 'id');
             $table->foreignId('system_id')->constrained();
             $table->string('tache');
-            $table->date('date');
+            $table->date('debut');
+            $table->date('fin');
             $table->string('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

@@ -147,3 +147,24 @@ td {
 .th {
     /* text-align: center; */
 }
+
+.bg-blue{
+    background-color: slategray;
+    /* background-color: #0d6efd; */
+}
+
+.jour{
+    width: 20px;
+    text-align: center;
+    background-color: grey;
+}
+.jour2{
+    background-color: lightgrey;
+}
+
+.semaine{
+    background-color: darkslategray;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}

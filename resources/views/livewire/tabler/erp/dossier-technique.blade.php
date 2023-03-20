@@ -8,8 +8,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="row">
-                    @foreach ($systems as $system)
+                @foreach ($systems as $system)
+                    <div class="row border-bottom my-1 pb-1">
                         @if ($system_id == $system->id)
                             <form wire:submit.prevent='update_system'>
                                 @include('_tabler.erp.system_form')
@@ -31,9 +31,8 @@
                                 </button>
                             </div>
                         @endif
-                    @endforeach
-                </div>
-
+                    </div>
+                @endforeach
             </div>
         </div>
 

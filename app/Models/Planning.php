@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -34,8 +36,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="date",
- *          description="date",
+ *          property="debut",
+ *          description="debut",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="fin",
+ *          description="fin",
  *          type="string",
  *          format="date"
  *      ),
@@ -71,7 +79,8 @@ class Planning extends Model
         'batiment_id',
         'system_id',
         'tache',
-        'date',
+        'debut',
+        'fin',
         'status',
     ];
 
@@ -81,12 +90,42 @@ class Planning extends Model
         'batiment_id' => 'integer',
         'system_id' => 'integer',
         'tache' => 'string',
-        'date' => 'date',
+        'debut' => 'date',
+        'fin' => 'date',
         'status' => 'string'
     ];
 
     public static $rules = [
 
     ];
+
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class, 'batiment_id');
+    }
+    public function system(): BelongsTo
+    {
+        return $this->belongsTo(System::class);
+    }
+
+    public function validate($date=null)
+    {
+        $carbon = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
+
+        $debut = date_format($this->debut, 'd');
+        $fin = date_format($this->fin, 'd');
+
+        $m = $carbon->startOfWeek()->day + $date;
+        var_dump($date);
+
+        if ($m >= $debut && $m <= $fin) {
+            return true;
+        }
+
+        return false;
+    }
 
 }

@@ -68,7 +68,7 @@ Route::name('tabler.')->group(function () {
     //Fichiers
     Route::get('/files',                    Files::class)->name('files');
     // PDF
-    Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
+    Route::get('/export_planning/{projet_id}',   [PDFController::class, 'exportPlanning'])->name('export_planning');
 
 });
 

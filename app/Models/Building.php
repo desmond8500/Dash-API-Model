@@ -82,6 +82,10 @@ class Building extends Model
     {
         return $this->hasMany(Stage::class);
     }
+    public function plannings(): HasMany
+    {
+        return $this->hasMany(Planning::class, 'batiment_id');
+    }
 
 
 }
