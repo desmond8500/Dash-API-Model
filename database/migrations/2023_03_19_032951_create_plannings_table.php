@@ -11,8 +11,8 @@ class CreatePlanningsTable extends Migration
         Schema::create('plannings', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('projet_id');
-            $table->foreignId('batiment_id')->constrained('buildings', 'id');
-            $table->foreignId('system_id')->constrained();
+            $table->foreignId('batiment_id');
+            $table->foreignId('system_id');
             $table->string('tache');
             $table->date('debut');
             $table->date('fin');
