@@ -1,5 +1,5 @@
-<div class="row ">
-    <div class="col">
+<div class="row">
+    <div class="col g-2">
         <div class="input-group">
             <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher" wire:keydown.enter='getDevis'>
             <button class="btn btn-primary btn-icon" wire:click="getDevis">
@@ -12,7 +12,7 @@
             @endif
         </div>
     </div>
-    <div class="col-auto">
+    <div class="col-auto g-2">
         @livewire('tabler.erp.devis-add', ["projet_id"=>$projet_id])
     </div>
     <div class="col-md-12">

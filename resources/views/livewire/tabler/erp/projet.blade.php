@@ -49,7 +49,7 @@
                         @livewire('tabler.task.task-projet-list', ['projet_id'=> $projet->id])
                         @break
                     @case(4)
-                        Contacts
+                        @livewire('tabler.erp.contact-list', ['projet_id'=> $projet->id])
                         @break
                     @case(5)
                         Finances

@@ -23,7 +23,7 @@
         </table>
     </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive" style="background: #f8f8f8">
         <table class="table">
             <thead class="thead">
                 <tr>
@@ -79,28 +79,28 @@
                 @foreach ($building->plannings as $planning)
                     <tr>
                         @if ($loop->first)
-                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:14px">{{ $building->name }}</td>
+                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:18px">{{ $building->name }}</td>
                         @endif
                         <td>
                             <b>{{ $planning->system->name }}</b>
                             <div>{{ $planning->tache }}</div>
                         </td>
                         {{-- {{ $planning->debut }} {{ $planning->fin }} --}}
-                        <td @class(['bg-blue border' => $planning->validate(-7) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-6) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-5) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-4) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-3) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-2) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(-1) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-7) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-6) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-5) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-4) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-3) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-2) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-1) ])>  </td>
 
-                        <td @class(['bg-blue border' => $planning->validate(0) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(1) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(2) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(3) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(4) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(5) ])>  </td>
-                        <td @class(['bg-blue border' => $planning->validate(6) ])>  </td>
+                        <td @class(['td-dotted', 'td-border-left', 'bg-blue' => $planning->validate(0) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(1) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(2) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(3) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(4) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(5) ])>  </td>
+                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(6) ])>  </td>
                     </tr>
                 @endforeach
             @endforeach

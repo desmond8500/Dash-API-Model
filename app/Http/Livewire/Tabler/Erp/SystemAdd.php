@@ -34,6 +34,7 @@ class SystemAdd extends Component
             'name' => $this->name,
             'description' => $this->description,
         ]);
+        $this->reset('name', 'description');
 
         $this->dispatchBrowserEvent('close-modal');
     }
