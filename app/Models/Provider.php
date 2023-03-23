@@ -64,11 +64,6 @@ class Provider extends Model
         'logo'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
@@ -76,29 +71,15 @@ class Provider extends Model
         'logo' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get all of the tel for the Provider
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function tel(): HasMany
     {
         return $this->hasMany(ProviderTel::class);
     }
-    /**
-     * Get all of the mail for the Provider
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function mail(): HasMany
     {
         return $this->hasMany(ProviderMail::class);
