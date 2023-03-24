@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Projet;
 use Livewire\Component;
 
 class ContactList extends Component

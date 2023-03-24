@@ -35,7 +35,7 @@ class RapportListCard extends Component
 
     public function render()
     {
-        $this->validate($this->rules);
+
         return view('livewire.tabler.erp.rapport-list-card',[
             'reports' => Report::where('projet_id', $this->projet_id)->get()
         ]);
@@ -43,6 +43,7 @@ class RapportListCard extends Component
 
     public function report_add()
     {
+        $this->validate($this->rules);
         Report::create([
             'projet_id' => $this->projet_id,
             'objet' => $this->objet,
@@ -51,6 +52,7 @@ class RapportListCard extends Component
             'type' => $this->type,
         ]);
         $this->report_form=false;
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function selectReport($report_id)
