@@ -297,3 +297,7 @@
     </div>
     <script> window.addEventListener('close-modal', event => { $("#addFiles").modal('hide'); }) </script>
 </div>
+
+
+@component('components.tabler.header', ['title'=>':{Building}', 'subtitle'=>':{Stock}', 'breadcrumbs'=>$breadcrumbs])
+@endcomponent
