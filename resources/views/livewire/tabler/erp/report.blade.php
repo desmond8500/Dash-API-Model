@@ -38,6 +38,28 @@
                     @endif
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">notes</div>
+                    <div class="card-actions">
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Générer des sections</li>
+                        <li>Générer des titres de sections</li>
+                        <li>générer du contenu de section</li>
+                        <li>Ajouter des liens et des images</li>
+                        <li>Exporter le rapport</li>
+                        <li>type de rapport</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
             @foreach ($sections as $section)
