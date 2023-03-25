@@ -39,7 +39,8 @@ class Report extends Component
     {
         return view('livewire.tabler.erp.report',[
             'report' => $this->report,
-            'sections' => ReportSection::where('report_id', $this->report_id)->get()
+            'sections' => ReportSection::where('report_id', $this->report_id)->get(),
+            'titles' => $this->titles,
         ])->extends('app.layout')->section('content');
     }
 
@@ -113,5 +114,13 @@ class Report extends Component
 
         $section->delete();
         $this->render();
+    }
+
+    // Generer
+    public $titles = array( 'Contexte', "Bilan de l'existant", "Besoin du client", "Proposition technique", "Travaux effectués", "Travaux restants");
+
+    public function set_section_title($title)
+    {
+        $this->section_title = $title;
     }
 }
