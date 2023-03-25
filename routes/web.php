@@ -7,6 +7,7 @@ use App\Http\Livewire\Tabler\Erp\Client;
 use App\Http\Livewire\Tabler\Erp\Clients;
 use App\Http\Livewire\Tabler\Erp\Devis;
 use App\Http\Livewire\Tabler\Erp\Projet;
+use App\Http\Livewire\Tabler\Erp\Report;
 use App\Http\Livewire\Tabler\Erp\Room;
 use App\Http\Livewire\Tabler\File\Files;
 use App\Http\Livewire\Tabler\Index;
@@ -54,6 +55,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/devis/{devis_id}',         Devis::class)->name('devis');
     Route::get('/building/{building_id}',   Building::class)->name('building');
     Route::get('/room/{room_id}',           Room::class)->name('room');
+    Route::get('/report/{report_id}',       Report::class)->name('report');
     // Stock
     Route::get('/stock',                    Stock::class)->name('stock');
     Route::get('/achats',                   Achats::class)->name('achats');
@@ -68,7 +70,7 @@ Route::name('tabler.')->group(function () {
     //Fichiers
     Route::get('/files',                    Files::class)->name('files');
     // PDF
-    Route::get('/export_planning',   [PDFController::class, 'exportPlanning'])->name('export_planning');
+    Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
 
 });
 
@@ -83,6 +85,3 @@ Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\Gene
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate');
 Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback');
 Route::post('generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
-
-
-Route::resource('plannings', App\Http\Controllers\PlanningController::class);

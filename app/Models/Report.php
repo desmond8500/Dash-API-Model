@@ -66,10 +66,7 @@ class Report extends Model
 
     public $table = 'reports';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'projet_id',
@@ -79,11 +76,6 @@ class Report extends Model
         'type'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
@@ -93,39 +85,23 @@ class Report extends Model
         'type' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-
+        'objet' => 'required',
+        'description' => 'required',
+        'date' => 'required',
+        'type' => 'required'
     ];
 
-    /**
-     * Get the projet that owns the Report
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function projet(): BelongsTo
     {
         return $this->belongsTo(Projet::class);
     }
 
-    /**
-     * Get all of the section for the Report
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function section(): HasMany
     {
         return $this->hasMany(ReportSection::class);
     }
-    /**
-     * Get all of the attenders for the Report
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function attenders(): HasMany
     {
         return $this->hasMany(ReportPeople::class);

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -56,13 +57,9 @@ class ReportSection extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'report_sections';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'report_id',
@@ -71,11 +68,6 @@ class ReportSection extends Model
         'order'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'report_id' => 'integer',
@@ -84,20 +76,10 @@ class ReportSection extends Model
         'order' => 'integer'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get all of the reportModalite for the ReportSection
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function modalite(): HasMany
     {
         return $this->hasMany(ReportModalite::class, 'id', 'section_id');
