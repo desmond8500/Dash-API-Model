@@ -88,3 +88,6 @@ Route::resource('comptes', App\Http\Controllers\API\CompteAPIController::class);
 
 
 Route::resource('plannings', App\Http\Controllers\API\PlanningAPIController::class);
+
+
+Route::resource('report_links', App\Http\Controllers\API\ReportLinkAPIController::class);
