@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Report as ModelsReport;
 use App\Models\ReportFiles;
+use App\Models\ReportLink;
 use App\Models\ReportModalite;
 use App\Models\ReportSection;
 use Illuminate\Support\Facades\Storage;
@@ -184,13 +185,13 @@ class Report extends Component
     // Photos
     public $photos, $photo_id, $name, $folder;
 
-    protected $rules = [
+    protected $photo_rules = [
         'name' => 'required',
     ];
 
     public function add_photo()
     {
-        $this->validate($this->rules);
+        $this->validate($this->photo_rules);
 
         if ($this->photos) {
             $dir = "erp/reports/".$this->report->id."/".$this->selected_section_id."/files";
@@ -208,11 +209,7 @@ class Report extends Component
                 ]);
             }
         }
-
-
         $this->dispatchBrowserEvent('close-modal');
-
-
     }
 
     public function edit_photo($photo)
@@ -237,6 +234,52 @@ class Report extends Component
     public function delete_photo()
     {
         $model = ReportFiles::find($this->photo_id);
+
+        $model->delete();
+        $this->render();
+    }
+
+    // Link
+
+    // Model
+    public $link_id, $link_name, $link;
+
+    protected $link_rules = [
+        'link_name' => 'required',
+        'link' => ['required','url'],
+    ];
+
+    public function add_link()
+    {
+        $this->validate($this->link_rules);
+        ReportLink::create([
+            'section_id' => $this->selected_section_id,
+            'name' => $this->link_name,
+            'link' => $this->link,
+        ]);
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function edit_link($link_id)
+    {
+        $this->link_id = $link_id;
+        $model = ReportLink::find($link_id);
+        $this->link_name = $model->link_name;
+        $this->link = $model->link;
+    }
+
+    public function update_link()
+    {
+        $model = ReportLink::find($this->link_id);
+        $model->link_name = $this->link_name;
+        $model->link = $this->link;
+        $model->save();
+        $this->reset('link_id');
+        $this->render();
+    }
+    public function delete_link($id)
+    {
+        $model = ReportLink::find($id);
 
         $model->delete();
         $this->render();
