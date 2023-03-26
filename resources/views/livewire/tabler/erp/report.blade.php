@@ -90,6 +90,10 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                     Fichiers
                                 </button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLink" wire:click="select_section('{{ $section->id }}')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                    Lien
+                                </button>
                                 <button class="btn btn-primary btn-icon" wire:click="edit_section('{{ $section->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
                                 </button>
@@ -129,17 +133,37 @@
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                @foreach ($section->files as $file)
-                                    <div class="col-md-2 text-center">
-                                        <a href="{{ asset($file->folder) }}" target="_blank">
-                                            <img src="{{ asset($file->folder) }}" alt="{{ $file->name }}" class="avatar avatar-md" />
-                                        </a>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        @foreach ($section->files as $file)
+                                            <div class="col-md-3 text-center">
+                                                <a href="{{ asset($file->folder) }}" target="_blank">
+                                                    <img src="{{ asset($file->folder) }}" alt="{{ $file->name }}" class="avatar avatar-md" />
+                                                </a>
 
-                                        <button class="btn btn-danger btn-icon" >
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
-                                        </button>
+                                                <button class="btn btn-danger btn-icon" >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
+                                                </button>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        @foreach ($section->links as $link)
+                                            <div class="col-md-12">
+                                                <div class="card p-2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <a href="{{ $link->link }}" target="_blank">{{ $link->name }}</a>
+                                                         <button class="btn btn-danger btn-icon" >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                        @endif
@@ -177,8 +201,6 @@
     </div>
     <script> window.addEventListener('close-modal', event => { $("#add-section").modal('hide'); }) </script>
 
-
-
     <div class="modal modal-blur fade" id="addModalite" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -202,7 +224,26 @@
     </div>
     <script> window.addEventListener('close-modal', event => { $("#addModalite").modal('hide'); }) </script>
 
-
+    <div class="modal modal-blur fade" id="addLink" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form wire:submit.prevent='add_link'>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter un lien</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @include('_tabler.erp.report_link_form')
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary" >Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script> window.addEventListener('close-modal', event => { $("#addLink").modal('hide'); }) </script>
 
     <div class="modal modal-blur fade" id="addPeople" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -255,8 +296,6 @@
     </div>
     <script> window.addEventListener('close-modal', event => { $("#addPeople").modal('hide'); }) </script>
 
-
-
     <div class="modal modal-blur fade" id="addFiles" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -278,13 +317,5 @@
     </div>
     <script> window.addEventListener('close-modal', event => { $("#addFiles").modal('hide'); }) </script>
 
-    <script type="text/javascript">
-    lightGallery(document.getElementById('lightgallery'), {
-        plugins: [lgZoom, lgThumbnail],
-        licenseKey: 'your_license_key',
-        speed: 500,
-        // ... other settings
-    });
-</script>
 </div>
 

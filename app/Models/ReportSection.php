@@ -90,5 +90,9 @@ class ReportSection extends Model
     {
         return $this->hasMany(ReportFiles::class, 'report_id');
     }
+    public function links(): HasMany
+    {
+        return $this->hasMany(ReportLink::class, 'section_id');
+    }
 
 }
