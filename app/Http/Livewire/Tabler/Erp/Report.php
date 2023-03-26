@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Report as ModelsReport;
+use App\Models\ReportFiles;
 use App\Models\ReportModalite;
 use App\Models\ReportSection;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -119,8 +121,7 @@ class Report extends Component
 
     // Modalités
 
-    // Model
-    public $modalite_id, $modalite_section_id, $duree = 1, $technicien = 1, $ouvrier = 0, $complexite = 0, $risque= 0;
+    public $modalite_id, $selected_section_id, $duree = 1, $technicien = 1, $ouvrier = 0, $complexite = 0, $risque= 0;
 
     protected $modalite_rules = [
         'duree' => 'required',
@@ -132,14 +133,14 @@ class Report extends Component
 
     public function select_section($section_id)
     {
-        $this->modalite_section_id = $section_id;
+        $this->selected_section_id = $section_id;
     }
 
     public function add_modalite()
     {
         $this->validate($this->modalite_rules);
         ReportModalite::create([
-            'section_id' => $this->modalite_section_id,
+            'section_id' => $this->selected_section_id,
             'duree' => $this->duree,
             'technicien' => $this->technicien,
             'ouvrier' => $this->ouvrier,
@@ -177,6 +178,67 @@ class Report extends Component
         $modalite = ReportModalite::find($this->modalite_id);
 
         $modalite->delete();
+        $this->render();
+    }
+
+    // Photos
+    public $photos, $photo_id, $name, $folder;
+
+    protected $rules = [
+        'name' => 'required',
+    ];
+
+    public function add_photo()
+    {
+        $this->validate($this->rules);
+
+        if ($this->photos) {
+            $dir = "erp/reports/".$this->report->id."/".$this->selected_section_id."/files";
+
+            foreach ($this->photos as $key => $photo) {
+                $name = $photo->getClientOriginalName();
+                $photo->storeAS("public/$dir/", $name);
+
+                ReportFiles::firstOrCreate([
+                    'report_id' => $this->selected_section_id,
+                    'section_id' => $this->selected_section_id,
+                    'name' => $this->name,
+                    'folder' => "storage/$dir/$name",
+                    'extension' => "img",
+                ]);
+            }
+        }
+
+
+        $this->dispatchBrowserEvent('close-modal');
+
+
+    }
+
+    public function edit_photo($photo)
+    {
+        $this->photo_id = $photo;
+        $model = ReportFiles::find($photo);
+        $this->name = $model->name;
+        $this->folder = $model->folder;
+        $this->attr3 = $model->attr3;
+    }
+
+    public function update_photo()
+    {
+        $model = ReportFiles::find($this->photo_id);
+        $model->name = $this->name;
+        $model->folder = $this->folder;
+        $model->attr3 = $this->attr3;
+        $model->save();
+        $this->reset('photo_id');
+        $this->render();
+    }
+    public function delete_photo()
+    {
+        $model = ReportFiles::find($this->photo_id);
+
+        $model->delete();
         $this->render();
     }
 

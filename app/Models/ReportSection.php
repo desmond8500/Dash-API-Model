@@ -86,4 +86,9 @@ class ReportSection extends Model
         return $this->hasOne(ReportModalite::class, 'section_id');
     }
 
+    public function files(): HasMany
+    {
+        return $this->hasMany(ReportFiles::class, 'report_id');
+    }
+
 }

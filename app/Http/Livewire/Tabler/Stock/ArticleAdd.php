@@ -32,7 +32,6 @@ class ArticleAdd extends Component
     ];
 
     public function updated($propertyName)
-
     {
         $this->validateOnly($propertyName);
     }
@@ -54,7 +53,7 @@ class ArticleAdd extends Component
         $dir = "stock/articles/$article->id/";
 
         if ($this->photos) {
-            Storage::disk('public')->deleteDirectory($dir);
+            // Storage::disk('public')->deleteDirectory($dir);
             foreach ($this->photos as $key => $photo) {
                 $name = $photo->getClientOriginalName();
                 $photo->storeAS("public/$dir", $name);

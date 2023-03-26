@@ -93,7 +93,6 @@ class ReportModalite extends Model
 
     ];
 
-
     public function section(): BelongsTo
     {
         return $this->belongsTo(ReportSection::class, 'section_id');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -55,13 +56,9 @@ class ReportFiles extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'report_files';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'report_id',
@@ -70,11 +67,6 @@ class ReportFiles extends Model
         'extension'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'report_id' => 'integer',
@@ -83,14 +75,14 @@ class ReportFiles extends Model
         'extension' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
-    
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(ReportSection::class, 'section_id');
+    }
+
+
 }
