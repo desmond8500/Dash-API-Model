@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Report;
+use App\Models\ReportSection;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -30,5 +32,23 @@ class PDFController extends Controller
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.planning_pdf', $data);
 
         return $pdf->stream('Planning.pdf');
+    }
+
+    public function export_report(Request $request)
+    {
+        $carbon = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
+
+        $data = [
+            'reports' => Report::where('report_id', $request->report_id)->get(),
+            'carbon' => $carbon,
+            'company' => 'Building Comfort Senegal',
+            'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get()
+        ];
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data);
+
+        return $pdf->stream('Rapport.pdf');
     }
 }

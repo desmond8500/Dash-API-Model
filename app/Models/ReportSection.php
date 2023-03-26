@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -80,8 +81,9 @@ class ReportSection extends Model
 
     ];
 
-    public function modalite(): HasMany
+    public function modalites(): HasOne
     {
-        return $this->hasMany(ReportModalite::class, 'id', 'section_id');
+        return $this->hasOne(ReportModalite::class, 'section_id');
     }
+
 }

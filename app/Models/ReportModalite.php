@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -65,13 +66,9 @@ class ReportModalite extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'report_modalites';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'section_id',
@@ -82,11 +79,6 @@ class ReportModalite extends Model
         'risque'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'section_id' => 'integer',
@@ -97,14 +89,34 @@ class ReportModalite extends Model
         'risque' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
-    
+
+    public function section(): BelongsTo
+    {
+        return $this->belongsTo(ReportSection::class, 'section_id');
+    }
+
+    public function complexite()
+    {
+        if ($this->complexite == 0) {
+            return 'Faible';
+        } else if ($this->complexite == 1) {
+            return 'Moyenne';
+        } else {
+            return 'Haute';
+        }
+    }
+    public function risque()
+    {
+        if ($this->complexite == 0) {
+            return 'Faible';
+        } else if ($this->complexite == 1) {
+            return 'Moyen';
+        } else {
+            return 'Elevé';
+        }
+    }
 }

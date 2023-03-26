@@ -3,13 +3,14 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Report as ModelsReport;
+use App\Models\ReportModalite;
 use App\Models\ReportSection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Report extends Component
 {
-    public $rerport, $report_id, $report_form=false, $breadcrumbs;
+    public $report, $report_id, $report_form=false, $breadcrumbs;
     public $objet, $description = '', $date, $type = 1;
 
     use WithFileUploads;
@@ -39,7 +40,7 @@ class Report extends Component
     {
         return view('livewire.tabler.erp.report',[
             'report' => $this->report,
-            'sections' => ReportSection::where('report_id', $this->report_id)->get(),
+            'sections' => ReportSection::where('report_id', $this->report_id)->orderBy('order')->get(),
             'titles' => $this->titles,
         ])->extends('app.layout')->section('content');
     }
@@ -113,6 +114,69 @@ class Report extends Component
         $section = ReportSection::find($this->section_id);
 
         $section->delete();
+        $this->render();
+    }
+
+    // Modalités
+
+    // Model
+    public $modalite_id, $modalite_section_id, $duree = 1, $technicien = 1, $ouvrier = 0, $complexite = 0, $risque= 0;
+
+    protected $modalite_rules = [
+        'duree' => 'required',
+        'technicien' => 'required',
+        'ouvrier' => 'required',
+        'complexite' => 'required',
+        'risque' => 'required',
+    ];
+
+    public function select_section($section_id)
+    {
+        $this->modalite_section_id = $section_id;
+    }
+
+    public function add_modalite()
+    {
+        $this->validate($this->modalite_rules);
+        ReportModalite::create([
+            'section_id' => $this->modalite_section_id,
+            'duree' => $this->duree,
+            'technicien' => $this->technicien,
+            'ouvrier' => $this->ouvrier,
+            'complexite' => $this->complexite,
+            'risque' => $this->risque,
+        ]);
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function edit_modalite($modal_id)
+    {
+        $this->modalite_id = $modal_id;
+        $modalite = ReportModalite::find($modal_id);
+        $this->duree = $modalite->duree;
+        $this->technicien = $modalite->technicien;
+        $this->ouvrier = $modalite->ouvrier;
+        $this->complexite = $modalite->complexite;
+        $this->risque = $modalite->risque;
+    }
+
+    public function update_modalite()
+    {
+        $modalite = ReportModalite::find($this->modalite_id);
+        $modalite->duree = $this->duree;
+        $modalite->technicien = $this->technicien;
+        $modalite->ouvrier = $this->ouvrier;
+        $modalite->complexite = $this->complexite;
+        $modalite->risque = $this->risque;
+        $modalite->save();
+        $this->reset('modalite_id');
+        $this->render();
+    }
+    public function delete_modalite()
+    {
+        $modalite = ReportModalite::find($this->modalite_id);
+
+        $modalite->delete();
         $this->render();
     }
 
