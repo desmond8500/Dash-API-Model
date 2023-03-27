@@ -2394,6 +2394,205 @@
                 }
             }
         },
+        "/entreprises": {
+            "get": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "summary": "Get a listing of the Entreprises.",
+                "description": "Get all Entreprises",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Entreprise"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "summary": "Store a newly created Entreprise in storage",
+                "description": "Store Entreprise",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Entreprise that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Entreprise"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Entreprise"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/entreprises/{id}": {
+            "get": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "summary": "Display the specified Entreprise",
+                "description": "Get Entreprise",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Entreprise",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Entreprise"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "summary": "Update the specified Entreprise in storage",
+                "description": "Update Entreprise",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Entreprise",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Entreprise that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Entreprise"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Entreprise"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Entreprise"
+                ],
+                "summary": "Remove the specified Entreprise from storage",
+                "description": "Delete Entreprise",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Entreprise",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/fichiers": {
             "get": {
                 "tags": [
@@ -5116,6 +5315,205 @@
                         "name": "id",
                         "in": "path",
                         "description": "id of ReportFiles",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/reportLinks": {
+            "get": {
+                "tags": [
+                    "ReportLink"
+                ],
+                "summary": "Get a listing of the ReportLinks.",
+                "description": "Get all ReportLinks",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ReportLink"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ReportLink"
+                ],
+                "summary": "Store a newly created ReportLink in storage",
+                "description": "Store ReportLink",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ReportLink that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ReportLink"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ReportLink"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/reportLinks/{id}": {
+            "get": {
+                "tags": [
+                    "ReportLink"
+                ],
+                "summary": "Display the specified ReportLink",
+                "description": "Get ReportLink",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ReportLink",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ReportLink"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ReportLink"
+                ],
+                "summary": "Update the specified ReportLink in storage",
+                "description": "Update ReportLink",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ReportLink",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "ReportLink that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ReportLink"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/ReportLink"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ReportLink"
+                ],
+                "summary": "Remove the specified ReportLink from storage",
+                "description": "Delete ReportLink",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ReportLink",
                         "required": true,
                         "type": "integer"
                     }
@@ -8047,6 +8445,60 @@
                 }
             }
         },
+        "Entreprise": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "logo": {
+                    "description": "logo",
+                    "type": "string"
+                },
+                "ninea": {
+                    "description": "ninea",
+                    "type": "string"
+                },
+                "adress": {
+                    "description": "adress",
+                    "type": "string"
+                },
+                "mail": {
+                    "description": "mail",
+                    "type": "string"
+                },
+                "rccm": {
+                    "description": "rccm",
+                    "type": "string"
+                },
+                "site": {
+                    "description": "site",
+                    "type": "string"
+                },
+                "banque": {
+                    "description": "banque",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "Fichier": {
             "required": [
                 ""
@@ -8304,8 +8756,13 @@
                     "description": "tache",
                     "type": "string"
                 },
-                "date": {
-                    "description": "date",
+                "debut": {
+                    "description": "debut",
+                    "type": "string",
+                    "format": "date"
+                },
+                "fin": {
+                    "description": "fin",
                     "type": "string",
                     "format": "date"
                 },
@@ -8565,6 +9022,41 @@
                 },
                 "extension": {
                     "description": "extension",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "ReportLink": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "section_id": {
+                    "description": "section_id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "name",
+                    "type": "string"
+                },
+                "link": {
+                    "description": "link",
                     "type": "string"
                 },
                 "created_at": {
