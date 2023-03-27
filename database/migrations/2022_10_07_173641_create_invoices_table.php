@@ -11,7 +11,7 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id')->constrained();
+            $table->foreignId('projet_id');
             $table->string('reference');
             $table->string('status')->default(1);
             $table->text('description')->nullable();
@@ -28,11 +28,6 @@ class CreateInvoicesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('invoices');
