@@ -10,7 +10,7 @@ class CreateReportFilesTable extends Migration
     {
         Schema::create('report_files', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('report_id')
+            $table->foreignId('report_id');
             $table->string('name');
             $table->string('folder');
             $table->string('extension');
