@@ -150,4 +150,54 @@ class Devis extends Component
         $row->delete();
         $this->render();
     }
+
+    // Devis
+    public $devis_edit=false, $projet_id, $status = 1;
+    public $client_name, $client_tel, $client_address;
+    public $discount = 0, $tva = 0, $brs = 0;
+
+    protected $devis_rules = [
+        'description' => 'required',
+        'tva' => 'numeric',
+        'brs' => 'numeric',
+        'discount' => 'numeric',
+        'client_tel' => 'numeric',
+    ];
+
+    public function edit_invoice()
+    {
+        $this->devis_edit = true;
+        $this->projet_id     = $this->devis->projet_id;
+        $this->reference     = $this->devis->reference;
+        $this->status        = $this->devis->status;
+        $this->description   = $this->devis->description;
+        $this->client_name   = $this->devis->client_name;
+        $this->client_tel    = $this->devis->client_tel;
+        $this->client_address = $this->devis->client_address;
+        $this->discount      = $this->devis->discount;
+        $this->tva           = $this->devis->tva;
+        $this->brs           = $this->devis->brs;
+    }
+
+    public function update_invoice()
+    {
+        $this->validate($this->devis_rules);
+        $devis = Invoice::find($this->devis_id);
+
+        // $devis->projet_id = $this->projet_id;
+        $devis->reference = $this->reference;
+        $devis->status = $this->status;
+        $devis->description = $this->description;
+        $devis->client_name = $this->client_name;
+        $devis->client_tel = $this->client_tel;
+        $devis->client_address = $this->client_address;
+        $devis->discount = $this->discount;
+        $devis->tva = $this->tva;
+        $devis->brs = $this->brs;
+
+        $devis->save();
+        $this->devis_edit = false;
+    }
+
+
 }

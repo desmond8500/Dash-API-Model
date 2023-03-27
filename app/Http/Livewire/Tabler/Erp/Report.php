@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Invoice;
 use App\Models\Report as ModelsReport;
 use App\Models\ReportFiles;
 use App\Models\ReportLink;
@@ -44,7 +45,9 @@ class Report extends Component
         return view('livewire.tabler.erp.report',[
             'report' => $this->report,
             'sections' => ReportSection::where('report_id', $this->report_id)->orderBy('order')->get(),
-            'titles' => $this->titles,
+            'titles' => ModelsReport::titles(),
+            'types' => ModelsReport::types(),
+            'invoices' => Invoice::where('projet_id', $this->report->projet->id)->get(),
         ])->extends('app.layout')->section('content');
     }
 

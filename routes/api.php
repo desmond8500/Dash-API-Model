@@ -91,3 +91,6 @@ Route::resource('plannings', App\Http\Controllers\API\PlanningAPIController::cla
 
 
 Route::resource('report_links', App\Http\Controllers\API\ReportLinkAPIController::class);
+
+
+Route::resource('entreprises', App\Http\Controllers\API\EntrepriseAPIController::class);

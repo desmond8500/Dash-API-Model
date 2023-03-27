@@ -64,6 +64,49 @@ class DevisListCard extends Component
             $devis->delete();
             $this->render();
         // }
+    }
 
+    protected $devis_rules = [
+        'description' => 'required',
+        'tva' => 'numeric',
+        'brs' => 'numeric',
+        'discount' => 'numeric',
+        'client_tel' => 'numeric',
+    ];
+
+    public function edit_invoice($id)
+    {
+        $this->devis_id = $id;
+        $devis = Invoice::find($id);
+        $this->projet_id     = $devis->projet_id;
+        $this->reference     = $devis->reference;
+        $this->status        = $devis->status;
+        $this->description   = $devis->description;
+        $this->client_name   = $devis->client_name;
+        $this->client_tel    = $devis->client_tel;
+        $this->client_address = $devis->client_address;
+        $this->discount      = $devis->discount;
+        $this->tva           = $devis->tva;
+        $this->brs           = $devis->brs;
+    }
+
+    public function update_invoice()
+    {
+        $this->validate($this->devis_rules);
+        $devis = Invoice::find($this->devis_id);
+
+        // $devis->projet_id = $this->projet_id;
+        $devis->reference = $this->reference;
+        $devis->status = $this->status;
+        $devis->description = $this->description;
+        $devis->client_name = $this->client_name;
+        $devis->client_tel = $this->client_tel;
+        $devis->client_address = $this->client_address;
+        $devis->discount = $this->discount;
+        $devis->tva = $this->tva;
+        $devis->brs = $this->brs;
+
+        $devis->save();
+        $this->devis_id = false;
     }
 }

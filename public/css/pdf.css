@@ -147,6 +147,10 @@ td {
 .th {
     /* text-align: center; */
 }
+.td-blue {
+    background: #0b5394;
+    color: white;
+}
 
 .bg-blue{
     background-color: slategray;
@@ -175,6 +179,9 @@ td {
 .text-grey{
     color: #434343;
 }
+.text-gray{
+    color: #434343;
+}
 
 .bg-blue {
     background-color: #4472c4;
@@ -188,8 +195,12 @@ td {
 .td-border-left{
     border-left-style: solid;
 }
+.td-border-left{
+    border-left-style: solid;
+}
 
 .tr-bottom{
     border-bottom: 2px solid black;
 }
+
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Invoice;
 use App\Models\Report;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -37,7 +38,10 @@ class RapportListCard extends Component
     {
 
         return view('livewire.tabler.erp.rapport-list-card',[
-            'reports' => Report::where('projet_id', $this->projet_id)->get()
+            'reports' => Report::where('projet_id', $this->projet_id)->get(),
+            'types' => Report::types(),
+            'titles' => Report::titles(),
+
         ]);
     }
 
@@ -66,7 +70,7 @@ class RapportListCard extends Component
         $this->projet_id = $this->report->projet_id;
         $this->objet = $this->report->objet;
         $this->description = $this->report->description;
-        $this->date = $this->report->date;
+        $this->date = date_format($this->report->date, 'Y-m-d');
         $this->type = $this->report->type;
     }
 

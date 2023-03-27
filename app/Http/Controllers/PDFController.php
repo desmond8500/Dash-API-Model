@@ -41,14 +41,18 @@ class PDFController extends Controller
             'timezone' => 'Africa/Dakar',
         ]);
 
+        $report = Report::find($request->report_id);
+
         $data = [
-            'reports' => Report::where('report_id', $request->report_id)->get(),
+            'doc_title' => $report->type(),
+            'report' => $report,
+            'logo' => 'img/BMW_logo_(gray).svg.png',
             'carbon' => $carbon,
             'company' => 'Building Comfort Senegal',
-            'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get()
+            'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get(),
         ];
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data);
 
-        return $pdf->stream('Rapport.pdf');
+        return $pdf->stream($report->type()." - ".$report->projet->name." - ". $report->projet->client->name);
     }
 }

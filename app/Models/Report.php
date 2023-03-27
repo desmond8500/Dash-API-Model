@@ -107,5 +107,45 @@ class Report extends Model
         return $this->hasMany(ReportPeople::class);
     }
 
+    public static function types(){
+        return (object) array(
+            (object) array('id'=>1, "name"=> "Rapport de Visite"),
+            (object) array('id'=>2, "name"=> "Rapport d'Intervention"),
+            (object) array('id'=>3, "name"=> "Rapport de Vérification"),
+            (object) array('id'=>4, "name"=> "Rapport de Dépannage"),
+        );
+    }
+    public static function titles(){
+        return array(
+            'Contexte',
+            "Bilan de l'existant",
+            "Besoin du client",
+            "Proposition technique",
+            "Travaux effectués",
+            "Travaux restants"
+        );
+    }
+
+    public function type()
+    {
+        $types = $this->types();
+
+        if ($this->type == 1) {
+            return 'Rapport de Visite';
+        }
+        else if($this->type == 2) {
+            return "Rapport d'Intervention";
+        }
+        else if($this->type == 3) {
+            return 'Rapport de Vérification';
+        }
+        else if($this->type == 4) {
+            return 'Rapport de Dépannage';
+        }
+
+    }
+
+
+
 
 }

@@ -1,0 +1,30 @@
+.doc_title{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    text-align: right;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px;
+    color: #0b5394;
+}
+
+.calibri {
+    font-family: Calibri;
+}
+
+.description{
+    text-align: justify;
+}
+
+.section_title{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background: #0b5394;
+    color: white;
+    padding: 2px;
+    padding-left: 5px;
+}
+
+

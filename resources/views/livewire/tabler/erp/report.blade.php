@@ -82,7 +82,7 @@
                         <div class="card-header">
                             <div class="card-title">{{ $section->title }}</div>
                             <div class="card-actions">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModalite" wire:click="select_section('{{ $section->id }}')">
+                                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModalite" wire:click="select_section('{{ $section->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                     Modalités
                                 </button>
@@ -96,7 +96,39 @@
                                 </button>
                                 <button class="btn btn-primary btn-icon" wire:click="edit_section('{{ $section->id }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
-                                </button>
+                                </button> --}}
+
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                    </button>
+                                    <div class="dropdown-menu  dropdown-menu-demo">
+                                         <span class="dropdown-header">Dropdown header</span>
+                                            <a class="dropdown-item" wire:click="edit_section('{{ $section->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+                                                Editer
+                                            </a>
+
+                                            <hr class="dropdown-divider">
+
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addFiles" wire:click="select_section('{{ $section->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                                Images
+                                            </a>
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addLink" wire:click="select_section('{{ $section->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                                Lien
+                                            </a>
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addModalite" wire:click="select_section('{{ $section->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                                Modalités
+                                            </a>
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addInvoice" wire:click="select_section('{{ $section->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus dropdown-item-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                                Devis
+                                            </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -178,144 +210,54 @@
 
     </div>
 
-    <div class="modal modal-blur fade" id="add-section" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form wire:submit.prevent='add_section'>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Ajouter une section</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            @include('_tabler.erp.report_section_form')
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('_tabler.modal',[
+        'id' => "add-section",
+        'title' => "Ajouter une section",
+        'include' => "_tabler.erp.report_section_form",
+        'method' => "add_section"
+    ])
     <script> window.addEventListener('close-modal', event => { $("#add-section").modal('hide'); }) </script>
 
-    <div class="modal modal-blur fade" id="addModalite" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form wire:submit.prevent='add_modalite'>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Définir les modalités</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            @include('_tabler.erp.report_modalite_form')
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('_tabler.modal',[
+        'id' => "addModalite",
+        'title' => "Définir les modalités",
+        'include' => "_tabler.erp.report_modalite_form",
+        'method' => "add_modalite"
+    ])
     <script> window.addEventListener('close-modal', event => { $("#addModalite").modal('hide'); }) </script>
 
-    <div class="modal modal-blur fade" id="addLink" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form wire:submit.prevent='add_link'>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Ajouter un lien</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @include('_tabler.erp.report_link_form')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary" >Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('_tabler.modal',[
+        'id' => "addLink",
+        'title' => "Ajouter un lien",
+        'include' => "_tabler.erp.report_link_form",
+        'method' => "add_link"
+    ])
     <script> window.addEventListener('close-modal', event => { $("#addLink").modal('hide'); }) </script>
 
-    <div class="modal modal-blur fade" id="addPeople" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form wire:submit.prevent=''>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add a new team</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+    @include('_tabler.modal',[
+        'id' => "addFiles",
+        'title' => "Ajouter des images",
+        'include' => "_tabler.erp.report_file_form",
+        'method' => "add_photo"
+    ])
+    <script> window.addEventListener('close-modal', event => { $("#addFiles").modal('hide'); }) </script>
 
-                        <div class="row mb-3 align-items-end">
-                            <div class="col-auto">
-                                <a href="#" class="avatar avatar-upload rounded">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <line x1="12" y1="5" x2="12" y2="19" /> <line x1="5" y1="12" x2="19" y2="12" /> </svg>
-                                    <span class="avatar-upload-text">Ajouter</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <label class="form-label">Name</label>
-                                <input type="text" class="form-control" wire:model.defer="name"/>
-                                @error('name') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Appartement</label>
-                            <select class="form-select"wire:model.defer="select">
-                                <option value="0">Sélectionnez un Appartement</option>
-
-                            </select>
-                            @error('select') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div>
-                            <label class="form-label">Description</label>
-                            <textarea class="form-control" wire:model.defer="description"></textarea>
-                            @error('description') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('_tabler.modal',[
+        'id' => "addPeople",
+        'title' => "Ajouter un intervenant",
+        'include' => "_tabler.erp.people_form",
+        'method' => "add_people"
+    ])
     <script> window.addEventListener('close-modal', event => { $("#addPeople").modal('hide'); }) </script>
 
-    <div class="modal modal-blur fade" id="addFiles" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form wire:submit.prevent='add_photo'>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Ajouter des images</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @include('_tabler.erp.report_file_form')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary" >Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script> window.addEventListener('close-modal', event => { $("#addFiles").modal('hide'); }) </script>
+    @include('_tabler.modal',[
+        'id' => "addInvoice",
+        'title' => "Ajouter un devis",
+        'include' => "_tabler.erp.invoice_form",
+        'method' => "add_invoice"
+    ])
+    <script> window.addEventListener('close-modal', event => { $("#addInvoice").modal('hide'); }) </script>
+
 
 </div>
 
