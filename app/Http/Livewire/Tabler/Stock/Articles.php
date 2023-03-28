@@ -8,6 +8,7 @@ use App\Imports\ArticleImport;
 use App\Models\Article;
 use App\Models\ArticleDoc;
 use App\Models\Brand;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -21,6 +22,7 @@ class Articles extends Component
     protected $paginationTheme = 'bootstrap';
     protected $listeners = ['reload'=> 'render'];
     public $img = 'img/no-pictures.png';
+    public $server = "https://mydash.yonkou.info/api/stock_articles";
 
     public function updatingSearch() {
         $this->resetPage();
@@ -190,6 +192,15 @@ class Articles extends Component
     {
         return Storage::disk('public')->delete($item);
 
+    }
+
+
+    public $imported_articles;
+
+    public function get_server_articles()
+    {
+        $this->form = 4;
+        $this->imported_articles = Http::get($this->server);
     }
 
 

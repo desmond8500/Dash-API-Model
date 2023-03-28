@@ -1,14 +1,13 @@
 <div>
     @component('components.tabler.header', ['title'=>'Articles', 'subtitle'=>'Stock', 'breadcrumbs'=>$breadcrumbs])
-    <div wire:loading>
-        <div class="d-flex justify-content-between">
-            <div><b>Chargement</b> <span class="animated-dots"></div>
+        <div wire:loading>
+            <div class="d-flex justify-content-between">
+                <div><b>Chargement</b> <span class="animated-dots"></div>
             </div>
         </div>
         @if (!$form)
-        <div class="btn-list">
-            @livewire('tabler.stock.article-add')
-
+            <div class="btn-list">
+                @livewire('tabler.stock.article-add')
                 <button  class="d-none d-sm-block btn btn-primary" title="Importer des articles" wire:click="$set('form', 3)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"></path> <path d="M9 15l3 -3l3 3"></path> <path d="M12 12l0 9"></path> </svg>
                     Articles
@@ -17,7 +16,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path> <path d="M12 13l0 9"></path> <path d="M9 19l3 3l3 -3"></path> </svg>
                     Articles
                 </button>
-
+                <button  class="d-none d-sm-block btn btn-primary" title="exporter le modèle d'articles" wire:click="get_server_articles">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path> <path d="M12 13l0 9"></path> <path d="M9 19l3 3l3 -3"></path> </svg>
+                    import
+                </button>
             </div>
         @endif
     @endcomponent
@@ -92,6 +94,9 @@
                     </div>
                     <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
                 </div>
+
+            @elseif ($form==4)
+                @dump($imported_articles)
 
             @else
 

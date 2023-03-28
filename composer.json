@@ -19,7 +19,7 @@
         "barryvdh/laravel-dompdf": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.5",
         "infyomlabs/coreui-templates": "8.0.x-dev",
         "infyomlabs/generator-builder": "^1.0",
         "infyomlabs/laravel-generator": "8.0.x-dev",
