@@ -22,7 +22,7 @@
                                 <th>HT/TVA</th>
                                 <th>Montant TTC</th>
                                 <th width="105px">Date</th>
-                                <th width="105px">Action</th>
+                                <th width="10px">Action</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -48,9 +48,9 @@
                                             <button class="btn btn-primary btn-icon" title="Modifier" wire:click="editAchat('{{ $achat->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
                                             </button>
-                                            <button class="btn btn-primary btn-icon"  title="Facture">
+                                            {{-- <button class="btn btn-primary btn-icon"  title="Facture">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path> <path d="M9 9l1 0"></path> <path d="M9 13l6 0"></path> <path d="M9 17l6 0"></path> </svg>
-                                            </button>
+                                            </button> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -70,7 +70,7 @@
                         @include('_tabler.stock.achatform')
                     </div>
                     <div class="card-footer">
-                        <button type="button" class="btn btn-secondary me-auto" wire:click="$set('article_id',0)">Fermer</button>
+                        <button type="button" class="btn btn-secondary me-auto" wire:click="$set('achat_id',0)">Fermer</button>
                         <button type="button" class="btn btn-danger btn-icon" wire:click="deleteAchat()">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
                         </button>

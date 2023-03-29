@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Models\Article;
 use App\Models\ArticleDoc;
 use App\Models\Brand;
+use App\Models\Provider;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -14,21 +15,24 @@ class ArticleAdd extends Component
 {
     use WithFileUploads;
 
-    public $designation, $description, $status_id=1, $priority_id=1,
+    public $designation, $description, $status_id=1, $priority_id=1, $provider_id,
     $reference, $quantity=0, $price=0, $brand_id, $photos;
 
     public function render()
     {
         return view('livewire.tabler.stock.article-add',[
             'priorite' => MainController::getArticlePriotity(),
-            'marques' => Brand::all()
+            'marques' => Brand::all(),
+            'providers' => Provider::all(),
         ]);
     }
 
     protected $rules = [
         'designation' => 'required',
         'reference' => 'required',
-        'price'=> 'numeric'
+        'price'=> ['required','numeric'],
+        'priority_id'=> ['required','numeric'],
+        'priority_id'=> ['numeric'],
     ];
 
     public function updated($propertyName)
@@ -48,6 +52,7 @@ class ArticleAdd extends Component
             'quantity' => $this->quantity,
             'price' => $this->price,
             'brand_id' => $this->brand_id,
+            'provider_id' => $this->provider_id,
         ]);
 
         $dir = "stock/articles/$article->id/";

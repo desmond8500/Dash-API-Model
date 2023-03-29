@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Tabler\Stock;
 
 use App\Models\Achat;
+use App\Models\AchatFacture;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -34,14 +35,19 @@ class Achats extends Component
         ])->extends('app.layout')->section('content');
     }
 
-    public $achat, $achat_id, $name, $date, $description, $tva=0;
+    public $achat, $achat_id, $name, $date, $description, $tva=0, $factures, $tva_check=false;
+
+    protected $rules = [
+        'name' => ['required'],
+        'date' => ['required', 'date'],
+    ];
 
     public function addAchat()
     {
-        $tva=0;
-
-        if ($this->tva) {
+        if ($this->tva_check) {
             $tva = 0.18;
+        }else{
+            $tva = 0;
         }
 
         $achat = Achat::create([
@@ -51,6 +57,20 @@ class Achats extends Component
             'description' => $this->description,
         ]);
 
+        if ($this->factures) {
+            $dir = "stock/achats/$achat->id";
+
+            foreach ($this->factures as $key => $facture) {
+                $name = $facture->getClientOriginalName();
+                $facture->storeAS("public/$dir", $name);
+
+                $img = AchatFacture::firstOrCreate([
+                    'achat_id' => $achat->id,
+                    'name' => $name,
+                    'folder' => "storage/$dir/$name",
+                ]);
+            }
+        }
     }
     public function editAchat($achat_id)
     {
@@ -58,7 +78,7 @@ class Achats extends Component
         $this->achat_id = $achat_id;
 
         $this->name = $achat->name;
-        $this->date = $achat->date;
+        $this->date = date_format($achat->date, 'Y-m-d');
         $this->tva = $achat->tva;
         $this->description = $achat->description;
     }
@@ -67,8 +87,10 @@ class Achats extends Component
         $tva = 0;
         $achat = Achat::find($this->achat_id);
 
-        if ($this->tva) {
+        if ($this->tva_check) {
             $tva = 0.18;
+        } else {
+            $tva = 0;
         }
 
         $achat->name = $this->name;
@@ -77,6 +99,21 @@ class Achats extends Component
         $achat->description = $this->description;
         $achat->save();
         $this->reset('achat_id');
+
+        if ($this->factures) {
+            $dir = "stock/achats/$achat->id";
+
+            foreach ($this->factures as $key => $facture) {
+                $name = $facture->getClientOriginalName();
+                $facture->storeAS("public/$dir", $name);
+
+                $img = AchatFacture::firstOrCreate([
+                    'achat_id' => $achat->id,
+                    'name' => $name,
+                    'folder' => "storage/$dir/$name",
+                ]);
+            }
+        }
     }
     public function deleteAchat()
     {

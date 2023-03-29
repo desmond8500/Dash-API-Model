@@ -86,4 +86,9 @@ class Achat extends Model
         return MainController::total_Achat($id);
     }
 
+    public function achats(): HasMany
+    {
+        return $this->hasMany(Achat::class);
+    }
+
 }

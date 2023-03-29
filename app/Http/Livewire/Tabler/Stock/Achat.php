@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Tabler\Stock;
 
 use App\Models\Achat as ModelsAchat;
 use App\Models\AchatArticle;
+use App\Models\AchatFacture;
 use App\Models\Article;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -45,6 +46,7 @@ class Achat extends Component
             'achat' => $achat,
             'articles' => $this->getArticles(),
             'total' => $total,
+            'factures' => AchatFacture::where('achat_id', $this->achat_id)->get(),
         ])->extends('app.layout')->section('content');
     }
 
@@ -97,7 +99,9 @@ class Achat extends Component
         $this->price = $achat->price;
         $this->reference = $achat->reference;
         $this->description = $achat->description;
-        $this->date = $achat->date;
+        if ($achat->date) {
+            $this->date = date_format($achat->date, 'Y-m-d');
+        }
         $this->provider_id = $achat->provider_id;
         $this->brand_id = $achat->brand_id;
     }
@@ -125,5 +129,34 @@ class Achat extends Component
         $achat_row = AchatArticle::find($achat_row_id);
 
         $achat_row->delete();
+    }
+
+    public $bills;
+    public function add_bill()
+    {
+        if ($this->bills) {
+            $dir = "stock/achats/$this->achat_id";
+
+            foreach ($this->bills as $key => $bill) {
+                $name = $bill->getClientOriginalName();
+                $bill->storeAS("public/$dir", $name);
+
+                $img = AchatFacture::firstOrCreate([
+                    'achat_id' => $this->achat_id,
+                    'name' => $name,
+                    'folder' => "storage/$dir/$name",
+                ]);
+            }
+        }
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function deleteBill($bill_id)
+    {
+        $bill = AchatFacture::find($bill_id);
+        unset($bill->folder);
+
+        $bill->delete();
+
     }
 }

@@ -34,28 +34,47 @@
         @error('reference') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
-    <div class="col-md-12 mb-3">
+    <div class="col-md-6 mb-3">
         <label class="form-label">Prix</label>
-        <input type="text" class="form-control" wire:model.defer="price"/>
+        <div class="input-group">
+            <input type="text" class="form-control" wire:model.defer="price"/>
+            <button class="btn btn-primary btn-icon" wire:click="convert('euro')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-euro" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M17.2 7a6 7 0 1 0 0 10"></path> <path d="M13 10h-8m0 4h8"></path> </svg>
+            </button>
+            <button class="btn btn-primary btn-icon" wire:click="convert('dollar')">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-dollar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path> <path d="M12 3v3m0 12v3"></path> </svg>
+            </button>
+        </div>
         @error('price') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Priorité</label>
-        <select class="form-select"wire:model.defer="priority">
+        <select class="form-select"wire:model.defer="priority_id">
             <option value="0">Sélectionner</option>
             @foreach ($priorite as $item)
                 <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
             @endforeach
         </select>
+        @error('priority_id') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
     <div class="mb-3 col-md-6">
         <label class="form-label">Marque</label>
         <select class="form-select"wire:model.defer="brand_id">
-            <option value="0">Sélectionner</option>
+            <option value="0" disabled>Sélectionner</option>
             @foreach ($marques as $marque)
                 <option value="{{ $marque->id }}">{{ $marque->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label class="form-label">Fournisseur</label>
+        <select class="form-select"wire:model.defer="provider_id">
+            <option value="0" >Sélectionner</option>
+            @foreach ($providers as $provider)
+                <option value="{{ $provider->id }}">{{ $provider->name }}</option>
             @endforeach
         </select>
     </div>

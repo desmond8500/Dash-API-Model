@@ -8,6 +8,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
             Importer
         </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFacture">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+            Facture
+        </button>
     @endcomponent
 
     <div class="row">
@@ -95,11 +99,25 @@
                         <button type="button" class="btn btn-primary" wire:click="updateAchatRow">Modifer</button>
                     </div>
                 </div>
+
+            @else
+                @foreach ($factures as $facture)
+                    <div class="card p-2 mb-2">
+                        <div class="row">
+                            <a class="col-md" href="{{ asset($facture->folder) }}">
+                                {{ $facture->name }}
+                            </a>
+                            <div class="col-auto">
+                                <button class="btn btn-danger btn-icon" wire:click="deleteBill('{{ $facture->id }}')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             @endif
         </div>
     </div>
-
-
 
     <div class="modal modal-blur fade" id="addArticle" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -120,4 +138,41 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-blur fade" id="addFacture" tabindex="-1" role="dialog" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form wire:submit.prevent='add_bill'>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajouter des factures</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if ($bills)
+                            <ul>
+                                @foreach ($bills as $bill)
+                                    <li>{{ $bill }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <div class="col-auto mb-3">
+                            <div wire:loading>
+                                Chargement <div class="spinner-border" role="status"></div>
+                            </div>
+                            <label href="#" class="avatar avatar-upload rounded" for="file">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none" /> <line x1="12" y1="5" x2="12" y2="19" /> <line x1="5" y1="12" x2="19" y2="12" /> </svg>
+                                <span class="avatar-upload-text">Facture</span>
+                                <input type="file" style="display: none" id="file" multiple wire:model.defer="bills">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script> window.addEventListener('close-modal', event => { $("#addFacture").modal('hide'); }) </script>
 </div>
