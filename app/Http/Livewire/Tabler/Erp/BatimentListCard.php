@@ -25,13 +25,12 @@ class BatimentListCard extends Component
     {
         $this->projet_id = $projet_id;
         $this->projet = Projet::find($projet_id);
-
     }
 
     public function render()
     {
         return view('livewire.tabler.erp.batiment-list-card',[
-            'buildings' => $this->projet->buildings,
+            'buildings' => Building::where('projet_id', $this->projet_id)->get(),
         ]);
     }
 
@@ -57,6 +56,5 @@ class BatimentListCard extends Component
         $building->description = $this->description;
         $building->save();
         $this->reset('building_id');
-        $this->render();
     }
 }
