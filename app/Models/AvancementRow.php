@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * @SWG\Definition(
- *      definition="System",
+ *      definition="AvancementRow",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -18,14 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="projet_id",
- *          description="projet_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="invoice_id",
- *          description="invoice_id",
+ *          property="int avancement_id",
+ *          description="int avancement_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -35,8 +30,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="description",
- *          description="description",
+ *          property="progress",
+ *          description="progress",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="comment",
+ *          description="comment",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -53,36 +53,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class System extends Model
+class AvancementRow extends Model
 {
     use SoftDeletes;
 
-    public $table = 'systems';
+    public $table = 'avancement_rows';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'projet_id',
-        'invoice_id',
+        'avancement_id',
         'name',
-        'description'
+        'comment'
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'projet_id' => 'integer',
-        'invoice_id' => 'integer',
-        'name' => 'string'
+        'avancement_id' => 'integer',
+        'name' => 'string',
+        'comment' => 'string'
     ];
 
     public static $rules = [
 
     ];
 
-    public function sections(): HasMany
+    public function rows(): HasMany
     {
-        return $this->hasMany(AvancementRow::class);
+        return $this->hasMany(AvancementSubRow::class);
     }
-
 
 }

@@ -86,3 +86,12 @@ Route::get('relation_field_template', '\InfyOm\GeneratorBuilder\Controllers\Gene
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate')->name('io_generator_builder_generate');
 Route::post('generator_builder/rollback', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@rollback')->name('io_generator_builder_rollback');
 Route::post('generator_builder/generate-from-file', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generateFromFile' )->name('io_generator_builder_generate_from_file');
+
+
+Route::resource('avancements', App\Http\Controllers\AvancementController::class);
+
+
+Route::resource('avancementRows', App\Http\Controllers\AvancementRowController::class);
+
+
+Route::resource('avancementSubRows', App\Http\Controllers\AvancementSubRowController::class);

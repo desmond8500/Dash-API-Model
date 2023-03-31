@@ -94,3 +94,12 @@ Route::resource('report_links', App\Http\Controllers\API\ReportLinkAPIController
 
 
 Route::resource('entreprises', App\Http\Controllers\API\EntrepriseAPIController::class);
+
+
+Route::resource('avancements', App\Http\Controllers\API\AvancementAPIController::class);
+
+
+Route::resource('avancement_rows', App\Http\Controllers\API\AvancementRowAPIController::class);
+
+
+Route::resource('avancement_sub_rows', App\Http\Controllers\API\AvancementSubRowAPIController::class);

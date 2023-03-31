@@ -4,17 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSystemsTable extends Migration
+class CreateAvancementsTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('systems', function (Blueprint $table) {
+        Schema::create('avancements', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id')->constrained();
-            $table->foreignId('invoice_id');
+            $table->foreignId('projet_id');
             $table->string('name');
-            $table->mediumText('description');
+            $table->string('system');
+            $table->foreignId('building_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -22,6 +22,6 @@ class CreateSystemsTable extends Migration
 
     public function down()
     {
-        Schema::drop('systems');
+        Schema::drop('avancements');
     }
 }

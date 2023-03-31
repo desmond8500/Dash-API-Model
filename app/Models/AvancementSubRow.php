@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * @SWG\Definition(
- *      definition="Building",
+ *      definition="AvancementSubRow",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -19,8 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="projet_id",
- *          description="projet_id",
+ *          property="avancement_row_id",
+ *          description="avancement_row_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -30,8 +29,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="description",
- *          description="description",
+ *          property="start",
+ *          description="start",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="end",
+ *          description="end",
+ *          type="string",
+ *          format="date"
+ *      ),
+ *      @SWG\Property(
+ *          property="progress",
+ *          description="progress",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="comment",
+ *          description="comment",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -48,47 +64,42 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Building extends Model
+class AvancementSubRow extends Model
 {
     use SoftDeletes;
 
-    public $table = 'buildings';
+    public $table = 'avancement_sub_rows';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'projet_id',
+        'avancement_row_id',
         'name',
-        'description'
+        'start',
+        'end',
+        'progress',
+        'comment',
+        'order',
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'projet_id' => 'integer',
+        'avancement_row_id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'start' => 'date',
+        'end' => 'date',
+        'progress' => 'string',
+        'comment' => 'string',
+        'order' => 'string',
     ];
 
     public static $rules = [
 
     ];
 
-    public function projet(): BelongsTo
+    public function section(): BelongsTo
     {
-        return $this->belongsTo(Projet::class);
-    }
-
-    public function stages(): HasMany
-    {
-        return $this->hasMany(Stage::class);
-    }
-    public function plannings(): HasMany
-    {
-        return $this->hasMany(Planning::class, 'batiment_id');
-    }
-    public function systems(): HasMany
-    {
-        return $this->hasMany(Avancement::class);
+        return $this->belongsTo(AvancementRow::class);
     }
 
 

@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * @SWG\Definition(
- *      definition="System",
+ *      definition="Avancement",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -19,25 +21,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      ),
  *      @SWG\Property(
  *          property="projet_id",
- *          description="projet_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="invoice_id",
- *          description="invoice_id",
+ *          description="id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="name",
  *          description="name",
- *          type="string"
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="description",
- *          description="description",
- *          type="string"
+ *          property="system",
+ *          description="system",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="building_id",
+ *          description="building_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -53,26 +57,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class System extends Model
+class Avancement extends Model
 {
     use SoftDeletes;
 
-    public $table = 'systems';
+    public $table = 'avancements';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
         'projet_id',
-        'invoice_id',
         'name',
-        'description'
+        'system',
+        'building_id'
     ];
 
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
-        'invoice_id' => 'integer',
-        'name' => 'string'
+        'name' => 'string',
+        'system' => 'integer',
+        'building_id' => 'integer'
     ];
 
     public static $rules = [
@@ -84,5 +89,14 @@ class System extends Model
         return $this->hasMany(AvancementRow::class);
     }
 
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
+
+    public function system(): HasOne
+    {
+        return $this->belongsTo(System::class, 'system');
+    }
 
 }

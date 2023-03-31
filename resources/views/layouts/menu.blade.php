@@ -160,3 +160,21 @@
         <span>Plannings</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('avancements*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('avancements.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Avancements</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('avancementRows*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('avancementRows.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Avancement Rows</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('avancementSubRows*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('avancementSubRows.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Avancement Sub Rows</span>
+    </a>
+</li>

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Projet as ModelsProjet;
-use App\Models\Task;
 use Livewire\Component;
 
 class Projet extends Component
