@@ -3,10 +3,12 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Models\Avancement;
+use App\Models\AvancementCategorie;
 use App\Models\AvancementRow;
 use App\Models\AvancementSubRow;
 use App\Models\Building;
 use App\Models\System;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Avancements extends Component
@@ -91,6 +93,7 @@ class Avancements extends Component
             'avancement_id' => $this->system,
             'name' => ucfirst($this->name),
             'comment' => $this->comment,
+            'carbon' => new Carbon(),
         ]);
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -124,12 +127,12 @@ class Avancements extends Component
     }
 
     // Row
-    public $row_id, $start, $end, $progress;
+    public $row_id, $start, $end, $progress, $avancement_row_id;
 
     protected $row_rules = [
         'name' => 'required',
         'start' => ['required','date'],
-        'end' => ['required','date'],
+        'end' => ['required','date',"after_or_equal:start"],
         'progress' => ['required', 'numeric'],
         'comment' => 'required',
     ];
@@ -138,7 +141,7 @@ class Avancements extends Component
     {
         $this->validate($this->row_rules);
         AvancementSubRow::create([
-            'avancement_row_id' => $this->section_id,
+            'avancement_row_id' => $this->avancement_row_id,
             'name' => $this->name,
             'start' => $this->start,
             'end' => $this->end,
@@ -153,8 +156,8 @@ class Avancements extends Component
     {
         $this->row_id = $row_id;
         $row = AvancementSubRow::find($row_id);
-        $this->start = $row->start;
-        $this->end = $row->end;
+        $this->start = date_format($row->start, ('Y-m-d'));
+        $this->end = date_format($row->end, ('Y-m-d'));
         $this->progress = $row->progress;
         $this->comment = $row->comment;
     }
@@ -175,6 +178,49 @@ class Avancements extends Component
         $row = AvancementSubRow::find($this->row_id);
 
         $row->delete();
+        $this->render();
+    }
+
+    // Category
+    public $category_id, $category_name;
+
+    protected $category_rules = [
+        'name' => 'required',
+        'avancement_id' => 'required',
+    ];
+
+    public function add_category()
+    {
+        $this->validate($this->rules);
+        AvancementCategorie::create([
+            'name' => $this->name,
+            'avancement_id' => $this->avancement_id,
+        ]);
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function edit_category($category_id)
+    {
+        $this->category_id = $category_id;
+        $category = AvancementCategorie::find($category_id);
+        $this->name = $category->name;
+        $this->avancement_id = $category->avancement_id;
+    }
+
+    public function update_category()
+    {
+        $category = AvancementCategorie::find($this->category_id);
+        $category->name = $this->name;
+        $category->avancement_id = $this->avancement_id;
+        $category->save();
+        $this->reset('category_id');
+        $this->render();
+    }
+    public function delete_category()
+    {
+        $category = AvancementCategorie::find($this->category_id);
+
+        $category->delete();
         $this->render();
     }
 }

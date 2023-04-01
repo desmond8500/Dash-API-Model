@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -102,5 +103,9 @@ class AvancementSubRow extends Model
         return $this->belongsTo(AvancementRow::class);
     }
 
-
+    public function duration()
+    {
+        $carbon = new Carbon();
+        return $carbon->parse($this->end)->diffInDays($this->start)+1;
+    }
 }

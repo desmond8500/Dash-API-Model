@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -81,6 +81,23 @@ class AvancementRow extends Model
     public function rows(): HasMany
     {
         return $this->hasMany(AvancementSubRow::class);
+    }
+
+    public function duration()
+    {
+        $carbon = new Carbon();
+        return $carbon->parse($this->rows->sortBy('end')->last()->end)->diffInDays($this->rows->sortBy('start')->first()->start)+1;
+    }
+
+    public function start()
+    {
+        $carbon = new Carbon();
+        return $this->rows->sortBy('start')->first()->start;
+    }
+    public function end()
+    {
+        $carbon = new Carbon();
+        return $this->rows->sortBy('end')->last()->end;
     }
 
 }

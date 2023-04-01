@@ -22,8 +22,10 @@ class DossierTechnique extends Component
 
     protected $system_rules = [
         'name' => 'required',
-    'description' => 'required',
+        'description' => 'required',
     ];
+
+    protected $listeners = ['reload' => 'render'];
 
     public function mount($projet_id)
     {

@@ -103,3 +103,6 @@ Route::resource('avancement_rows', App\Http\Controllers\API\AvancementRowAPICont
 
 
 Route::resource('avancement_sub_rows', App\Http\Controllers\API\AvancementSubRowAPIController::class);
+
+
+Route::resource('avancement_categories', App\Http\Controllers\API\AvancementCategorieAPIController::class);
