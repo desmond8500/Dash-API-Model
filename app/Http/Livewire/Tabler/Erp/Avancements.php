@@ -186,15 +186,14 @@ class Avancements extends Component
 
     protected $category_rules = [
         'name' => 'required',
-        'avancement_id' => 'required',
     ];
 
     public function add_category()
     {
-        $this->validate($this->rules);
+        $this->validate($this->category_rules);
         AvancementCategorie::create([
-            'name' => $this->name,
-            'avancement_id' => $this->avancement_id,
+            'name' => $this->category_name,
+            'projet_id' => $this->projet_id,
         ]);
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -204,14 +203,12 @@ class Avancements extends Component
         $this->category_id = $category_id;
         $category = AvancementCategorie::find($category_id);
         $this->name = $category->name;
-        $this->avancement_id = $category->avancement_id;
     }
 
     public function update_category()
     {
         $category = AvancementCategorie::find($this->category_id);
-        $category->name = $this->name;
-        $category->avancement_id = $this->avancement_id;
+        $category->name = $this->category_name;
         $category->save();
         $this->reset('category_id');
         $this->render();

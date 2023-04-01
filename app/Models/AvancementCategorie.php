@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="avancement_id",
- *          description="avancement_id",
+ *          property="projet_id",
+ *          description="projet_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -45,38 +45,22 @@ class AvancementCategorie extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'avancement_categories';
-    
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
-        'avancement_id',
+        'projet_id',
         'name'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
-        'avancement_id' => 'integer',
+        'projet_id' => 'integer',
         'name' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
-    ];
 
-    
+    ];
 }

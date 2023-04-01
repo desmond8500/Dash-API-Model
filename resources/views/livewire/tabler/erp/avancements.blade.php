@@ -18,20 +18,18 @@
                 <div class="table-responsive">
                     <table class="table">
                         @foreach ($buildings as $building)
-                            {{-- <thead> --}}
-                                <tr class="bg-primary text-light">
-                                    <th colspan="7" class="text-center" style="vertical-align: center; text-transform: uppercase;">{{ $building->name }}</th>
-                                </tr>
-                                <tr class="table-secondary ">
-                                    <th scope="col">Description</th>
-                                    <th class="text-center">Durée</th>
-                                    <th class="text-center">Début</th>
-                                    <th class="text-center">Fin</th>
-                                    <th class="text-center">% Complete</th>
-                                    <th class="text-center">Commentaires</th>
-                                    <th class="text-end">Actions</th>
-                                </tr>
-                            {{-- </thead> --}}
+                            <tr class="bg-primary text-light">
+                                <th colspan="7" class="text-center" style="vertical-align: center; text-transform: uppercase;">{{ $building->name }}</th>
+                            </tr>
+                            <tr class="table-secondary ">
+                                <th scope="col">Description</th>
+                                <th class="text-center">Durée</th>
+                                <th class="text-center">Début</th>
+                                <th class="text-center">Fin</th>
+                                <th class="text-center">% Complete</th>
+                                <th class="text-center">Commentaires</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
                             <tbody>
                                 @foreach ($building->systems as $sys_item)
                                     <tr class="table-warning">
