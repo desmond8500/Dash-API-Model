@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -46,38 +48,32 @@ class ProjetContact extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'projet_contacts';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'projet_id',
         'contact_id'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
         'contact_id' => 'integer'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
-    
+    public function contact(): HasOne
+    {
+        return $this->hasOne(Contact::class, 'contact_id');
+    }
+
+    // public function contact2(): BelongsTo
+    // {
+    //     return $this->belongsTo(Contact::class);
+    // }
 }

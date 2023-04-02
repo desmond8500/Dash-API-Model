@@ -12,7 +12,7 @@
                     @if ($edit)
                         @include('_tabler.erp.client_form')
                         <div class="col-md-12 d-flex justify-content-between">
-                            <button class="btn btn-secondary" wire:click="$set('edit', false)">Fermer</button>
+                            <a class="btn btn-secondary" wire:click="$set('edit', false)">Fermer</a>
                             <button class="btn btn-primary" wire:click='update'>Modifier</button>
                         </div>
                     @else

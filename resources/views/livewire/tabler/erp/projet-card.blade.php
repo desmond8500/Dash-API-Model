@@ -5,7 +5,7 @@
                 <form wire:submit.prevent='updateProjet'>
                     @include('_tabler.erp.projet_form')
                     <div class="col-md-12 d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" wire:click="$set('edit', false)">Fermer</button>
+                        <a type="button" class="btn btn-secondary" wire:click="$set('edit', false)">Fermer</a>
                         <button type="submit" class="btn btn-primary">Modifier</button>
                     </div>
                 </form>
