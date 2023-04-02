@@ -11,7 +11,7 @@
         @error('client_name') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
     <div class="mb-3 col-md-4">
-        <label class="form-label">Téléphone du client</label>
+        <label class="form-label">Téléphone</label>
         <input type="phone" class="form-control" wire:model.defer="client_tel"/ placeholder="Numéro de Téléphone">
         @error('client_tel') <span class="text-danger">{{ $message }}</span> @enderror
     </div>

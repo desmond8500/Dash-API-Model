@@ -11,7 +11,7 @@ class DevisListCard extends Component
     public $projet, $search;
     public $projet_id, $devis_id, $devis;
     public $reference, $description, $status = 1;
-    public $client_name, $client_tel, $client_address;
+    public $client_name, $client_tel=0, $client_address;
     public $discount, $tva, $brs;
 
     protected $listeners = ['reload' => 'render'];
@@ -79,7 +79,6 @@ class DevisListCard extends Component
         $this->devis_id = $id;
         $devis = Invoice::find($id);
         $this->projet_id     = $devis->projet_id;
-        $this->reference     = $devis->reference;
         $this->status        = $devis->status;
         $this->description   = $devis->description;
         $this->client_name   = $devis->client_name;
@@ -95,8 +94,7 @@ class DevisListCard extends Component
         $this->validate($this->devis_rules);
         $devis = Invoice::find($this->devis_id);
 
-        // $devis->projet_id = $this->projet_id;
-        $devis->reference = $this->reference;
+        $devis->projet_id = $this->projet_id;
         $devis->status = $this->status;
         $devis->description = $this->description;
         $devis->client_name = $this->client_name;
@@ -108,5 +106,10 @@ class DevisListCard extends Component
 
         $devis->save();
         $this->devis_id = false;
+    }
+
+    public function delete()
+    {
+        # code...
     }
 }

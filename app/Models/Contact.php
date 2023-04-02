@@ -55,13 +55,9 @@ class Contact extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'contacts';
 
-
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'firstname',
@@ -70,11 +66,6 @@ class Contact extends Model
         'avatar'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'firstname' => 'string',
@@ -83,29 +74,15 @@ class Contact extends Model
         'avatar' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
 
     ];
 
-    /**
-     * Get all of the tels for the Contact
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function tels(): HasMany
     {
         return $this->hasMany(ContactTel::class);
     }
-    /**
-     * Get all of the emails for the Contact
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function emails(): HasMany
     {
         return $this->hasMany(ContactMail::class);

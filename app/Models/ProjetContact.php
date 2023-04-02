@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="ContactMail",
+ *      definition="ProjetContact",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -17,15 +17,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="contact_id",
- *          description="contact_id",
+ *          property="projet_id",
+ *          description="projet_id",
  *          type="integer",
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="email",
- *          description="email",
- *          type="string"
+ *          property="contact_id",
+ *          description="contact_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -41,28 +42,42 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class ContactMail extends Model
+class ProjetContact extends Model
 {
     use SoftDeletes;
 
-    public $table = 'contact_mails';
+
+    public $table = 'projet_contacts';
+    
 
     protected $dates = ['deleted_at'];
 
+
+
     public $fillable = [
-        'contact_id',
-        'email'
+        'projet_id',
+        'contact_id'
     ];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'id' => 'integer',
-        'contact_id' => 'integer',
-        'email' => 'string'
+        'projet_id' => 'integer',
+        'contact_id' => 'integer'
     ];
 
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
     public static $rules = [
-
+        
     ];
 
-
+    
 }

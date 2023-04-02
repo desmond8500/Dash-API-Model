@@ -77,8 +77,8 @@ class Plannings extends Component
         $this->system_id = $planning->system_id;
         $this->status = $planning->status;
         $this->tache = $planning->tache;
-        $this->debut = $planning->debut;
-        $this->fin = $planning->fin;
+        $this->debut = date_format($planning->debut, ('Y-m-d'));
+        $this->fin = date_format($planning->fin, ('Y-m-d'));
     }
 
     public function update_task()

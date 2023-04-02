@@ -55,4 +55,17 @@ class PDFController extends Controller
 
         return $pdf->stream($report->type()." - ".$report->projet->name." - ". $report->projet->client->name);
     }
+
+    public function export_fiche_travaux()
+    {
+        # code...
+    }
+    public function export_fiche_installation()
+    {
+        # code...
+    }
+    public function export_fiche_livraison()
+    {
+        # code...
+    }
 }

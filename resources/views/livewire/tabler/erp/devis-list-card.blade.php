@@ -28,11 +28,11 @@
                     <div class="card">
                         <div class="p-2">
                             @if ($devis->id == $devis_id)
-                                <form class="row" wire:click='update_invoice'>
+                                <form class="row" wire:submit.prevent='update_invoice'>
                                     @include('_tabler.erp.devis_form')
                                     <div class="col-md-12">
                                         <div class="modal-footer">
-                                            <button type="button" class="btn me-auto btn-secondary" wire:click="$set('devis_id',0)">Fermer</button>
+                                            <a class="btn me-auto btn-secondary" wire:click="$set('devis_id',0)">Fermer</a>
                                             <button type="submit" class="btn btn-primary" >Modifier</button>
                                         </div>
                                     </div>

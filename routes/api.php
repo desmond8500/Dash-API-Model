@@ -106,3 +106,6 @@ Route::resource('avancement_sub_rows', App\Http\Controllers\API\AvancementSubRow
 
 
 Route::resource('avancement_categories', App\Http\Controllers\API\AvancementCategorieAPIController::class);
+
+
+Route::resource('projet_contacts', App\Http\Controllers\API\ProjetContactAPIController::class);

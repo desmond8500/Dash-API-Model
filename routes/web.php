@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PDFController;
 use App\Http\Livewire\Material\Index as MaterialIndex;
+use App\Http\Livewire\Tabler\Contact\Contacts;
 use App\Http\Livewire\Tabler\Erp\Building;
 use App\Http\Livewire\Tabler\Erp\Client;
 use App\Http\Livewire\Tabler\Erp\Clients;
@@ -64,14 +65,20 @@ Route::name('tabler.')->group(function () {
     Route::get('/article/{article_id}',     Article::class)->name('article');
     Route::get('/providers',                Providers::class)->name('providers');
     Route::get('/brands',                   Brands::class)->name('brands');
-    //Taches
+    // Taches
     Route::get('/tasks',                    Tasks::class)->name('tasks');
     Route::get('/task/{task_id}',           Task::class)->name('task');
-    //Fichiers
+    // Fichiers
     Route::get('/files',                    Files::class)->name('files');
+    // Contacts
+    Route::get('/contacts',                 Contacts::class)->name('contacts');
+    // Route::get('/contact/contact/{contact_id}', Contact::class)->name('contact');
     // PDF
     Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
     Route::get('/export_report',            [PDFController::class, 'export_report'])->name('export_report');
+    Route::get('/export_fiche_travaux',     [PDFController::class, 'export_fiche_travaux'])->name('export_fiche_travaux');
+    Route::get('/export_fiche_installation',[PDFController::class, 'export_fiche_installation'])->name('export_fiche_installation');
+    Route::get('/export_fiche_livraison',   [PDFController::class, 'export_fiche_livraison'])->name('export_fiche_livraison');
 
 });
 

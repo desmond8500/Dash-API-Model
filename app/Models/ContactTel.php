@@ -45,38 +45,24 @@ class ContactTel extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'contact_tels';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'contact_id',
         'tel'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'contact_id' => 'integer',
         'tel' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+
     ];
 
-    
+
 }
