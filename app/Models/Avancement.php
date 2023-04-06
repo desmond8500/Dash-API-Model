@@ -35,10 +35,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="system",
  *          description="system",
  *          type="integer",
- *          property="avancement_categorie_id",,
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="avancement_categorie_id",
  *          description="avancement_categorie_id",
  *          type="integer",
  *          format="int32"
@@ -81,7 +81,10 @@ class Avancement extends Model
     ];
 
     public static $rules = [
-
+        'avancement_categorie_id' => 'required',
+        'building_id' => 'required',
+        'name' => 'required',
+        'system' => 'required',
     ];
 
     public function sections(): HasMany
@@ -91,7 +94,7 @@ class Avancement extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(AvancementCategorie::class, 'avancement_categorie_id');
+        return $this->belongsTo(AvancementCategorie::class);
     }
 
     public function system(): HasOne

@@ -9163,7 +9163,7 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "projet_id": {
+                "building_id": {
                     "description": "id",
                     "type": "integer",
                     "format": "int32"
@@ -9178,8 +9178,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "building_id": {
-                    "description": "building_id",
+                "avancement_categorie_id": {
+                    "description": "avancement_categorie_id",
                     "type": "integer",
                     "format": "int32"
                 },
@@ -9205,8 +9205,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "projet_id": {
-                    "description": "projet_id",
+                "building_id": {
+                    "description": "building_id",
                     "type": "integer",
                     "format": "int32"
                 },

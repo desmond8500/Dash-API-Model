@@ -71,41 +71,16 @@ Route::resource('tasks',            TaskAPIController::class);
 Route::resource('task_photos',      TaskPhotoAPIController::class);
 Route::resource('task_documents',   TaskDocumentAPIController::class);
 
-
-Route::resource('systems', App\Http\Controllers\API\SystemAPIController::class);
-
-
-Route::resource('fichiers', App\Http\Controllers\API\FichierAPIController::class);
-
-
-Route::resource('report_files', App\Http\Controllers\API\ReportFilesAPIController::class);
-
-
-Route::resource('personnels', App\Http\Controllers\API\PersonnelAPIController::class);
-
-
-Route::resource('comptes', App\Http\Controllers\API\CompteAPIController::class);
-
-
-Route::resource('plannings', App\Http\Controllers\API\PlanningAPIController::class);
-
-
-Route::resource('report_links', App\Http\Controllers\API\ReportLinkAPIController::class);
-
-
-Route::resource('entreprises', App\Http\Controllers\API\EntrepriseAPIController::class);
-
-
-Route::resource('avancements', App\Http\Controllers\API\AvancementAPIController::class);
-
-
-Route::resource('avancement_rows', App\Http\Controllers\API\AvancementRowAPIController::class);
-
-
-Route::resource('avancement_sub_rows', App\Http\Controllers\API\AvancementSubRowAPIController::class);
-
-
-Route::resource('avancement_categories', App\Http\Controllers\API\AvancementCategorieAPIController::class);
-
-
-Route::resource('projet_contacts', App\Http\Controllers\API\ProjetContactAPIController::class);
+Route::resource('systems',          SystemAPIController::class);
+Route::resource('fichiers',         FichierAPIController::class);
+Route::resource('report_files',     ReportFilesAPIController::class);
+Route::resource('personnels',       PersonnelAPIController::class);
+Route::resource('comptes',          CompteAPIController::class);
+Route::resource('plannings',        PlanningAPIController::class);
+Route::resource('report_links',     ReportLinkAPIController::class);
+Route::resource('entreprises',      EntrepriseAPIController::class);
+Route::resource('avancements',      AvancementAPIController::class);
+Route::resource('avancement_rows',  AvancementRowAPIController::class);
+Route::resource('avancement_sub_rows',  AvancementSubRowAPIController::class);
+Route::resource('avancement_categories',    AvancementCategorieAPIController::class);
+Route::resource('projet_contacts',  ProjetContactAPIController::class);

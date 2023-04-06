@@ -47,7 +47,7 @@ class Avancements extends Component
         $this->validate($this->rules);
         Avancement::create([
             'building_id' => $this->building_id,
-            'avancement_categorie_id ' => $this->avancement_categorie_id ,
+            'avancement_categorie_id ' => 1 ,
             'name' => $this->name,
             'system' => $this->system,
         ]);
