@@ -64,7 +64,7 @@ class ContactCard extends Component
         }
 
         $this->reset('contact_id', 'firstname', 'lastname', 'description', 'email', 'tel');
-
+        $this->emit('reload');
         $this->dispatchBrowserEvent('close-modal');
     }
 
@@ -119,6 +119,7 @@ class ContactCard extends Component
 
         $contact->delete();
         $this->render();
+        $this->emit('reload');
     }
 
     public function delete_tel($tel_id)

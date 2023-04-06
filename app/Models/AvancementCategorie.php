@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -17,8 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="projet_id",
- *          description="projet_id",
+ *          property="building_id",
+ *          description="building_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -50,17 +52,28 @@ class AvancementCategorie extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'projet_id',
+        'building_id',
         'name'
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'projet_id' => 'integer',
+        'building_id' => 'integer',
         'name' => 'string'
     ];
 
     public static $rules = [
 
     ];
+
+
+    public function avancements(): HasMany
+    {
+        return $this->hasMany(Avancement::class);
+    }
+
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
 }

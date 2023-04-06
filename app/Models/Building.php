@@ -90,6 +90,10 @@ class Building extends Model
     {
         return $this->hasMany(Avancement::class);
     }
+    public function categories(): HasMany
+    {
+        return $this->hasMany(AvancementCategorie::class);
+    }
 
 
 }

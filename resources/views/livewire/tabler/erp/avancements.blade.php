@@ -5,21 +5,21 @@
                 <div class="card-header">
                     <div class="card-title">Etat d'avancement</div>
                     <div class="card-actions">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-                            Système
-                        </button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategorie">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-                            Catégorie
-                        </button>
+
+
                     </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
                         @foreach ($buildings as $building)
                             <tr class="bg-primary text-light">
-                                <th colspan="7" class="text-center" style="vertical-align: center; text-transform: uppercase;">{{ $building->name }}</th>
+                                <th colspan="6" class="text-center" style="vertical-align: center; text-transform: uppercase;">{{ $building->name }}</th>
+                                <td class="text-end">
+                                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addCategorie" wire:click="$set('category_building_id','{{ $building->id }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                        Catégorie
+                                    </button>
+                                </td>
                             </tr>
                             <tr class="table-secondary ">
                                 <th scope="col">Description</th>
@@ -31,7 +31,34 @@
                                 <th class="text-end">Actions</th>
                             </tr>
                             <tbody>
-                                @foreach ($building->systems as $sys_item)
+                                @foreach ($building->categories as $category)
+                                    <tr>
+                                        @if ($category->id == $category_id)
+                                            <td colspan="7">
+                                                <form class="row" wire:submit.prevent="update_category">
+                                                    @include('_tabler.erp.avancement_category_form')
+                                                    <div class="col-md-12 d-flex justify-content-between">
+                                                        <a class="btn btn-secondary" wire:click="$set('category_id',0)">Fermer</a>
+                                                        <button type="submit" class="btn btn-primary">Modifier</button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        @else
+                                            <td colspan="6">{{ $category->name }}</td>
+                                            <td class="text-end">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement" wire:click="setAvancement('{{ $building->id }}','{{ $category->id }}')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
+                                                Système
+                                            </button>
+                                            <button class="btn btn-primary btn-icon" wire:click="edit_category('{{ $category->id }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+                                            </button>
+                                            </td>
+                                        @endif
+                                    </tr>
+
+                                @endforeach
+                                @foreach ($category->avancements as $sys_item)
                                     <tr class="table-warning">
                                         @if ($avancement_id == $sys_item->id)
                                             <td colspan="7">

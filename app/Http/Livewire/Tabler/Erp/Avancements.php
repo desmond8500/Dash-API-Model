@@ -32,17 +32,22 @@ class Avancements extends Component
     public $avancement_id, $name, $system, $building_id;
 
     protected $rules = [
-        'projet_id' => 'required',
         'name' => 'required',
         'system' => 'required',
     ];
+
+    public function setAvancement($building_id, $categorie_id)
+    {
+        $this->building_id = $building_id;
+        $this->avancement_categorie_id = $categorie_id;
+    }
 
     public function add_avancement()
     {
         $this->validate($this->rules);
         Avancement::create([
-            'projet_id' => $this->projet_id,
             'building_id' => $this->building_id,
+            'avancement_categorie_id ' => $this->avancement_categorie_id ,
             'name' => $this->name,
             'system' => $this->system,
         ]);
@@ -53,16 +58,17 @@ class Avancements extends Component
     {
         $this->avancement_id = $avancement_id;
         $model = Avancement::find($avancement_id);
-        $this->projet_id = $model->projet_id;
+        $this->building_id = $model->building_id;
         $this->name = $model->name;
         $this->system = $model->system;
-        $this->building_id = $model->building_id;
+        $this->avancement_categorie_id  = $model->avancement_categorie_id;
     }
 
     public function update_avancement()
     {
+        $this->validate($this->rules);
         $model = Avancement::find($this->avancement_id);
-        $model->projet_id = $this->projet_id;
+        $model->building_id = $this->building_id;
         $model->name = $this->name;
         $model->system = $this->system;
         $model->save();
@@ -182,36 +188,37 @@ class Avancements extends Component
     }
 
     // Category
-    public $category_id, $category_name;
+    public $category_id, $category_name, $category_building_id, $avancement_categorie_id ;
 
     protected $category_rules = [
-        'name' => 'required',
+        'category_name' => 'required',
     ];
 
     public function add_category()
     {
         $this->validate($this->category_rules);
         AvancementCategorie::create([
-            'name' => $this->category_name,
-            'projet_id' => $this->projet_id,
+            'name' => ucfirst($this->category_name),
+            'building_id' => $this->category_building_id,
         ]);
         $this->dispatchBrowserEvent('close-modal');
+        $this->reset('category_name');
     }
 
     public function edit_category($category_id)
     {
         $this->category_id = $category_id;
         $category = AvancementCategorie::find($category_id);
-        $this->name = $category->name;
+        $this->category_name = $category->name;
     }
 
     public function update_category()
     {
+        $this->validate($this->category_rules);
         $category = AvancementCategorie::find($this->category_id);
         $category->name = $this->category_name;
         $category->save();
         $this->reset('category_id');
-        $this->render();
     }
     public function delete_category()
     {

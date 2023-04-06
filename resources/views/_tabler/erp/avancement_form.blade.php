@@ -18,10 +18,12 @@
 <div class="mb-3 col-md-6">
     <label class="form-label">Systèmes</label>
     <select class="form-select"wire:model.defer="system">
-        <option value="0">Sélectionnez un batiment</option>
+        <option value="0">Sélectionnez un système</option>
         @foreach ($systems as $system)
             <option value="{{ $system->id }}">{{ $system->name }}</option>
         @endforeach
     </select>
     @error('system') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
+
+{{ $avancement_categorie_id }}

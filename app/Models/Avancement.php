@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="projet_id",
+ *          property="building_id",
  *          description="id",
  *          type="integer",
  *          format="int32"
@@ -35,11 +35,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="system",
  *          description="system",
  *          type="integer",
+ *          property="avancement_categorie_id",,
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="building_id",
- *          description="building_id",
+ *          description="avancement_categorie_id",
  *          type="integer",
  *          format="int32"
  *      ),
@@ -66,18 +66,18 @@ class Avancement extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
-        'projet_id',
+        'avancement_categorie_id',
+        'building_id',
         'name',
         'system',
-        'building_id'
     ];
 
     protected $casts = [
         'id' => 'integer',
-        'projet_id' => 'integer',
+        'avancement_categorie_id' => 'integer',
+        'building_id' => 'integer',
         'name' => 'string',
         'system' => 'integer',
-        'building_id' => 'integer'
     ];
 
     public static $rules = [
@@ -89,9 +89,9 @@ class Avancement extends Model
         return $this->hasMany(AvancementRow::class);
     }
 
-    public function building(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Building::class);
+        return $this->belongsTo(AvancementCategorie::class, 'avancement_categorie_id');
     }
 
     public function system(): HasOne

@@ -11,10 +11,10 @@ class CreateAvancementsTable extends Migration
     {
         Schema::create('avancements', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id');
+            $table->foreignId('building_id');
+            $table->foreignId('avancement_categorie_id');
             $table->string('name');
             $table->string('system');
-            $table->foreignId('building_id');
             $table->timestamps();
             $table->softDeletes();
         });
