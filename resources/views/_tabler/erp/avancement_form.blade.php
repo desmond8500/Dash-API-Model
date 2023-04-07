@@ -4,8 +4,8 @@
     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
 
-<div class="mb-3 col-md-6">
-    <label class="form-label">Batiments</label>
+{{-- <div class="mb-3 col-md-6">
+    <label class="form-label">Batiment</label>
     <select class="form-select"wire:model.defer="building_id">
         <option value="0">Sélectionnez un batiment</option>
         @foreach ($buildings as $building)
@@ -13,17 +13,17 @@
         @endforeach
     </select>
     @error('building_id') <span class="text-danger">{{ $message }}</span> @enderror
-</div>
+</div> --}}
 
 <div class="mb-3 col-md-6">
-    <label class="form-label">Systèmes</label>
+    <label class="form-label">Système</label>
     <select class="form-select"wire:model.defer="system">
         <option value="0">Sélectionnez un système</option>
-        @foreach ($systems as $system)
-            <option value="{{ $system->id }}">{{ $system->name }}</option>
+        @foreach ($systems as $systeme)
+            <option value="{{ $systeme->id }}">{{ $systeme->name }}</option>
         @endforeach
     </select>
     @error('system') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
-
-{{ $avancement_categorie_id }}
+{{--
+{{ $avancement_categorie_id }} --}}

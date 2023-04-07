@@ -92,10 +92,10 @@ class Avancement extends Model
         return $this->hasMany(AvancementRow::class);
     }
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(AvancementCategorie::class);
-    }
+    // public function category(): BelongsTo
+    // {
+    //     return $this->belongsTo(AvancementCategorie::class);
+    // }
 
     public function system(): HasOne
     {

@@ -86,7 +86,7 @@ class AvancementRow extends Model
     public function duration()
     {
         $carbon = new Carbon();
-        return $carbon->parse($this->rows->sortBy('end')->last()->end)->diffInDays($this->rows->sortBy('start')->first()->start)+1;
+        return $carbon->parse($this->rows->sortBy('end')->last()->end)->diffInDays($this->rows->sortBy('start')->first()->start);
     }
 
     public function start()

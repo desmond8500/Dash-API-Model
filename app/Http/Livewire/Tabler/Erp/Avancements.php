@@ -32,7 +32,6 @@ class Avancements extends Component
     public $avancement_id, $name, $system, $building_id;
 
     protected $rules = [
-        'name' => 'required',
         'system' => 'required',
     ];
 
@@ -45,12 +44,15 @@ class Avancements extends Component
     public function add_avancement()
     {
         $this->validate($this->rules);
+        $sys = System::find($this->system);
+
         Avancement::create([
             'building_id' => $this->building_id,
-            'avancement_categorie_id ' => 1 ,
-            'name' => $this->name,
+            'avancement_categorie_id' => $this->avancement_categorie_id ,
+            'name' => $this->name ?? $sys->name,
             'system' => $this->system,
         ]);
+        $this->reset('system', 'name','building_id');
         $this->dispatchBrowserEvent('close-modal');
     }
 
@@ -69,10 +71,10 @@ class Avancements extends Component
         $this->validate($this->rules);
         $model = Avancement::find($this->avancement_id);
         $model->building_id = $this->building_id;
-        $model->name = $this->name;
+        $model->name = $this->name ?? $sys->name;
         $model->system = $this->system;
         $model->save();
-        $this->reset('avancement_id');
+        $this->reset('avancement_id', 'system','name', 'building_id');
         $this->render();
     }
 
@@ -101,6 +103,7 @@ class Avancements extends Component
             'comment' => $this->comment,
             'carbon' => new Carbon(),
         ]);
+        $this->reset('name', 'comment');
         $this->dispatchBrowserEvent('close-modal');
     }
 
@@ -121,7 +124,7 @@ class Avancements extends Component
         $section->comment = $this->comment;
         // $section->system = $this->system;
         $section->save();
-        $this->reset('section_id');
+        $this->reset('section_id','name', 'comment');
         $this->render();
     }
     public function delete_section()
@@ -133,7 +136,7 @@ class Avancements extends Component
     }
 
     // Row
-    public $row_id, $start, $end, $progress, $avancement_row_id;
+    public $row_id, $start, $end, $progress=0, $avancement_row_id, $order;
 
     protected $row_rules = [
         'name' => 'required',
@@ -155,6 +158,7 @@ class Avancements extends Component
             'comment' => $this->comment,
             'order' => AvancementSubRow::count()+1,
         ]);
+        $this->reset('name', 'start', 'end','progress', 'comment', 'order');
         $this->dispatchBrowserEvent('close-modal');
     }
 
@@ -162,21 +166,24 @@ class Avancements extends Component
     {
         $this->row_id = $row_id;
         $row = AvancementSubRow::find($row_id);
+        $this->name = $row->name;
         $this->start = date_format($row->start, ('Y-m-d'));
         $this->end = date_format($row->end, ('Y-m-d'));
         $this->progress = $row->progress;
         $this->comment = $row->comment;
+        $this->order = $row->order;
     }
 
     public function update_row()
     {
         $row = AvancementSubRow::find($this->row_id);
+        $row->name = $this->name;
         $row->start = $this->start;
         $row->end = $this->end;
         $row->progress = $this->progress;
-        $row->comment = $this->comment;
+        $row->order = $this->order;
         $row->save();
-        $this->reset('row_id');
+        $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order');
         $this->render();
     }
     public function delete_row()
@@ -201,6 +208,7 @@ class Avancements extends Component
             'name' => ucfirst($this->category_name),
             'building_id' => $this->category_building_id,
         ]);
+        $this->reset();
         $this->dispatchBrowserEvent('close-modal');
         $this->reset('category_name');
     }
@@ -218,7 +226,7 @@ class Avancements extends Component
         $category = AvancementCategorie::find($this->category_id);
         $category->name = $this->category_name;
         $category->save();
-        $this->reset('category_id');
+        $this->reset('category_id', 'category_name');
     }
     public function delete_category()
     {
