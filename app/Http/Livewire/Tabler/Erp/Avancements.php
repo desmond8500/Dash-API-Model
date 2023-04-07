@@ -24,7 +24,6 @@ class Avancements extends Component
         return view('livewire.tabler.erp.avancements',[
             'buildings' => Building::where('projet_id',$this->projet_id)->get(),
             'systems' => System::where('projet_id',$this->projet_id)->get(),
-            'avancements' => Avancement::where('projet_id',$this->projet_id)->get(),
         ]);
     }
 
