@@ -1,7 +1,12 @@
-<div class="col-md-12 mb-3">
+<div class="col-md-10 mb-3">
     <label class="form-label">Nom</label>
     <input type="text" class="form-control" wire:model.defer="name"/>
     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+</div>
+<div class="col-md-2 mb-3">
+    <label class="form-label">Ordre</label>
+    <input type="number" class="form-control" wire:model.defer="order"/>
+    @error('order') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
 
 <div class="col-md-4 mb-3">
