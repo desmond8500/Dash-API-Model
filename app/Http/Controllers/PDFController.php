@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Building;
 use App\Models\Report;
 use App\Models\ReportSection;
+use App\Models\System;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class PDFController extends Controller
 
         $semaine =  array(
             'debut' => $carbon->startOfWeek()->dayName . ' ' . $carbon->startOfWeek()->day . ' ' . $carbon->startOfWeek()->monthName . ' ' . $carbon->startOfWeek()->year,
-            'fin' => $carbon->endOfWeek()->dayName . ' ' . $carbon->endOfWeek()->day . ' ' . $carbon->endOfWeek()->monthName . ' ' . $carbon->endOfWeek()->year,
+            'fin' => $carbon->endOfWeek()->subDay(2)->dayName . ' ' . $carbon->endOfWeek()->subDay(2)->day . ' ' . $carbon->endOfWeek()->subDay(2)->monthName . ' ' . $carbon->endOfWeek()->subDay(2)->year,
         );
 
         $data = [
@@ -54,6 +55,31 @@ class PDFController extends Controller
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data);
 
         return $pdf->stream($report->type()." - ".$report->projet->name." - ". $report->projet->client->name);
+    }
+
+    public function export_avancements(Request $request)
+    {
+        $carbon = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
+
+        $semaine =  array(
+            'debut' => $carbon->startOfWeek()->dayName . ' ' . $carbon->startOfWeek()->day . ' ' . $carbon->startOfWeek()->monthName . ' ' . $carbon->startOfWeek()->year,
+            'fin' => $carbon->endOfWeek()->subDay(2)->dayName . ' ' . $carbon->endOfWeek()->subDay(2)->day . ' ' . $carbon->endOfWeek()->subDay(2)->monthName . ' ' . $carbon->endOfWeek()->subDay(2)->year,
+        );
+
+        $data = [
+            'logo' => 'img/BMW_logo_(gray).svg.png',
+            'doc_title' => "Planning BCS (SSI-SE-GRMS-BMS) V4",
+            'carbon' => $carbon,
+            'semaine' => $semaine,
+            'buildings' => Building::where('projet_id', $request->projet_id)->get(),
+            'systems' => System::where('projet_id', $request->projet_id)->get(),
+        ];
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.export_avancements', $data);
+
+        return $pdf->stream("Avancement.pdf");
     }
 
     public function export_fiche_travaux()

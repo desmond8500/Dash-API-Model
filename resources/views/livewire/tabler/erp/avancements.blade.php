@@ -1,4 +1,8 @@
 <div>
+    <a class="btn btn-primary mb-2" target="_blank" href="{{ route('tabler.export_avancements', ['projet_id'=> $projet_id]) }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path> </svg>
+        Exporter PDF
+    </a>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -27,7 +31,7 @@
                                 <th class="text-center">Début</th>
                                 <th class="text-center">Fin</th>
                                 <th class="text-center">% Complete</th>
-                                <th class="text-center">Commentaires</th>
+                                <th class="text-center">Commentaires / Taches conditionelles</th>
                                 <th class="text-end">Actions</th>
                             </tr>
                             <tbody>

@@ -79,6 +79,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/export_fiche_travaux',     [PDFController::class, 'export_fiche_travaux'])->name('export_fiche_travaux');
     Route::get('/export_fiche_installation',[PDFController::class, 'export_fiche_installation'])->name('export_fiche_installation');
     Route::get('/export_fiche_livraison',   [PDFController::class, 'export_fiche_livraison'])->name('export_fiche_livraison');
+    Route::get('/export_avancements',       [PDFController::class, 'export_avancements'])->name('export_avancements');
 
 });
 
