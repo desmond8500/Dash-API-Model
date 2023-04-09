@@ -10,8 +10,8 @@ class CreateProjetFilesTable extends Migration
     {
         Schema::create('projet_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('projet_id')->constrained();
-            $table->foreignId('fichier_id')->constrained();
+            $table->foreignId('projet_id');
+            $table->foreignId('fichier_id');
             $table->timestamps();
         });
     }
