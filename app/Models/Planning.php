@@ -110,18 +110,10 @@ class Planning extends Model
 
     public function validate($date=null)
     {
-        $carbon = Carbon::now()->settings([
-            'locale' => 'fr_FR',
-            'timezone' => 'Africa/Dakar',
-        ]);
+        $debut = date_format($this->debut, 'Y-m-d');
+        $fin = date_format($this->fin, 'Y-m-d');
 
-        $debut = date_format($this->debut, 'd');
-        $fin = date_format($this->fin, 'd');
-
-        $m = $carbon->startOfWeek()->day + $date;
-        var_dump($date);
-
-        if ($m >= $debut && $m <= $fin) {
+        if ($date >= $debut && $date <= $fin) {
             return true;
         }
 

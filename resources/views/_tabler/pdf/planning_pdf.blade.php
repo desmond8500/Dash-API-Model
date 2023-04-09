@@ -56,24 +56,10 @@
             </tr>
 
             <tr>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 7 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 6 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 5 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 4 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 3 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 2 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day - 1 }}</td>
-
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 0 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 1 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 2 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 3 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 4 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 5 }}</td>
-                <td class="jour2">{{ $carbon->startOfWeek()->day + 6 }}</td>
+                @foreach ($period as $date)
+                    <td>{{ $date->format('d') }}</td>
+                @endforeach
             </tr>
-
-            @json($buildings)
 
             @foreach ($buildings as $key => $building)
                 @foreach ($building->plannings as $planning)
@@ -85,22 +71,9 @@
                             <b>{{ $planning->system->name }}</b>
                             <div>{{ $planning->tache }}</div>
                         </td>
-                        {{-- {{ $planning->debut }} {{ $planning->fin }} --}}
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-7) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-6) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-5) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-4) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-3) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-2) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(-1) ])>  </td>
-
-                        <td @class(['td-dotted', 'td-border-left', 'bg-blue' => $planning->validate(0) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(1) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(2) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(3) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(4) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(5) ])>  </td>
-                        <td @class(['td-dotted', 'bg-blue' => $planning->validate(6) ])>  </td>
+                        @foreach ($period as $date)
+                            <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
+                        @endforeach
                     </tr>
                 @endforeach
             @endforeach

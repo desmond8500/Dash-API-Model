@@ -8,6 +8,7 @@ use App\Models\Planning;
 use App\Models\Projet;
 use App\Models\System;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Livewire\Component;
 
 class Plannings extends Component
@@ -15,13 +16,17 @@ class Plannings extends Component
     public $projet_id, $projet, $planning_id;
     public $tab = 1;
     public $batiment_id, $system_id, $tache, $debut, $fin, $status;
-    public $carbon, $start, $end;
+    public $carbon ,$carbon2, $start, $end;
 
     public function mount($projet_id)
     {
         $this->projet_id = $projet_id;
         $this->projet = Projet::find($projet_id);
         $this->carbon = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
+        $this->carbon2 = Carbon::now()->settings([
             'locale' => 'fr_FR',
             'timezone' => 'Africa/Dakar',
         ]);
@@ -37,6 +42,8 @@ class Plannings extends Component
 
     public function render()
     {
+        $start1 = $this->carbon->startOfWeek()->subWeek();
+        $end1 = $this->carbon2->startOfWeek()->addWeek()->subDay();
         return view('livewire.tabler.erp.plannings',[
             'plannings' => Planning::where('projet_id', $this->projet_id)->get(),
             'buildings' => Building::where('projet_id', $this->projet_id)->get(),
@@ -44,6 +51,7 @@ class Plannings extends Component
             'systems' => System::where('projet_id', $this->projet_id)->get(),
             'carbon' => $this->carbon,
             'projet_id' => $this->projet_id,
+            "period" => CarbonPeriod::create($start1, '1 days', $end1),
         ]);
     }
 

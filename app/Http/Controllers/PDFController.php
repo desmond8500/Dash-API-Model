@@ -7,6 +7,7 @@ use App\Models\Report;
 use App\Models\ReportSection;
 use App\Models\System;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 
 class PDFController extends Controller
@@ -17,11 +18,18 @@ class PDFController extends Controller
             'locale' => 'fr_FR',
             'timezone' => 'Africa/Dakar',
         ]);
+        $carbon2 = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
 
         $semaine =  array(
             'debut' => $carbon->startOfWeek()->dayName . ' ' . $carbon->startOfWeek()->day . ' ' . $carbon->startOfWeek()->monthName . ' ' . $carbon->startOfWeek()->year,
             'fin' => $carbon->endOfWeek()->subDay(2)->dayName . ' ' . $carbon->endOfWeek()->subDay(2)->day . ' ' . $carbon->endOfWeek()->subDay(2)->monthName . ' ' . $carbon->endOfWeek()->subDay(2)->year,
         );
+
+        $start = $carbon->startOfWeek()->subWeek();
+        $end = $carbon2->startOfWeek()->addWeek()->subDay();
 
         $data = [
             'buildings' => Building::where('projet_id', $request->projet_id)->get(),
@@ -29,6 +37,7 @@ class PDFController extends Controller
             'semaine' => $semaine,
             'company' => 'Building Comfort Senegal',
             'projet' => 'DDSC',
+            "period" => CarbonPeriod::create($start, '1 days', $end),
         ];
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.planning_pdf', $data);
 

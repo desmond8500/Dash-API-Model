@@ -9,7 +9,7 @@ class Projet extends Component
 {
     public $projet_id, $projet;
     public $breadcrumbs;
-    public $tab=1;
+    public $tab=1, $show_menu=true;
 
     public function mount($projet_id){
         $this->projet_id = $projet_id;

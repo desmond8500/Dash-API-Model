@@ -49,21 +49,9 @@
                     <th style="width: 10px; text-align: center">D</th>
                 </tr>
                 <tr>
-                    <td>{{ $carbon->startOfWeek()->day - 7 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 6 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 5 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 4 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 3 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 2 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day - 1 }}</td>
-
-                    <td>{{ $carbon->startOfWeek()->day + 0 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 1 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 2 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 3 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 4 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 5 }}</td>
-                    <td>{{ $carbon->startOfWeek()->day + 6 }}</td>
+                    @foreach ($period as $date)
+                        <td>{{ $date->format('d') }}</td>
+                    @endforeach
                 </tr>
                 @foreach ($buildings as $key => $building)
                     @foreach ($building->plannings as $planning)
@@ -86,22 +74,10 @@
                                     <b>{{ $planning->system->name }}</b>
                                     <div>{{ $planning->tache }}</div>
                                 </td>
-                                {{-- {{ $planning->debut }} {{ $planning->fin }} --}}
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-7) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-6) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-5) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-4) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-3) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-2) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(-1) ])>  </td>
+                                @foreach ($period as $date)
+                                    <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
+                                @endforeach
 
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(0) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(1) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(2) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(3) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(4) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(5) ])>  </td>
-                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate(6) ])>  </td>
                                 <td wire:click="edit_task('{{ $planning->id }}')" type='button'>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
                                 </td>
@@ -114,27 +90,13 @@
 
     </div>
 
+    @include('_tabler.modal',[
+        'id' => "addPlanningTask",
+        'title' => "Ajouter une tache",
+        'include' => "_tabler.erp.planning_form",
+        'method' => "add_task"
+    ])
 
-
-    <div class="modal fade" id="addPlanningTask" tabindex="-1" aria-labelledby="addPlanningTaskLabel" aria-hidden="true" wire:ignore.self>
-        <div class="modal-dialog">
-            <form class="modal-content" wire:submit.prevent="add_task">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ajouter une tache</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        @include('_tabler.erp.planning_form')
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-primary">Ajouter</button>
-                </div>
-            </form>
-        </div>
-    </div>
     <script> window.addEventListener('close-modal', event => { $("#addPlanningTask").modal('hide'); }) </script>
 
 </div>
