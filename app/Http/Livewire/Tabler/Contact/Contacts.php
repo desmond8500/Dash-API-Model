@@ -28,11 +28,28 @@ class Contacts extends Component
     public function render()
     {
         return view('livewire.tabler.contact.contacts',[
-            'contacts' => Contact::all(),
+            'contacts' => $this->getContacts(),
         ])->extends('app.layout')->section('content');
     }
 
     // Contact
+
+    public function getContacts()
+    {
+        if ($this->search) {
+            return Contact::where('firstname', 'LIKE', "%{$this->search}%")
+            ->orWhere('lastname', 'LIKE', "%{$this->search}%")
+            ->paginate(10);
+        } else {
+            return Contact::paginate(10);
+        }
+    }
+
+    public function resetSearch()
+    {
+        $this->reset('search');
+        $this->getContacts();
+    }
 
     protected $rules = [
         'firstname' => 'required',

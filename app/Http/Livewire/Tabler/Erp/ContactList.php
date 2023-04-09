@@ -32,12 +32,29 @@ class ContactList extends Component
         }
 
         return view('livewire.tabler.erp.contact-list',[
-            'contacts' => Contact::all(),
+            'contacts' => $this->getContacts(),
             'contact_list' => $c,
         ]);
     }
 
     // Contact
+
+    public function getContacts()
+    {
+        if ($this->search) {
+            return Contact::where('firstname', 'LIKE', "%{$this->search}%")
+            ->orWhere('lastname', 'LIKE', "%{$this->search}%")
+            ->paginate(10);
+        } else {
+            return Contact::paginate(10);
+        }
+    }
+
+    public function resetSearch()
+    {
+        $this->reset('search');
+        $this->getContacts();
+    }
 
     public function add_contact($id)
     {

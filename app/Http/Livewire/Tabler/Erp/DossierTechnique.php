@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Fiche;
 use App\Models\Fichier;
 use App\Models\Projet;
 use App\Models\ProjetFile;
@@ -35,6 +36,7 @@ class DossierTechnique extends Component
     {
         return view('livewire.tabler.erp.dossier-technique',[
             'projet' => Projet::find($this->projet_id),
+            'fiches' => Fiche::where('projet_id',$this->projet_id)->get(),
             'systems' => System::where('projet_id', $this->projet_id)->get()
         ]);
     }

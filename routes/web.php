@@ -40,7 +40,7 @@ Route::get('/swagger', function () {
 
 
 // Tabler
-Route::name('tabler.')->group(function () {
+Route::middleware(['auth'])->name('tabler.')->group(function () {
     // Réglages
     Route::get('/profile',                  Profile::class)->name('profile');
     Route::get('/reglages',                 Reglages::class)->name('reglages');

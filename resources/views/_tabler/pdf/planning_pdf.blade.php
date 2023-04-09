@@ -28,7 +28,7 @@
             <thead class="thead">
                 <tr>
                     <td class="semaine" >Batiment</td>
-                    <td class="semaine" >Détails</td>
+                    <td class="semaine" >Systèmes et taches</td>
                     <td class="semaine text-center" colspan="7">Semaine 1</td>
                     <td class="semaine text-center" colspan="7">Semaine 2</td>
                 </tr>
@@ -65,7 +65,7 @@
                 @foreach ($building->plannings as $planning)
                     <tr>
                         @if ($loop->first)
-                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:18px">{{ $building->name }}</td>
+                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:15px">{{ $building->name }}</td>
                         @endif
                         <td>
                             <b>{{ $planning->system->name }}</b>

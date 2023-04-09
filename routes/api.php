@@ -15,25 +15,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('client_projects',  [ErpController::class, 'client_projects'])->name('client_projects');
-Route::post('projet_buildings', [ErpController::class, 'projet_buildings'])->name('projet_buildings');
-Route::post('building_stages',  [ErpController::class, 'building_stages'])->name('building_stages');
-Route::post('stage_rooms',      [ErpController::class, 'stage_rooms'])->name('stage_rooms');
-Route::post('projet_invoices',  [ErpController::class, 'projet_invoices'])->name('projet_invoices');
-Route::post('room_invoices',    [ErpController::class, 'room_invoices'])->name('room_invoices');
-Route::get('priorities',        [ListController::class, 'priorities'])->name('priorities');
+Route::post('client_projects',      [ErpController::class, 'client_projects'])->name('client_projects');
+Route::post('projet_buildings',     [ErpController::class, 'projet_buildings'])->name('projet_buildings');
+Route::post('building_stages',      [ErpController::class, 'building_stages'])->name('building_stages');
+Route::post('stage_rooms',          [ErpController::class, 'stage_rooms'])->name('stage_rooms');
+Route::post('projet_invoices',      [ErpController::class, 'projet_invoices'])->name('projet_invoices');
+Route::post('room_invoices',        [ErpController::class, 'room_invoices'])->name('room_invoices');
+Route::get('priorities',            [ListController::class, 'priorities'])->name('priorities');
 
 // Invoice
-Route::post('get_invoice_rows',  [InvoiceController::class, 'getInvoiceRows'])->name('getInvoiceRows');
-Route::post('get_invoice_sections',  [InvoiceController::class, 'getInvoiceSection'])->name('getInvoiceSection');
-Route::post('get_section_rows',  [InvoiceController::class, 'getSectionRows'])->name('getSectionRows');
+Route::post('get_invoice_rows',     [InvoiceController::class, 'getInvoiceRows'])->name('getInvoiceRows');
+Route::post('get_invoice_sections', [InvoiceController::class, 'getInvoiceSection'])->name('getInvoiceSection');
+Route::post('get_section_rows',     [InvoiceController::class, 'getSectionRows'])->name('getSectionRows');
 
 // Report
-Route::post('get_projet_report',  [ReportController::class, 'getReports'])->name('getReports');
-Route::post('get_report_section',  [ReportController::class, 'getSection'])->name('getSection');
+Route::post('get_projet_report',    [ReportController::class, 'getReports'])->name('getReports');
+Route::post('get_report_section',   [ReportController::class, 'getSection'])->name('getSection');
 
 // Tasks
-Route::post('get_tasks',  [TacheController::class, 'get_tasks'])->name('get_tasks');
+Route::post('get_tasks',            [TacheController::class, 'get_tasks'])->name('get_tasks');
 
 Route::resource('clients',          ClientAPIController::class);
 Route::resource('projets',          ProjetAPIController::class);
@@ -84,3 +84,6 @@ Route::resource('avancement_rows',  AvancementRowAPIController::class);
 Route::resource('avancement_sub_rows',  AvancementSubRowAPIController::class);
 Route::resource('avancement_categories',    AvancementCategorieAPIController::class);
 Route::resource('projet_contacts',  ProjetContactAPIController::class);
+
+
+Route::resource('fiches', App\Http\Controllers\API\FicheAPIController::class);
