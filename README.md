@@ -8,6 +8,7 @@ Modèle de base pour un serveur Web
 
 * [Laravel Framework](https://laravel.com/docs/9.x)
 * [Laravel Livewire](https://laravel-livewire.com/docs/2.x/quickstart)
+* [Laravel Sanctum](https://laravel.com/docs/10.x/sanctum)
 * [Highlight JS](https://highlightjs.org/laravel)
 * [Laravel Parsedown](https://github.com/parsedown/laravel)
 * [Laravel Spatie Permission](https://github.com/spatie/laravel-permission)
