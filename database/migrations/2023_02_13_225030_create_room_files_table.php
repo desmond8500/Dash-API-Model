@@ -11,8 +11,8 @@ class CreateRoomFilesTable extends Migration
     {
         Schema::create('room_files', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('room_id');
-            $table->foreignId('fichier_id');
+            $table->integer('room_id')->constrained();
+            $table->integer('fichier_id')->constrained();
             $table->timestamps();
         });
     }

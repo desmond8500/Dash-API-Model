@@ -11,7 +11,7 @@ class CreateAvancementCategoriesTable extends Migration
     {
         Schema::create('avancement_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('building_id');
+            $table->integer('building_id')->constrained();
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

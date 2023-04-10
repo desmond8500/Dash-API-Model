@@ -11,8 +11,8 @@ class CreateFichesTable extends Migration
     {
         Schema::create('fiches', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('projet_id');
-            $table->integer('fiche_type_id');
+            $table->integer('projet_id')->constrained();
+            $table->integer('fiche_type_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -11,7 +11,7 @@ class CreateAchatFacturesTable extends Migration
     {
         Schema::create('achat_factures', function (Blueprint $table) {
             $table->id();
-            $table->string('achat_id');
+            $table->integer('achat_id')->constrained();
             $table->string('name');
             $table->string('folder');
             $table->timestamps();

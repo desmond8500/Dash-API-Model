@@ -11,15 +11,15 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('devis_id')->nullable();
-            $table->foreignId('projet_id')->nullable();
-            $table->foreignId('building_id')->nullable();
-            $table->foreignId('stage_id')->nullable();
-            $table->foreignId('room_id')->nullable();
+            $table->integer('devis_id')->nullable();
+            $table->integer('projet_id')->nullable();
+            $table->integer('building_id')->nullable();
+            $table->integer('stage_id')->nullable();
+            $table->integer('room_id')->nullable();
             $table->string('objet');
             $table->text('description');
-            $table->foreignId('status_id');
-            $table->foreignId('priority_id');
+            $table->integer('status_id');
+            $table->integer('priority_id');
             $table->timestamps();
             $table->softDeletes();
         });

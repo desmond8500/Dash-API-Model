@@ -11,8 +11,8 @@ class CreateAvancementsTable extends Migration
     {
         Schema::create('avancements', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('building_id');
-            $table->foreignId('avancement_categorie_id');
+            $table->integer('building_id')->constrained();
+            $table->integer('avancement_categorie_id')->constrained();
             $table->string('name');
             $table->string('system');
             $table->timestamps();

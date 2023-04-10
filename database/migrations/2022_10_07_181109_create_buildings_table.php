@@ -11,7 +11,7 @@ class CreateBuildingsTable extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id')->contrained();
+            $table->integer('projet_id')->contrained();
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();

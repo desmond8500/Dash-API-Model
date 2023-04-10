@@ -12,7 +12,7 @@ class CreateReportModalitesTable extends Migration
     {
         Schema::create('report_modalites', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('section_id')->contrained('report_sections');
+            $table->integer('section_id')->contrained('report_sections');
             $table->string('duree');
             $table->string('technicien');
             $table->string('ouvrier');

@@ -9,8 +9,8 @@ class AddPriceToAchatArticles extends Migration
     public function up()
     {
         Schema::table('achat_articles', function (Blueprint $table) {
-            $table->foreignId('provider_id')->nullable();
-            $table->foreignId('brand_id')->nullable();
+            $table->integer('provider_id')->nullable();
+            $table->integer('brand_id')->nullable();
             $table->string('designation')->nullable();
             $table->string('reference')->nullable();
             $table->string('facture')->nullable();

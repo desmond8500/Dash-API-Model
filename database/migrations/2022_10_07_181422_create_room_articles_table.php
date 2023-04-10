@@ -11,8 +11,8 @@ class CreateRoomArticlesTable extends Migration
     {
         Schema::create('room_articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('room_id')->contrained();
-            $table->foreignId('article_id')->contrained();
+            $table->integer('room_id')->contrained();
+            $table->integer('article_id')->contrained();
             $table->timestamps();
             $table->softDeletes();
         });
