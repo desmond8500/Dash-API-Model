@@ -207,7 +207,6 @@ class Avancements extends Component
             'name' => ucfirst($this->category_name),
             'building_id' => $this->category_building_id,
         ]);
-        $this->reset();
         $this->dispatchBrowserEvent('close-modal');
         $this->reset('category_name');
     }
