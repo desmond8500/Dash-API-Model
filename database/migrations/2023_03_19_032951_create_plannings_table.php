@@ -10,9 +10,9 @@ class CreatePlanningsTable extends Migration
     {
         Schema::create('plannings', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('projet_id');
-            $table->foreignId('batiment_id');
-            $table->foreignId('system_id');
+            $table->integer('projet_id');
+            $table->integer('batiment_id');
+            $table->integer('system_id');
             $table->string('tache');
             $table->date('debut');
             $table->date('fin');
