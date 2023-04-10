@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Entreprise;
 use App\Models\Report;
 use App\Models\ReportSection;
 use App\Models\System;
@@ -58,6 +59,7 @@ class PDFController extends Controller
             'report' => $report,
             'logo' => 'img/BMW_logo_(gray).svg.png',
             'carbon' => $carbon,
+            'entreprise' => Entreprise::first(),
             'company' => 'Building Comfort Senegal',
             'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get(),
         ];

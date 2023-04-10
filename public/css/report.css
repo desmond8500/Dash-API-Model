@@ -16,6 +16,11 @@
     text-align: justify;
 }
 
+.client{
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .section_title{
     font-size: 15px;
     font-weight: bold;

@@ -87,3 +87,6 @@ Route::resource('projet_contacts',  ProjetContactAPIController::class);
 
 
 Route::resource('fiches', App\Http\Controllers\API\FicheAPIController::class);
+
+
+Route::resource('ibans', App\Http\Controllers\API\IbanAPIController::class);
