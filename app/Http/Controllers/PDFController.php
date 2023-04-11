@@ -55,7 +55,8 @@ class PDFController extends Controller
         $report = Report::find($request->report_id);
 
         $data = [
-            'doc_title' => $report->type(),
+            'doc_title' => "Planning Général BCS",
+            // 'doc_title' => $report->type(),
             'report' => $report,
             'logo' => 'img/BMW_logo_(gray).svg.png',
             'carbon' => $carbon,

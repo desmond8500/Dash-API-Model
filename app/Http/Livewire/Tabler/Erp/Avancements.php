@@ -174,7 +174,7 @@ class Avancements extends Component
         $this->validate($this->row_rules);
         AvancementSubRow::create([
             'avancement_row_id' => $this->avancement_row_id,
-            'name' => $this->name,
+            'name' => ucfirst($this->name),
             'start' => $this->start,
             'end' => $this->end,
             'progress' => $this->progress,
