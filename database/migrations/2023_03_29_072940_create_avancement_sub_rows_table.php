@@ -15,7 +15,7 @@ class CreateAvancementSubRowsTable extends Migration
             $table->string('name');
             $table->date('start')->nullable();
             $table->date('end')->nullable();
-            $table->string('progress')->default();
+            $table->integer('progress')->default();
             $table->text('comment')->nullable();
             $table->integer('order');
             $table->timestamps();
