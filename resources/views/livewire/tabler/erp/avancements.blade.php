@@ -97,7 +97,7 @@
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-danger" >Supprimer</button>
+                                                        <button class="btn btn-danger" wire:click="delete_section">Supprimer</button>
 
                                                     </td>
                                                 @else
