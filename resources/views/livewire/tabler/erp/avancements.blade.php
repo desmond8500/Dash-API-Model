@@ -190,8 +190,12 @@
                                                                 Days
                                                             @endif
                                                         </td>
-                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision])>{{ date_format($row->start, 'd-m-Y') }}</td>
-                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision])>{{ date_format($row->end, 'd-m-Y') }}</td>
+                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision, 'bg-cyan-lt'=>$row->compare_start()])>
+                                                            {{ date_format($row->start, 'd-m-Y') }}
+                                                        </td>
+                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision, 'bg-cyan-lt'=>$row->compare_end()])>
+                                                            {{ date_format($row->end, 'd-m-Y') }}
+                                                        </td>
                                                         <td class="text-center">{{ $row->progress }} %</td>
                                                         <td>{{ $row->comment }}</td>
                                                         <td class="text-end">

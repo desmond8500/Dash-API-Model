@@ -110,4 +110,16 @@ class AvancementSubRow extends Model
         $carbon = new Carbon();
         return $carbon->parse($this->end)->diffInDays($this->start)+1;
     }
+
+    public function compare_start()
+    {
+        $carbon = new Carbon();
+
+        return $carbon->diffInDays( Carbon::parse($this->start) , Carbon::now());
+    }
+    public function compare_end()
+    {
+        $carbon = new Carbon();
+        return $carbon->diffInDays(Carbon::parse($this->end), Carbon::now());;
+    }
 }
