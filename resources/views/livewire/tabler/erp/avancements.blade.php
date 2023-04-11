@@ -48,8 +48,8 @@
                                                 </form>
                                             </td>
                                         @else
-                                            <td colspan="6">{{ $category->name }}</td>
-                                            <td class="text-end">
+                                            <td colspan="5">{{ $category->name }}</td>
+                                            <td colspan="2" class="text-end">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement" wire:click="setAvancement('{{ $building->id }}','{{ $category->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                                 Système
@@ -73,8 +73,8 @@
                                                     </form>
                                                 </td>
                                             @else
-                                                <th colspan="6" style="text-transform: uppercase">{{ $avancement->name }}</th>
-                                                <td class="text-end">
+                                                <th colspan="5" style="text-transform: uppercase">{{ $avancement->name }}</th>
+                                                <td colspan="2" class="text-end">
                                                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addSection" wire:click="$set('system','{{ $avancement->id }}')">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                                         Section
