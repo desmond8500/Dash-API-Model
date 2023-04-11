@@ -166,7 +166,7 @@ class Avancements extends Component
         'start' => ['required','date'],
         'end' => ['required','date',"after_or_equal:start"],
         'progress' => ['required', 'numeric'],
-        'comment' => 'required',
+        // 'comment' => 'required',
     ];
 
     public function add_row()
@@ -205,6 +205,7 @@ class Avancements extends Component
         $row->end = $this->end;
         $row->progress = $this->progress;
         $row->order = $this->order;
+        $row->comment = $this->comment;
         $row->save();
         $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order');
         $this->render();
