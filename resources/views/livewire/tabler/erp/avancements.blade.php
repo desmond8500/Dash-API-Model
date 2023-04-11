@@ -68,6 +68,7 @@
                                                     <form wire:submit.prevent="update_avancement" class="row">
                                                         @include('_tabler.erp.avancement_form')
                                                         <div class="col-md-12 d-flex justify-content-between">
+                                                            <a class="btn btn-danger" wire:click='delete_avancement'>Supprimer</a>
                                                             <button class="btn btn-primary" type="submit" >Modifier</button>
                                                         </div>
                                                     </form>
