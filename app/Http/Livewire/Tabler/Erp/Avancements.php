@@ -15,6 +15,22 @@ class Avancements extends Component
 {
     public $projet_id;
     public $search ='';
+    public $ligne_list = [
+        'Câblage de réseau',
+        'Appareillages',
+        'SOUS-SOL',
+        'REZ DE CHAUSSEE',
+        'MEZZANINE',
+        'ETAGE 1',
+        'ETAGE 2',
+        'ETAGE 3',
+        'ETAGE 4',
+        'ETAGE 5',
+        'ETAGE 6',
+        'ETAGE 7',
+        'TOITURE TERRASSE',
+        'Réseau de conduite',
+    ];
 
     protected $messages = [
         'name.required' => 'Le champ nom est requis',
@@ -24,6 +40,7 @@ class Avancements extends Component
     public function mount($projet_id)
     {
         $this->projet_id = $projet_id;
+
     }
 
     public function render()
@@ -198,6 +215,32 @@ class Avancements extends Component
 
         $row->delete();
         $this->render();
+    }
+    public $selected_rows = array();
+
+    public function select_row($row)
+    {
+        array_push($this->selected_rows, $row);
+    }
+    public function unselect_row($row)
+    {
+        array_splice($this->selected_rows, $row, 1);
+    }
+    public function generate_rows()
+    {
+        foreach ($this->selected_rows as $key => $row) {
+            AvancementSubRow::create([
+                'avancement_row_id' => $this->avancement_row_id,
+                'name' => $row,
+                'start' => date('Y-m-d'),
+                'end' => date('Y-m-d'),
+                'progress' => 0,
+                'comment' => '_',
+                'order' => AvancementSubRow::count() + 1,
+            ]);
+        }
+        $this->reset('name', 'start', 'end', 'progress', 'comment', 'order');
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     // Category
