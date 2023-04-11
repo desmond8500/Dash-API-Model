@@ -81,6 +81,7 @@ class AvancementSubRow extends Model
         'progress',
         'comment',
         'order',
+        'prevision',
     ];
 
     protected $casts = [
@@ -92,6 +93,7 @@ class AvancementSubRow extends Model
         'progress' => 'string',
         'comment' => 'string',
         'order' => 'string',
+        'prevision' => 'string',
     ];
 
     public static $rules = [

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DebugBar\DebugBar;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -85,19 +86,29 @@ class AvancementRow extends Model
 
     public function duration()
     {
-        $carbon = new Carbon();
-        return $carbon->parse($this->rows->sortBy('end')->last()->end)->diffInDays($this->rows->sortBy('start')->first()->start);
+        // $carbon = new Carbon();
+        // return $carbon->parse($this->rows->sortBy('end')->last()->end)->diffInDays($this->rows->sortBy('start')->first()->start);
+
+        $somme_duree = 0;
+        foreach ($this->rows as $key => $value) {
+            if ($value->precision == 0) {
+                $somme_duree += $value->duration();
+            }
+            // $somme_duree++;
+        }
+        return $somme_duree;
     }
 
     public function start()
     {
         $carbon = new Carbon();
-        return $this->rows->sortBy('start')->first()->start;
+        return $this-> rows->where('prevision', false)->sortBy('start')->first()->start;
     }
     public function end()
     {
         $carbon = new Carbon();
-        return $this->rows->sortBy('end')->last()->end;
+
+        return $this->rows->where('prevision', false)->sortBy('end')->last()->end;
     }
 
 }

@@ -58,7 +58,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        @if ($section->rows->count())
+                                        @if (!$section->prevision)
                                             {{ date_format($section->start(), 'd-m-Y') }}
                                         @endif
                                     </td>
@@ -81,8 +81,16 @@
                                     <tr>
                                         <td  style="text-align: left; padding-left:15px">{{ $row->name }}</td>
                                         <td>{{ $row->duration() }} Days</td>
-                                        <td class="text-center">{{ date_format($row->start, 'd-m-Y') }}</td>
-                                        <td class="text-center">{{ date_format($row->end, 'd-m-Y') }}</td>
+                                        <td class="text-center">
+                                            @if (!$row->prevision)
+                                                {{ date_format($row->start, 'd-m-Y') }}
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if (!$row->prevision)
+                                                {{ date_format($row->end, 'd-m-Y') }}
+                                            @endif
+                                        </td>
                                         <td class="text-center">{{ $row->progress }} %</td>
                                         <td>{{ $row->comment }}</td>
                                     </tr>

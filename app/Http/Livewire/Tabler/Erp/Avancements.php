@@ -159,7 +159,7 @@ class Avancements extends Component
     }
 
     // Row
-    public $row_id, $start, $end, $progress=0, $avancement_row_id, $order;
+    public $row_id, $start, $end, $progress=0, $avancement_row_id, $order, $prevision;
 
     protected $row_rules = [
         'name' => 'required',
@@ -195,6 +195,7 @@ class Avancements extends Component
         $this->progress = $row->progress;
         $this->comment = $row->comment;
         $this->order = $row->order;
+        $this->prevision = $row->prevision;
     }
 
     public function update_row()
@@ -206,8 +207,9 @@ class Avancements extends Component
         $row->progress = $this->progress;
         $row->order = $this->order;
         $row->comment = $this->comment;
+        $row->prevision = $this->prevision;
         $row->save();
-        $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order');
+        $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order', 'prevision');
         $this->render();
     }
     public function delete_row()
@@ -242,6 +244,11 @@ class Avancements extends Component
         }
         $this->reset('name', 'start', 'end', 'progress', 'comment', 'order');
         $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function toogleRow()
+    {
+        # code...
     }
 
     // Category
