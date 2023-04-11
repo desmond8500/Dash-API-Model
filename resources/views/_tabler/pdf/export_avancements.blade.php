@@ -42,7 +42,6 @@
                     @foreach ($building->categories as $category)
                         <tr class="bg-grey">
                             <td colspan="6" style="text-transform: uppercase">{{ $category->name }}</td>
-
                         </tr>
 
                         @foreach ($category->avancements as $avancement)
