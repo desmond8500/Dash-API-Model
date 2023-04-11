@@ -15,10 +15,17 @@ class Avancements extends Component
 {
     public $projet_id;
     public $search ='';
+
+    protected $messages = [
+        'name.required' => 'Le champ nom est requis',
+        'comment.required' => 'Le champ commentaire est requis',
+    ];
+
     public function mount($projet_id)
     {
         $this->projet_id = $projet_id;
     }
+
     public function render()
     {
         return view('livewire.tabler.erp.avancements',[
