@@ -87,6 +87,11 @@
                                             @endif
                                         </tr>
                                         @foreach ($avancement->sections as $section)
+                                            {{-- <tr>
+                                                <td colspan="7">
+                                                    @dump($section)
+                                                </td>
+                                            </tr> --}}
                                             <tr class="fw-bold">
                                                 @if ($section_id == $section->id)
                                                     <td colspan="6">
@@ -105,6 +110,7 @@
                                                     <td class="user-select-all">{{ $section->name }}</td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
+
                                                             {{ $section->duration() }}
                                                             {{-- {{ $section->duration() + 1 }} --}}
                                                             @if ($section->duration() >= 0 && $section->duration() < 2)
