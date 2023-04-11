@@ -69,7 +69,10 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($section->rows->count())
-                                            {{ number_format($section->rows->sum('progress') / $section->rows->count(), 0, '') }} %
+                                            @php
+                                                $somme = number_format($section->rows->sum('progress') / $section->rows->count(), 0, ',', ' ');
+                                            @endphp
+                                            {{ $somme }} %
                                         @endif
                                     </td>
                                     <td>{{ $section->comment }}</td>

@@ -105,8 +105,8 @@
                                                     <td class="user-select-all">{{ $section->name }}</td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
-                                                            {{ $section->duration()+1 }}
-                                                            @if ($section->duration()+1>0 || $section->duration()+1<2)
+                                                            {{ $section->duration() + 1 }}
+                                                            @if ($section->duration() > 0 && $section->duration() < 2)
                                                                 Day
                                                             @else
                                                                 Days
@@ -125,7 +125,10 @@
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
-                                                            {{ $section->rows->sum('progress') / $section->rows->count() }} %
+                                                        @php
+                                                            $somme = number_format($section->rows->sum('progress') / $section->rows->count(), 0, ',', ' ');
+                                                        @endphp
+                                                            {{ $somme }} %
                                                         @endif
                                                     </td>
                                                     <td>{{ $section->comment }}</td>
@@ -163,7 +166,14 @@
                                                         </td>
                                                     @else
                                                         <td class="user-select-all">{{ $row->name }}</td>
-                                                        <td>{{ $row->duration() }} Days</td>
+                                                        <td>
+                                                            {{ $row->duration() }}
+                                                            @if ($row->duration() > 0 && $row->duration() < 2 )
+                                                                Day
+                                                            @else
+                                                                Days
+                                                            @endif
+                                                        </td>
                                                         <td class="text-center">{{ date_format($row->start, 'd-m-Y') }}</td>
                                                         <td class="text-center">{{ date_format($row->end, 'd-m-Y') }}</td>
                                                         <td class="text-center">{{ $row->progress }} %</td>
