@@ -48,7 +48,7 @@
                                                 </form>
                                             </td>
                                         @else
-                                            <td colspan="5" class="fw-bold text-primary" style="font-size: 20px">{{ $category->name }}</td>
+                                            <td colspan="5" class="fw-bold text-primary user-select-all" style="font-size: 20px">{{ $category->name }}</td>
                                             <td colspan="2" class="text-end">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement" wire:click="setAvancement('{{ $building->id }}','{{ $category->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
@@ -74,7 +74,7 @@
                                                     </form>
                                                 </td>
                                             @else
-                                                <th colspan="5" style="text-transform: uppercase">{{ $avancement->name }}</th>
+                                                <th colspan="5" style="text-transform: uppercase" class="user-select-all">{{ $avancement->name }}</th>
                                                 <td colspan="2" class="text-end">
                                                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addSection" wire:click="$set('system','{{ $avancement->id }}')">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
@@ -102,7 +102,7 @@
 
                                                     </td>
                                                 @else
-                                                    <td>{{ $section->name }}</td>
+                                                    <td class="user-select-all">{{ $section->name }}</td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
                                                             {{ $section->duration()+1 }} Days
@@ -154,7 +154,7 @@
                                                             </button>
                                                         </td>
                                                     @else
-                                                        <td>{{ $row->name }}</td>
+                                                        <td class="user-select-all">{{ $row->name }}</td>
                                                         <td>{{ $row->duration() }} Days</td>
                                                         <td class="text-center">{{ date_format($row->start, 'd-m-Y') }}</td>
                                                         <td class="text-center">{{ date_format($row->end, 'd-m-Y') }}</td>
