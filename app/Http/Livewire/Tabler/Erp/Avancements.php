@@ -114,7 +114,7 @@ class Avancements extends Component
 
     protected $section_rules = [
         'name' => 'required',
-        'comment' => 'required',
+        // 'comment' => 'required',
     ];
 
     public function add_section()
