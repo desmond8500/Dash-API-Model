@@ -105,7 +105,12 @@
                                                     <td class="user-select-all">{{ $section->name }}</td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
-                                                            {{ $section->duration()+1 }} Days
+                                                            {{ $section->duration()+1 }}
+                                                            @if ($section->duration()+1>0 || $section->duration()+1<2)
+                                                                Day
+                                                            @else
+                                                                Days
+                                                            @endif
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
