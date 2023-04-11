@@ -54,7 +54,7 @@
                                     <td>{{ $section->name }}</td>
                                     <td class="text-center">
                                         @if ($section->rows->count())
-                                            {{ $section->duration()+1 }} Days
+                                            {{-- {{ $section->duration()+1 }} Days --}}
                                         @endif
                                     </td>
                                     <td class="text-center">
