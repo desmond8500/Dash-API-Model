@@ -36,7 +36,7 @@
                             </tr>
                             <tbody>
                                 @foreach ($building->categories as $category)
-                                    <tr>
+                                    <tr class=" table-primary">
                                         @if ($category->id == $category_id)
                                             <td colspan="7">
                                                 <form class="row" wire:submit.prevent="update_category">
@@ -48,7 +48,7 @@
                                                 </form>
                                             </td>
                                         @else
-                                            <td colspan="5">{{ $category->name }}</td>
+                                            <td colspan="5" class="fw-bold" style="font-size: 20px">{{ $category->name }}</td>
                                             <td colspan="2" class="text-end">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement" wire:click="setAvancement('{{ $building->id }}','{{ $category->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
