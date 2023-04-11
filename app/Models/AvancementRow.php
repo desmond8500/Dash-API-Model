@@ -102,13 +102,15 @@ class AvancementRow extends Model
     public function start()
     {
         $carbon = new Carbon();
-        return $this-> rows->where('prevision', false)->sortBy('start')->first()->start;
+        return $this-> rows->sortBy('start')->first()->start;
+        // return $this-> rows->where('prevision', false)->sortBy('start')->first()->start;
     }
     public function end()
     {
         $carbon = new Carbon();
 
-        return $this->rows->where('prevision', false)->sortBy('end')->last()->end;
+        return $this->rows->sortBy('end')->last()->end;
+        // return $this->rows->where('prevision', false)->sortBy('end')->last()->end;
     }
 
 }
