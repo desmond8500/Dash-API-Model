@@ -83,7 +83,7 @@
                                 @foreach ($section->rows as $row)
                                     <tr>
                                         <td  style="text-align: left; padding-left:15px">{{ $row->name }}</td>
-                                        <td>{{ $row->duration() }} Days</td>
+                                        <td class="text-end">{{ $row->duration() }} Days</td>
                                         <td class="text-center">
                                             @if (!$row->prevision)
                                                 {{ date_format($row->start, 'd-m-Y') }}
