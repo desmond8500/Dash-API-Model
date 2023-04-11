@@ -16,7 +16,7 @@
                 <tr class="tr">
                     <td class="td-white" style="font-size:18px"> {{ $doc_title }} </td>
                     <td class="td-white text-end" style="padding-top:5px; padding-bottom:5px;">
-                        <div style="font-size:13px;"> Du {{ $semaine['debut'] }} au {{ $semaine['fin'] }}</div>
+                        {{-- <div style="font-size:13px;"> Du {{ $semaine['debut'] }} au {{ $semaine['fin'] }}</div> --}}
                     </td>
                 </tr>
             </tbody>
