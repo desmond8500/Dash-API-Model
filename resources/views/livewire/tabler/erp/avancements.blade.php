@@ -159,7 +159,7 @@
                                                             <form wire:submit.prevent='update_row' class="row">
                                                                 @include("_tabler.erp.avancement_row_form")
                                                                 <div class="col-md-12 text-end">
-                                                                    <button class="btn btn-primary" >Modfier</button>
+                                                                    <button class="btn btn-primary" >Modifier</button>
                                                                 </div>
                                                             </form>
                                                         </td>
