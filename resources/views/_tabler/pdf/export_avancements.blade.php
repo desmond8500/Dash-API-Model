@@ -58,12 +58,16 @@
                                     </td>
                                     <td class="text-center">
                                         @if (!$section->prevision)
-                                            {{ date_format($section->start(), 'd-m-Y') }}
+                                            @if ($section->rows->count())
+                                                {{ date_format($section->start(), 'd-m-Y') }}
+                                            @endif
                                         @endif
                                     </td>
                                     <td class="text-center">
                                         @if ($section->rows->count())
-                                            {{ date_format($section->end(), 'd-m-Y') }}
+                                            @if ($section->rows->count())
+                                                {{ date_format($section->end(), 'd-m-Y') }}
+                                            @endif
                                         @endif
                                     </td>
                                     <td class="text-center">

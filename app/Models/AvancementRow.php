@@ -101,27 +101,14 @@ class AvancementRow extends Model
 
     public function start()
     {
-        $carbon = new Carbon();
-        if ($this->rows->count()) {
-            return $this->rows->sortBy('start')->first()->start;
-        }
-        else {
-            return date('Y-m-d');
-        }
+        return $this->rows->sortBy('start')->first()->start;
 
         // return $this-> rows->where('prevision', false)->sortBy('start')->first()->start;
     }
     public function end()
     {
-        $carbon = new Carbon();
+        return $this->rows->sortBy('end')->last()->end;
 
-
-
-        if ($this->rows->count()) {
-            return $this->rows->sortBy('end')->last()->end;
-        } else {
-            return date('Y-m-d');
-        }
         // return $this->rows->where('prevision', false)->sortBy('end')->last()->end;
     }
 
