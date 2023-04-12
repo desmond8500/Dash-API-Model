@@ -13,7 +13,7 @@
 
     <div class="row">
         @if ($show_menu)
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card p-2">
                     <h3 class="fw-bold">{{ $projet->name }}</h3>
                     <div class="text-muted">

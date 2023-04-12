@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-md-7">
+    <div class="col-md-7 mb-2">
         @if ($report)
             @if ($editform)
                 <div class="card card-body">
@@ -36,7 +36,7 @@
             @endif
         @endif
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 mb-2">
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Rapports</div>
