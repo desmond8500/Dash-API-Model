@@ -27,6 +27,8 @@ use App\Http\Livewire\Tabler\Stock\Providers;
 use App\Http\Livewire\Tabler\Stock\Stock;
 use App\Http\Livewire\Tabler\Task\Task;
 use App\Http\Livewire\Tabler\Task\Tasks;
+use App\Http\Livewire\Tabler\Tools\GalalyNames;
+use App\Http\Livewire\Tabler\Tools\Tools;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -78,6 +80,9 @@ Route::middleware([])->name('tabler.')->group(function () {
     Route::get('/files',                    Files::class)->name('files');
     // Contacts
     Route::get('/contacts',                 Contacts::class)->name('contacts');
+    // Tools
+    Route::get('/tools',                    Tools::class)->name('tools');
+    Route::get('/tools/galaxy',             GalalyNames::class)->name('galaxyNames');
     // Route::get('/contact/contact/{contact_id}', Contact::class)->name('contact');
     // PDF
     Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
