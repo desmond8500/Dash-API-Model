@@ -11,7 +11,7 @@
         </button>
     @endcomponent
 
-    <div class="row">
+    <div class="row g-2">
         @if ($show_menu)
             <div class="col-md-3 mb-3">
                 <div class="card p-2">

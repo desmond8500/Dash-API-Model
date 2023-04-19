@@ -1,10 +1,10 @@
-<div class="col-md-12 mb-3">
+<div class="col-md-7 mb-3">
     <label class="form-label">Nom</label>
     <input type="text" class="form-control" wire:model.defer="name"/>
     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
 
-<div class="mb-3 col-md-6">
+<div class="mb-3 col-md-5">
     <label class="form-label">Systèmes</label>
     <select class="form-select"wire:model.defer="system_id">
         <option value="0">Sélectionnez un système</option>

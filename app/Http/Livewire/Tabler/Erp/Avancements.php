@@ -52,11 +52,16 @@ class Avancements extends Component
     }
 
     // Avancement
-    public $avancement_id, $name, $system, $building_id;
+    public $avancement_id, $name, $system, $building_id, $selected_building;
 
     protected $rules = [
         'system' => 'required',
     ];
+
+    public function select_building($building_id)
+    {
+        $this->selected_building = Building::find($building_id);
+    }
 
     public function setAvancement($building_id, $categorie_id)
     {
