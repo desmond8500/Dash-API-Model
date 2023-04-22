@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/** @var integer $projet_id description
+ *  @var integer $fiche_type_id description
+ */
 
 /**
  * @SWG\Definition(
@@ -29,6 +33,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="name",
+ *          description="name",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="date",
+ *          description="date",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -46,38 +62,33 @@ class Fiche extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'fiches';
-    
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'projet_id',
-        'fiche_type_id'
+        'fiche_type_id',
+        'name',
+        'date',
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'projet_id' => 'integer',
-        'fiche_type_id' => 'integer'
+        'fiche_type_id' => 'integer',
+        'name' => 'string',
+        'date' => 'date',
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
-        
+        'projet_id' => ['required','integer'],
+        'fiche_type_id' => ['required','integer'],
     ];
 
-    
+    public function zones(): HasMany
+    {
+        return $this->hasMany(FicheZone::class, 'fiche_id');
+    }
+
 }

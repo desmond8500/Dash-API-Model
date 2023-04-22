@@ -91,6 +91,7 @@ Route::middleware([])->name('tabler.')->group(function () {
     Route::get('/export_fiche_installation',[PDFController::class, 'export_fiche_installation'])->name('export_fiche_installation');
     Route::get('/export_fiche_livraison',   [PDFController::class, 'export_fiche_livraison'])->name('export_fiche_livraison');
     Route::get('/export_avancements',       [PDFController::class, 'export_avancements'])->name('export_avancements');
+    Route::get('/export_pdf_galaxy',        [PDFController::class, 'export_pdf_galaxy'])->name('export_pdf_galaxy');
 
 });
 

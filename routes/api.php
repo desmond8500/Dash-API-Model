@@ -90,3 +90,8 @@ Route::resource('fiches', App\Http\Controllers\API\FicheAPIController::class);
 
 
 Route::resource('ibans', App\Http\Controllers\API\IbanAPIController::class);
+
+
+
+
+Route::resource('fiche_zones', App\Http\Controllers\API\FicheZoneAPIController::class);

@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</a>
-                    <button type="submit" class="btn btn-primary" >Ajouter</button>
+                    <button type="submit" class="btn btn-primary" >{{ $submit ?? 'Ajouter' }}</button>
                 </div>
             </form>
         </div>

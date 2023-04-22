@@ -47,6 +47,9 @@
                 <div class="btn mt-1 @if($tab==9) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(9)">
                     <div>Etat d'avancement</div> <div></div>
                 </div>
+                <div class="btn mt-1 @if($tab==10) btn-primary @else btn-dark @endif d-flex justify-content-between"  wire:click="selectTab(10)">
+                    <div>Fiches</div> <div></div>
+                </div>
             </div>
         @endif
         <div @class(['col-md-9 mb-3'=> $show_menu, 'col-md-12 mb-3'=> !$show_menu])>
@@ -78,6 +81,9 @@
                         @break
                     @case(9)
                         @livewire('tabler.erp.avancements',['projet_id'=> $projet->id])
+                        @break
+                    @case(10)
+                        @livewire('tabler.erp.fiches',['projet_id'=> $projet->id])
                         @break
                     @default
 
