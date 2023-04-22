@@ -36,7 +36,6 @@ class DossierTechnique extends Component
     {
         return view('livewire.tabler.erp.dossier-technique',[
             'projet' => Projet::find($this->projet_id),
-            'fiches' => Fiche::where('projet_id',$this->projet_id)->get(),
             'systems' => System::where('projet_id', $this->projet_id)->get()
         ]);
     }
@@ -96,7 +95,6 @@ class DossierTechnique extends Component
         $system->description = $this->description;
         $system->save();
         $this->reset('system_id');
-
     }
 
 

@@ -8,7 +8,6 @@ use App\Models\ReportFiles;
 use App\Models\ReportLink;
 use App\Models\ReportModalite;
 use App\Models\ReportSection;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -221,24 +220,24 @@ class Report extends Component
         $model = ReportFiles::find($photo);
         $this->name = $model->name;
         $this->folder = $model->folder;
-        $this->attr3 = $model->attr3;
     }
 
     public function update_photo()
     {
-        $model = ReportFiles::find($this->photo_id);
-        $model->name = $this->name;
-        $model->folder = $this->folder;
-        $model->attr3 = $this->attr3;
-        $model->save();
+        $photo = ReportFiles::find($this->photo_id);
+        $photo->name = $this->name;
+        $photo->folder = $this->folder;
+        $photo->attr3 = $this->attr3;
+        $photo->save();
         $this->reset('photo_id');
         $this->render();
     }
-    public function delete_photo()
+    public function delete_photo($id)
     {
-        $model = ReportFiles::find($this->photo_id);
+        $photo = ReportFiles::find($id);
 
-        $model->delete();
+        unlink($photo->folder);
+        $photo->delete();
         $this->render();
     }
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta16/dist/css/tabler-vendors.min.css">
     <script src=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js "></script>
     <link href=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css " rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('library/lightgallery/dist/css/lightgallery.css') }}"> --}}
     @livewireStyles
 </head>
 
@@ -41,6 +42,7 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+    {{-- <script src="{{ asset('library/lightgallery/dist/lightgallery.min.js') }}"></script> --}}
     @stack('scripts')
 </body>
 

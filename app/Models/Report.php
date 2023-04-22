@@ -63,7 +63,6 @@ class Report extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'reports';
 
     protected $dates = ['deleted_at'];

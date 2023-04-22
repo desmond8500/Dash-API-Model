@@ -7,7 +7,6 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 /**
  * @SWG\Definition(
  *      definition="FicheZone",
@@ -80,7 +79,6 @@ class FicheZone extends Model
         'fiche_id' => ['required','integer'],
     ];
 
-
     public function fiche(): BelongsTo
     {
         return $this->belongsTo(Fiche::class);
@@ -88,7 +86,6 @@ class FicheZone extends Model
 
     public function convert()
     {
-
         // if ($this->equipement== "Contact de porte")
         //     $name = 'co '. $this->local;
         // elseif ($this->equipement== "Bouton panique")

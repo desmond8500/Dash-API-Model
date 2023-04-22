@@ -14,6 +14,7 @@ class ToolsController extends Controller
 
     public static function convert($name)
     {
+
         $name = str_replace('é','e', $name);
         $name = str_replace('è','e', $name);
         $name = str_replace('ë','e', $name);
@@ -86,6 +87,28 @@ class ToolsController extends Controller
                 array_push($result, 45);
             else if ($value == " ")
                 array_push($result, 21);
+
+            else if ($value == "0")
+                array_push($result, 0);
+            else if ($value == "1")
+                array_push($result, 1);
+            else if ($value == "2")
+                array_push($result, 2);
+            else if ($value == "3")
+                array_push($result, 3);
+            else if ($value == "4")
+                array_push($result, 4);
+            else if ($value == "5")
+                array_push($result, 5);
+            else if ($value == "6")
+                array_push($result, 6);
+            else if ($value == "7")
+                array_push($result, 7);
+            else if ($value == "8")
+                array_push($result, 8);
+            else if ($value == "9")
+                array_push($result, 9);
+
             else
                 array_push($result, $value);
         }
