@@ -9,11 +9,13 @@
                 <input type="text" class="form-control" wire:model.defer="name" placeholder="Name">
                 <button class="btn btn-primary" wire:click="convert">Valider</button>
             </div>
+            @error('name') <span class="text-danger">{{ $message }}</span> @enderror
             <div class="p-2">
                 @foreach ($result as $item)
                    <b style="font-size:15px">{{ $item }}</b>
                 @endforeach
             </div>
+            {{ strtoupper($name) }}
         </div>
     <div>
 </div>

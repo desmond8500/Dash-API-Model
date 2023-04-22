@@ -42,12 +42,21 @@ class Fiches extends Component
         return Fiche::where('projet_id',$this->projet_id)->get();
     }
 
-    // Fiche
-    public $fiche_id, $selected_fiche, $fiche_type_id, $name, $type, $date;
+    public function fill_password()
+    {
+        if ($this->type==1) {
+            $this->master_code = 12345;
+            $this->tech_code = 112233;
+        }
+    }
 
+    // Fiche
+    public $fiche_id, $selected_fiche, $fiche_type_id, $modele, $name, $type, $date, $master_code, $tech_code, $user_code;
+    public $codes = false;
     protected $rules = [
         // 'projet_id' => 'required',
         'type' => 'required',
+        'modele' => 'required',
     ];
 
     public function add_fiche()
@@ -58,8 +67,12 @@ class Fiches extends Component
             'name' => ucfirst( $this->name),
             'fiche_type_id' => $this->type,
             'date' => $this->date,
+            'master_code' => $this->master_code,
+            'user_code' => $this->user_code,
+            'tech_code' => $this->tech_code,
+            'modele' => $this->modele,
         ]);
-        $this->reset("name","date", "fiche_type_id");
+        $this->reset("name","date",'master_code', 'modele', 'user_code', 'tech_code', "fiche_type_id");
         $this->dispatchBrowserEvent('close-modal');
     }
 
@@ -67,6 +80,10 @@ class Fiches extends Component
     {
         $fiche = $this->selected_fiche;
         $this->name = $fiche->name;
+        $this->master_code = $fiche->master_code;
+        $this->user_code = $fiche->user_code;
+        $this->tech_code = $fiche->tech_code;
+        $this->modele = $fiche->modele;
         if ($fiche->date) {
             $this->date = date_format($fiche->date, 'Y-m-d');
         }
@@ -83,8 +100,12 @@ class Fiches extends Component
         if ($this->date) {
             $fiche->date = $this->date;
         }
+        $fiche->master_code = $this->master_code;
+        $fiche->user_code = $this->user_code;
+        $fiche->tech_code = $this->tech_code;
+        $fiche->modele = $this->modele;
         $fiche->save();
-        $this->reset("name", "date", "fiche_type_id");
+        $this->reset("name","date", 'master_code', 'modele', 'user_code', 'tech_code', "fiche_type_id");
         $this->selected_fiche = $fiche;
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -193,5 +214,10 @@ class Fiches extends Component
         $fiche_zone = FicheZone::find($fiche_zone_id);
         $fiche_zone->delete();
         $this->selected_fiche = Fiche::find($this->selected_fiche->id);
+    }
+
+    public function convert_equipment($row_id)
+    {
+        $this->fiche_zone_id = $row_id;
     }
 }

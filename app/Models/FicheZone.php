@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\ToolsController;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -83,5 +84,21 @@ class FicheZone extends Model
     public function fiche(): BelongsTo
     {
         return $this->belongsTo(Fiche::class);
+    }
+
+    public function convert()
+    {
+
+        // if ($this->equipement== "Contact de porte")
+        //     $name = 'co '. $this->local;
+        // elseif ($this->equipement== "Bouton panique")
+        //     $name = 'bp '. $this->local;
+        // elseif ($this->equipement== "Détecteur sismique")
+        //     $name = 'sismisque '. $this->local;
+        // else
+        //     $name = $this->local;
+
+        return ToolsController::convert($this->local);
+        // return ToolsController::convert($name);
     }
 }

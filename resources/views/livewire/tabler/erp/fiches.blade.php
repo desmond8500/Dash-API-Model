@@ -1,9 +1,9 @@
-<div class="row g-2">
+<div class="row">
     <div class="col">
 
     </div>
     <div class="col-auto">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFiche">
+        <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addFiche">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
           Fiche
         </button>
@@ -38,7 +38,32 @@
                         </div>
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
-                                <div></div>
+                                <div>
+                                    <button class="btn btn-primary mb-1" wire:click="$toggle('codes')">Codes</button>
+                                    @if ($codes)
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Utilisateur</th>
+                                                        <th scope="col">code</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="">
+                                                        <td>Code Maitre</td> <td>{{ $selected_fiche->master_code }}</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td>Code Utilisateur</td> <td>{{ $selected_fiche->user_code }}</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td>Code Technicien</td> <td>{{ $selected_fiche->tech_code }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div>
                                     @if ($selected_fiche->date)
                                         {{ date_format($selected_fiche->date, 'Y-m-d') }}
@@ -53,8 +78,7 @@
                                     <tr>
                                         <th style="width: 10px;" class="text-center">#</th>
                                         <th style="width: 50px;">Zone</th>
-                                        <th scope="col">Local</th>
-                                        {{-- <th scope="col">Local</th> --}}
+                                        <th scope="col">Equipement / Local</th>
                                         <th style="width: 100px" class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -63,9 +87,26 @@
                                         <tr class="">
                                             <td class="text-center fw-bold">{{ $key+1 }}</td>
                                             <td>{{ $row->zone }}</td>
-                                            <td>
-                                                <div class="text-muted">{{ $row->equipement }}</div>
-                                                <div>{{ $row->local }}</div>
+                                            <td >
+                                                <div class="row">
+                                                    @if ($selected_fiche->fiche_type_id ==1)
+                                                        <div class="col-auto">
+                                                            <button class="btn btn-primary btn-icon" wire:click="convert_equipment('{{ $row->id }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path> </svg>
+                                                            </button>
+                                                        </div>
+                                                    @endif
+                                                    <div class="col">
+                                                        <div class="text-muted">{{ $row->equipement }}</div>
+                                                        <div>{{ $row->local }}</div>
+                                                        @if ($row->id == $fiche_zone_id)
+                                                            @foreach ($row->convert() as $item_c)
+                                                                <span class="fw-bold">{{ $item_c }}</span>
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+
+                                                </div>
                                             </td>
                                             <td>
                                                 <div class="btn btn-icon btn-primary" wire:click="edit_fiche_zone('{{ $row->id }}')">

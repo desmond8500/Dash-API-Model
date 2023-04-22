@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -71,6 +72,10 @@ class Fiche extends Model
         'fiche_type_id',
         'name',
         'date',
+        'master_code',
+        'user_code',
+        'tech_code',
+        'modele',
     ];
 
     protected $casts = [
@@ -79,6 +84,10 @@ class Fiche extends Model
         'fiche_type_id' => 'integer',
         'name' => 'string',
         'date' => 'date',
+        'master_code' => 'string',
+        'user_code' => 'string',
+        'tech_code' => 'string',
+        'modele' => 'string',
     ];
 
     public static $rules = [
@@ -89,6 +98,11 @@ class Fiche extends Model
     public function zones(): HasMany
     {
         return $this->hasMany(FicheZone::class, 'fiche_id');
+    }
+
+    public function projet(): BelongsTo
+    {
+        return $this->belongsTo(Projet::class);
     }
 
 }

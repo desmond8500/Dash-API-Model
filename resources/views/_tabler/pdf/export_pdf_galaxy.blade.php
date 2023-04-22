@@ -24,14 +24,14 @@
                 @endif
             </td>
             <td class="project-name" style="border-bottom: 0px">
-                {{ $projet->name ?? "Nom du projet" }}
+                {{ $fiche->projet->name ?? "Nom du projet" }}
             </td>
         </tr>
     </table>
 
     <table class="table mb-1" >
         <tr style="border-top: 0px;">
-            <td class="centrale">{{ $modele ?? "Modèle de centrale" }}</td>
+            <td class="centrale">{{ $fiche->modele ?? "Modèle de centrale" }}</td>
             <td class="text-end centrale">{{ date_format($fiche->date, ('d-m-Y')) ?? "Date" }}</td>
         </tr>
     </table>

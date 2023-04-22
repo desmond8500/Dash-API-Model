@@ -13,6 +13,10 @@ class CreateFichesTable extends Migration
             $table->increments('id');
             $table->integer('projet_id')->constrained();
             $table->integer('fiche_type_id')->constrained();
+            $table->string('master_code')->nullable();
+            $table->string('user_code')->nullable();
+            $table->string('tech_code')->nullable();
+            $table->string('modele')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
