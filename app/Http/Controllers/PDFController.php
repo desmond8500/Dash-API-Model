@@ -11,6 +11,7 @@ use App\Models\System;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PDFController extends Controller
 {
@@ -65,7 +66,13 @@ class PDFController extends Controller
             'company' => 'Building Comfort Senegal',
             'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get(),
         ];
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data);
+        $dir = "erp/reports/$report->id/pdf/";
+        Storage::disk('public')->makeDirectory($dir);
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data)
+            ->save("storage/$dir".$report->type() . " - " . $report->projet->name . " - " . $report->projet->client->name.'.pdf');
+        $report->pdf = "$dir" . $report->type() . " - " . $report->projet->name . " - " . $report->projet->client->name . '.pdf';
+        $report->save();
 
         return $pdf->stream($report->type()." - ".$report->projet->name." - ". $report->projet->client->name);
     }

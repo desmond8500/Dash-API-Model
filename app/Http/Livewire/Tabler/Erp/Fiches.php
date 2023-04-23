@@ -151,7 +151,9 @@ class Fiches extends Component
                 'Hall',
                 'Hall Client',
                 'Caisse',
-                'Arrière Caisse'
+                'Arrière Caisse',
+                'Chef Agence',
+                'Etage',
             ]
         ],
     ];

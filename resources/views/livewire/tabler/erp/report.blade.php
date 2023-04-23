@@ -1,7 +1,7 @@
 <div>
     @component('components.tabler.header', ['title'=>'Rapport', 'subtitle'=>'ERP', 'breadcrumbs'=>$breadcrumbs])
         <div class="d-none d-sm-block">
-            <button type="button" class="btn btn-primary" wire:click="send_mail">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendReport">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M10 14l11 -11"></path> <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"></path> </svg>
                 Envoyer
             </button>
@@ -271,6 +271,15 @@
         'method' => "add_invoice"
     ])
     <script> window.addEventListener('close-modal', event => { $("#addInvoice").modal('hide'); }) </script>
+
+    @include('_tabler.modal',[
+        'id' => "sendReport",
+        'title' => "Envoyer le rapport",
+        'include' => "_tabler.erp.send_report_form",
+        'method' => "send_report",
+        'submit' => 'Envoyer'
+    ])
+    <script> window.addEventListener('close-modal', event => { $("#sendReport").modal('hide'); }) </script>
 
 
 </div>

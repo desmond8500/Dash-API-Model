@@ -298,12 +298,19 @@ class Report extends Component
     }
 
     // Mail
-    public function send_mail()
+    public $report_mail;
+    protected $mail_rules = [
+        'report_mail' => ['required', 'email'],
+    ];
+    public function send_report()
     {
+        $this->validate($this->mail_rules);
         $user = [
             'email' => 'sender@test.com',
             'name' => 'Admin'
         ];
-        Mail::to('reciever@test.com')->send(new ReportMail($user));
+        Mail::to('test@test.com')->send(new ReportMail($user,$this->report));
+        // Mail::to($this->report_mail)->send(new ReportMail($user,$this->report));
+        $this->dispatchBrowserEvent('close-modal');
     }
 }

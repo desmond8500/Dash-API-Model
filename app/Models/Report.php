@@ -72,7 +72,8 @@ class Report extends Model
         'objet',
         'description',
         'date',
-        'type'
+        'type',
+        'pdf',
     ];
 
     protected $casts = [
@@ -81,7 +82,8 @@ class Report extends Model
         'objet' => 'string',
         'description' => 'string',
         'date' => 'date',
-        'type' => 'string'
+        'type' => 'string',
+        'pdf' => 'string',
     ];
 
     public static $rules = [
