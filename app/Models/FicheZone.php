@@ -86,16 +86,16 @@ class FicheZone extends Model
 
     public function convert()
     {
-        // if ($this->equipement== "Contact de porte")
-        //     $name = 'co '. $this->local;
-        // elseif ($this->equipement== "Bouton panique")
-        //     $name = 'bp '. $this->local;
-        // elseif ($this->equipement== "Détecteur sismique")
-        //     $name = 'sismisque '. $this->local;
-        // else
-        //     $name = $this->local;
+        if ($this->equipement== "Contact de porte")
+            $name = 'co '. $this->local;
+        elseif ($this->equipement== "Bouton panique")
+            $name = 'bp '. $this->local;
+        elseif ($this->equipement== "Détecteur sismique")
+            $name = 'sismisque '. $this->local;
+        else
+            $name = $this->local;
 
-        return ToolsController::convert($this->local);
+        return ToolsController::convert($name);
         // return ToolsController::convert($name);
     }
 }
