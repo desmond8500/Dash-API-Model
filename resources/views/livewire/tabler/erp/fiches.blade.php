@@ -35,20 +35,19 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path> </svg>
                                 </a>
 
-                                <div class="dropdown">
+                                <div class="dropdown d-block d-sm-none">
                                     <button class="btn btn-primary btn-icon " type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M6 9l6 6l6 -6"></path> </svg>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addZone" wire:click="$set('fiche_id','{{ $selected_fiche->id }}')" title="Ajouter une zone">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
-                                            Zone
+                                        <a class="dropdown-item btn" type="button" data-bs-toggle="modal" data-bs-target="#addZone" wire:click="$set('fiche_id','{{ $selected_fiche->id }}')" title="Ajouter une zone">
+                                            Ajouter une Zone
                                         </a>
-                                        <a class="dropdown-item" wire:click="edit_fiche" title="Editer une fiche">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+                                        <a class="dropdown-item btn" type="button" wire:click="edit_fiche" title="Editer une fiche">
+                                            Editer la Fiche
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('tabler.export_pdf_galaxy',['fiche_id'=>$selected_fiche->id]) }}" target="_blank">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path> </svg>
+                                        <a class="dropdown-item btn" type="button" href="{{ route('tabler.export_pdf_galaxy',['fiche_id'=>$selected_fiche->id]) }}" target="_blank">
+                                            Exporter en PDF
                                         </a>
                                     </div>
                                 </div>
