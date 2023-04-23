@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Mail\ReportMail;
 use App\Models\Invoice;
 use App\Models\Report as ModelsReport;
 use App\Models\ReportFiles;
 use App\Models\ReportLink;
 use App\Models\ReportModalite;
 use App\Models\ReportSection;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -293,5 +295,15 @@ class Report extends Component
     public function set_section_title($title)
     {
         $this->section_title = $title;
+    }
+
+    // Mail
+    public function send_mail()
+    {
+        $user = [
+            'email' => 'sender@test.com',
+            'name' => 'Admin'
+        ];
+        Mail::to('reciever@test.com')->send(new ReportMail($user));
     }
 }
