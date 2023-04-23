@@ -147,7 +147,7 @@ class Fiches extends Component
                 'Coffre',
                 'Gab',
                 'Archives',
-                'Local Techique',
+                'Local Technique',
                 'Hall',
                 'Hall Client',
                 'Caisse',
