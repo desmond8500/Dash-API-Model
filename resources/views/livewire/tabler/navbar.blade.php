@@ -29,8 +29,10 @@
                             {{-- <div class="dropdown-divider"></div>
                             <a href="/logout" class="dropdown-item">Déconnexion</a>
                         </div> --}}
-                        <a class="btn btn-light" wire:click="logout">Déconnexion</a>
-                        {{-- <a class="btn btn-light" href="{{ route('deconnexion') }}">Déconnexion</a> --}}
+                        <div class="btn-list">
+                            <a class="btn btn-light" wire:click="logout">Déconnexion</a>
+                            <button class="btn btn-primary" wire:click="init">Init</button>
+                        </div>
                     @else
                         <a class="btn btn-primary" href="{{  route('tabler.login') }}">Connexion</a>
                     @endauth
