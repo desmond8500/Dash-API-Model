@@ -25,7 +25,6 @@ class Navbar extends Component
 
     public function logout()
     {
-        Auth::logout();
-        return redirect('/');
+        auth()->guard('web')->logout();
     }
 }

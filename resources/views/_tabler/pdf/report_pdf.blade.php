@@ -71,7 +71,6 @@
                     <img src="{{ $file->folder }}" alt="{{ $file->name }}" width="100px" />
                 </a>
             @endforeach
-
         </div>
 
         @if ($section->links->count())
@@ -84,9 +83,6 @@
                 @endforeach
             </ul>
         @endif
-
-
     @endforeach
-
 </body>
 </html>

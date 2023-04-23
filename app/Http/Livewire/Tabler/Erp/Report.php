@@ -307,13 +307,7 @@ class Report extends Component
 
     public function send_report()
     {
-        // $this->validate($this->mail_rules);
-        // $user = Auth::user();
         $user = ['name' => 'desmond', 'email' => 'desmond@miles.com'];
-
-        $test = array(
-            ["name"=> "test1", 'email'=>'test1@mail.com']
-        );
 
         Mail::to($this->mails)->send(new ReportMail($user,$this->report));
         $this->dispatchBrowserEvent('close-modal');

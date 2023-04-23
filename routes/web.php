@@ -29,7 +29,6 @@ use App\Http\Livewire\Tabler\Task\Task;
 use App\Http\Livewire\Tabler\Task\Tasks;
 use App\Http\Livewire\Tabler\Tools\GalalyNames;
 use App\Http\Livewire\Tabler\Tools\Tools;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -41,14 +40,14 @@ Route::get('/swagger', function () {
     return Redirect::to(asset('/api/docs'));
 })->name('swagger');
 
-Route::middleware([])->group(function () {
-    Route::get('/',     Index::class)->name('index');
+Route::get('/deconnexion', function () {
+    $this->guard()->logout();
+    // Auth::logout();
+})->name('deconnexion');
 
-});
-
-
+Route::get('/', Index::class)->name('index')->middleware(['auth:sanctum']);
 // Tabler
-Route::middleware([])->name('tabler.')->group(function () {
+Route::middleware(['auth:sanctum'])->name('tabler.')->group(function () {
     // Réglages
     Route::get('/profile',                  Profile::class)->name('profile');
     Route::get('/reglages',                 Reglages::class)->name('reglages');
