@@ -18,6 +18,7 @@ class CreateFichesTable extends Migration
             $table->string('tech_code')->nullable();
             $table->string('modele')->nullable();
             $table->string('name')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
