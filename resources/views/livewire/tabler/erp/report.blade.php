@@ -47,6 +47,8 @@
 
     @endcomponent
 
+    {{-- @dump($report->contacts) --}}
+
     <div class="row g-2">
         <div class="col-md-4">
             <div class="card p-2">
@@ -279,6 +281,7 @@
         'method' => "send_report",
         'submit' => 'Envoyer'
     ])
+    <script> window.addEventListener('open-sendReport-modal', event => { $("#sendReport").modal('show'); }) </script>
     <script> window.addEventListener('close-modal', event => { $("#sendReport").modal('hide'); }) </script>
 
 

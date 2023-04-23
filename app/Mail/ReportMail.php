@@ -17,18 +17,18 @@ class ReportMail extends Mailable
     {
         $this->user = $user;
         $this->report = $report;
+        // $this->to = $to;
     }
 
     public function build()
     {
-        $dir = "erp/reports/". $this->report->id."/pdf";
-        $files = glob($dir);
+        $path = pathinfo($this->report->pdf);
+
         return $this
-            ->from($this->user)
-            ->to('test@test.com')
-            ->subject('Rapport')
+            ->from($this->user['email'])
+            // ->to($this->to)
+            ->subject(basename($path['filename']))
             ->view('_tabler.mails.report_mail')
-            // ->attachFromStorageDisk('public',$files);
             ->attachFromStorageDisk('public',$this->report->pdf);
     }
 }

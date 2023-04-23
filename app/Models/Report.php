@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -145,6 +146,12 @@ class Report extends Model
         }
 
     }
+
+    public function contacts(): HasManyThrough
+    {
+        return $this->hasManyThrough(Contact::class, ProjetContact::class, 'projet_id','id');
+    }
+    // $contacts = Contact::where('projet_id', $this->report->projet_id)->get();
 
 
 

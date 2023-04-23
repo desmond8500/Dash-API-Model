@@ -29,7 +29,7 @@
         Voilà ci dessous le compte rendu :
     </p>
 
-    {{-- <hr style="color: #206bc4;">
+    <hr style="color: #206bc4;">
 
     <div style="text-align: left; color: grey">
         <table>
@@ -47,7 +47,7 @@
                 </td>
             </tr>
         </table>
-    </div> --}}
+    </div>
 
 </div>
 

@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Tabler\Erp;
 
 use App\Mail\ReportMail;
+use App\Models\Contact;
 use App\Models\Invoice;
 use App\Models\Report as ModelsReport;
 use App\Models\ReportFiles;
 use App\Models\ReportLink;
 use App\Models\ReportModalite;
 use App\Models\ReportSection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -298,19 +300,45 @@ class Report extends Component
     }
 
     // Mail
-    public $report_mail;
+    public $report_mail, $report_name, $mails=array() ;
     protected $mail_rules = [
-        'report_mail' => ['required', 'email'],
+        'mails' => "array:name,email",
     ];
+
     public function send_report()
     {
-        $this->validate($this->mail_rules);
-        $user = [
-            'email' => 'sender@test.com',
-            'name' => 'Admin'
-        ];
-        Mail::to('test@test.com')->send(new ReportMail($user,$this->report));
-        // Mail::to($this->report_mail)->send(new ReportMail($user,$this->report));
+        // $this->validate($this->mail_rules);
+        // $user = Auth::user();
+        $user = ['name' => 'desmond', 'email' => 'desmond@miles.com'];
+
+        $test = array(
+            ["name"=> "test1", 'email'=>'test1@mail.com']
+        );
+
+        Mail::to($this->mails)->send(new ReportMail($user,$this->report));
         $this->dispatchBrowserEvent('close-modal');
+    }
+    public function add_contact($contact_id)
+    {
+        $c = Contact::find($contact_id);
+        array_push($this->mails,[
+            'name' => $c->firstname." ".$c->lastname,
+            'email' => $c->emails->first()->email
+        ]);
+    }
+    public function remove_contact($key)
+    {
+        array_splice($this->mails,$key,1);
+    }
+    public function add_mail()
+    {
+        $this->validate([
+            'report_name'=>'required',
+            'report_mail'=> ['required','email']
+        ]);
+        array_push($this->mails,[
+            'name' => $this->report_name,
+            'email' => $this->report_mail
+        ]);
     }
 }
