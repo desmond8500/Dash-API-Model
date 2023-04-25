@@ -48,6 +48,7 @@ class ClientAdd extends Component
         }
 
         $this->emit('reload');
+        $this->reset('name','description');
         session()->flash('message', 'Le client a été créé avec succès');
         $this->dispatchBrowserEvent('close-modal');
     }

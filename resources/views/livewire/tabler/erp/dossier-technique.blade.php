@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row g-2">
     <div class="col-md-6">
-        <div class="card mb-3">
+        <div class="card">
             <div class="card-header">
                 <div class="card-title">Systèmes</div>
                 <div class="card-actions">
@@ -73,5 +73,4 @@
             </div>
         </div>
     </div>
-
 </div>

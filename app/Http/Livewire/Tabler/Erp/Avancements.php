@@ -15,10 +15,34 @@ class Avancements extends Component
 {
     public $projet_id;
     public $search ='';
+    public $ligne_list = [
+        'Câblage de réseau',
+        'Appareillages',
+        'SOUS-SOL',
+        'REZ DE CHAUSSEE',
+        'MEZZANINE',
+        'ETAGE 1',
+        'ETAGE 2',
+        'ETAGE 3',
+        'ETAGE 4',
+        'ETAGE 5',
+        'ETAGE 6',
+        'ETAGE 7',
+        'TOITURE TERRASSE',
+        'Réseau de conduite',
+    ];
+
+    protected $messages = [
+        'name.required' => 'Le champ nom est requis',
+        'comment.required' => 'Le champ commentaire est requis',
+    ];
+
     public function mount($projet_id)
     {
         $this->projet_id = $projet_id;
+
     }
+
     public function render()
     {
         return view('livewire.tabler.erp.avancements',[
@@ -28,11 +52,16 @@ class Avancements extends Component
     }
 
     // Avancement
-    public $avancement_id, $name, $system, $building_id;
+    public $avancement_id, $name, $system, $building_id, $selected_building;
 
     protected $rules = [
         'system' => 'required',
     ];
+
+    public function select_building($building_id)
+    {
+        $this->selected_building = Building::find($building_id);
+    }
 
     public function setAvancement($building_id, $categorie_id)
     {
@@ -90,7 +119,7 @@ class Avancements extends Component
 
     protected $section_rules = [
         'name' => 'required',
-        'comment' => 'required',
+        // 'comment' => 'required',
     ];
 
     public function add_section()
@@ -135,14 +164,14 @@ class Avancements extends Component
     }
 
     // Row
-    public $row_id, $start, $end, $progress=0, $avancement_row_id, $order;
+    public $row_id, $start, $end, $progress=0, $avancement_row_id, $order, $prevision;
 
     protected $row_rules = [
         'name' => 'required',
         'start' => ['required','date'],
         'end' => ['required','date',"after_or_equal:start"],
         'progress' => ['required', 'numeric'],
-        'comment' => 'required',
+        // 'comment' => 'required',
     ];
 
     public function add_row()
@@ -150,7 +179,7 @@ class Avancements extends Component
         $this->validate($this->row_rules);
         AvancementSubRow::create([
             'avancement_row_id' => $this->avancement_row_id,
-            'name' => $this->name,
+            'name' => ucfirst($this->name),
             'start' => $this->start,
             'end' => $this->end,
             'progress' => $this->progress,
@@ -171,6 +200,7 @@ class Avancements extends Component
         $this->progress = $row->progress;
         $this->comment = $row->comment;
         $this->order = $row->order;
+        $this->prevision = $row->prevision;
     }
 
     public function update_row()
@@ -181,8 +211,10 @@ class Avancements extends Component
         $row->end = $this->end;
         $row->progress = $this->progress;
         $row->order = $this->order;
+        $row->comment = $this->comment;
+        $row->prevision = $this->prevision;
         $row->save();
-        $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order');
+        $this->reset('row_id','name', 'start', 'end', 'progress', 'comment', 'order', 'prevision');
         $this->render();
     }
     public function delete_row()
@@ -191,6 +223,37 @@ class Avancements extends Component
 
         $row->delete();
         $this->render();
+    }
+    public $selected_rows = array();
+
+    public function select_row($row)
+    {
+        array_push($this->selected_rows, $row);
+    }
+    public function unselect_row($row)
+    {
+        array_splice($this->selected_rows, $row, 1);
+    }
+    public function generate_rows()
+    {
+        foreach ($this->selected_rows as $key => $row) {
+            AvancementSubRow::create([
+                'avancement_row_id' => $this->avancement_row_id,
+                'name' => $row,
+                'start' => date('Y-m-d'),
+                'end' => date('Y-m-d'),
+                'progress' => 0,
+                'comment' => '_',
+                'order' => AvancementSubRow::count() + 1,
+            ]);
+        }
+        $this->reset('name', 'start', 'end', 'progress', 'comment', 'order');
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function toogleRow()
+    {
+        # code...
     }
 
     // Category
@@ -207,7 +270,6 @@ class Avancements extends Component
             'name' => ucfirst($this->category_name),
             'building_id' => $this->category_building_id,
         ]);
-        $this->reset();
         $this->dispatchBrowserEvent('close-modal');
         $this->reset('category_name');
     }

@@ -11,7 +11,7 @@ class CreateTaskPhotosTable extends Migration
     {
         Schema::create('task_photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('task_id')->constrained();
+            $table->integer('task_id')->constrained();
             $table->string('name');
             $table->string('folder');
             $table->timestamps();

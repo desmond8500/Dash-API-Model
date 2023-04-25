@@ -11,7 +11,7 @@ class CreateContactMailsTable extends Migration
     {
         Schema::create('contact_mails', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('contact_id')->contrained();
+            $table->integer('contact_id')->contrained();
             $table->string('email');
             $table->timestamps();
             $table->softDeletes();

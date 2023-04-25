@@ -11,7 +11,7 @@ class CreateRoomArticleDetailsTable extends Migration
     {
         Schema::create('room_article_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('room_article_id')->contrained();
+            $table->integer('room_article_id')->contrained();
             $table->integer('saignee')->default(0);
             $table->integer('fourreau')->default(0);
             $table->integer('enduit')->default(0);

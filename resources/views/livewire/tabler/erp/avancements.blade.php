@@ -1,8 +1,17 @@
 <div>
-    <a class="btn btn-primary mb-2" target="_blank" href="{{ route('tabler.export_avancements', ['projet_id'=> $projet_id]) }}">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path> </svg>
-        Exporter PDF
-    </a>
+    <div class="row">
+        <div class="col">
+            @foreach ($buildings as $building)
+                <button class="btn btn-primary" wire:click="select_building('{{ $building->id }}')">{{ $building->name }}</button>
+            @endforeach
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-primary mb-2" target="_blank" href="{{ route('tabler.export_avancements', ['projet_id'=> $projet_id]) }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-export" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M14 3v4a1 1 0 0 0 1 1h4"></path> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3"></path> </svg>
+                Exporter PDF
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -15,7 +24,8 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table">
-                        @foreach ($buildings as $building)
+                        @if ($selected_building)
+
                             <tr class="bg-primary text-light">
                                 <th colspan="6" class="text-center" style="vertical-align: center; text-transform: uppercase;">{{ $building->name }}</th>
                                 <td class="text-end">
@@ -35,8 +45,9 @@
                                 <th class="text-end">Actions</th>
                             </tr>
                             <tbody>
-                                @foreach ($building->categories as $category)
-                                    <tr>
+                                @foreach ($selected_building->categories as $category)
+                                {{-- @foreach ($building->categories as $category) --}}
+                                    <tr class=" table-primary">
                                         @if ($category->id == $category_id)
                                             <td colspan="7">
                                                 <form class="row" wire:submit.prevent="update_category">
@@ -48,8 +59,8 @@
                                                 </form>
                                             </td>
                                         @else
-                                            <td colspan="6">{{ $category->name }}</td>
-                                            <td class="text-end">
+                                            <td colspan="5" class="fw-bold text-primary user-select-all" style="font-size: 20px">{{ $category->name }}</td>
+                                            <td colspan="2" class="text-end">
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAvancement" wire:click="setAvancement('{{ $building->id }}','{{ $category->id }}')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                                 Système
@@ -68,13 +79,14 @@
                                                     <form wire:submit.prevent="update_avancement" class="row">
                                                         @include('_tabler.erp.avancement_form')
                                                         <div class="col-md-12 d-flex justify-content-between">
+                                                            <a class="btn btn-danger" wire:click='delete_avancement'>Supprimer</a>
                                                             <button class="btn btn-primary" type="submit" >Modifier</button>
                                                         </div>
                                                     </form>
                                                 </td>
                                             @else
-                                                <th colspan="6" style="text-transform: uppercase">{{ $avancement->name }}</th>
-                                                <td class="text-end">
+                                                <th colspan="5" style="text-transform: uppercase" class="user-select-all">{{ $avancement->name }}</th>
+                                                <td colspan="2" class="text-end">
                                                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addSection" wire:click="$set('system','{{ $avancement->id }}')">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <line x1="12" y1="5" x2="12" y2="19"></line> <line x1="5" y1="12" x2="19" y2="12"></line> </svg>
                                                         Section
@@ -86,6 +98,11 @@
                                             @endif
                                         </tr>
                                         @foreach ($avancement->sections as $section)
+                                            {{-- <tr>
+                                                <td colspan="7">
+                                                    @dump($section)
+                                                </td>
+                                            </tr> --}}
                                             <tr class="fw-bold">
                                                 @if ($section_id == $section->id)
                                                     <td colspan="6">
@@ -97,14 +114,21 @@
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-danger" >Supprimer</button>
+                                                        <button class="btn btn-danger" wire:click="delete_section">Supprimer</button>
 
                                                     </td>
                                                 @else
-                                                    <td>{{ $section->name }}</td>
+                                                    <td class="user-select-all">{{ $section->name }}</td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
-                                                            {{ $section->duration()+1 }} Days
+
+                                                            {{ $section->duration() }}
+                                                            {{-- {{ $section->duration() + 1 }} --}}
+                                                            @if ($section->duration() >= 0 && $section->duration() < 2)
+                                                                Day
+                                                            @else
+                                                                Days
+                                                            @endif
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
@@ -119,7 +143,10 @@
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($section->rows->count())
-                                                            {{ number_format($section->rows->sum('progress') / $section->rows->count(), 0, '') }} %
+                                                        @php
+                                                            $somme = number_format($section->rows->sum('progress') / $section->rows->count(), 0, ',', ' ');
+                                                        @endphp
+                                                            {{ $somme }} %
                                                         @endif
                                                     </td>
                                                     <td>{{ $section->comment }}</td>
@@ -130,6 +157,9 @@
                                                         <button class="btn btn-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#addRow" wire:click="$set('avancement_row_id','{{ $section->id }}')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M12 5l0 14"></path> <path d="M5 12l14 0"></path> </svg>
                                                         </button>
+                                                        <a class="btn btn-icon btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#generateRow" wire:click="$set('avancement_row_id','{{ $section->id }}')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M12 5l0 14"></path> <path d="M5 12l14 0"></path> </svg>
+                                                        </a>
                                                     </td>
                                                 @endif
                                             </tr>
@@ -140,7 +170,7 @@
                                                             <form wire:submit.prevent='update_row' class="row">
                                                                 @include("_tabler.erp.avancement_row_form")
                                                                 <div class="col-md-12 text-end">
-                                                                    <button class="btn btn-primary" >Modfier</button>
+                                                                    <button class="btn btn-primary" >Modifier</button>
                                                                 </div>
                                                             </form>
                                                         </td>
@@ -151,12 +181,32 @@
                                                             <button class="btn btn-icon btn-danger" wire:click="delete_row">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
                                                             </button>
+
+                                                            <button @class(['btn btn-primary mt-2'=>$prevision, 'btn btn-secondary mt-2'=>!$prevision]) wire:click="$toggle('prevision')">
+                                                                @if ($prevision)
+                                                                    A programmer 1
+                                                                @else
+                                                                    Prévision 0
+                                                                @endif
+                                                            </button>
+
                                                         </td>
                                                     @else
-                                                        <td>{{ $row->name }}</td>
-                                                        <td>{{ $row->duration() }} Days</td>
-                                                        <td class="text-center">{{ date_format($row->start, 'd-m-Y') }}</td>
-                                                        <td class="text-center">{{ date_format($row->end, 'd-m-Y') }}</td>
+                                                        <td class="user-select-all">{{ $row->name }}</td>
+                                                        <td>
+                                                            {{ $row->duration() }}
+                                                            @if ($row->duration() > 0 && $row->duration() < 2 )
+                                                                Day
+                                                            @else
+                                                                Days
+                                                            @endif
+                                                        </td>
+                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision, 'bg-cyan-lt'=>$row->compare_start()])>
+                                                            {{ date_format($row->start, 'd-m-Y') }}
+                                                        </td>
+                                                        <td @class(['text-center'=>!$row->prevision, 'text-center text-danger'=>$row->prevision, 'bg-cyan-lt'=>$row->compare_end()])>
+                                                            {{ date_format($row->end, 'd-m-Y') }}
+                                                        </td>
                                                         <td class="text-center">{{ $row->progress }} %</td>
                                                         <td>{{ $row->comment }}</td>
                                                         <td class="text-end">
@@ -171,7 +221,7 @@
                                     @endforeach
                                 @endforeach
                             </tbody>
-                        @endforeach
+                        @endif
                     </table>
                 </div>
             </div>
@@ -209,4 +259,12 @@
         'method' => "add_category"
     ])
     <script> window.addEventListener('close-modal', event => { $("#addCategorie").modal('hide'); }) </script>
+
+    @include('_tabler.modal',[
+        'id' => "generateRow",
+        'title' => "Générer une ligne",
+        'include' => "_tabler.erp.generate_row_form",
+        'method' => "generate_rows"
+    ])
+    <script> window.addEventListener('close-modal', event => { $("#generateRow").modal('hide'); }) </script>
 </div>

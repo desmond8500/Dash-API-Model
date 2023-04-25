@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
-use App\Models\Invoice;
 use App\Models\Report;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -34,16 +33,35 @@ class RapportListCard extends Component
        $this->projet_id = $projet_id;
     }
 
+    public function getReports()
+    {
+        if ($this->search) {
+            return Report::where('projet_id', $this->projet_id)
+                ->where('objet', 'LIKE', "%{$this->search}%")
+                ->paginate(10);
+        } else {
+            return Report::where('projet_id', $this->projet_id)->paginate(10);
+        }
+    }
+
+    public function resetSearch()
+    {
+        $this->reset('search') ;
+        $this->getReports();
+    }
+
     public function render()
     {
 
         return view('livewire.tabler.erp.rapport-list-card',[
-            'reports' => Report::where('projet_id', $this->projet_id)->get(),
+            'reports' => $this->getReports(),
             'types' => Report::types(),
             'titles' => Report::titles(),
 
         ]);
     }
+
+    public $report_id;
 
     public function report_add()
     {
@@ -91,6 +109,11 @@ class RapportListCard extends Component
     public function addFile()
     {
         # code...
+    }
+
+    public function select_report($report_id)
+    {
+        $this->report_id = $report_id;
     }
 
 

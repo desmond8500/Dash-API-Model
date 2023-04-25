@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
@@ -63,7 +64,6 @@ class Report extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'reports';
 
     protected $dates = ['deleted_at'];
@@ -73,7 +73,8 @@ class Report extends Model
         'objet',
         'description',
         'date',
-        'type'
+        'type',
+        'pdf',
     ];
 
     protected $casts = [
@@ -82,7 +83,8 @@ class Report extends Model
         'objet' => 'string',
         'description' => 'string',
         'date' => 'date',
-        'type' => 'string'
+        'type' => 'string',
+        'pdf' => 'string',
     ];
 
     public static $rules = [
@@ -144,6 +146,12 @@ class Report extends Model
         }
 
     }
+
+    public function contacts(): HasManyThrough
+    {
+        return $this->hasManyThrough(Contact::class, ProjetContact::class, 'projet_id','id');
+    }
+    // $contacts = Contact::where('projet_id', $this->report->projet_id)->get();
 
 
 

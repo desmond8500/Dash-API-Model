@@ -1,5 +1,8 @@
 <div class="row">
     @component('components.tabler.header', ['title'=> 'Dashboard', 'subtitle'=> 'Subtitle'])
+        @auth
+            <button class="btn fw-bold">{{ auth()->user()->name }}</button>
+        @endauth
     @endcomponent
 
     @foreach ($cards as $card)

@@ -11,7 +11,7 @@ class CreateInvoiceSectionsTable extends Migration
     {
         Schema::create('invoice_sections', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('invoice_id')->constrained();
+            $table->integer('invoice_id')->constrained();
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

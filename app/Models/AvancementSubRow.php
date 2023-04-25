@@ -81,6 +81,7 @@ class AvancementSubRow extends Model
         'progress',
         'comment',
         'order',
+        'prevision',
     ];
 
     protected $casts = [
@@ -92,6 +93,7 @@ class AvancementSubRow extends Model
         'progress' => 'string',
         'comment' => 'string',
         'order' => 'string',
+        'prevision' => 'string',
     ];
 
     public static $rules = [
@@ -107,5 +109,17 @@ class AvancementSubRow extends Model
     {
         $carbon = new Carbon();
         return $carbon->parse($this->end)->diffInDays($this->start)+1;
+    }
+
+    public function compare_start()
+    {
+        $carbon = new Carbon();
+
+        return $carbon->diffInDays( Carbon::parse($this->start) , Carbon::now());
+    }
+    public function compare_end()
+    {
+        $carbon = new Carbon();
+        return $carbon->diffInDays(Carbon::parse($this->end), Carbon::now());;
     }
 }

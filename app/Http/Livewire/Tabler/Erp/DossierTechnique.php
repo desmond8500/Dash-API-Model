@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
+use App\Models\Fiche;
 use App\Models\Fichier;
 use App\Models\Projet;
 use App\Models\ProjetFile;
@@ -94,7 +95,6 @@ class DossierTechnique extends Component
         $system->description = $this->description;
         $system->save();
         $this->reset('system_id');
-
     }
 
 

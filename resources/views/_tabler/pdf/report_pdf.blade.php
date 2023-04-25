@@ -13,7 +13,7 @@
     <table class="table">
         <tr>
             <td class="td-white">
-                <img src="{{ $logo }}" height="50px" alt="">
+                <img src="{{ $entreprise->logo ?? $logo}}" height="100px" alt="">
             </td>
             <td class="td-white">
                 <div class="doc_title">{{ $report->type() }}</div>
@@ -21,8 +21,9 @@
             </td>
         </tr>
     </table>
+    <hr class="text-blue">
     <div>
-        <div class="text-bold">{{ $report->projet->client->name }} - {{ $report->projet->name }}</div>
+        <div class="client">{{ $report->projet->client->name }} - {{ $report->projet->name }}</div>
         <div>{{ $report->description }}</div>
     </div>
 
@@ -70,7 +71,6 @@
                     <img src="{{ $file->folder }}" alt="{{ $file->name }}" width="100px" />
                 </a>
             @endforeach
-
         </div>
 
         @if ($section->links->count())
@@ -83,9 +83,6 @@
                 @endforeach
             </ul>
         @endif
-
-
     @endforeach
-
 </body>
 </html>

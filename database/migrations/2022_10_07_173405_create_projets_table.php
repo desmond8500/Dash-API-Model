@@ -11,7 +11,7 @@ class CreateProjetsTable extends Migration
     {
         Schema::create('projets', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('client_id');
+            $table->integer('client_id')->constrained();
             $table->string('name');
             $table->string('logo')->nullable();
             $table->text('description')->nullable();

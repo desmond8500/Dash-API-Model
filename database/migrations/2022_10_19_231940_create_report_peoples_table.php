@@ -10,7 +10,7 @@ class CreateReportPeoplesTable extends Migration
     {
         Schema::create('report_peoples', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('report_id')->constrained();
+            $table->integer('report_id')->constrained();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('company')->nullable();

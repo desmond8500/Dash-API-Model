@@ -27,20 +27,27 @@ use App\Http\Livewire\Tabler\Stock\Providers;
 use App\Http\Livewire\Tabler\Stock\Stock;
 use App\Http\Livewire\Tabler\Task\Task;
 use App\Http\Livewire\Tabler\Task\Tasks;
+use App\Http\Livewire\Tabler\Tools\GalalyNames;
+use App\Http\Livewire\Tabler\Tools\Tools;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',     Index::class)->name('index');
+
 Route::get('mat',   MaterialIndex::class)->name('material.index');
 
 Route::get('/swagger', function () {
     return Redirect::to(asset('/api/docs'));
 })->name('swagger');
 
+Route::get('/deconnexion', function () {
+    $this->guard()->logout();
+    // Auth::logout();
+})->name('deconnexion');
 
+Route::get('/', Index::class)->name('index')->middleware(['auth:sanctum']);
 // Tabler
-Route::name('tabler.')->group(function () {
+Route::middleware(['auth:sanctum'])->name('tabler.')->group(function () {
     // Réglages
     Route::get('/profile',                  Profile::class)->name('profile');
     Route::get('/reglages',                 Reglages::class)->name('reglages');
@@ -72,6 +79,9 @@ Route::name('tabler.')->group(function () {
     Route::get('/files',                    Files::class)->name('files');
     // Contacts
     Route::get('/contacts',                 Contacts::class)->name('contacts');
+    // Tools
+    Route::get('/tools',                    Tools::class)->name('tools');
+    Route::get('/tools/galaxy',             GalalyNames::class)->name('galaxyNames');
     // Route::get('/contact/contact/{contact_id}', Contact::class)->name('contact');
     // PDF
     Route::get('/export_planning',          [PDFController::class, 'exportPlanning'])->name('export_planning');
@@ -80,6 +90,7 @@ Route::name('tabler.')->group(function () {
     Route::get('/export_fiche_installation',[PDFController::class, 'export_fiche_installation'])->name('export_fiche_installation');
     Route::get('/export_fiche_livraison',   [PDFController::class, 'export_fiche_livraison'])->name('export_fiche_livraison');
     Route::get('/export_avancements',       [PDFController::class, 'export_avancements'])->name('export_avancements');
+    Route::get('/export_pdf_galaxy',        [PDFController::class, 'export_pdf_galaxy'])->name('export_pdf_galaxy');
 
 });
 

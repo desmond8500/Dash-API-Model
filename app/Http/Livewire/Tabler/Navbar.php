@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Tabler;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class Navbar extends Component
 {
@@ -25,7 +27,33 @@ class Navbar extends Component
 
     public function logout()
     {
-        Auth::logout();
-        return redirect('/');
+        auth()->guard('web')->logout();
+        return redirect()->route('/');
+    }
+
+    public function init()
+    {
+        $role1 = Role::create(['name' => 'admin']);
+        $role2 = Role::create(['name' => 'user']);
+
+        $permissions[] = Permission::create(['name' => 'erp_menu']);
+        $permissions[] = Permission::create(['name' => 'stock_menu']);
+        $permissions[] = Permission::create(['name' => 'files_menu']);
+        $permissions[] = Permission::create(['name' => 'contact_menu']);
+        $permissions[] = Permission::create(['name' => 'settings_menu']);
+        $permissions[] = Permission::create(['name' => 'tools_menu']);
+
+        foreach ($permissions as $key => $permission) {
+            $permission->assignRole($role1);
+        }
+    }
+
+    public function assign_role_user()
+    {
+        # code...
+    }
+    public function assign_permission_user()
+    {
+        # code...
     }
 }

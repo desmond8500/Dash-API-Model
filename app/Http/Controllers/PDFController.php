@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Building;
+use App\Models\Entreprise;
+use App\Models\Fiche;
 use App\Models\Report;
 use App\Models\ReportSection;
 use App\Models\System;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PDFController extends Controller
 {
@@ -62,14 +65,22 @@ class PDFController extends Controller
         $report = Report::find($request->report_id);
 
         $data = [
-            'doc_title' => $report->type(),
+            'doc_title' => "Planning Général BCS",
+            // 'doc_title' => $report->type(),
             'report' => $report,
             'logo' => 'img/BMW_logo_(gray).svg.png',
             'carbon' => $carbon,
+            'entreprise' => Entreprise::first(),
             'company' => 'Building Comfort Senegal',
             'sections' => ReportSection::where('report_id', $request->report_id)->orderBy('order')->get(),
         ];
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data);
+        $dir = "erp/reports/$report->id/pdf/";
+        Storage::disk('public')->makeDirectory($dir);
+
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.report_pdf', $data)
+            ->save("storage/$dir".$report->type() . " - " . $report->projet->name . " - " . $report->projet->client->name.'.pdf');
+        $report->pdf = "$dir" . $report->type() . " - " . $report->projet->name . " - " . $report->projet->client->name . '.pdf';
+        $report->save();
 
         return $pdf->stream($report->type()." - ".$report->projet->name." - ". $report->projet->client->name);
     }
@@ -110,5 +121,15 @@ class PDFController extends Controller
     public function export_fiche_livraison()
     {
         # code...
+    }
+    public function export_pdf_galaxy(Request $request)
+    {
+        $data = [
+            'fiche' => Fiche::find($request->fiche_id),
+            'societe' => Entreprise::first(),
+        ];
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.export_pdf_galaxy', $data);
+
+        return $pdf->stream("Avancement.pdf");
     }
 }

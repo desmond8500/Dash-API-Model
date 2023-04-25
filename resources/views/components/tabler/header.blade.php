@@ -16,7 +16,7 @@
             </div>
             <h2 class="page-title"> {{ $title ?? '' }} </h2>
         </div>
-        <div class="col-auto ms-auto">
+        <div class="col-auto ">
             {{ $slot ?? '' }}
         </div>
     </div>

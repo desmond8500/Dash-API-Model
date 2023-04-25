@@ -6,7 +6,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card p-2">
                 <div class="row">
                     @if ($edit)
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-3">
             <div class="row">
                 <div class="col-md-12 gx-2">
                     <div class="input-group">

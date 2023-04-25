@@ -11,7 +11,7 @@ class CreateAvancementRowsTable extends Migration
     {
         Schema::create('avancement_rows', function (Blueprint $table) {
             $table->increments('id');
-            $table->foreignId('avancement_id');
+            $table->integer('avancement_id')->constrained();
             $table->string('name');
             $table->text('comment')->nullable();
             $table->timestamps();
