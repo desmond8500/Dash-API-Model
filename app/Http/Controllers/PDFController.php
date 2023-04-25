@@ -18,6 +18,10 @@ class PDFController extends Controller
             'locale' => 'fr_FR',
             'timezone' => 'Africa/Dakar',
         ]);
+        $carbon1 = Carbon::now()->settings([
+            'locale' => 'fr_FR',
+            'timezone' => 'Africa/Dakar',
+        ]);
         $carbon2 = Carbon::now()->settings([
             'locale' => 'fr_FR',
             'timezone' => 'Africa/Dakar',
@@ -34,10 +38,14 @@ class PDFController extends Controller
         $data = [
             'buildings' => Building::where('projet_id', $request->projet_id)->get(),
             'carbon' => $carbon,
+            'date1' => Carbon::now()->settings([ 'locale' => 'fr_FR', 'timezone' => 'Africa/Dakar', ]),
+            'date2' => Carbon::now()->settings(['locale' => 'fr_FR', 'timezone' => 'Africa/Dakar',]),
             'semaine' => $semaine,
             'company' => 'Building Comfort Senegal',
             'projet' => 'DDSC',
             "period" => CarbonPeriod::create($start, '1 days', $end),
+            "start" => $start,
+            "end" => $end,
         ];
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('_tabler.pdf.planning_pdf', $data);
 

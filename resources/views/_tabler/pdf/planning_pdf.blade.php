@@ -67,18 +67,50 @@
                         @if ($loop->first)
                             <td rowspan="{{ $building->plannings->count() }}" style="font-size:18px">{{ $building->name }}</td>
                         @endif
-                        <td>
-                            <b>{{ $planning->system->name }}</b>
-                            <div>{{ $planning->tache }}</div>
-                        </td>
-                        @foreach ($period as $date)
+
+                            <td>
+                                <b>
+                                    <div>
+                                        {{ $planning->system->name }}
+                                    </div>
+
+                                    @if ($start->greaterThanOrEqualTo($planning->debut) && $end->lessThanOrEqualTo($planning->fin))
+                                        <div>oui</div>
+                                        @else
+                                        <div>non</div>
+
+                                        @endif
+
+                                        <div>{{ $planning->debut }}</div>
+                                        <div>{{ $planning->fin }}</div>
+
+                                        @php
+                                            $test1 = $date1->create($planning->debut);
+                                            $test2 = $date2->create($planning->fin);
+                                            $test = $test2->lessThanOrEqualTo($test1)
+                                        @endphp
+                                        {{ $test }}
+                                        @if ($test)
+                                            <div class="text-blue">oui oui</div>
+                                        @else
+                                            <div class="text-danger">non non</div>
+                                        @endif
+
+                                </b>
+                                <div>{{ $planning->tache }}</div>
+                            </td>
+                            @foreach ($period as $date)
                             <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
-                        @endforeach
+                            @endforeach
                     </tr>
                 @endforeach
             @endforeach
 
         </table>
+    </div>
+    <div>
+        <div>{{ $start }}</div>
+        <div>{{ $end }}</div>
     </div>
 </body>
 </html>
