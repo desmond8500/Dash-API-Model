@@ -55,7 +55,7 @@
                 </tr>
                 @foreach ($buildings as $key => $building)
                     @foreach ($building->plannings as $planning)
-                        <tr>
+                        <tr >
                             @if ($planning_id == $planning->id)
                                 <td colspan="16">
                                     <form wire:submit.prevent='update_task' class="row">
@@ -70,7 +70,7 @@
                                 @if ($loop->first)
                                     <td rowspan="{{ $building->plannings->count() }}">{{ $building->name }}</td>
                                 @endif
-                                <td>
+                                <td @class(["bg-danger-lt"=>!$planning->status])>
                                     <b>{{ $planning->system->name }}</b>
                                     <div>{{ $planning->tache }}</div>
                                 </td>

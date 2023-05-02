@@ -15,7 +15,7 @@ class Plannings extends Component
 {
     public $projet_id, $projet, $planning_id;
     public $tab = 1;
-    public $batiment_id, $system_id, $tache, $debut, $fin, $status;
+    public $batiment_id, $system_id, $tache, $debut, $fin, $status = true;
     public $carbon ,$carbon2, $start, $end;
 
     public function mount($projet_id)
@@ -38,6 +38,7 @@ class Plannings extends Component
         'fin' => ['required', 'date'],
         'batiment_id' => 'required',
         'system_id' => 'required',
+        'status' => 'required',
     ];
 
     public function render()
@@ -66,6 +67,7 @@ class Plannings extends Component
             'tache' => $this->tache,
             'debut' => $this->debut,
             'fin' => $this->fin,
+            'status' => $this->status,
         ]);
         $this->dispatchBrowserEvent('close-modal');
     }
@@ -85,6 +87,7 @@ class Plannings extends Component
         $this->system_id = $planning->system_id;
         $this->status = $planning->status;
         $this->tache = $planning->tache;
+        $this->status = $planning->status;
         $this->debut = date_format($planning->debut, ('Y-m-d'));
         $this->fin = date_format($planning->fin, ('Y-m-d'));
     }
@@ -102,6 +105,7 @@ class Plannings extends Component
         $planning->tache = $this->tache;
         $planning->debut = $this->debut;
         $planning->fin = $this->fin;
+        $planning->status = $this->status;
         $planning->save();
         $this->reset('planning_id');
     }

@@ -33,3 +33,10 @@
     <label for="floatingSelect">Systèmes  @json($system_id) </label>
     @error('system_id') <span class="text-danger">{{ $message }}</span> @enderror
 </div>
+<div class="form-floating  mb-3 col-md-6">
+    @if ($status)
+        <button class="btn btn-primary" wire:click="$set('status',false)">Active</button>
+    @else
+        <button class="btn btn-danger" wire:click="$set('status',true)">Inactive</button>
+    @endif
+</div>

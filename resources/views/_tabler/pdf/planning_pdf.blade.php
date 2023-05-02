@@ -67,13 +67,15 @@
                         @if ($loop->first)
                             <td rowspan="{{ $building->plannings->count() }}" style="font-size:15px">{{ $building->name }}</td>
                         @endif
-                        <td>
-                            <b>{{ $planning->system->name }}</b>
-                            <div>{{ $planning->tache }}</div>
-                        </td>
-                        @foreach ($period as $date)
-                            <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
-                        @endforeach
+                        @if ($planning->status)
+                            <td>
+                                <b>{{ $planning->system->name }}</b>
+                                <div>{{ $planning->tache }}</div>
+                            </td>
+                            @foreach ($period as $date)
+                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
+                            @endforeach
+                        @endif
                     </tr>
                 @endforeach
             @endforeach
