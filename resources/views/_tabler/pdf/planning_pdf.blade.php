@@ -82,9 +82,9 @@
 
         </table>
     </div>
-    <div>
+    {{-- <div>
         <div>{{ $start }}</div>
         <div>{{ $end }}</div>
-    </div>
+    </div> --}}
 </body>
 </html>
