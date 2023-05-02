@@ -82,5 +82,9 @@
 
         </table>
     </div>
+    <div>
+        <div>{{ $start }}</div>
+        <div>{{ $end }}</div>
+    </div>
 </body>
 </html>

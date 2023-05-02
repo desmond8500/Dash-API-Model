@@ -264,6 +264,12 @@ td {
 .text-blue{
     color: #0b5394;
 }
+.text-red{
+    color: red;
+}
+.text-danger{
+    color: red;
+}
 .text-grey{
     color: #434343;
 }
