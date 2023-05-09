@@ -61,11 +61,12 @@
                 @endforeach
             </tr>
 
+            {{-- <td rowspan="{{ $building->plannings->where('status', true)->count() }}" style="font-size:15px">{{ $building->name }}</td> --}}
             @foreach ($buildings as $key => $building)
-                @foreach ($building->plannings as $planning)
+                @foreach ($building->plannings->where('status', true) as $planning)
                     <tr>
                         @if ($loop->first)
-                            <td rowspan="{{ $building->plannings->count() }}" style="font-size:15px">{{ $building->name }}</td>
+                            <td rowspan="{{ $building->plannings->where('status', true)->count() }}" style="font-size:15px">{{ $building->name }}</td>
                         @endif
                         @if ($planning->status)
                             <td>
