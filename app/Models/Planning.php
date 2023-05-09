@@ -7,7 +7,6 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 /**
  * @SWG\Definition(
  *      definition="Planning",
