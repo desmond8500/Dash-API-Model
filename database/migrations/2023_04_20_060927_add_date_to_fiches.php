@@ -10,8 +10,8 @@ class AddDateToFiches extends Migration
     public function up()
     {
         Schema::table('fiches', function (Blueprint $table) {
-            $table->string('name')->nullable();
-            $table->date('date')->nullable();
+            // $table->string('name')->nullable();
+            // $table->date('date')->nullable();
         });
     }
 
