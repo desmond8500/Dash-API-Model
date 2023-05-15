@@ -99,4 +99,5 @@
 
     <script> window.addEventListener('close-modal', event => { $("#addPlanningTask").modal('hide'); }) </script>
 
+
 </div>
