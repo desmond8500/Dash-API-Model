@@ -61,7 +61,6 @@
                 @endforeach
             </tr>
 
-            {{-- <td rowspan="{{ $building->plannings->where('status', true)->count() }}" style="font-size:15px">{{ $building->name }}</td> --}}
             @foreach ($buildings as $key => $building)
                 @foreach ($building->plannings->where('status', true) as $planning)
                     <tr>
@@ -80,12 +79,9 @@
                     </tr>
                 @endforeach
             @endforeach
-
         </table>
     </div>
-    {{-- <div>
-        <div>{{ $start }}</div>
-        <div>{{ $end }}</div>
-    </div> --}}
+
+    {{ $carbon->day }}
 </body>
 </html>

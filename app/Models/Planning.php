@@ -117,6 +117,15 @@ class Planning extends Model
             return true;
         }
 
+        if ($date) {
+            $carbon = new Carbon($date);
+            if($carbon->day == 6){
+                return false;
+            }
+        }
+
+        // TODO: Exclure les dimanches
+
         return false;
     }
 
