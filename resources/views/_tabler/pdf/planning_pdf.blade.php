@@ -82,6 +82,5 @@
         </table>
     </div>
 
-    {{ $carbon->day }}
 </body>
 </html>
