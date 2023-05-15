@@ -36,6 +36,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="order",
+ *          description="order",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
@@ -60,18 +65,22 @@ class Room extends Model
     public $fillable = [
         'stage_id',
         'name',
-        'description'
+        'description',
+        'order',
     ];
 
     protected $casts = [
         'id' => 'integer',
         'stage_id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'description' => 'string',
+        'order' => 'string',
     ];
 
     public static $rules = [
-
+        'stage_id' => ['required','integer'],
+        'name' => ['required'],
+        'order' => ['integer'],
     ];
 
     public function stage(): BelongsTo

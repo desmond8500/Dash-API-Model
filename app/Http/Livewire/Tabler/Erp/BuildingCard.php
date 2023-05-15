@@ -44,13 +44,17 @@ class BuildingCard extends Component
         $room1 = Room::find($room_id);
         $room1->order++;
         $room1->save();
+        $this->getStages();
     }
 
     public function roomDown($room_id)
     {
         $room1 = Room::find($room_id);
-        $room1->order--;
+        if ($room1->order != 0) {
+            $room1->order--;
+        }
         $room1->save();
+        $this->getStages();
     }
 
     public $debut, $fin;
@@ -59,7 +63,7 @@ class BuildingCard extends Component
         for ($i= $this->debut; $i <= $this->fin; $i++) {
             Room::create([
                 'stage_id' => $this->stage_id,
-                'name' => ucfirst($this->name).$i,
+                'name' => ucfirst($this->name)." $i",
                 'description' => ucfirst($this->description),
             ]);
 

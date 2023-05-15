@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Tabler\Erp;
 
-use App\Http\Controllers\DateController;
 use App\Models\Building;
 use App\Models\Planning;
 use App\Models\Projet;
@@ -90,6 +89,8 @@ class Plannings extends Component
         $this->status = $planning->status;
         $this->debut = date_format($planning->debut, ('Y-m-d'));
         $this->fin = date_format($planning->fin, ('Y-m-d'));
+
+        $this->dispatchBrowserEvent('open-modal');
     }
 
     public function update_task()
@@ -108,5 +109,7 @@ class Plannings extends Component
         $planning->status = $this->status;
         $planning->save();
         $this->reset('planning_id');
+
+        $this->dispatchBrowserEvent('close-modal');
     }
 }
