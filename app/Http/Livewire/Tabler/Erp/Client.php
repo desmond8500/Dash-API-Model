@@ -75,5 +75,6 @@ class Client extends Component
         $this->client->description = $this->description;
         $this->client->save();
         $this->reset('edit');
+        $this->render();
     }
 }
