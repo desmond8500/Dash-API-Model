@@ -55,33 +55,21 @@
                 </tr>
                 @foreach ($buildings as $key => $building)
                     @foreach ($building->plannings as $planning)
-                        <tr >
-                            @if ($planning_id == $planning->id)
-                                <td colspan="16">
-                                    <form wire:submit.prevent='update_task' class="row">
-                                        @include('_tabler.erp.planning_form')
-                                        <div class="btn-list">
-                                            <button type="button" class="btn btn-secondary" wire:click="$set('planning_id', 0)">Fermer</button>
-                                            <button type="submit" class="btn btn-primary" >Modifier</button>
-                                        </div>
-                                    </form>
-                                </td>
-                            @else
-                                @if ($loop->first)
-                                    <td rowspan="{{ $building->plannings->count() }}">{{ $building->name }}</td>
-                                @endif
-                                <td @class(["bg-danger-lt"=>!$planning->status])>
-                                    <b>{{ $planning->system->name }}</b>
-                                    <div>{{ $planning->tache }}</div>
-                                </td>
-                                @foreach ($period as $date)
-                                    <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
-                                @endforeach
-
-                                <td wire:click="edit_task('{{ $planning->id }}')" type='button'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
-                                </td>
+                        <tr>
+                            @if ($loop->first)
+                                <td rowspan="{{ $building->plannings->count() }}">{{ $building->name }}</td>
                             @endif
+                            <td @class(["bg-danger-lt"=>!$planning->status])>
+                                <b>{{ $planning->system->name }}</b>
+                                <div>{{ $planning->tache }}</div>
+                            </td>
+                            @foreach ($period as $date)
+                                <td style="border: 1px solid grey" @class(['bg-blue border' => $planning->validate($date->format('Y-m-d')) ])> </td>
+                            @endforeach
+
+                            <td wire:click="edit_task('{{ $planning->id }}')" type='button'>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path> <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path> <path d="M16 5l3 3"></path> </svg>
+                            </td>
                         </tr>
                     @endforeach
                 @endforeach
@@ -96,8 +84,17 @@
         'include' => "_tabler.erp.planning_form",
         'method' => "add_task"
     ])
-
     <script> window.addEventListener('close-modal', event => { $("#addPlanningTask").modal('hide'); }) </script>
+
+    @include('_tabler.modal',[
+        'id' => "editPlanningTask",
+        'title' => "Editer une tache",
+        'include' => "_tabler.erp.planning_form",
+        'method' => "update_task",
+        'submit' => "Modifier"
+    ])
+    <script> window.addEventListener('open-modal', event => { $("#editPlanningTask").modal('show'); }) </script>
+    <script> window.addEventListener('close-modal', event => { $("#editPlanningTask").modal('hide'); }) </script>
 
 
 </div>

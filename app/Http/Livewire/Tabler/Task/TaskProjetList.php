@@ -38,9 +38,9 @@ class TaskProjetList extends Component
     public function getTasks()
     {
         if ($this->task_toggle) {
-            return Task::orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3])->paginate(7);
+            return Task::where('projet_id', $this->projet_id)->orderBy('priority_id', 'DESC')->where('status_id', [1, 2, 3])->paginate(7);
         } else {
-            return Task::where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
+            return Task::where('projet_id', $this->projet_id)->where('status_id', [4, 5])->orderBy('priority_id', 'DESC')->paginate(7);
         }
     }
 
