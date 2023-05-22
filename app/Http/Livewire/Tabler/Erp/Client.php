@@ -5,9 +5,11 @@ namespace App\Http\Livewire\Tabler\Erp;
 use App\Models\Client as ModelsClient;
 use App\Models\Projet;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Client extends Component
 {
+    use WithFileUploads;
     public $client_id, $client;
     public $name, $description, $logo, $address, $status;
     public $edit=false;
