@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Models\Article as ModelsArticle;
 use App\Models\ArticleDoc;
 use App\Models\Brand;
+use App\Models\Provider;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -24,7 +25,7 @@ class Article extends Component
     public $search ='';
     public $article, $breadcrumbs, $form=0, $docform=false, $files;
     public $article_id, $photos;
-    public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
+    public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id, $provider_id;
     public $name, $folder, $doc_type=1;
 
     public function mount($article_id)
@@ -41,6 +42,7 @@ class Article extends Component
             'article' => $this->article,
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all(),
+            'providers' => Provider::all(),
             'fichiers' => ArticleDoc::where('article_id', $this->article_id)->where('doc_type','!=',0)->get() ,
             'doctype' => MainController::getDocType(),
         ])->extends('app.layout')->section('content');
@@ -58,6 +60,7 @@ class Article extends Component
         $this->quantity = $article->quantity;
         $this->price = $article->price;
         $this->brand_id = $article->brand_id;
+        $this->provider_id = $article->provider_id;
     }
 
     public function updateArticle()
@@ -70,6 +73,7 @@ class Article extends Component
         $article->quantity = $this->quantity;
         $article->price = $this->price;
         $article->brand_id = $this->brand_id;
+        $article->provider_id = $this->provider_id;
 
         $article->save();
         $this->article =$article;

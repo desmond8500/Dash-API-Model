@@ -74,7 +74,8 @@ class Achat extends Component
             AchatArticle::create([
                 'achat_id' => $this->achat_id,
                 'article_id' => $article_id,
-                'quantity' => 0,
+                'quantity' => 1,
+                'price' => $article->price,
                 // 'date' => $this->date,
                 'provider_id' => $article->provider_id,
                 'brand_id' => $article->brand_id,

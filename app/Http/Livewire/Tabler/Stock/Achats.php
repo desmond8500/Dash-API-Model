@@ -38,12 +38,13 @@ class Achats extends Component
     public $achat, $achat_id, $name, $date, $description, $tva=0, $factures, $tva_check=false;
 
     protected $rules = [
-        'name' => ['required'],
+        'name' => 'required',
         'date' => ['required', 'date'],
     ];
 
     public function addAchat()
     {
+        $this->validate($this->rules);
         if ($this->tva_check) {
             $tva = 0.18;
         }else{
@@ -52,8 +53,8 @@ class Achats extends Component
 
         $achat = Achat::create([
             'name' => $this->name,
-            'date' => $this->date,
-            'date' => $tva,
+            'date' => $this->date ?? date('Y-m-d'),
+            'tva' => $tva,
             'description' => $this->description,
         ]);
 
@@ -71,6 +72,7 @@ class Achats extends Component
                 ]);
             }
         }
+        $this->dispatchBrowserEvent('close-modal');
     }
     public function editAchat($achat_id)
     {

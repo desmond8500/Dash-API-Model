@@ -10,28 +10,33 @@
         </label>
     </div>
 
-    <div class="mb-3 col-md-12">
+    <div class="mb-3 col-md">
         <label class="form-label">Nom</label>
         <input type="text" class="form-control" wire:model.defer="name" />
+        @error('name') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
+
+    <div class="w-100"></div>
 
     <div class="mb-3 col-md-6">
         <label class="form-label">Date</label>
         <input type="date" class="form-control" wire:model.defer="date" />
+        @error('date') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 
-    <div class="mb-3  col-md-6">
+    <div class="mb-3 col-md-6 text-end">
         <div class="form-label">TVA</div>
         @if ($tva_check)
-            <button class="btn btn-primary" wire:click="$toggle('tva_check')">TVA</button>
+            <a class="btn btn-primary" wire:click="$toggle('tva_check')">TVA</a>
         @else
-            <button class="btn btn-secondary" wire:click="$toggle('tva_check')">PAS DE TVA</button>
+            <a class="btn btn-secondary" wire:click="$toggle('tva_check')">PAS DE TVA</a>
         @endif
     </div>
 
-    <div>
+    <div class="mb-3 col-md-12">
         <label class="form-label">Description</label>
         <textarea class="form-control" wire:model.defer="description"></textarea>
+        @error('description') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
 </div>
 

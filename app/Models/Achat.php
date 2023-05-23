@@ -7,7 +7,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @SWG\Definition(
@@ -73,7 +73,7 @@ class Achat extends Model
     ];
 
     public static $rules = [
-
+        'name' => 'required'
     ];
 
     public function articles(): HasMany
@@ -89,6 +89,11 @@ class Achat extends Model
     public function achats(): HasMany
     {
         return $this->hasMany(Achat::class);
+    }
+
+    public function factures()
+    {
+        return collect(Storage::disk('public')->allFiles("stock/achats/$this->id"));
     }
 
 }

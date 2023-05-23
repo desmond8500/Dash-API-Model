@@ -104,7 +104,7 @@
                 @foreach ($factures as $facture)
                     <div class="card p-2 mb-2">
                         <div class="row">
-                            <a class="col-md" href="{{ asset($facture->folder) }}">
+                            <a class="col-md" href="{{ asset($facture->folder) }}" target="_blank">
                                 {{ $facture->name }}
                             </a>
                             <div class="col-auto">

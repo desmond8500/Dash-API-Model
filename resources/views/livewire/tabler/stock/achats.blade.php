@@ -42,7 +42,15 @@
                                     <td>
                                         {{ number_format($achat->total($achat->id)+$achat->tva*$achat->total($achat->id), 0, ',', ' ') }} F
                                     </td>
-                                    <td>{{ $achat->date->format('d-m-Y') }}</td>
+                                    <td>
+                                        <div>{{ $achat->date->format('d-m-Y') }}</div>
+
+                                        <a href="" class="badge bg-blue">
+                                            {{ $achat->factures()->count() }} Factures
+                                        </a>
+
+
+                                    </td>
                                     <td>
                                         <div class="btn-list">
                                             <button class="btn btn-primary btn-icon" title="Modifier" wire:click="editAchat('{{ $achat->id }}')">
@@ -81,24 +89,11 @@
         </div>
     </div>
 
-    <div class="modal modal-blur fade" id="addAchat" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h5 class="modal-title">Ajouter un achat</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @include('_tabler.stock.achatform')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                            wire:click="addAchat()">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('_tabler.modal',[
+        'id' => "addAchat",
+        'title' => "Ajouter un achat",
+        'include' => "_tabler.stock.achatform",
+        'method' => "addAchat"
+    ])
+    <script> window.addEventListener('close-modal', event => { $("#addAchat").modal('hide'); }) </script>
 </div>
