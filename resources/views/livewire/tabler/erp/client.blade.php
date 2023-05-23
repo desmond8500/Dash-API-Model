@@ -32,6 +32,22 @@
                         </div>
                     @endif
                 </div>
+                {{-- <hr> --}}
+                <div class="d-flex justify-content-between mx-2 mt-2 p-2 border rounded btn btn-outline-primary" >
+                    <div class="fw-bold">Projets</div>
+                    <div>
+                        <span class="badge badge-pill bg-blue">{{ $client->projets->count() }}</span>
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mx-2 mt-2 p-2 border rounded btn btn-outline-primary" >
+                    <div class="fw-bold">Nouveaux devis</div>
+                    <div>_</div>
+                </div>
+                <div class="d-flex justify-content-between mx-2 mt-2 p-2 border rounded btn btn-outline-primary" >
+                    <div class="fw-bold">Devis en cours</div>
+                    <div>_</div>
+                </div>
             </div>
         </div>
         <div class="col-md-8 mb-3">

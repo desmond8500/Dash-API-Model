@@ -5,7 +5,7 @@
         @endcomponent
     </div>
 
-    <div class="row">
+    <div class="row row-deck">
         <div class="col-md-12 mb-2">
             <div class="input-group">
                 <input type="text" class="form-control" wire:model.defer="search" placeholder="Rechercher" wire:keydown.enter='getClients'>

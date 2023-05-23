@@ -83,7 +83,9 @@ class Task extends Model
         'objet',
         'description',
         'status_id',
-        'priority_id'
+        'priority_id',
+        'debut',
+        'fin',
     ];
 
     protected $casts = [
@@ -95,7 +97,9 @@ class Task extends Model
         'objet' => 'string',
         'description' => 'string',
         'status_id' => 'integer',
-        'priority_id' => 'integer'
+        'priority_id' => 'integer',
+        'debut' => 'date',
+        'fin' => 'date',
     ];
 
     public static $rules = [

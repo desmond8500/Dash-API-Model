@@ -73,6 +73,14 @@ class Client extends Component
 
         $this->client->name = $this->name;
         $this->client->description = $this->description;
+
+        $dir = "erp/client/".$this->client->id."/logo";
+
+        if ($this->logo) {
+            $name = $this->logo->getClientOriginalName();
+            $this->logo->storeAS("public/$dir", $name);
+            $this->client->logo = "storage/$dir/$name";
+        }
         $this->client->save();
         $this->reset('edit');
         $this->render();

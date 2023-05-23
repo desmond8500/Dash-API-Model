@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 /**
  * @SWG\Definition(
  *      definition="Client",
@@ -74,11 +73,6 @@ class Client extends Model
         'status'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
@@ -88,20 +82,10 @@ class Client extends Model
         'status' => 'string'
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
     public static $rules = [
         'name' => 'required',
     ];
 
-    /**
-     * Get all of the projets for the Client
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function projets(): HasMany
     {
         return $this->hasMany(Projet::class);

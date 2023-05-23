@@ -11,6 +11,7 @@ class TaskCard extends Component
 
     public $objet, $description, $status_id = 1, $priority_id = 1;
     public $statut = [], $priorite = [];
+    public $debut, $fin;
 
     public function mount($tache)
     {
@@ -22,6 +23,8 @@ class TaskCard extends Component
         $this->description = $this->tache->description;
         $this->status_id = $this->tache->status_id;
         $this->priority_id = $this->tache->priority_id;
+        $this->debut = $this->tache->debut;
+        $this->fin = $this->tache->fin;
     }
 
     public function render()
@@ -35,6 +38,8 @@ class TaskCard extends Component
         $this->tache->description = $this->description;
         $this->tache->status_id = $this->status_id;
         $this->tache->priority_id = $this->priority_id;
+        $this->tache->debut = $this->debut;
+        $this->tache->fin = $this->fin;
         // $this->tache->room_id = $this->room_id;
         // $this->tache->stage_id = $this->room->stage->id;
         // $this->tache->building_id = $this->room->stage->building->id;

@@ -87,33 +87,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label required">Titre de la tache</label>
-                            <input type="text" class="form-control" wire:model.defer="objet"/>
-                        </div>
-
-                        <div class="mb-3 col-md-4">
-                            <label class="form-label">Statut</label>
-                            <select class="form-select"wire:model.defer="status_id">
-                                @foreach ($statut as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-3 col-md-4">
-                            <label class="form-label">Priorité</label>
-                            <select class="form-select"wire:model.defer="priority_id">
-                                @foreach ($priorite as $item)
-                                    <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-12 mb-3">
-                            <label class="form-label required">Description</label>
-                            <textarea class="form-control" wire:model.defer="description"></textarea>
-                        </div>
-
+                        @include('_tabler.erp.task_form')
                     </div>
                 </div>
 

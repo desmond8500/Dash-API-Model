@@ -12,6 +12,7 @@ class TaskAdd extends Component
     public $room_id, $room, $projet_id;
     public $objet, $description, $status_id = 1, $priority_id = 1;
     public $statut = [], $priorite=[];
+    public $debut, $fin;
 
     public function mount($room_id, $projet_id=0)
     {
@@ -30,8 +31,14 @@ class TaskAdd extends Component
         return view('livewire.tabler.task.task-add');
     }
 
+    protected $rules = [
+        'objet' => 'required',
+        'description' => 'required',
+    ];
+
     public function taskAdd()
     {
+        // $this->validate($this->rules);
         if ($this->room_id) {
             $room_id = $this->room_id;
             $stage_id = $this->room->stage->id;
@@ -54,8 +61,11 @@ class TaskAdd extends Component
             'stage_id' => $stage_id,
             'building_id' => $building_id,
             'projet_id' => $projet_id,
+            'debut'=> $this->debut,
+            'fin'=> $this->fin,
         ]);
         $this->emit('reload');
         $this->emitTo('tabler.erp.task-projet-list', 'reload');
+        $this->dispatchBrowserEvent('close-modal');
     }
 }

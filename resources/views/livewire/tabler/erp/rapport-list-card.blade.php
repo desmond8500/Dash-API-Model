@@ -1,15 +1,5 @@
 <div class="row">
-
     <div class="col-md-12">
-        {{-- <div class="card mb-2">
-            <div class="card-header">
-                <div class="card-title">Rapports</div>
-                <div class="card-actions">
-
-                </div>
-            </div>
-        </div> --}}
-
         <div class="row g-2">
             <div class="col">
                 <div class="input-group">
