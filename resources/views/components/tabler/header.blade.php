@@ -1,6 +1,6 @@
 <div class="page-header mb-2">
     <div class="row align-items-center">
-        <div class="col">
+        <div class="col-md mb-1">
             {{-- <div class="page-pretitle"> {{ $subtitle ?? '' }} </div> --}}
             <div class="mb-1">
                 <ol class="breadcrumb" aria-label="breadcrumbs">

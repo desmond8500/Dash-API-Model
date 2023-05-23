@@ -19,7 +19,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table  table-mobile-md ">
+        <table class="table table-hover table-mobile-md ">
             <thead class="sticky-top">
                 <tr>
                     <th style="width: 120px">Jour</th>
