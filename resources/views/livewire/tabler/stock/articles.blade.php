@@ -25,7 +25,7 @@
     @endcomponent
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12 g-2">
                     <div class="input-group">
@@ -42,77 +42,14 @@
                 </div>
 
                 @foreach ($articles as $article)
-                    <div class="col-md-6 g-2">
+                    <div class="col-md-4 g-2">
                         @include('_tabler.stock.article_card')
                     </div>
                 @endforeach
-                {{-- @if ($articles->count()>10) --}}
+                @if ($articles->count()>10)
                     <div class="mt-2 card pt-3 ">{{ $articles->links() }}</div>
-                {{-- @endif --}}
+                @endif
             </div>
-        </div>
-        <div class="col-md-3">
-            @if ($form==1)
-                <div class="card p-2" >
-                    @include('_tabler.stock.articleform')
-
-                    <div class="modal-footer mt-2">
-                        <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" wire:click="articleAdd()">Ajouter</button>
-                    </div>
-                </div>
-            @elseif ($form==2)
-                <div class="card p-2" >
-                    @include('_tabler.stock.articleform')
-
-                    <div class="modal-footer mt-2">
-                        <div class="btn-list">
-                            <button type="button" class="btn btn-icon btn-secondary me-auto" wire:click="$toggle('form', 0)">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-icon"  wire:click="deleteArticle()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M4 7l16 0"></path> <path d="M10 11l0 6"></path> <path d="M14 11l0 6"></path> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path> </svg>
-                            </button>
-                            <button type="button" class="btn btn-primary"  wire:click="updateArticle()">Modifier</button>
-                        </div>
-                    </div>
-                </div>
-            @elseif ($form==3)
-                <div class="card card-body mb-3">
-                    <div wire:loading>
-                        <div class="d-flex justify-content-between">
-                            <div><b>Chargement</b> <span class="animated-dots"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <label class="form-label">Fichier</label>
-                        <div class="input-group">
-                            <input type="file" class="form-control" wire:model.defer="file">
-                            <button class="btn btn-primary" wire:click="import">Importer</button>
-                        </div>
-                        {{-- <textarea cols="30" rows="3" class="form-control" wire:model.defer='json' placeholder="Veuillez insérer un contenu en json"></textarea> --}}
-                    </div>
-                    <button type="button" class="btn btn-secondary me-auto" wire:click="$toggle('form', 0)">Fermer</button>
-                </div>
-
-            @elseif ($form==4)
-                @dump($imported_articles)
-
-            @else
-
-                <div>
-                @foreach ($list as $item)
-                    <div class="btn-group mb-1">
-                        <div class="btn " wire:click="use('storage/{{ $item }}')">
-                            {{ basename(asset($item)) }}
-                        </div>
-                        <button class="btn btn-primary btn-icon" wire:click="delete('{{ $item }}')">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M18 6l-12 12"></path> <path d="M6 6l12 12"></path> </svg>
-                        </button>
-                    </div>
-                @endforeach
-                </div>
-            @endif
         </div>
     </div>
 </div>
