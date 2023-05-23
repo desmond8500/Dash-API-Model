@@ -59,7 +59,7 @@ class Articles extends Component
                 ->orWhere('reference', 'LIKE', "%{$this->search}%")
                 ->paginate(10);
         } else {
-            return Article::orderBy('id', 'DESC')-> paginate(10);
+            return Article::orderBy('id', 'DESC')-> paginate(12);
         }
     }
 
