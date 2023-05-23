@@ -46,9 +46,9 @@
                         @include('_tabler.stock.article_card')
                     </div>
                 @endforeach
-                @if ($articles->count()>10)
+                {{-- @if ($articles->count()>10) --}}
                     <div class="mt-2 card pt-3 ">{{ $articles->links() }}</div>
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
     </div>
