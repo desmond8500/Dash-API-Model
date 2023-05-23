@@ -5,6 +5,12 @@
                 <div class="fw-bold">
                     <a href="{{ route('tabler.projet',['projet_id'=>$tache->projet->id]) }}" class="text-dark">
                         {{ $tache->projet->name }}
+                        @if ($tache->debut)
+                            <span class="status status-azure ms-2">{{ date_format($tache->debut, 'd-m-y') }}</span>
+                        @endif
+                        @if ($tache->fin)
+                            <span class="status status-yellow ms-2">{{ date_format($tache->fin, 'd-m-y') }}</span>
+                        @endif
                     </a>
                     @if ($tache->room_id)
                         / <a href="{{ route('tabler.building',['building_id'=>$tache->building->id]) }}" class="text-dark">
@@ -33,7 +39,6 @@
             <div class="text-muted">{!! nl2br($tache->description) !!}</div>
         </a>
         <div class="col-auto">
-
             <button class="btn btn-outline-secondary btn-icon" data-bs-toggle="modal" data-bs-target="#showTask{{ $tache->id }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path> <path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"></path> </svg>
             </button>
@@ -78,6 +83,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal modal-blur fade" id="editTask{{ $tache->id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -99,4 +105,5 @@
             </div>
         </div>
     </div>
+
 </div>

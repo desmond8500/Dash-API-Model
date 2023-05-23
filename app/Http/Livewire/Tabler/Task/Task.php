@@ -20,6 +20,7 @@ class Task extends Component
     public $task_id, $task, $breadcrumbs;
     public $objet, $description, $status_id = 1, $priority_id = 1;
     public $statut = [], $priorite = [];
+    public $debut, $fin;
 
     public $form_photo = 0, $photos;
 
@@ -32,6 +33,12 @@ class Task extends Component
         $this->description = $this->task->description;
         $this->status_id = $this->task->status_id;
         $this->priority_id = $this->task->priority_id;
+        if ($this->task->debut) {
+            $this->debut = date_format($this->task->debut, 'Y-m-d');
+        }
+        if ($this->task->fin) {
+            $this->fin = date_format($this->task->fin, 'Y-m-d');
+        }
 
         $this->statut = MainController::getStatus();
         $this->priorite = MainController::getPriotity();
@@ -64,7 +71,11 @@ class Task extends Component
         $this->task->description = $this->description;
         $this->task->status_id = $this->status_id;
         $this->task->priority_id = $this->priority_id;
+        $this->task->debut = $this->debut;
+        $this->task->fin = $this->fin;
         $this->task->save();
+
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function add_photos()

@@ -12,6 +12,7 @@
     <script src=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js "></script>
     <link href=" https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery.min.css " rel="stylesheet">
     {{-- <link rel="stylesheet" href="{{ asset('library/lightgallery/dist/css/lightgallery.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset("css/tabler.css") }}">
     @livewireStyles
 </head>
 

@@ -1,0 +1,10 @@
+.hover:hover{
+    background: #206bc4;
+    color: white;
+}
+.hover_blue:hover{
+    color: #206bc4;
+    border: 1px solid #206bc4;
+    background: white;
+
+}

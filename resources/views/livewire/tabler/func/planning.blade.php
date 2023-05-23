@@ -19,20 +19,47 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table">
-            <thead>
+        <table class="table  table-mobile-md ">
+            <thead class="sticky-top">
                 <tr>
-                    <th scope="col">Jour</th>
-                    <th scope="col">Taches</th>
-                    <th scope="col">Column 3</th>
+                    <th style="width: 120px">Jour</th>
+                    <th >Taches</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($plannings as $planning)
                     <tr @class(['table-primary' => $planning->day == $date->now()->day ]) >
-                        <th class="">{{ strtoupper($planning->dayName) }} {{ $planning->day }}</th>
-                        <td>R1C2</td>
-                        <td>R1C3</td>
+                        <th class="">
+                            <div class="d-flex justify-content-between ">
+                                <div>{{ strtoupper($planning->dayName) }}</div>
+                                <div class="text-primary">{{ $planning->day }}</div>
+                            </div>
+                        </th>
+                        <td>
+                            @foreach ($planning->tasks as $task)
+                                <div @class(['border border-primary mb-1 p-2 rounded bg-white hover_blue' => $planning->day == $date->now()->day, 'border mb-1 p-2 rounded hover' => $planning->day != $date->now()->day ]) type="button">
+                                    <div class="row">
+                                        <div class="col mb-1">
+                                            <div class="fw-bold" wire:click="show_task('{{ $task->id }}')">{{ $task->objet }}</div>
+                                            <div class="" wire:click="show_task('{{ $task->id }}')">{{ $task->description }}</div>
+                                        </div>
+                                        <div class="col-auto d-none d-sm-block">
+                                            @if ($task->debut)
+                                                <div>{{ date_format($task->debut, 'd-m-Y') }}</div>
+                                            @endif
+                                            @if ($task->fin)
+                                                <div>{{ date_format($task->fin, 'd-m-Y') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-primary" disabled>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path> <path d="M9 12l2 2l4 -4"></path> </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
