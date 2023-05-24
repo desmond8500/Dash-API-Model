@@ -8,6 +8,7 @@ use App\Imports\ArticleImport;
 use App\Models\Article;
 use App\Models\ArticleDoc;
 use App\Models\Brand;
+use App\Models\Provider;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -29,7 +30,7 @@ class Articles extends Component
     }
 
     public $article_id, $photos, $file, $article_list;
-    public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id;
+    public $designation, $description, $status_id = 1, $priority = 1, $reference, $quantity = 0, $price = 0, $brand_id, $provider_id;
     public $search ='', $breadcrumbs;
     public $form = false, $editForm=false;
     public $json;
@@ -47,6 +48,7 @@ class Articles extends Component
             'articles' => $this->getArticles(),
             'priorite' => MainController::getArticlePriotity(),
             'marques' => Brand::all(),
+            'providers' => Provider::all(),
             'list' => $this->getFileList(),
             'img' => $this->img,
         ])->extends('app.layout')->section('content');
@@ -79,6 +81,7 @@ class Articles extends Component
             'quantity' => $this->quantity,
             'price' => $this->price,
             'brand_id' => $this->brand_id,
+            'provider_id' => $this->provider_id,
         ]);
 
         $dir = "stock/articles/$article->id/";
@@ -118,6 +121,9 @@ class Articles extends Component
         $this->quantity = $article->quantity;
         $this->price = $article->price;
         $this->brand_id = $article->brand_id;
+        $this->provider_id = $article->provider_id;
+
+        $this->dispatchBrowserEvent('open-modal');
     }
 
     public function updateArticle()
@@ -130,6 +136,7 @@ class Articles extends Component
         $article->quantity = $this->quantity;
         $article->price = $this->price;
         $article->brand_id = $this->brand_id;
+        $article->provider_id = $this->provider_id;
 
         $article->save();
         $this->form = 0;
@@ -149,6 +156,7 @@ class Articles extends Component
                 ]);
             }
         }
+        $this->dispatchBrowserEvent('close-modal');
     }
 
     public function gotoArticle($article_id)
@@ -201,6 +209,23 @@ class Articles extends Component
     {
         $this->form = 4;
         $this->imported_articles = Http::get($this->server);
+    }
+
+    public function uppercase_reference()
+    {
+        $this->reference = strtoupper($this->reference);
+    }
+    public function convert($devise)
+    {
+        if ($devise == 'euro') {
+            $this->price = $this->price*655;
+        }
+        elseif($devise == 'dollar'){
+            $this->price = $this->price*608;
+
+        }
+
+        $this->reference = strtoupper($this->reference);
     }
 
 

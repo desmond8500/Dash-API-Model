@@ -27,9 +27,9 @@
         <label class="form-label required">Réference</label>
         <div class="input-group">
             <input type="text" class="form-control" wire:model.defer="reference"/>
-            <button class="btn btn-primary btn-icon" wire:click='uppercase_reference'>
+            <a class="btn btn-primary btn-icon" wire:click='uppercase_reference'>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M9 20v-8h-3.586a1 1 0 0 1 -.707 -1.707l6.586 -6.586a1 1 0 0 1 1.414 0l6.586 6.586a1 1 0 0 1 -.707 1.707h-3.586v8a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z"></path> </svg>
-            </button>
+            </a>
         </div>
         @error('reference') <span class="text-danger">{{ $message }}</span> @enderror
     </div>
@@ -38,12 +38,12 @@
         <label class="form-label">Prix</label>
         <div class="input-group">
             <input type="text" class="form-control" wire:model.defer="price"/>
-            <button class="btn btn-primary btn-icon" wire:click="convert('euro')">
+            <a class="btn btn-primary btn-icon" wire:click="convert('euro')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-euro" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M17.2 7a6 7 0 1 0 0 10"></path> <path d="M13 10h-8m0 4h8"></path> </svg>
-            </button>
-            <button class="btn btn-primary btn-icon" wire:click="convert('dollar')">
+            </a>
+            <a class="btn btn-primary btn-icon" wire:click="convert('dollar')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-currency-dollar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2"></path> <path d="M12 3v3m0 12v3"></path> </svg>
-            </button>
+            </a>
         </div>
         @error('price') <span class="text-danger">{{ $message }}</span> @enderror
     </div>

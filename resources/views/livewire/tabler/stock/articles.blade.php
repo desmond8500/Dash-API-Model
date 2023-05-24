@@ -52,5 +52,15 @@
             </div>
         </div>
     </div>
+
+    @include('_tabler.modal',[
+        'id' => "editArticle",
+        'title' => "Editer une aticle",
+        'include' => "_tabler.stock.articleform",
+        'method' => "updateArticle",
+        "submit" => "Modifier"
+    ])
+    <script> window.addEventListener('open-modal', event => { $("#editArticle").modal('show'); }) </script>
+    <script> window.addEventListener('close-modal', event => { $("#editArticle").modal('hide'); }) </script>
 </div>
 
