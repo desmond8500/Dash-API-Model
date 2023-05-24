@@ -44,9 +44,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
                         @include('_cv.form.person_form')
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Fermer</button>
@@ -58,11 +56,7 @@
     </div>
 
     <script>
-        window.addEventListener('open-modal', event => {
-            $("#editProfile").modal('show');
-        })
-        window.addEventListener('close-modal', event => {
-            $("#editProfile").modal('hide');
-        })
+        window.addEventListener('open-modal', event => { $("#editProfile").modal('show'); })
+        window.addEventListener('close-modal', event => { $("#editProfile").modal('hide'); })
     </script>
 </div>
