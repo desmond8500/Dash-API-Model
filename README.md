@@ -2,7 +2,7 @@
 
 ## Description
 
-Modèle de base pour un serveur Web
+Gestion de CV
 
 ## Librairies
 
