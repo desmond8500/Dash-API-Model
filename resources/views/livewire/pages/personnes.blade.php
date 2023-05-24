@@ -31,15 +31,19 @@
 
 
     <div class="row">
-        <div class="col-md-4">
-            @foreach ($personnes as $personne)
+        @foreach ($personnes as $personne)
+            <div class="col-md-4">
                 <a type="button" class="card p-2 mb-2" href="{{ route('cv.personne',['id'=>$personne->id]) }}">
-                    <div class="card-title">
-                        {{ $personne->prenom }} {{ $personne->nom }}
+                    <div class="row">
+                        <div class="col-auto">
+                            <img src="" alt="A" class="avatar avatar-md">
+                        </div>
+                        <div class="col-md">
+                            {{ $personne->prenom }} {{ $personne->nom }}
+                        </div>
                     </div>
                 </a>
-            @endforeach
-        </div>
-        <div class="col-md-8"></div>
+            </div>
+        @endforeach
     </div>
 </div>
