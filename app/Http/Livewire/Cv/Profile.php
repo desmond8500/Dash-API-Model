@@ -4,11 +4,14 @@ namespace App\Http\Livewire\Cv;
 
 use App\Models\Personne;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Profile extends Component
 {
-    public $person_id;
-    public $prenom, $nom, $fonction, $email, $adresse, $tel, $profile;
+    use WithFileUploads;
+    public $person_id, $photo;
+    public $prenom, $nom, $fonction, $email, $adresse, $tel, $profile, $date;
+    public $info1, $info2, $info3;
 
     public function mount($person_id)
     {
@@ -48,6 +51,10 @@ class Profile extends Component
         $this->adresse = $personne->adresse;
         $this->tel = $personne->tel;
         $this->profile = $personne->profile;
+        $this->info1 = $personne->info1;
+        $this->info2 = $personne->info2;
+        $this->info3 = $personne->info3;
+        $this->date = $personne->date;
 
         $this->dispatchBrowserEvent('open-modal');
     }
@@ -65,6 +72,19 @@ class Profile extends Component
         $personne->adresse = $this->adresse;
         $personne->tel = $this->tel;
         $personne->profile = $this->profile;
+        $personne->info1 = $this->info1;
+        $personne->info2 = $this->info2;
+        $personne->info3 = $this->info3;
+        $personne->date = $this->date;
+
+        $dir = "cv/$personne->id/logo";
+
+        if ($this->photo) {
+            $name = $this->photo->getClientOriginalName();
+            $this->photo->storeAS("public/$dir", $name);
+            $personne->photo = "storage/$dir/$name";
+        }
+
         $personne->save();
 
         $this->dispatchBrowserEvent('close-modal');

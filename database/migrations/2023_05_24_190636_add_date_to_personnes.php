@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddDateToPersonnes extends Migration
+{
+
+    public function up()
+    {
+        Schema::table('personnes', function (Blueprint $table) {
+            $table->string('date')->nullable();
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('personnes', function (Blueprint $table) {
+            //
+        });
+    }
+}

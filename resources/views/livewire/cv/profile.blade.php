@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row g-2 align-items-center">
             <div class="col-auto">
-                <span class="avatar avatar-lg" style="background-image: url(./static/avatars/002m.jpg)"></span>
+                <img src="{{ asset("$person->photo") }}" alt="P" class="avatar avatar-xl">
             </div>
             <div class="col">
                 <h4 class="card-title m-0">
@@ -11,6 +11,10 @@
                 <div class="text-muted"> {{ $person->email }} </div>
                 <div class="text-muted"> {{ $person->tel }} </div>
                 <div class="text-muted"> {{ $person->adresse }} </div>
+                <div class="text-muted"> {{ $person->date }} </div>
+                <div class="text-muted"> {{ $person->info1 }} </div>
+                <div class="text-muted"> {{ $person->info2 }} </div>
+                <div class="text-muted"> {{ $person->info3 }} </div>
                 <div class="small mt-1">
                     <span class="badge bg-green"></span> Online
                 </div>

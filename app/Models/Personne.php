@@ -78,9 +78,14 @@ class Personne extends Model
         'nom',
         'fonction',
         'tel',
+        'date',
         'adresse',
         'email',
-        'profile'
+        'profile',
+        'photo',
+        'info1',
+        'info2',
+        'info3',
     ];
 
     protected $casts = [
@@ -89,50 +94,40 @@ class Personne extends Model
         'nom' => 'string',
         'fonction' => 'string',
         'tel' => 'string',
+        'date' => 'string',
         'adresse' => 'string',
         'email' => 'string',
-        'profile' => 'string'
+        'profile' => 'string',
+        'photo' => 'string',
+        'info1' => 'string',
+        'info2' => 'string',
+        'info3' => 'string',
     ];
 
     public static $rules = [
 
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function formations()
     {
         return $this->hasMany(\App\Models\Formation::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function experiences()
     {
         return $this->hasMany(\App\Models\Experience::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function competences()
     {
         return $this->hasMany(\App\Models\Competence::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function langues()
     {
         return $this->hasMany(\App\Models\Langue::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function interets()
     {
         return $this->hasMany(\App\Models\Interet::class);
