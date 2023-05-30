@@ -24,10 +24,10 @@ class TaskCard extends Component
         $this->status_id = $this->tache->status_id;
         $this->priority_id = $this->tache->priority_id;
 
-        if ($this->task->debut) {
+        if ($this->tache->debut) {
             $this->debut = date_format($this->tache->debut, 'Y-m-d');
         }
-        if ($this->task->fin) {
+        if ($this->tache->fin) {
             $this->fin = date_format($this->tache->fin, 'Y-m-d');
         }
     }
