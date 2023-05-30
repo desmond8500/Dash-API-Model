@@ -24,8 +24,6 @@
                 @livewire('cv.experiences', ['person_id' => $person->id], key($person->id))
             </div>
 
-
-
             @component('components.section',['title'=>'Formation'])
 
             @endcomponent
